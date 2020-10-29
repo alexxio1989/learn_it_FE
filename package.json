@@ -1,7 +1,7 @@
 {
   "name": "learnit",
   "version": "0.0.0",
-  "scriptss": {
+  "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -9,19 +9,12 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "scripts": {
-    "start": "http-server",
-    "lint": "tslint \"src/**/*.ts\"",
-    "test": "ng test",
-    "pree2e": "webdriver-manager update",
-    "e2e": "protractor",
-    "preinstall": "npm install -g angular-cli",
-    "postinstall": "ng build && mv dist/* ."
-  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.1.5",
     "@angular/common": "~10.1.5",
+    "@angular/cli": "~10.1.5",
+    "@angular/compiler-cli": "~10.1.5",
     "@angular/compiler": "~10.1.5",
     "@angular/core": "~10.1.5",
     "@angular/forms": "~10.1.5",
@@ -39,8 +32,6 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1001.5",
-    "@angular/cli": "~10.1.5",
-    "@angular/compiler-cli": "~10.1.5",
     "@types/node": "^12.11.1",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
