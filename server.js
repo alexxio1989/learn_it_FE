@@ -1,16 +1,14 @@
-const path = require('path');
 const express = require('express');
-const port = process.env.PORT || 8080;
+const path = require('path');
 const app = express();
 
-process.env.PWD = process.cwd();
+// Serve static files....
+app.use(express.static(__dirname + '/dist/learning-it-FE'));
 
-app.use(express.static(process.env.PWD + '/build'));
+// Send all requests to index.html
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname + '/dist/learning-it-FE/index.html'));
+});
 
-app.get('*', function (req, res) {
-    const index = path.join(__dirname, 'build', 'index.html');
-    res.sendFile(index);
-  });
-
-app.listen(port);
-console.log('server_started');
+// default Heroku PORT
+app.listen(process.env.PORT || 3000);
