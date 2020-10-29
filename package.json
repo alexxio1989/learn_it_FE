@@ -1,13 +1,18 @@
 {
   "name": "learnit",
   "version": "0.0.0",
-  "scripts": {
+  "scriptss": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "scripts": {
+    "start": "node build/index.js",
+    "build": "tsc",
+    "postinstall": "npm run build"
   },
   "private": true,
   "dependencies": {
