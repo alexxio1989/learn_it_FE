@@ -1,0 +1,10 @@
+
+<button *ngIf="!edit" (click)="edit = true">{{lezione.title === '' || lezione.title === undefined  ? 'crea nuova lezione' : 'modifica lezione' }}</button>
+<div *ngIf="edit">
+    <app-lezione-edit [lezione] = "lezione" (edit) = "editingLezione($event)"></app-lezione-edit>
+</div>
+<div *ngIf="!edit">
+    Lezione : {{lezione.title}}
+    <hr class="mt-2 mb-3"/>
+    <div [innerHTML]="lezione.content"></div>
+</div>

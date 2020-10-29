@@ -1,0 +1,15 @@
+<button (click) = "salva()">salva</button>
+
+<div class="input-group mb-3 mt-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Titolo lezione</span>
+    </div>
+    <input type="text" class="form-control" [(ngModel)]="lezione.title" placeholder="inserisci il titolo">
+</div>
+
+<angular-editor [(ngModel)]="lezione.content" [config]="config"></angular-editor>
+
+<div class="html">
+    {{ lezione.content }}
+</div>
+

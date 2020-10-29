@@ -1,0 +1,7 @@
+
+<app-modal-corso (corso) = "addCorso($event)" [tipoCorsoList] = "tipoCorsoList"></app-modal-corso>
+
+<div *ngFor="let corso of listaCorsi">
+    {{corso.nomeCorso}} 
+    <button type="button" class="btn btn-default" (click) ="goToCorso(corso)">></button>
+</div>
