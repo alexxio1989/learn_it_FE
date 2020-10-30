@@ -1,7 +1,20 @@
+<div class="row pt-5 text-right col-lg">
+    <app-modal-corso (corso)="addCorso($event)" [tipoCorsoList]="tipoCorsoList"></app-modal-corso>
+</div>
 
-<app-modal-corso (corso) = "addCorso($event)" [tipoCorsoList] = "tipoCorsoList"></app-modal-corso>
+<hr>
 
-<div *ngFor="let corso of listaCorsi">
-    {{corso.nomeCorso}} 
-    <button type="button" class="btn btn-default" (click) ="goToCorso(corso)">></button>
+<div class="row">
+    <div *ngFor="let corso of listaCorsi">
+        <div class="col-sm">
+            <div class="card" style="width: 18rem;">
+                <app-image-corso [codiceCorso] = "corso.tipo.codice"></app-image-corso>
+                <div class="card-body">
+                    <h5 class="card-title">{{corso.nomeCorso}} </h5>
+                    <p class="card-text">{{corso.descrizioneCorso}}</p>
+                    <a (click)="goToCorso(corso)" class="btn btn-primary">Vai al corso</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

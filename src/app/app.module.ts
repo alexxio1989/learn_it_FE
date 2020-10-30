@@ -14,6 +14,7 @@ import { ModalCorsoComponent } from './modal-corso/modal-corso.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutes } from './app.routes';
 import { RouterModule } from '@angular/router';
+import { ImageCorsoComponent } from './image-corso/image-corso.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RouterModule } from '@angular/router';
     LezioneComponent,
     LezioneEditComponent,
     ListaCorsiComponent,
-    ModalCorsoComponent
+    ModalCorsoComponent,
+    ImageCorsoComponent
   ],
   imports: [
     BrowserModule,

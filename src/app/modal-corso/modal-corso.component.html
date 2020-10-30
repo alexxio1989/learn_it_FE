@@ -1,20 +1,24 @@
 <ng-template #content let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Crea nuovo corso</h4>
+        <h4 class="modal-title" id="modal-basic-title">Crea il tuo corso</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
         <form>
-            <div class="form-group">
-                <label for="dateOfBirth">Nome Corso</label>
-                <div class="input-group">
-                    <input id="dateOfBirth" class="form-control" #box (keyup)="changeNomeCorso(box.value)" placeholder="inserisci il nome del corso">
+           
+                <div class="form-group">
+                    <label for="dateOfBirth">Nome Corso</label>
+                    <input required id="dateOfBirth" class="form-control" #boxNome (keyup)="changeNomeCorso(boxNome.value)" placeholder="inserisci il nome del corso">
 
                 </div>
-                <div ngbDropdown >
-                    <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Tipo Corso</button>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Descrizione corso</label>
+                    <textarea required class="form-control" id="exampleFormControlTextarea1" rows="3" #boxDesc (keyup)="changeDescCorso(boxDesc.value)"></textarea>
+                </div>
+                <div ngbDropdown class="form-group">
+                    <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{labelTipoCorso}}</button>
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                         <div *ngFor="let tipo of tipoCorsoList">
                             <button ngbDropdownItem (click)="changeTipoCorso(tipo)">{{tipo.descrizione}}</button>
@@ -22,14 +26,14 @@
                     </div>
                 </div>
 
-            </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')" [disabled]="disableSave">Save</button>
+                </div>
+            
         </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
     </div>
 </ng-template>
 
 <button class="btn btn-md btn-outline-primary" (click)="open(content)">Nuovo Corso</button>
 
-<hr>
+

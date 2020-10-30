@@ -11,7 +11,8 @@ import { Corso } from '../model/Corso';
 export class ListaCorsiComponent implements OnInit {
 
   listaCorsi: Array<Corso> = [];
-  tipoCorsoList = [{descrizione:"Programmazione" , codice: "P"} , {descrizione:"Marketing" , codice: "M"}]
+  tipoCorsoList = [{descrizione:"Java" , codice: "J"} , {descrizione:"Angular" , codice: "A"}]
+
 
   constructor(private cs: CorsoServiceService , private route: Router) { }
 
