@@ -41,13 +41,14 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class CardCorsoComponent implements OnInit {
 
   @Input() corso: Corso;
+  
+  state = 0;
 
   constructor( private cs: CorsoServiceService ,private route: Router) { }
 
   ngOnInit(): void {
   }
 
-  state = 0;
 
   scrollDone() {
     this.state++;

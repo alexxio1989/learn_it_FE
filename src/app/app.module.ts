@@ -17,6 +17,8 @@ import { RouterModule } from '@angular/router';
 import { ImageCorsoComponent } from './image-corso/image-corso.component';
 import { CardCorsoComponent } from './card-corso/card-corso.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxStarRatingModule } from 'ngx-star-rating';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +39,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NgbModule,
     RouterModule.forRoot(AppRoutes),
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxStarRatingModule
   ],
   providers: [CorsoServiceService],
   bootstrap: [AppComponent]
