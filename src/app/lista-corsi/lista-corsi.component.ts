@@ -16,7 +16,11 @@ export class ListaCorsiComponent implements OnInit {
 
   constructor(private cs: CorsoServiceService , private route: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.cs.getCorsi().subscribe(res => {
+      this.listaCorsi = res;
+    })
+  }
 
   addCorso(corso: Corso){
     this.listaCorsi.push(corso);

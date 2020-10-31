@@ -19,6 +19,10 @@ export class ImageCorsoComponent implements OnInit {
         return this.path + "angular.png";
          break; 
       } 
+      case "B": { 
+        return this.path + "boostrap.png";
+         break; 
+      }
       default: {
          break; 
       } 

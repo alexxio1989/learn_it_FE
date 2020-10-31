@@ -5,16 +5,16 @@
 <hr>
 
 <div class="row">
-    <div *ngFor="let corso of listaCorsi">
-        <div class="col-sm">
-            <div class="card" style="width: 18rem;">
-                <app-image-corso [codiceCorso] = "corso.tipo.codice"></app-image-corso>
-                <div class="card-body">
-                    <h5 class="card-title">{{corso.nomeCorso}} </h5>
-                    <p class="card-text">{{corso.descrizioneCorso}}</p>
-                    <a (click)="goToCorso(corso)" class="btn btn-primary">Vai al corso</a>
-                </div>
+    <div *ngFor="let corso of listaCorsi" class="col-md-3 col-sm-6 col-xs-6">
+
+        <div class="card">
+            <app-image-corso [codiceCorso]="corso.tipo.codice"></app-image-corso>
+            <div class="card-body">
+                <h5 class="card-title">{{corso.nomeCorso}} </h5>
+                <p class="card-text">{{corso.descrizioneCorso}}</p>
+                <a (click)="goToCorso(corso)" class="btn btn-primary">Vai al corso</a>
             </div>
         </div>
+
     </div>
 </div>

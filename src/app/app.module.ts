@@ -33,7 +33,8 @@ import { ImageCorsoComponent } from './image-corso/image-corso.component';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    RouterModule.forRoot(AppRoutes)
+    RouterModule.forRoot(AppRoutes),
+    HttpClientModule
   ],
   providers: [CorsoServiceService],
   bootstrap: [AppComponent]
