@@ -1,0 +1,17 @@
+<div class="card mb-3" style="max-width: 540px; min-height: 220px;">
+    <div class="row no-gutters">
+        <div class="col-4">
+            <app-image-corso [codiceCorso]="corso.tipo.codice"></app-image-corso>
+        </div>
+        <div class="col-8">
+            <div class="card-body">
+                <h5 class="card-title">{{corso.nomeCorso}}</h5>
+                <div class="card-text containerText">
+                    <div class="scrolling-text" [@scroll]="state" (@scroll.done)="scrollDone()">{{corso.descrizioneCorso}}</div>
+                </div>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <a (click)="goToCorso(corso)" class="btn btn-outline-primary btn-sm">Vai al corso</a>
+            </div>
+        </div>
+    </div>
+</div>

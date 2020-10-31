@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-.navbar .nav > li {
-    z-index: 10000;
-    }
+.card-img-top {
+    width: 80%; 
+    height: 80%; 
+    object-fit: contain; 
+} 
+
+.card-body-fix {
+    margin-top: -3rem;
+}

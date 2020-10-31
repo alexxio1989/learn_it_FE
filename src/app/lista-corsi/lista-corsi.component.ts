@@ -26,9 +26,4 @@ export class ListaCorsiComponent implements OnInit {
     this.listaCorsi.push(corso);
   }
 
-  goToCorso(corso: Corso){
-    this.cs.corsoSelected = corso;
-    this.route.navigate(['/corso']);
-  }
-
 }

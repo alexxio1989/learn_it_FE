@@ -15,7 +15,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutes } from './app.routes';
 import { RouterModule } from '@angular/router';
 import { ImageCorsoComponent } from './image-corso/image-corso.component';
-
+import { CardCorsoComponent } from './card-corso/card-corso.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,8 @@ import { ImageCorsoComponent } from './image-corso/image-corso.component';
     LezioneEditComponent,
     ListaCorsiComponent,
     ModalCorsoComponent,
-    ImageCorsoComponent
+    ImageCorsoComponent,
+    CardCorsoComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { ImageCorsoComponent } from './image-corso/image-corso.component';
     HttpClientModule,
     NgbModule,
     RouterModule.forRoot(AppRoutes),
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [CorsoServiceService],
   bootstrap: [AppComponent]
