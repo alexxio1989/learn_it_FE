@@ -44,6 +44,15 @@ export class CardCorsoComponent implements OnInit {
   
   state = 0;
 
+  get getMediumFeeds(){
+    
+    let count = this.corso.feeds.reduce(function (s, a) {
+      return s + a.feed;
+    }, 0);
+
+    return count / this.corso.feeds.length;
+  }
+
   constructor( private cs: CorsoServiceService ,private route: Router) { }
 
   ngOnInit(): void {

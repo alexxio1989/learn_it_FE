@@ -9,7 +9,8 @@
                 <div class="card-text containerText">
                     <div class="scrolling-text font-weight-light" [@scroll]="state" (@scroll.done)="scrollDone()">{{corso.descrizioneCorso}}</div>
                 </div>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
+                <p class="card-text"><small class="text-muted">( {{corso.feeds.length}} Feeds )</small></p>
                 <div class="row justify-content-end">
                     <a (click)="goToCorso(corso)" class="btn btn-outline-primary btn-sm mr-3 mt-4">Vai al corso</a>
                 </div>
