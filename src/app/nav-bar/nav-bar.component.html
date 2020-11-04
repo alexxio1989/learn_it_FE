@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-light bg-light pb-0">
 
     <form class="form-inline" class="ml-auto mr-auto mt-2">
@@ -19,4 +21,6 @@
         </div>
 
     </form>
+
+    <app-modal-corso (corso)="addCorso($event)" [tipoCorsoList]="tipoCorsoList"></app-modal-corso>
 </nav>

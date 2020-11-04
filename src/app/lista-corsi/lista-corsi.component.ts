@@ -12,7 +12,7 @@ export class ListaCorsiComponent implements OnInit {
 
   listaCorsiBase: Array<Corso> = [];
   listaCorsiFiltered: Array<Corso> = [];
-  tipoCorsoList = [{descrizione:"Java" , codice: "J"} , {descrizione:"Angular" , codice: "A"}]
+  
 
 
   constructor(private cs: CorsoServiceService , private route: Router) { }
@@ -22,17 +22,19 @@ export class ListaCorsiComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cs.getCorsi().subscribe(res => {
+    this.cs.getOBSCorsi().subscribe(res => {
       this.listaCorsiBase = res;
       this.cs.listaCorsi = res;
     })
-    this.cs.getCorsiFiltered().subscribe(res => {
+    this.cs.getOBSCorsiFiltered().subscribe(res => {
       this.listaCorsiFiltered = res;
+    })
+    this.cs.getOBSNewCorso().subscribe(res => {
+      this.listaCorsiBase.push(res);
+      this.listaCorsiFiltered = [];
     })
   }
 
-  addCorso(corso: Corso){
-    this.listaCorsiBase.push(corso);
-  }
+
 
 }

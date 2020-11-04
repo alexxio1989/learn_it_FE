@@ -12,21 +12,30 @@ export class CorsoServiceService {
   user: User;
   corsoSelected: Corso;
 
-  private _subject = new Subject();
+  private _sbjNewCorso = new Subject();
+  private _sbjFilterCorso = new Subject();
 
   listaCorsi: Array<Corso> = [];
 
   constructor(private http: HttpClient) { }
 
   filterCorsi(newCorsi: Corso[]){
-    this._subject.next(newCorsi);
+    this._sbjFilterCorso.next(newCorsi);
   }
 
-  getCorsiFiltered(): Observable<any> {
-    return this._subject.asObservable();
+  addCorso(corso: Corso){
+    this._sbjNewCorso.next(corso);
   }
 
-  getCorsi(): Observable<any>{
+  getOBSCorsiFiltered(): Observable<any> {
+    return this._sbjFilterCorso.asObservable();
+  }
+
+  getOBSNewCorso(): Observable<any> {
+    return this._sbjNewCorso.asObservable();
+  }
+
+  getOBSCorsi(): Observable<any>{
     return this.http.get("https://routerbe.herokuapp.com/router/datipagina/getCorsi");
   }
 }
