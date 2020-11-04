@@ -1,1 +1,49 @@
 <p>{{corso.nomeCorso}}</p>
+
+<hr />
+
+<p>{{corso.descrizioneCorso}}</p>
+
+<hr />
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a data-toggle="tab" class="nav-link active" href="#lezioni">Lezioni</a>
+    </li>
+    <li class="nav-item">
+      <a data-toggle="tab" class="nav-link" href="#feeds">I vostri commenti</a>
+    </li>    
+</ul>
+
+
+<div class="tab-content">
+    <div id="lezioni" class="tab-pane fade in active">
+      <h3>HOME</h3>
+      <p>Some content.</p>
+    </div>
+    <div id="feeds" class="tab-pane fade">
+      <h3>Menu 1</h3>
+      <p>Some content in menu 1.</p>
+      <div *ngFor="let feed of corso.feeds">
+      
+      
+          <div class="card mb-3" style="max-width: 540px; min-height: 200px;">
+              <div class="row no-gutters">
+                  <div class="col-4">
+                      <img class="card-img-top" src="../../assets/images/user.png" class="card-img-top" >
+                  </div>
+                  <div class="col-8">
+                      <div class="card-body">                  
+                          <div class="card-text">
+                              <p>{{ feed.comment }}</p>
+                          </div>
+                          <div class="row ">
+                              <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="feed.feed"></ngx-stars>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>

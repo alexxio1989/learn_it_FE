@@ -10,20 +10,29 @@ import { Corso } from '../model/Corso';
 })
 export class ListaCorsiComponent implements OnInit {
 
-  listaCorsi: Array<Corso> = [];
+  listaCorsiBase: Array<Corso> = [];
+  listaCorsiFiltered: Array<Corso> = [];
   tipoCorsoList = [{descrizione:"Java" , codice: "J"} , {descrizione:"Angular" , codice: "A"}]
 
 
   constructor(private cs: CorsoServiceService , private route: Router) { }
 
+  get listaCorsi(){
+    return this.listaCorsiFiltered.length > 0 ? this.listaCorsiFiltered : this.listaCorsiBase;
+  }
+
   ngOnInit(): void {
     this.cs.getCorsi().subscribe(res => {
-      this.listaCorsi = res;
+      this.listaCorsiBase = res;
+      this.cs.listaCorsi = res;
+    })
+    this.cs.getCorsiFiltered().subscribe(res => {
+      this.listaCorsiFiltered = res;
     })
   }
 
   addCorso(corso: Corso){
-    this.listaCorsi.push(corso);
+    this.listaCorsiBase.push(corso);
   }
 
 }

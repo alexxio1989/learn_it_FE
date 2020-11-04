@@ -18,6 +18,7 @@ import { ImageCorsoComponent } from './image-corso/image-corso.component';
 import { CardCorsoComponent } from './card-corso/card-corso.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxStarsModule } from 'ngx-stars';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NgxStarsModule } from 'ngx-stars';
     ListaCorsiComponent,
     ModalCorsoComponent,
     ImageCorsoComponent,
-    CardCorsoComponent
+    CardCorsoComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
