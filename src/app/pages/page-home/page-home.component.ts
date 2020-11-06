@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CorsoServiceService } from '../corso-service.service';
-import { Corso } from '../model/Corso';
+import { CorsoServiceService } from '../../corso-service.service';
+import { Corso } from '../../model/Corso';
 
 @Component({
-  selector: 'app-lista-corsi',
-  templateUrl: './lista-corsi.component.html',
-  styleUrls: ['./lista-corsi.component.css']
+  selector: 'app-page-home',
+  templateUrl: './page-home.component.html',
+  styleUrls: ['./page-home.component.css']
 })
-export class ListaCorsiComponent implements OnInit {
+export class PageHomeComponent implements OnInit {
 
   listaCorsiBase: Array<Corso> = [];
   listaCorsiFiltered: Array<Corso> = [];
@@ -34,7 +34,5 @@ export class ListaCorsiComponent implements OnInit {
       this.listaCorsiFiltered = [];
     })
   }
-
-
 
 }

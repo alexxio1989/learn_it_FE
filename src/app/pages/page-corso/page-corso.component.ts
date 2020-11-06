@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CorsoServiceService } from '../corso-service.service';
-import { Corso } from '../model/Corso';
+import { CorsoServiceService } from '../../corso-service.service';
+import { Corso } from '../../model/Corso';
 
 @Component({
-  selector: 'app-corso',
-  templateUrl: './corso.component.html',
-  styleUrls: ['./corso.component.css']
+  selector: 'app-page-corso',
+  templateUrl: './page-corso.component.html',
+  styleUrls: ['./page-corso.component.css']
 })
-export class CorsoComponent implements OnInit {
+export class PageCorsoComponent implements OnInit {
 
   corso: Corso;
 
@@ -20,5 +20,4 @@ export class CorsoComponent implements OnInit {
       this.route.navigate(['/']);
     }
   }
-
 }

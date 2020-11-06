@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { CorsoServiceService } from '../corso-service.service';
-import { Corso } from '../model/Corso';
-import { Dominio } from '../model/Dominio';
-import { isEmptyString } from '../utils/Util';
+import { CorsoServiceService } from 'src/app/corso-service.service';
+import { Corso } from 'src/app/model/Corso';
+import { Dominio } from 'src/app/model/Dominio';
+import { isEmptyString } from 'src/app/utils/Util';
 
 @Component({
   selector: 'app-modal-corso',

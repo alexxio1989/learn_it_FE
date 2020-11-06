@@ -11,6 +11,8 @@ export class NavBarComponent implements OnInit {
 
   tipoCorsoList = [{descrizione:"Java" , codice: "J"} , {descrizione:"Angular" , codice: "A"}]
 
+  tabName: number = 0;
+
   constructor(private cs: CorsoServiceService ) { }
 
   ngOnInit(): void {
@@ -22,6 +24,10 @@ export class NavBarComponent implements OnInit {
       
       this.cs.filterCorsi(newArray);
     }
+  }
+
+  onChangeTab(id: number){
+    this.tabName = id;
   }
 
   addCorso(corso: Corso){

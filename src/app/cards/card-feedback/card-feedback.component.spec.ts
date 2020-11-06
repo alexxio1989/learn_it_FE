@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListaCorsiComponent } from './lista-corsi.component';
+import { CardFeedbackComponent } from './card-feedback.component';
 
-describe('ListaCorsiComponent', () => {
-  let component: ListaCorsiComponent;
-  let fixture: ComponentFixture<ListaCorsiComponent>;
+describe('CardFeedbackComponent', () => {
+  let component: CardFeedbackComponent;
+  let fixture: ComponentFixture<CardFeedbackComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListaCorsiComponent ]
+      declarations: [ CardFeedbackComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListaCorsiComponent);
+    fixture = TestBed.createComponent(CardFeedbackComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

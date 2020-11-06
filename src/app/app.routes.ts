@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { ListaCorsiComponent } from './lista-corsi/lista-corsi.component';
-import { CorsoComponent } from './corso/corso.component'
+import { PageCorsoComponent } from './pages/page-corso/page-corso.component';
+import { PageHomeComponent } from './pages/page-home/page-home.component';
  
 export const AppRoutes: Routes = [
-    { path: '', component: ListaCorsiComponent },
-    { path: 'corso', component: CorsoComponent }
+    { path: '', component: PageHomeComponent },
+    { path: 'corso', component: PageCorsoComponent }
   ];
