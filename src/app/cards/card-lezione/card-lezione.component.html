@@ -15,7 +15,7 @@
                     Salva
                 </button>
             </div>  
-            <div *ngIf="lezione.title !== '' || lezione.title === title">
+            <div *ngIf="lezione.title !== '' && lezione.title === title">
                 <button class="btn btn-md" (click) = "update()">
                     Modifica
                 </button>

@@ -4,23 +4,25 @@
 
 <p>{{corso.descrizioneCorso}}</p>
 
-<hr />
+
 
 <div class="row justify-content-end">
-  <button class="btn btn-lg" (click) = "addLezione()">
+  <button class="btn btn-lg" (click)="addLezione()">
     <i class="fa fa-plus-square-o mr-2"></i>
-    <h6 class="float-right mt-1">Nuova Lezione</h6>    
+    <h6 class="float-right mt-1">Nuova Lezione</h6>
   </button>
 </div>
 
-  <div class="row justify-content-center mb-10" *ngIf="corso.lezioni.length === 0">
-    Nessuna lezione associata al corso
+<hr />
+
+<div class="row justify-content-center mb-10" *ngIf="corso.lezioni.length === 0">
+  Nessuna lezione associata al corso
+</div>
+<div *ngIf="corso.lezioni.length > 0">
+  <div *ngFor="let lezione of corso.lezioni">
+    <app-card-lezione [lezione]="lezione"></app-card-lezione>
   </div>
-  <div *ngIf="corso.lezioni.length > 0">
-    <div *ngFor="let lezione of corso.lezioni">
-      <app-card-lezione [lezione]="lezione"></app-card-lezione>
-    </div>
-  </div>
+</div>
 
 
 <div class="row mt-5">
