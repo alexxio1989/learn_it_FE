@@ -1,7 +1,8 @@
 
 export class Lezione {
 
-    title: string;
+    indexArray: number = 0;
+    title: string = '';
     content: string;
     
 }

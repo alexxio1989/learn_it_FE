@@ -6,45 +6,25 @@
 
 <hr />
 
-<ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a data-toggle="tab" class="nav-link active" href="#lezioni">Lezioni</a>
-    </li>
-    <li class="nav-item">
-      <a data-toggle="tab" class="nav-link" href="#feeds">I vostri commenti</a>
-    </li>    
-</ul>
+<div class="row justify-content-end">
+  <button class="btn btn-lg" (click) = "addLezione()">
+    <i class="fa fa-plus-square-o mr-2"></i>
+    <h6 class="float-right mt-1">Nuova Lezione</h6>    
+  </button>
+</div>
 
-
-<div class="tab-content">
-    <div id="lezioni" class="tab-pane fade in active">
-      <h3>HOME</h3>
-      <p>Some content.</p>
-    </div>
-    <div id="feeds" class="tab-pane fade">
-      <h3>Menu 1</h3>
-      <p>Some content in menu 1.</p>
-      <div *ngFor="let feed of corso.feeds">
-      
-      
-          <div class="card mb-3" style="max-width: 540px; min-height: 200px;">
-              <div class="row no-gutters">
-                  <div class="col-4">
-                      <img class="card-img-top" src="../../assets/images/user.png" class="card-img-top" >
-                  </div>
-                  <div class="col-8">
-                      <div class="card-body">                  
-                          <div class="card-text">
-                              <p>{{ feed.comment }}</p>
-                          </div>
-                          <div class="row ">
-                              <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="feed.feed"></ngx-stars>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+  <div class="row justify-content-center mb-10" *ngIf="corso.lezioni.length === 0">
+    Nessuna lezione associata al corso
+  </div>
+  <div *ngIf="corso.lezioni.length > 0">
+    <div *ngFor="let lezione of corso.lezioni">
+      <app-card-lezione [lezione]="lezione"></app-card-lezione>
     </div>
   </div>
 
+
+<div class="row mt-5">
+  <div *ngFor="let feed of corso.feeds">
+    <app-card-feedback [feed]="feed"></app-card-feedback>
+  </div>
+</div>

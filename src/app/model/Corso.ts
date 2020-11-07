@@ -5,7 +5,7 @@ import { User } from './User';
 
 export class Corso{
     owner: User;
-    lezioni: Lezione[];
+    lezioni: Lezione[] = [];
     feeds: Feedback[];
     nomeCorso: string = '';
     descrizioneCorso: string = '';
