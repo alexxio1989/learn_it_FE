@@ -1,8 +1,20 @@
-<p>{{corso.nomeCorso}}</p>
-
-<hr />
-
-<p>{{corso.descrizioneCorso}}</p>
+<div class="mt-5">
+  <div class="row d-flex justify-content-center">
+    <div>
+      <h4>{{corso.nomeCorso}}</h4>
+    </div>
+    <div class="row ml-3 mt-2">
+      <div>
+        <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
+      </div>
+      <div style="margin-top: -3px;">
+        ({{corso.feeds.length}})
+      </div>
+    </div>
+  </div>
+  <hr />
+  <p>{{corso.descrizioneCorso}}</p>
+</div>
 
 
 
@@ -13,20 +25,25 @@
   </button>
 </div>
 
+
 <hr />
 
-<div class="row justify-content-center mb-10" *ngIf="corso.lezioni.length === 0">
-  Nessuna lezione associata al corso
-</div>
-<div *ngIf="corso.lezioni.length > 0">
-  <div *ngFor="let lezione of corso.lezioni">
-    <app-card-lezione [lezione]="lezione"></app-card-lezione>
+<div *ngIf="!showFeeds">
+  <div class="row justify-content-center mb-10" *ngIf="corso.lezioni.length === 0">
+    Nessuna lezione associata al corso
+  </div>
+  <div *ngIf="corso.lezioni.length > 0">
+    <div *ngFor="let lezione of corso.lezioni">
+      <app-card-lezione [lezione]="lezione"></app-card-lezione>
+    </div>
   </div>
 </div>
 
-
-<div class="row mt-5">
-  <div *ngFor="let feed of corso.feeds">
-    <app-card-feedback [feed]="feed"></app-card-feedback>
-  </div>
+<div *ngIf="showFeeds">
+  <div class="row mt-5">
+    <div *ngFor="let feed of corso.feeds">
+      <app-card-feedback [feed]="feed"></app-card-feedback>
+    </div>
+  </div>  
 </div>
+

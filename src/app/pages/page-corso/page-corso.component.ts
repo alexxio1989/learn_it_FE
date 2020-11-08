@@ -18,6 +18,8 @@ export class PageCorsoComponent implements OnInit {
 
   lezione: Lezione;
 
+  showFeeds: boolean;
+
 
   constructor(private cs: CorsoServiceService , private route: Router) { }
 
@@ -34,6 +36,19 @@ export class PageCorsoComponent implements OnInit {
     this.lezione = new Lezione;
     this.lezione.indexArray = this.corso.lezioni.length + 1;
     this.corso.lezioni.push(this.lezione);
+  }
+
+  get getMediumFeeds(){
+    
+    let count = this.corso.feeds.reduce(function (s, a) {
+      return s + a.feed;
+    }, 0);
+
+    return count / this.corso.feeds.length;
+  }
+
+  changeView(){
+    this.showFeeds = !this.showFeeds;
   }
 
 }
