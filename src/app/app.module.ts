@@ -20,6 +20,7 @@ import { CardCorsoComponent } from './cards/card-corso/card-corso.component';
 import { ModalCorsoComponent } from './modals/modal-corso/modal-corso.component';
 import { PageCorsoComponent } from './pages/page-corso/page-corso.component';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
+import { PageLezioneComponent } from './pages/page-lezione/page-lezione.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PageHomeComponent } from './pages/page-home/page-home.component';
     CardFeedbackComponent,
     CardLezioneComponent,
     PageCorsoComponent,
-    PageHomeComponent
+    PageHomeComponent,
+    PageLezioneComponent
   ],
   imports: [
     BrowserModule,

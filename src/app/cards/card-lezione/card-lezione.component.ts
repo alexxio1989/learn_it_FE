@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CorsoServiceService } from 'src/app/corso-service.service';
 import { Lezione } from 'src/app/model/Lezione';
 import { isEmptyString } from 'src/app/utils/Util';
 
@@ -15,7 +17,7 @@ export class CardLezioneComponent implements OnInit {
 
   edit: boolean;
 
-  constructor() { }
+  constructor(private cs: CorsoServiceService , private route: Router) { }
 
   ngOnInit(): void {
     if(isEmptyString(this.title)){
@@ -31,6 +33,11 @@ export class CardLezioneComponent implements OnInit {
   update(){
     this.lezione.title = this.title;
     this.edit = true;
+  }
+
+  goToLezione(){
+    this.cs.lezioneSelected = this.lezione;
+    this.route.navigate(['/lezione']);
   }
 
 }

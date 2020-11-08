@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Corso } from './model/Corso';
+import { Lezione } from './model/Lezione';
 import { User } from './model/User';
 
 @Injectable({
@@ -11,6 +12,7 @@ export class CorsoServiceService {
 
   user: User;
   corsoSelected: Corso;
+  lezioneSelected: Lezione;
 
   private _sbjNewCorso = new Subject();
   private _sbjFilterCorso = new Subject();
