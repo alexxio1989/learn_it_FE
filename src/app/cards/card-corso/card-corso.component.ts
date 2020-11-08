@@ -68,4 +68,8 @@ export class CardCorsoComponent implements OnInit {
     this.route.navigate(['/corso']);
   }
 
+  editCorso(corso: Corso){
+    this.corso = corso;
+  }
+
 }
