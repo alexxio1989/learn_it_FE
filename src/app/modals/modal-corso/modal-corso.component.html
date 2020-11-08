@@ -6,34 +6,34 @@
         </button>
     </div>
     <div class="modal-body">
-        <form>
-           
-                <div class="form-group">
-                    <label for="dateOfBirth">Nome Corso</label>
-                    <input required id="dateOfBirth" class="form-control" #boxNome (keyup)="changeNomeCorso(boxNome.value)" placeholder="inserisci il nome del corso">
 
-                </div>
-                <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Descrizione corso</label>
-                    <textarea required class="form-control" id="exampleFormControlTextarea1" rows="3" #boxDesc (keyup)="changeDescCorso(boxDesc.value)"></textarea>
-                </div>
-                <div ngbDropdown class="form-group">
-                    <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{labelTipoCorso}}</button>
-                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                        <div *ngFor="let tipo of tipoCorsoList">
-                            <button ngbDropdownItem (click)="changeTipoCorso(tipo)">{{tipo.descrizione}}</button>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')" [disabled]="disableSave">Crea corso</button>
+        <div class="form-group">
+            <label for="dateOfBirth">Nome Corso</label>
+            <input required id="dateOfBirth" class="form-control" [(ngModel)]="nomeCorso"
+                placeholder="inserisci il nome del corso">
+
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Descrizione corso</label>
+            <angular-editor [(ngModel)]="descCorso" [config]="config"></angular-editor>
+        </div>
+        <div ngbDropdown class="form-group">
+            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{labelTipoCorso}}</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <div *ngFor="let tipo of tipoCorsoList">
+                    <button ngbDropdownItem (click)="changeTipoCorso(tipo)">{{tipo.descrizione}}</button>
                 </div>
-            
-        </form>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')"
+                [disabled]="disableSave">Crea corso</button>
+        </div>
+
+
     </div>
 </ng-template>
 
 <button class="btn btn-md btn-outline-primary" (click)="open(content)">Nuovo Corso</button>
-
-

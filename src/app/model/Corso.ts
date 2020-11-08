@@ -6,7 +6,7 @@ import { User } from './User';
 export class Corso{
     owner: User;
     lezioni: Lezione[] = [];
-    feeds: Feedback[];
+    feeds: Feedback[] = [];
     nomeCorso: string = '';
     descrizioneCorso: string = '';
     tipo: Dominio = new Dominio();

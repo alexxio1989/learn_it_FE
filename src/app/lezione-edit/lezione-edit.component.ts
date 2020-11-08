@@ -47,7 +47,7 @@ export class LezioneEditComponent implements OnInit {
         tag: "h1",
       },
     ]
-  };
+  }; 
 
   salva(){
     console.log("lezione salvata")

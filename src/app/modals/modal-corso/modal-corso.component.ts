@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { CorsoServiceService } from 'src/app/corso-service.service';
 import { Corso } from 'src/app/model/Corso';
@@ -25,6 +26,35 @@ export class ModalCorsoComponent implements OnInit {
   closeResult = '';
 
   constructor(private modalService: NgbModal , private cs: CorsoServiceService) {}
+
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '15rem',
+    minHeight: '5rem',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    defaultParagraphSeparator: 'p',
+    defaultFontName: 'Arial',
+    toolbarHiddenButtons: [
+      ['bold']
+      ],
+    customClasses: [
+      {
+        name: "quote",
+        class: "quote",
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: "titleText",
+        class: "titleText",
+        tag: "h1",
+      },
+    ]
+  };
 
   get disableSave(){
     return isEmptyString(this.nomeCorso) || isEmptyString(this.descCorso) || (this.tipoCorso === undefined || this.tipoCorso.codice === '');
@@ -55,10 +85,6 @@ export class ModalCorsoComponent implements OnInit {
 
   changeNomeCorso(value: string) {
     this.nomeCorso = value;
-  }
-
-  changeDescCorso(value: string) {
-    this.descCorso = value;
   }
 
 

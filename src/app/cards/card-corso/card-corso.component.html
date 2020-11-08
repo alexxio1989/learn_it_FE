@@ -7,7 +7,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{corso.nomeCorso}}</h5>
                 <div class="card-text containerText">
-                    <div class="scrolling-text font-weight-light" [@scroll]="state" (@scroll.done)="scrollDone()">{{corso.descrizioneCorso}}</div>
+                    <div class="scrolling-text font-weight-light html" [@scroll]="state" (@scroll.done)="scrollDone()" [innerHTML]="corso.descrizioneCorso"></div>
                 </div>
                 <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
                 <p class="card-text"><small class="text-muted">( {{corso.feeds.length}} Feeds )</small></p>

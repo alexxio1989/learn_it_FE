@@ -1,40 +1,29 @@
-<div class="navbar navbar-light bg-light">
-    <a href="" class="navbar-brand">MyWebsite</a>
+<div class="navbar navbar-dark bg-dark">
+    <a href="" class="navbar-brand" style="font-family: American Typewriter, serif">Learn-it</a>
     <form class="form-inline">
-        <button class="btn btn-lg" data-toggle="collapse" (click) = "onChangeTab(1)" [attr.data-target]="'#' + 'collapse' + tabName">
-            <i class="fa fa-search"></i>
+        <button class="btn btn-lg" data-toggle="collapse" (click)="onChangeTab(1)"
+            [attr.data-target]="'#' + 'collapse' + tabName">
+            <i class="fa fa-search" style="color:white"></i>
         </button>
-        <button class="btn btn-lg" data-toggle="collapse" (click) = "onChangeTab(2)" [attr.data-target]="'#' + 'collapse' + tabName">
-            <i class="fa fa-user-circle-o"></i>
+        <button class="btn btn-lg" data-toggle="collapse" (click)="onChangeTab(2)"
+            [attr.data-target]="'#' + 'collapse' + tabName">
+            <i class="fa fa-user" style="color:white"></i>
         </button>
     </form>
 
 
     <div class="collapse navbar-collapse" id="collapse1">
-        <ul class="nav navbar-nav navbar-left">
-            <form class="form-inline" class="ml-auto mr-auto mt-2">
-                <div class="input-group mb-3">
-
-                    
-                    <div class="dropdown">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Tipologia
-                          </button>
-                          <div class="dropdown-menu dropdown-menu-left">
-                            <button class="dropdown-item" type="button">Action</button>
-                            <button class="dropdown-item" type="button">Another action</button>
-                            <button class="dropdown-item" type="button">Something else here</button>
-                          </div>
-                    </div>
-                    <input class="form-control" type="search" placeholder="nome corso ..." aria-label="Search" (input)="filterListCorsi($event.target.value)">
+        
+            <div class="row d-flex justify-content-center mb-2">
+                <div class="col-md-5 col-xs-8">
+                    <input class="form-control" type="search" placeholder="nome corso ..."  (input)="filterListCorsi($event.target.value)">
                 </div>
-
-            </form>
-        </ul>
+            </div>
+        
     </div>
     <div class="collapse navbar-collapse" id="collapse2">
         <ul class="nav navbar-nav navbar-right">
-            <hr/>
+            <hr />
             <app-modal-corso (corso)="addCorso($event)" [tipoCorsoList]="tipoCorsoList"></app-modal-corso>
         </ul>
     </div>

@@ -1,29 +1,35 @@
-<div class="mt-5">
+<div class="mt-3">
+
   <div class="row d-flex justify-content-center">
-    <div>
+    <div class="d-inline">
       <h4>{{corso.nomeCorso}}</h4>
     </div>
-    <div class="row ml-3 mt-2">
-      <div>
-        <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
-      </div>
-      <div style="margin-top: -3px;">
-        ({{corso.feeds.length}})
-      </div>
+  </div>
+
+  <div class="row d-flex justify-content-center">
+    <div class="d-inline">
+      <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
+    </div>
+    <div class="d-inline" style="margin-top: -2px;">
+      ({{corso.feeds.length}})
     </div>
   </div>
-  <hr />
-  <p>{{corso.descrizioneCorso}}</p>
+
+
+  <div class="row d-flex justify-content-center">
+    <button class="btn btn-lg" (click)="addLezione()">
+      <i class="fa fa-plus-square-o mr-2"></i>
+      <h6 class="float-right mt-1">Nuova Lezione</h6>
+    </button>
+  </div>
+
+  <div class="jumbotron p-3">
+    <div class="container" [innerHTML]="corso.descrizioneCorso"></div>
+  </div>
 </div>
 
 
 
-<div class="row justify-content-end">
-  <button class="btn btn-lg" (click)="addLezione()">
-    <i class="fa fa-plus-square-o mr-2"></i>
-    <h6 class="float-right mt-1">Nuova Lezione</h6>
-  </button>
-</div>
 
 
 <hr />
@@ -44,6 +50,5 @@
     <div *ngFor="let feed of corso.feeds">
       <app-card-feedback [feed]="feed"></app-card-feedback>
     </div>
-  </div>  
+  </div>
 </div>
-
