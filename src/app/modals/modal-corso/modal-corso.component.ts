@@ -13,7 +13,6 @@ import { isEmptyString } from 'src/app/utils/Util';
 })
 export class ModalCorsoComponent implements OnInit {
 
-  @Output() corso = new EventEmitter<Corso>();
   @Input() tipoCorsoList;
 
   nomeCorso: string = '';
@@ -71,8 +70,9 @@ export class ModalCorsoComponent implements OnInit {
       corso.descrizioneCorso = this.descCorso;
       corso.tipo = this.tipoCorso;
       corso.owner = this.cs.user;
-      this.cs.getOBSInsertCorso(corso).subscribe();
-      this.corso.emit(corso);
+      this.cs.getOBSInsertCorso(corso).subscribe(res => {
+        this.cs.updateCorsi(res);
+      });
       this.closeResult = `Closedddd with: ${result}`;
     });
   }

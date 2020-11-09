@@ -14,12 +14,11 @@ import { isEmptyString } from 'src/app/utils/Util';
 export class ModalCorsoEditComponent implements OnInit {
 
   @Input() corso: Corso;
-  @Output() corsoEdited = new EventEmitter<Corso>();
 
 
   ngOnInit(): void {}
 
-  closeResult = '';
+  closeResult = ''; 
 
   constructor(private modalService: NgbModal , private cs: CorsoServiceService) {}
 
@@ -59,8 +58,9 @@ export class ModalCorsoEditComponent implements OnInit {
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => { 
-      this.cs.getOBSUpdateCorso(this.corso).subscribe();   
-      this.corsoEdited.emit(this.corso);
+      this.cs.getOBSUpdateCorso(this.corso).subscribe(res => {
+        this.cs.updateCorsi(res);
+      });   
       this.closeResult = `Closedddd with: ${result}`;
     });
   }

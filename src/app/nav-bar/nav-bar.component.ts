@@ -33,8 +33,5 @@ export class NavBarComponent implements OnInit {
     this.tabName = id;
   }
 
-  addCorso(corso: Corso){
-    this.cs.addCorso(corso);
-  }
 
 }

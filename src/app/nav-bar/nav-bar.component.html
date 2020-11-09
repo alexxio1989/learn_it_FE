@@ -9,9 +9,6 @@
             [attr.data-target]="'#' + 'collapse' + tabName">
             <i class="fa fa-user" style="color:white"></i>
         </button>
-
-
-        <app-side-bar></app-side-bar>
     </form>
 
 
@@ -27,7 +24,7 @@
     <div class="collapse navbar-collapse" id="collapse2">
         <ul class="nav navbar-nav navbar-right">
             <hr />
-            <app-modal-corso (corso)="addCorso($event)" [tipoCorsoList]="tipoCorsoList"></app-modal-corso>
+            <app-modal-corso [tipoCorsoList]="tipoCorsoList"></app-modal-corso>
         </ul>
     </div>
 

@@ -68,8 +68,10 @@ export class CardCorsoComponent implements OnInit {
     this.route.navigate(['/corso']);
   }
 
-  editCorso(corso: Corso){
-    this.corso = corso;
+  elimina(){
+    this.cs.getOBSDeleteCorso(this.corso).subscribe(res => {
+      this.cs.updateCorsi(res);
+    });
   }
 
 }

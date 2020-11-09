@@ -12,7 +12,8 @@
                 <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
                 <p class="card-text"><small class="text-muted">( {{corso.feeds.length}} Feeds )</small></p>
                 <div class="row justify-content-end">
-                    <app-modal-corso-edit (corsoEdited)="editCorso($event)" [corso] = "corso"></app-modal-corso-edit>
+                    <a (click)="elimina()" class="btn btn-outline-danger btn-sm mr-3 mt-4">Elimina</a>
+                    <app-modal-corso-edit [corso] = "corso"></app-modal-corso-edit>
                     <a (click)="goToCorso(corso)" class="btn btn-outline-success btn-sm mr-3 mt-4">Vai al corso</a>
                 </div>
             </div>

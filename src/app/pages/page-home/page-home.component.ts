@@ -29,8 +29,8 @@ export class PageHomeComponent implements OnInit {
     this.cs.getOBSCorsiFiltered().subscribe(res => {
       this.listaCorsiFiltered = res;
     })
-    this.cs.getOBSNewCorso().subscribe(res => {
-      this.listaCorsiBase.push(res);
+    this.cs.getOBSUpdateCorsi().subscribe(res => {
+      this.listaCorsiBase = res;
       this.listaCorsiFiltered = [];
     })
   }

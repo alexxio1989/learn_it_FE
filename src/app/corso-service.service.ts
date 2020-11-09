@@ -14,7 +14,7 @@ export class CorsoServiceService {
   corsoSelected: Corso;
   lezioneSelected: Lezione;
 
-  private _sbjNewCorso = new Subject();
+  private _sbjUpdateCorsi = new Subject();
   private _sbjFilterCorso = new Subject();
 
   listaCorsi: Array<Corso> = [];
@@ -25,16 +25,16 @@ export class CorsoServiceService {
     this._sbjFilterCorso.next(newCorsi);
   }
 
-  addCorso(corso: Corso){
-    this._sbjNewCorso.next(corso);
+  updateCorsi(corsi: Corso[]){
+    this._sbjUpdateCorsi.next(corsi);
   }
 
   getOBSCorsiFiltered(): Observable<any> {
     return this._sbjFilterCorso.asObservable();
   }
 
-  getOBSNewCorso(): Observable<any> {
-    return this._sbjNewCorso.asObservable();
+  getOBSUpdateCorsi(): Observable<any> {
+    return this._sbjUpdateCorsi.asObservable();
   }
 
   getOBSCorsi(): Observable<any>{
