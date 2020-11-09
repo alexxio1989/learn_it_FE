@@ -40,4 +40,21 @@ export class CorsoServiceService {
   getOBSCorsi(): Observable<any>{
     return this.http.get("https://routerbe.herokuapp.com/router/datipagina/getCorsi");
   }
+
+  getOBSTypes(): Observable<any>{
+    return this.http.get("https://routerbe.herokuapp.com/router/datipagina/getTypes");
+  }
+
+  getOBSInsertCorso(corso: Corso): Observable<any>{
+    return this.http.post("https://routerbe.herokuapp.com/router/saveCorso", corso);
+  }
+
+  getOBSUpdateCorso(corso: Corso): Observable<any>{
+    return this.http.post("https://routerbe.herokuapp.com/router/updateCorso", corso);
+  }
+
+  getOBSDeleteCorso(corso: Corso): Observable<any>{
+    return this.http.post("https://routerbe.herokuapp.com/router/deleteCorso", corso);
+  }
+
 }

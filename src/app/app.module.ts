@@ -22,6 +22,7 @@ import { PageCorsoComponent } from './pages/page-corso/page-corso.component';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { PageLezioneComponent } from './pages/page-lezione/page-lezione.component';
 import { ModalCorsoEditComponent } from './modals/modal-corso-edit/modal-corso-edit.component';
+import { SideBarComponent } from './side-bar/side-bar.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ModalCorsoEditComponent } from './modals/modal-corso-edit/modal-corso-e
     PageCorsoComponent,
     PageHomeComponent,
     PageLezioneComponent,
-    ModalCorsoEditComponent
+    ModalCorsoEditComponent,
+    SideBarComponent
   ],
   imports: [
     BrowserModule,

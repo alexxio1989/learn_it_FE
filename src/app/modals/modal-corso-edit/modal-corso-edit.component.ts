@@ -58,7 +58,8 @@ export class ModalCorsoEditComponent implements OnInit {
 
 
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {     
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => { 
+      this.cs.getOBSUpdateCorso(this.corso).subscribe();   
       this.corsoEdited.emit(this.corso);
       this.closeResult = `Closedddd with: ${result}`;
     });
