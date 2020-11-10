@@ -1,22 +1,29 @@
-<div class="card mb-3" style="max-width: 540px; min-height: 200px;">
-    <div class="row no-gutters">
+<div class="card mb-3 shadow-sm" style="max-width: 540px;">
+    <div class="row no-gutters mb-1">
         <div class="col-4">
             <app-image-corso [codiceCorso]="corso.tipo.codice"></app-image-corso>
         </div>
         <div class="col-8">
-            <div class="card-body">
-                <h5 class="card-title">{{corso.nomeCorso}}</h5>
-                <div class="card-text containerText">
+            <div class="card-body pb-0">
+
+                <h5 class="card-title" style="font-size:1rem;">{{corso.nomeCorso}}</h5>
+
+                <div class="row d-flex justify-content-center">
+                    <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
+                    <p class="card-text ml-1" style="margin-top: -3px;"><small class="text-muted">( {{corso.feeds.length}} )</small></p>
+                </div>
+
+                <div class="card-text containerText mt-2">
                     <div class="scrolling-text font-weight-light html" [@scroll]="state" (@scroll.done)="scrollDone()" [innerHTML]="corso.descrizioneCorso"></div>
                 </div>
-                <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
-                <p class="card-text"><small class="text-muted">( {{corso.feeds.length}} Feeds )</small></p>
-                <div class="row justify-content-end">
-                    <a (click)="elimina()" class="btn btn-outline-danger btn-sm mr-3 mt-4">Elimina</a>
-                    <app-modal-corso-edit [corso] = "corso"></app-modal-corso-edit>
-                    <a (click)="goToCorso(corso)" class="btn btn-outline-success btn-sm mr-3 mt-4">Vai al corso</a>
-                </div>
+
             </div>
         </div>
+    </div>
+    <div class="row no-gutters pt-0 pb-3 bg-light text-dark justify-content-end">
+        <a (click)="elimina()" class="btn btn-outline-danger btn-sm mr-3 mt-4">Elimina</a>
+        <app-modal-corso-edit [corso] = "corso"></app-modal-corso-edit>
+        <a (click)="goToCorso(corso)" class="btn btn-outline-success btn-sm mr-3 mt-4">Vai al corso</a>
+
     </div>
 </div>

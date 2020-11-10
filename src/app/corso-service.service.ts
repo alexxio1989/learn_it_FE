@@ -57,4 +57,16 @@ export class CorsoServiceService {
     return this.http.post("https://routerbe.herokuapp.com/router/deleteCorso", corso);
   }
 
+  getOBSInsertLezione(lezione: Lezione): Observable<any>{
+    return this.http.post("https://routerbe.herokuapp.com/router/saveLezione", lezione);
+  }
+
+  getOBSUpdateLezione(lezione: Lezione): Observable<any>{
+    return this.http.post("https://routerbe.herokuapp.com/router/updateLezione", lezione);
+  }
+
+  getOBSDeleteLezione(lezione: Lezione): Observable<any>{
+    return this.http.post("https://routerbe.herokuapp.com/router/deleteLezione", lezione);
+  }
+
 }

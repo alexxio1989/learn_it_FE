@@ -4,6 +4,7 @@ import { Lezione } from './Lezione';
 import { User } from './User';
 
 export class Corso{
+    id: number;
     owner: User;
     lezioni: Lezione[] = [];
     feeds: Feedback[] = [];
