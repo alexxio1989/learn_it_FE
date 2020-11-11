@@ -22,7 +22,6 @@ import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { PageLezioneComponent } from './pages/page-lezione/page-lezione.component';
 import { ModalCorsoEditComponent } from './modals/modal-corso-edit/modal-corso-edit.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
-import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { ModalParagrafoEditComponent } from './modals/modal-paragrafo-edit/modal-paragrafo-edit.component';
 import { ModalParagrafoNewComponent } from './modals/modal-paragrafo-new/modal-paragrafo-new.component';
 
