@@ -1,1 +1,30 @@
-<p>modal-paragrafo-new works!</p>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Modifica il tuo corso</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+
+        <div class="form-group">
+            <label for="dateOfBirth">Titolo Paragrafo</label>
+            <input required id="dateOfBirth" class="form-control" [(ngModel)]="titolo"
+                placeholder="inserisci il nome del corso">
+
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Contenuto Paragrafo</label>
+            <angular-editor [(ngModel)]="testo" [config]="config"></angular-editor>
+        </div>
+
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')" >Salva</button>
+        </div>
+
+
+    </div>
+</ng-template>
+<a (click)="open(content)" class="btn btn-outline-primary btn-sm mr-3 mt-4">Nuovo Paragrafo</a>

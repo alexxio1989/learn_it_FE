@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CorsoServiceService } from 'src/app/corso-service.service';
 import { Lezione } from 'src/app/model/Lezione';
+import { Paragrafo } from 'src/app/model/Paragrafo';
 
 @Component({
   selector: 'app-page-lezione',
@@ -26,6 +27,9 @@ export class PageLezioneComponent implements OnInit {
     this.edit = false;
   }
 
+  newParagrafo(paragrafo: Paragrafo){
+    this.lezione.listaParagrafi.push(paragrafo);
+  }
 
 
 }

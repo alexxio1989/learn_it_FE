@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CorsoServiceService } from 'src/app/corso-service.service';
+import { Paragrafo } from 'src/app/model/Paragrafo';
 
 @Component({
   selector: 'app-modal-paragrafo-new',
@@ -7,9 +11,52 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalParagrafoNewComponent implements OnInit {
 
-  constructor() { }
+  @Output() newParagrafo = new EventEmitter<Paragrafo>();
 
+  titolo: string = '';
+  testo: string = '';
+  
   ngOnInit(): void {
+  }
+
+  constructor(private modalService: NgbModal , private cs: CorsoServiceService) {}
+
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '15rem',
+    minHeight: '5rem',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    defaultParagraphSeparator: 'p',
+    defaultFontName: 'Arial',
+    toolbarHiddenButtons: [
+      ['bold']
+      ],
+    customClasses: [
+      {
+        name: "quote",
+        class: "quote",
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: "titleText",
+        class: "titleText",
+        tag: "h1",
+      },
+    ]
+  };
+
+  open(content) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => { 
+      let paragrafo = new Paragrafo();
+      paragrafo.titolo = this.titolo;
+      paragrafo.content = this.testo;
+      this.cs.getOBSInsertParagrafo(paragrafo).subscribe(); 
+    });
   }
 
 }
