@@ -1,7 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CorsoServiceService } from 'src/app/corso-service.service';
+import { Lezione } from 'src/app/model/Lezione';
 import { Paragrafo } from 'src/app/model/Paragrafo';
 
 @Component({
@@ -12,6 +13,7 @@ import { Paragrafo } from 'src/app/model/Paragrafo';
 export class ModalParagrafoNewComponent implements OnInit {
 
   @Output() newParagrafo = new EventEmitter<Paragrafo>();
+  @Input() lezione: Lezione;
 
   titolo: string = '';
   testo: string = '';
@@ -55,7 +57,9 @@ export class ModalParagrafoNewComponent implements OnInit {
       let paragrafo = new Paragrafo();
       paragrafo.titolo = this.titolo;
       paragrafo.content = this.testo;
+      paragrafo.idlezione = this.lezione.id;
       this.cs.getOBSInsertParagrafo(paragrafo).subscribe(); 
+      this.newParagrafo.emit(paragrafo);
     });
   }
 

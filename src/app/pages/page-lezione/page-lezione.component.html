@@ -1,6 +1,6 @@
 <div class="row col-12">
     <h2 class="display-4" style="font-size: 2rem">{{lezione.title}}</h2>
-    <app-modal-paragrafo-new (newParagrafo) ="newParagrafo($event)"></app-modal-paragrafo-new>
+    <app-modal-paragrafo-new (newParagrafo) ="newParagrafo($event)" [lezione]= "lezione"></app-modal-paragrafo-new>
 </div>
 
 <div class="row mt-3 ">
