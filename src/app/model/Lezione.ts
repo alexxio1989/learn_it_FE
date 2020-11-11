@@ -1,3 +1,4 @@
+import { Paragrafo } from './Paragrafo';
 
 export class Lezione {
     id: number;
@@ -5,5 +6,5 @@ export class Lezione {
     indexArray: number = 0;
     title: string = '';
     content: string;
-    
+    listaParagrafi: Paragrafo[] = [];
 }

@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { LezioneEditComponent } from './lezione-edit/lezione-edit.component'
 import { CorsoServiceService } from './corso-service.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutes } from './app.routes';
@@ -23,11 +22,13 @@ import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { PageLezioneComponent } from './pages/page-lezione/page-lezione.component';
 import { ModalCorsoEditComponent } from './modals/modal-corso-edit/modal-corso-edit.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { ModalParagrafoEditComponent } from './modals/modal-paragrafo-edit/modal-paragrafo-edit.component';
+import { ModalParagrafoNewComponent } from './modals/modal-paragrafo-new/modal-paragrafo-new.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LezioneEditComponent,
     ModalCorsoComponent,
     ImageCorsoComponent,
     CardCorsoComponent,
@@ -38,7 +39,9 @@ import { SideBarComponent } from './side-bar/side-bar.component';
     PageHomeComponent,
     PageLezioneComponent,
     ModalCorsoEditComponent,
-    SideBarComponent
+    SideBarComponent,
+    ModalParagrafoEditComponent,
+    ModalParagrafoNewComponent
   ],
   imports: [
     BrowserModule,

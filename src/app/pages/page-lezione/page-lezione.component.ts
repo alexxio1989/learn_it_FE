@@ -13,6 +13,8 @@ export class PageLezioneComponent implements OnInit {
   edit: boolean;
   lezione: Lezione;
 
+
+
   constructor(private cs: CorsoServiceService , private route: Router) { }
 
   ngOnInit(): void {
@@ -23,5 +25,7 @@ export class PageLezioneComponent implements OnInit {
     this.lezione = lezione;
     this.edit = false;
   }
+
+
 
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Corso } from './model/Corso';
 import { Lezione } from './model/Lezione';
+import { Paragrafo } from './model/Paragrafo';
 import { User } from './model/User';
 
 @Injectable({
@@ -67,6 +68,18 @@ export class CorsoServiceService {
 
   getOBSDeleteLezione(lezione: Lezione): Observable<any>{
     return this.http.post("https://routerbe.herokuapp.com/router/deleteLezione", lezione);
+  }
+
+  getOBSInsertParagrafo(paragrafo: Paragrafo): Observable<any>{
+    return this.http.post("https://routerbe.herokuapp.com/router/saveParagrafo", paragrafo);
+  }
+
+  getOBSUpdateParagrafo(paragrafo: Paragrafo): Observable<any>{
+    return this.http.post("https://routerbe.herokuapp.com/router/updateParagrafo", paragrafo);
+  }
+
+  getOBSDeleteParagrafo(paragrafo: Paragrafo): Observable<any>{
+    return this.http.post("https://routerbe.herokuapp.com/router/deleteParagrafo", paragrafo);
   }
 
 }
