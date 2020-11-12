@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DelegateServiceService } from './services/delegate-service.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'learnit';
+  showSpinner: boolean;
+
+  constructor(private ds: DelegateServiceService){
+    this.ds.getOBSSpinner().subscribe(next => {
+      this.showSpinner = next;
+    })
+  }
+
 }

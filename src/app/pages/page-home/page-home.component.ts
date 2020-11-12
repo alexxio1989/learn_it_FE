@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
+import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { Corso } from '../../model/Corso';
 
 @Component({
@@ -15,14 +16,16 @@ export class PageHomeComponent implements OnInit {
   
 
 
-  constructor(private cs: CorsoServiceService , private route: Router) { }
+  constructor(private cs: CorsoServiceService , private route: Router , private ds: DelegateServiceService) { }
 
   get listaCorsi(){
     return this.listaCorsiFiltered.length > 0 ? this.listaCorsiFiltered : this.listaCorsiBase;
   }
 
   ngOnInit(): void {
+    this.ds.updateSpinner(true);
     this.cs.getOBSCorsi().subscribe(next => {
+      this.ds.updateSpinner(false);
       this.listaCorsiBase = next;
       this.cs.listaCorsi = next;
     })

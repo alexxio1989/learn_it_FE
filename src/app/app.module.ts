@@ -27,6 +27,8 @@ import { CorsoServiceService } from './services/corso-service.service';
 import { LezioneServiceService } from './services/lezione-service.service';
 import { ParagrafoServiceService } from './services/paragrafo-service.service';
 import {MatSidenavModule} from '@angular/material/sidenav'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import { DelegateServiceService } from './services/delegate-service.service';
 
 @NgModule({
   declarations: [
@@ -56,9 +58,15 @@ import {MatSidenavModule} from '@angular/material/sidenav'
     HttpClientModule,
     BrowserAnimationsModule,
     NgxStarsModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatProgressSpinnerModule
   ],
-  providers: [CorsoServiceService,LezioneServiceService,ParagrafoServiceService],
+  providers: [
+    CorsoServiceService,
+    LezioneServiceService,
+    ParagrafoServiceService,
+    DelegateServiceService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
