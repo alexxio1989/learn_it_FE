@@ -12,9 +12,12 @@ import { isEmptyString } from 'src/app/utils/Util';
 })
 export class CardLezioneComponent implements OnInit {
 
+  @Input() lezioni: Lezione[];
+
   @Input() lezione: Lezione;
 
   @Output() newLezioni = new EventEmitter<Lezione[]>();
+  
 
   title: string = '';
 

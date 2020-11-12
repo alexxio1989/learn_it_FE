@@ -35,7 +35,7 @@ export class PageCorsoComponent implements OnInit {
   addLezione(){
     this.lezione = new Lezione;
     this.lezione.idCorso = this.corso.id;
-    this.lezione.indexArray = this.corso.lezioni.length + 1;
+    this.lezione.indexLezione = this.corso.lezioni.length + 1;
     this.corso.lezioni.push(this.lezione);
   }
 

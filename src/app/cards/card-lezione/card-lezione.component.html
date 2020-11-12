@@ -2,7 +2,10 @@
     <div class="row">
         <div class="col-4 justify-content-center align-self-center">
             <div class="w-100 d-flex justify-content-center">
-                <p class="h6">Lezione {{lezione.indexArray}}</p>
+                <p class="h6">Lezione</p>
+            </div>
+            <div class="w-100 d-flex justify-content-center">
+                <p class="h3">{{lezione.indexLezione > 9 ? lezione.indexLezione : '0' + lezione.indexLezione}}</p>
             </div>
         </div>
         <div class="col-8">
@@ -25,7 +28,7 @@
                     <a class="stretched-link" class="btn btn-outline-warning btn-sm mr-3 mt-4" (click)="update()">Modifica</a>
                 </div>
                 <div *ngIf="!edit">
-                    <a class="stretched-link" class="btn btn-outline-primary btn-sm mr-3 mt-4" (click)="goToLezione()">Vai alla lezione</a>
+                    <a class="stretched-link" class="btn btn-outline-primary btn-sm mr-3 mt-4" (click)="goToLezione()">Inizia</a>
                 </div>
             </div>
 
