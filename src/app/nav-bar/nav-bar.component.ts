@@ -12,6 +12,7 @@ export class NavBarComponent implements OnInit {
   tipoCorsoList = [{descrizione:"Java" , codice: "J"} , {descrizione:"Angular" , codice: "A"}]
 
   tabName: number = 0;
+  showFiller = false;
 
   constructor(private cs: CorsoServiceService ) { }
 

@@ -5,21 +5,23 @@
             [attr.data-target]="'#' + 'collapse' + tabName">
             <i class="fa fa-search" style="color:white"></i>
         </button>
-        <button class="btn btn-lg" data-toggle="collapse" (click)="onChangeTab(2)"
-            [attr.data-target]="'#' + 'collapse' + tabName">
-            <i class="fa fa-user" style="color:white"></i>
+       
+        <button class="btn btn-lg" (click)="drawer.toggle()">
+            <i class="fa fa-bars" style="color:white"></i>
         </button>
-    </form>
 
+    </form>
+    
 
     <div class="collapse navbar-collapse" id="collapse1">
-        
-            <div class="row d-flex justify-content-center mb-2">
-                <div class="col-md-5 col-xs-8">
-                    <input class="form-control" type="search" placeholder="nome corso ..."  (input)="filterListCorsi($event.target.value)">
-                </div>
+
+        <div class="row d-flex justify-content-center mb-2">
+            <div class="col-md-5 col-xs-8">
+                <input class="form-control" type="search" placeholder="nome corso ..."
+                    (input)="filterListCorsi($event.target.value)">
             </div>
-        
+        </div>
+
     </div>
     <div class="collapse navbar-collapse" id="collapse2">
         <ul class="nav navbar-nav navbar-right">
@@ -29,3 +31,7 @@
     </div>
 
 </div>
+
+<mat-drawer #drawer class="example-sidenav" mode="over">
+    <app-modal-corso [tipoCorsoList]="tipoCorsoList"></app-modal-corso>
+</mat-drawer>

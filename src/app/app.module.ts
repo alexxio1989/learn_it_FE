@@ -26,6 +26,7 @@ import { ModalParagrafoNewComponent } from './modals/modal-paragrafo-new/modal-p
 import { CorsoServiceService } from './services/corso-service.service';
 import { LezioneServiceService } from './services/lezione-service.service';
 import { ParagrafoServiceService } from './services/paragrafo-service.service';
+import {MatSidenavModule} from '@angular/material/sidenav'
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { ParagrafoServiceService } from './services/paragrafo-service.service';
     RouterModule.forRoot(AppRoutes),
     HttpClientModule,
     BrowserAnimationsModule,
-    NgxStarsModule
+    NgxStarsModule,
+    MatSidenavModule
   ],
   providers: [CorsoServiceService,LezioneServiceService,ParagrafoServiceService],
   bootstrap: [AppComponent]
