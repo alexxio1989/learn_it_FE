@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CorsoServiceService } from '../corso-service.service';
 import { Corso } from '../model/Corso';
+import { CorsoServiceService } from '../services/corso-service.service';
 
 @Component({
   selector: 'app-nav-bar',

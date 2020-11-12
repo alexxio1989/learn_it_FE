@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CorsoServiceService } from 'src/app/corso-service.service';
 import { Paragrafo } from 'src/app/model/Paragrafo';
+import { CorsoServiceService } from 'src/app/services/corso-service.service';
+import { ParagrafoServiceService } from 'src/app/services/paragrafo-service.service';
 
 @Component({
   selector: 'app-modal-paragrafo-edit',
@@ -17,7 +18,7 @@ export class ModalParagrafoEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  constructor(private modalService: NgbModal , private cs: CorsoServiceService) {}
+  constructor(private modalService: NgbModal , private ps: ParagrafoServiceService) {}
 
   config: AngularEditorConfig = {
     editable: true,
@@ -50,7 +51,7 @@ export class ModalParagrafoEditComponent implements OnInit {
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => { 
-      this.cs.getOBSUpdateParagrafo(this.paragrafo).subscribe(); 
+      this.ps.getOBSUpdateParagrafo(this.paragrafo).subscribe(); 
     });
   }
 

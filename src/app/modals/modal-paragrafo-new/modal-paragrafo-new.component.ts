@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CorsoServiceService } from 'src/app/corso-service.service';
 import { Lezione } from 'src/app/model/Lezione';
 import { Paragrafo } from 'src/app/model/Paragrafo';
+import { ParagrafoServiceService } from 'src/app/services/paragrafo-service.service';
 
 @Component({
   selector: 'app-modal-paragrafo-new',
@@ -21,7 +21,7 @@ export class ModalParagrafoNewComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  constructor(private modalService: NgbModal , private cs: CorsoServiceService) {}
+  constructor(private modalService: NgbModal , private ps: ParagrafoServiceService) {}
 
   config: AngularEditorConfig = {
     editable: true,
@@ -58,7 +58,7 @@ export class ModalParagrafoNewComponent implements OnInit {
       paragrafo.titolo = this.titolo;
       paragrafo.content = this.testo;
       paragrafo.idlezione = this.lezione.id;
-      this.cs.getOBSInsertParagrafo(paragrafo).subscribe(); 
+      this.ps.getOBSInsertParagrafo(paragrafo).subscribe(); 
       this.newParagrafo.emit(paragrafo);
     });
   }

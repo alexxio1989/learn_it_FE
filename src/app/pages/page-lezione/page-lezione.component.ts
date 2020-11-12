@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CorsoServiceService } from 'src/app/corso-service.service';
 import { Lezione } from 'src/app/model/Lezione';
 import { Paragrafo } from 'src/app/model/Paragrafo';
+import { LezioneServiceService } from 'src/app/services/lezione-service.service';
 
 @Component({
   selector: 'app-page-lezione',
@@ -16,10 +16,13 @@ export class PageLezioneComponent implements OnInit {
 
 
 
-  constructor(private cs: CorsoServiceService , private route: Router) { }
+  constructor(private ls: LezioneServiceService , private route: Router) { }
 
   ngOnInit(): void {
-    this.lezione = this.cs.lezioneSelected;
+    this.lezione = this.ls.lezioneSelected;
+    if(this.lezione === undefined || this.lezione.title === ''){
+      this.route.navigate(['/']);
+    }
   }
 
   editingLezione(lezione :Lezione){

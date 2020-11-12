@@ -1,12 +1,15 @@
-<div class="row col-12">
+<div class="row col-12 d-flex justify-content-center mt-3">
     <h2 class="display-4" style="font-size: 2rem">{{lezione.title}}</h2>
+</div>
+
+<div class="row col-12 d-flex justify-content-center">
     <app-modal-paragrafo-new (newParagrafo) ="newParagrafo($event)" [lezione]= "lezione"></app-modal-paragrafo-new>
 </div>
 
 <div class="row mt-3 ">
     <div class="col-12">
-        <div class="mb-3" *ngFor="let paragrafo of lezione.listaParagrafi">
-            <div class="row">
+        <div class="mb-4" *ngFor="let paragrafo of lezione.listaParagrafi">
+            <div class="row col-12">
                 <p id="{{paragrafo.idComponent}}" class="h5">{{paragrafo.titolo}}</p>
                 <app-modal-paragrafo-edit [paragrafo] = "paragrafo"></app-modal-paragrafo-edit>
             </div>

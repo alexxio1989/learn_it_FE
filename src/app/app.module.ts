@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { CorsoServiceService } from './corso-service.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutes } from './app.routes';
 import { RouterModule } from '@angular/router';
@@ -24,6 +23,9 @@ import { ModalCorsoEditComponent } from './modals/modal-corso-edit/modal-corso-e
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { ModalParagrafoEditComponent } from './modals/modal-paragrafo-edit/modal-paragrafo-edit.component';
 import { ModalParagrafoNewComponent } from './modals/modal-paragrafo-new/modal-paragrafo-new.component';
+import { CorsoServiceService } from './services/corso-service.service';
+import { LezioneServiceService } from './services/lezione-service.service';
+import { ParagrafoServiceService } from './services/paragrafo-service.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,7 @@ import { ModalParagrafoNewComponent } from './modals/modal-paragrafo-new/modal-p
     BrowserAnimationsModule,
     NgxStarsModule
   ],
-  providers: [CorsoServiceService],
+  providers: [CorsoServiceService,LezioneServiceService,ParagrafoServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

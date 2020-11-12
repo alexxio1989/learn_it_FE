@@ -19,6 +19,9 @@
                     <a class="stretched-link" class="btn btn-outline-success btn-sm mr-3 mt-4" (click)="save()">Salva</a>
                 </div>
                 <div *ngIf="!edit">
+                    <a class="stretched-link" class="btn btn-outline-danger btn-sm mr-3 mt-4" (click)="eliminaLezione()">Elimina</a>
+                </div>
+                <div *ngIf="!edit">
                     <a class="stretched-link" class="btn btn-outline-warning btn-sm mr-3 mt-4" (click)="update()">Modifica</a>
                 </div>
                 <div *ngIf="!edit">

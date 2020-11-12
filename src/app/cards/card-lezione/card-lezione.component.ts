@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { CorsoServiceService } from 'src/app/corso-service.service';
 import { Lezione } from 'src/app/model/Lezione';
+import { CorsoServiceService } from 'src/app/services/corso-service.service';
+import { LezioneServiceService } from 'src/app/services/lezione-service.service';
 import { isEmptyString } from 'src/app/utils/Util';
 
 @Component({
@@ -13,11 +14,13 @@ export class CardLezioneComponent implements OnInit {
 
   @Input() lezione: Lezione;
 
+  @Output() newLezioni = new EventEmitter<Lezione[]>();
+
   title: string = '';
 
   edit: boolean;
 
-  constructor(private cs: CorsoServiceService , private route: Router) { }
+  constructor(private cs: CorsoServiceService , private ls: LezioneServiceService , private route: Router) { }
 
   ngOnInit(): void {
     if(isEmptyString(this.lezione.title)){
@@ -30,9 +33,9 @@ export class CardLezioneComponent implements OnInit {
   save(){
     this.lezione.title = this.title;
     if(this.lezione.id === 0 || this.lezione.id === undefined ){
-      this.cs.getOBSInsertLezione(this.lezione).subscribe();
+      this.ls.getOBSInsertLezione(this.lezione).subscribe();
     } else if(this.lezione.id > 0){
-      this.cs.getOBSUpdateLezione(this.lezione).subscribe();
+      this.ls.getOBSUpdateLezione(this.lezione).subscribe();
     }
     this.edit = false;
   }
@@ -42,8 +45,14 @@ export class CardLezioneComponent implements OnInit {
   }
 
   goToLezione(){
-    this.cs.lezioneSelected = this.lezione;
+    this.ls.lezioneSelected = this.lezione;
     this.route.navigate(['/lezione']);
+  }
+
+  eliminaLezione(){
+    this.ls.getOBSDeleteLezione(this.lezione).subscribe(res => {
+      this.newLezioni.emit(res);
+    });
   }
 
 }

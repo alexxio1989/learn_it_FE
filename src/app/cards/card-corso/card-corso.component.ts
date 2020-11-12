@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { CorsoServiceService } from 'src/app/corso-service.service';
 import { Corso } from 'src/app/model/Corso';
+import { CorsoServiceService } from 'src/app/services/corso-service.service';
 
 @Component({
   selector: 'app-card-corso',

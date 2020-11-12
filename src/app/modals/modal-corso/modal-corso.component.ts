@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { CorsoServiceService } from 'src/app/corso-service.service';
 import { Corso } from 'src/app/model/Corso';
 import { Dominio } from 'src/app/model/Dominio';
+import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { isEmptyString } from 'src/app/utils/Util';
 
 @Component({

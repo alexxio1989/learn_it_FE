@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Lezione } from 'src/app/model/Lezione';
+import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { isEmptyArray, isEmptyString, isNotEmptyArray } from 'src/app/utils/Util';
-import { CorsoServiceService } from '../../corso-service.service';
 import { Corso } from '../../model/Corso';
 
 @Component({
@@ -50,6 +50,10 @@ export class PageCorsoComponent implements OnInit {
 
   changeView(){
     this.showFeeds = !this.showFeeds;
+  }
+
+  changeListLezioni(lezioni: Lezione[]){
+    this.corso.lezioni = lezioni;
   }
 
 }
