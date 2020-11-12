@@ -22,15 +22,15 @@ export class PageHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cs.getOBSCorsi().subscribe(res => {
-      this.listaCorsiBase = res;
-      this.cs.listaCorsi = res;
+    this.cs.getOBSCorsi().subscribe(next => {
+      this.listaCorsiBase = next;
+      this.cs.listaCorsi = next;
     })
-    this.cs.getOBSCorsiFiltered().subscribe(res => {
-      this.listaCorsiFiltered = res;
+    this.cs.getOBSCorsiFiltered().subscribe(next => {
+      this.listaCorsiFiltered = next;
     })
-    this.cs.getOBSUpdateCorsi().subscribe(res => {
-      this.listaCorsiBase = res;
+    this.cs.getOBSUpdateCorsi().subscribe(next => {
+      this.listaCorsiBase = next;
       this.listaCorsiFiltered = [];
     })
   }

@@ -51,7 +51,9 @@ export class ModalParagrafoEditComponent implements OnInit {
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => { 
-      this.ps.getOBSUpdateParagrafo(this.paragrafo).subscribe(); 
+      this.ps.getOBSUpdateParagrafo(this.paragrafo).subscribe(next => {
+        
+      }); 
     });
   }
 

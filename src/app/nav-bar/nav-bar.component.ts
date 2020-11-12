@@ -16,8 +16,8 @@ export class NavBarComponent implements OnInit {
   constructor(private cs: CorsoServiceService ) { }
 
   ngOnInit(): void { 
-    this.cs.getOBSTypes().subscribe(res => {
-      this.tipoCorsoList = res;
+    this.cs.getOBSTypes().subscribe(next => {
+      this.tipoCorsoList = next;
     })
   }
 

@@ -69,8 +69,8 @@ export class CardCorsoComponent implements OnInit {
   }
 
   elimina(){
-    this.cs.getOBSDeleteCorso(this.corso).subscribe(res => {
-      this.cs.updateCorsi(res);
+    this.cs.getOBSDeleteCorso(this.corso).subscribe(next => {
+      this.cs.updateCorsi(next);
     });
   }
 

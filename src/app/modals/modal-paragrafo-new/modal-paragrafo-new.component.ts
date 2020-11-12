@@ -58,8 +58,9 @@ export class ModalParagrafoNewComponent implements OnInit {
       paragrafo.titolo = this.titolo;
       paragrafo.content = this.testo;
       paragrafo.idlezione = this.lezione.id;
-      this.ps.getOBSInsertParagrafo(paragrafo).subscribe(); 
-      this.newParagrafo.emit(paragrafo);
+      this.ps.getOBSInsertParagrafo(paragrafo).subscribe(next => {
+        this.newParagrafo.emit(paragrafo);
+      }); 
     });
   }
 

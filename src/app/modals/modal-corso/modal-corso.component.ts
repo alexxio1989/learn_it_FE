@@ -70,10 +70,9 @@ export class ModalCorsoComponent implements OnInit {
       corso.descrizioneCorso = this.descCorso;
       corso.tipo = this.tipoCorso;
       corso.owner = this.cs.user;
-      this.cs.getOBSInsertCorso(corso).subscribe(res => {
-        this.cs.updateCorsi(res);
+      this.cs.getOBSInsertCorso(corso).subscribe(next => {
+        this.cs.updateCorsi(next);
       });
-      this.closeResult = `Closedddd with: ${result}`;
     });
   }
 

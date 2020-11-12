@@ -9,26 +9,26 @@
             </div>
         </div>
         <div class="col-8">
-            <div class="row pt-3 bg-light text-dark d-flex justify-content-center">             
-                <div class="w-75 mt-2" *ngIf="edit">
+            <div class="row bg-light text-dark d-flex justify-content-center">             
+                <div class="w-75 mt-3" *ngIf="edit">
                     <input type="text" class="form-control input-sm" [(ngModel)]="title" placeholder="titolo lezione">
                 </div>
-                <div class="mt-2" *ngIf="!edit">
+                <div class="mt-3" *ngIf="!edit">
                     <h5>{{lezione.title}}</h5>              
                 </div>
             </div>
-            <div class="row pt-1 pb-3 bg-light text-dark d-flex justify-content-center">
+            <div class="row pt-3 pb-3 bg-light text-dark d-flex justify-content-center pl-2">
                 <div *ngIf="edit" >
-                    <a class="stretched-link" class="btn btn-outline-success btn-sm mr-3 mt-4" (click)="save()">Salva</a>
+                    <a class="stretched-link" class="btn btn-outline-success btn-sm mr-2" (click)="save()">Salva</a>
                 </div>
                 <div *ngIf="!edit">
-                    <a class="stretched-link" class="btn btn-outline-danger btn-sm mr-3 mt-4" (click)="eliminaLezione()">Elimina</a>
+                    <a class="stretched-link" class="btn btn-outline-danger btn-sm mr-2" (click)="eliminaLezione()">Elimina</a>
                 </div>
                 <div *ngIf="!edit">
-                    <a class="stretched-link" class="btn btn-outline-warning btn-sm mr-3 mt-4" (click)="update()">Modifica</a>
+                    <a class="stretched-link" class="btn btn-outline-warning btn-sm mr-2" (click)="update()">Modifica</a>
                 </div>
                 <div *ngIf="!edit">
-                    <a class="stretched-link" class="btn btn-outline-primary btn-sm mr-3 mt-4" (click)="goToLezione()">Inizia</a>
+                    <a class="stretched-link" class="btn btn-outline-primary btn-sm mr-2" (click)="goToLezione()">Inizia</a>
                 </div>
             </div>
 
