@@ -7,6 +7,7 @@ import { Observable, Subject } from 'rxjs';
 export class DelegateServiceService {
 
   private _sbjSpinner = new Subject();
+  private _sbjResultService = new Subject();
 
   constructor() { }
 
@@ -16,5 +17,13 @@ export class DelegateServiceService {
 
   getOBSSpinner(): Observable<any>{
     return this._sbjSpinner.asObservable();
+  }
+
+  updateResultService (result: string){
+    this._sbjResultService.next(result);
+  }
+
+  getOBSResultService (): Observable<any>{
+    return this._sbjResultService.asObservable();
   }
 }

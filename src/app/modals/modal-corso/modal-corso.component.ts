@@ -4,6 +4,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Corso } from 'src/app/model/Corso';
 import { Dominio } from 'src/app/model/Dominio';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
+import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { isEmptyString } from 'src/app/utils/Util';
 
 @Component({
@@ -24,7 +25,7 @@ export class ModalCorsoComponent implements OnInit {
 
   closeResult = '';
 
-  constructor(private modalService: NgbModal , private cs: CorsoServiceService) {}
+  constructor(private modalService: NgbModal , private cs: CorsoServiceService , private ds: DelegateServiceService) {}
 
   config: AngularEditorConfig = {
     editable: true,
@@ -71,21 +72,15 @@ export class ModalCorsoComponent implements OnInit {
       corso.tipo = this.tipoCorso;
       corso.owner = this.cs.user;
       this.cs.getOBSInsertCorso(corso).subscribe(next => {
+        this.ds.updateSpinner(false);
+        this.ds.updateResultService('Inserimento corso avvenuta con successo');
         this.cs.updateCorsi(next);
       });
     });
   }
 
-
-
-
   changeTipoCorso(obj: Dominio) {
     this.tipoCorso = obj;
   }
-
-  changeNomeCorso(value: string) {
-    this.nomeCorso = value;
-  }
-
 
 }

@@ -29,6 +29,10 @@ import { ParagrafoServiceService } from './services/paragrafo-service.service';
 import {MatSidenavModule} from '@angular/material/sidenav'
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import { DelegateServiceService } from './services/delegate-service.service';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import { ModalLoginUserComponent } from './modals/modal-login-user/modal-login-user.component'
+import {MatSnackBarModule} from '@angular/material/snack-bar'
 
 @NgModule({
   declarations: [
@@ -45,7 +49,8 @@ import { DelegateServiceService } from './services/delegate-service.service';
     ModalCorsoEditComponent,
     SideBarComponent,
     ModalParagrafoEditComponent,
-    ModalParagrafoNewComponent
+    ModalParagrafoNewComponent,
+    ModalLoginUserComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +64,10 @@ import { DelegateServiceService } from './services/delegate-service.service';
     BrowserAnimationsModule,
     NgxStarsModule,
     MatSidenavModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSnackBarModule
   ],
   providers: [
     CorsoServiceService,

@@ -3,6 +3,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Paragrafo } from 'src/app/model/Paragrafo';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
+import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { ParagrafoServiceService } from 'src/app/services/paragrafo-service.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class ModalParagrafoEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  constructor(private modalService: NgbModal , private ps: ParagrafoServiceService) {}
+  constructor(private modalService: NgbModal , private ps: ParagrafoServiceService,private ds: DelegateServiceService) {}
 
   config: AngularEditorConfig = {
     editable: true,
@@ -52,7 +53,8 @@ export class ModalParagrafoEditComponent implements OnInit {
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => { 
       this.ps.getOBSUpdateParagrafo(this.paragrafo).subscribe(next => {
-        
+        this.ds.updateSpinner(false);
+        this.ds.updateResultService('Modifica paragrafo avvenuta con successo');
       }); 
     });
   }

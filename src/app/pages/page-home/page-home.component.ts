@@ -22,8 +22,7 @@ export class PageHomeComponent implements OnInit {
     return this.listaCorsiFiltered.length > 0 ? this.listaCorsiFiltered : this.listaCorsiBase;
   }
 
-  ngOnInit(): void {
-    this.ds.updateSpinner(true);
+  ngOnInit(): void {    
     this.cs.getOBSCorsi().subscribe(next => {
       this.ds.updateSpinner(false);
       this.listaCorsiBase = next;

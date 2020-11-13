@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Corso } from 'src/app/model/Corso';
 import { Dominio } from 'src/app/model/Dominio';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
+import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { isEmptyString } from 'src/app/utils/Util';
 
 @Component({
@@ -20,7 +21,7 @@ export class ModalCorsoEditComponent implements OnInit {
 
   closeResult = ''; 
 
-  constructor(private modalService: NgbModal , private cs: CorsoServiceService) {}
+  constructor(private modalService: NgbModal , private cs: CorsoServiceService , private ds: DelegateServiceService) {}
 
   config: AngularEditorConfig = {
     editable: true,
@@ -59,6 +60,8 @@ export class ModalCorsoEditComponent implements OnInit {
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => { 
       this.cs.getOBSUpdateCorso(this.corso).subscribe(next => {
+        this.ds.updateSpinner(false);
+        this.ds.updateResultService('Modifica corso avvenuta con successo');
         this.cs.updateCorsi(next);
       });   
     });

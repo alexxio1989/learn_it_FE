@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Lezione } from 'src/app/model/Lezione';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
+import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { LezioneServiceService } from 'src/app/services/lezione-service.service';
 import { isEmptyString } from 'src/app/utils/Util';
 
@@ -23,7 +24,10 @@ export class CardLezioneComponent implements OnInit {
 
   edit: boolean;
 
-  constructor(private cs: CorsoServiceService , private ls: LezioneServiceService , private route: Router) { }
+  constructor(private cs: CorsoServiceService , 
+              private ls: LezioneServiceService , 
+              private route: Router,
+              private ds: DelegateServiceService) { }
 
   ngOnInit(): void {
     if(isEmptyString(this.lezione.title)){
@@ -37,10 +41,14 @@ export class CardLezioneComponent implements OnInit {
     this.lezione.title = this.title;
     if(this.lezione.id === 0 || this.lezione.id === undefined ){
       this.ls.getOBSInsertLezione(this.lezione).subscribe(next => {
+        this.ds.updateSpinner(false);
+        this.ds.updateResultService('Inserimento lezione avvenuta con successo');
         this.newLezioni.emit(next);
       });
     } else if(this.lezione.id > 0){
       this.ls.getOBSUpdateLezione(this.lezione).subscribe(next => {
+        this.ds.updateSpinner(false);
+        this.ds.updateResultService('Modifica lezione avvenuta con successo');
         this.newLezioni.emit(next);
       });
     }
@@ -58,6 +66,8 @@ export class CardLezioneComponent implements OnInit {
 
   eliminaLezione(){
     this.ls.getOBSDeleteLezione(this.lezione).subscribe(next => {
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService('Eliminazione lezione avvenuta con successo');
       this.newLezioni.emit(next);
     });
   }

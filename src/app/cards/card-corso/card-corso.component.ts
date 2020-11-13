@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Corso } from 'src/app/model/Corso';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
+import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 
 @Component({
   selector: 'app-card-corso',
@@ -53,7 +54,7 @@ export class CardCorsoComponent implements OnInit {
     return count / this.corso.feeds.length;
   }
 
-  constructor( private cs: CorsoServiceService ,private route: Router) { }
+  constructor( private cs: CorsoServiceService ,private route: Router, private ds: DelegateServiceService) { }
 
   ngOnInit(): void {
   }
@@ -70,6 +71,8 @@ export class CardCorsoComponent implements OnInit {
 
   elimina(){
     this.cs.getOBSDeleteCorso(this.corso).subscribe(next => {
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService('Eliminazione Corso avvenuta con successo');
       this.cs.updateCorsi(next);
     });
   }

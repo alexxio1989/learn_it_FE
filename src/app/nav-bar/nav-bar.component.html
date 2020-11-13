@@ -14,7 +14,6 @@
     
 
     <div class="collapse navbar-collapse" id="collapse1">
-
         <div class="row d-flex justify-content-center mb-2">
             <div class="col-md-5 col-xs-8">
                 <input class="form-control" type="search" placeholder="nome corso ..."
@@ -23,15 +22,12 @@
         </div>
 
     </div>
-    <div class="collapse navbar-collapse" id="collapse2">
-        <ul class="nav navbar-nav navbar-right">
-            <hr />
-            <app-modal-corso [tipoCorsoList]="tipoCorsoList"></app-modal-corso>
-        </ul>
-    </div>
-
+       
 </div>
 
-<mat-drawer #drawer class="example-sidenav" mode="over">
-    <app-modal-corso [tipoCorsoList]="tipoCorsoList"></app-modal-corso>
+<mat-drawer fxLayout="column" #drawer class="example-sidenav" mode="over">
+    <div class="example-sidenav-content">
+        <app-modal-login-user></app-modal-login-user>
+        <app-modal-corso [tipoCorsoList]="tipoCorsoList"></app-modal-corso>
+    </div>
 </mat-drawer>
