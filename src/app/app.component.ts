@@ -10,7 +10,7 @@ import { CorsoServiceService } from './services/corso-service.service';
 })
 export class AppComponent {
   title = 'learnit';
-  showSpinner: boolean;
+  showSpinner: false;
   tipoCorsoList = []
   openSideBar: boolean;
 

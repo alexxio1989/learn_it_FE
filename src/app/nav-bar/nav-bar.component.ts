@@ -36,6 +36,7 @@ export class NavBarComponent implements OnInit {
   }
 
   openSideBar(){
+    console.log("egewrgaewr")
     this.ds.updateSideBar(true);
   }
 

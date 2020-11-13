@@ -10,17 +10,18 @@
     </div>
 
 
-<div *ngIf="showSpinner" class="overlay">
-    <div class="center">
-        <mat-progress-spinner diameter=50 mode="indeterminate" color="accent"></mat-progress-spinner>
+    <div *ngIf="showSpinner" class="overlay">
+        <div class="center">
+            <mat-progress-spinner diameter=50 mode="indeterminate" color="accent"></mat-progress-spinner>
+        </div>
     </div>
-</div>
 
     <!-- SIDENAV -->
-    <mat-sidenav [mode]="'over'" [opened]="openSideBar" class="mat-elevation-z10" style="width:312px;border: 0px;">
+    <mat-sidenav [mode]="'over'" [opened]="openSideBar" class="mat-elevation-z10"
+        style="width:auto;border: 0px; padding:10px">
         <div style="display: flex;flex-direction: column">
             <app-modal-login-user></app-modal-login-user>
             <app-modal-corso [tipoCorsoList]="tipoCorsoList"></app-modal-corso>
         </div>
-    </mat-sidenav>   
+    </mat-sidenav>
 </mat-sidenav-container>
