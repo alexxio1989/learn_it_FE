@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Corso } from '../model/Corso';
 import { CorsoServiceService } from '../services/corso-service.service';
+import { DelegateServiceService } from '../services/delegate-service.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -14,7 +15,7 @@ export class NavBarComponent implements OnInit {
   tabName: number = 0;
   showFiller = false;
 
-  constructor(private cs: CorsoServiceService ) { }
+  constructor(private cs: CorsoServiceService , private ds: DelegateServiceService) { }
 
   ngOnInit(): void { 
     this.cs.getOBSTypes().subscribe(next => {
@@ -32,6 +33,10 @@ export class NavBarComponent implements OnInit {
 
   onChangeTab(id: number){
     this.tabName = id;
+  }
+
+  openSideBar(){
+    this.ds.updateSideBar(true);
   }
 
 

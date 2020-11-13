@@ -6,7 +6,7 @@
             <i class="fa fa-search" style="color:white"></i>
         </button>
        
-        <button class="btn btn-lg" (click)="drawer.toggle()">
+        <button class="btn btn-lg" (click)="openSideBar()">
             <i class="fa fa-bars" style="color:white"></i>
         </button>
 
@@ -20,14 +20,8 @@
                     (input)="filterListCorsi($event.target.value)">
             </div>
         </div>
-
     </div>
        
 </div>
 
-<mat-drawer fxLayout="column" #drawer class="example-sidenav" mode="over">
-    <div class="example-sidenav-content">
-        <app-modal-login-user></app-modal-login-user>
-        <app-modal-corso [tipoCorsoList]="tipoCorsoList"></app-modal-corso>
-    </div>
-</mat-drawer>
+
