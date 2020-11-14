@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Lezione } from 'src/app/model/Lezione';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
+import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { isEmptyArray, isEmptyString, isNotEmptyArray } from 'src/app/utils/Util';
 import { Corso } from '../../model/Corso';
 
@@ -21,7 +22,11 @@ export class PageCorsoComponent implements OnInit {
   showFeeds: boolean;
 
 
-  constructor(private cs: CorsoServiceService , private route: Router) { }
+  constructor(private cs: CorsoServiceService , private route: Router , private ds: DelegateServiceService) { }
+
+  get isUtenteLogged(): boolean{
+    return this.ds.utente !== undefined && this.ds.utente !== null && this.ds.utente.email === this.corso.owner.email ;
+  }
 
   ngOnInit(): void {
     this.corso = this.cs.corsoSelected;

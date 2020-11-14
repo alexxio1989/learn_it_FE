@@ -13,7 +13,8 @@ export class SideBarComponent implements OnInit {
   openSideBar: boolean;
   
   get isUtenteLogged(): boolean{
-    return this.ds.utente !== undefined && this.ds.utente !== null;
+    const localUser = localStorage.getItem('USER');
+    return localUser !== undefined && localUser !== null;
   }
 
   constructor(private ds: DelegateServiceService) {
@@ -25,6 +26,10 @@ export class SideBarComponent implements OnInit {
 
   ngOnInit(): void {
     
+  }
+
+  logout(){
+    localStorage.removeItem('USER');
   }
 
 }

@@ -16,7 +16,7 @@
   </div>
 
 
-  <div class="row d-flex justify-content-center">
+  <div *ngIf="isUtenteLogged" class="row d-flex justify-content-center">
     <button class="btn btn-lg" (click)="addLezione()">
       <i class="fa fa-plus-square-o mr-2"></i>
       <h6 class="float-right mt-1">Nuova Lezione</h6>

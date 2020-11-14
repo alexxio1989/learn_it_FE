@@ -4,7 +4,10 @@
         <div class="w-100 p-2 d-flex justify-content-center">
             <button mat-button ></button>
         </div>
-        <div class="w-100 p-2 d-flex justify-content-center">
+        <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
+            <button mat-button (click)="logout()">Logout</button>
+        </div>
+        <div *ngIf="!isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
             <app-modal-login-user></app-modal-login-user>
         </div>
         <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">

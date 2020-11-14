@@ -22,6 +22,7 @@ export class ModalLoginUserComponent implements OnInit {
       this.us.getOBSLogin(this.user).subscribe(next =>{
         this.ds.updateResultService('Login Avvenuto con successo');
         this.ds.updateSpinner(false);
+        localStorage.setItem('USER', next);
         this.ds.utente = next;
       },error => {
         this.ds.updateResultService('Login in errore');
