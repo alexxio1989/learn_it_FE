@@ -6,6 +6,8 @@ import { Observable, Subject } from 'rxjs';
 })
 export class DelegateServiceService {
 
+  isOpenSideBar: boolean;
+
   private _sbjSpinner = new Subject();
   private _sbjResultService = new Subject();
   private _sbjSideBar = new Subject();

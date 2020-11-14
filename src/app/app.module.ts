@@ -8,10 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutes } from './app.routes';
 import { RouterModule } from '@angular/router';
-import { ImageCorsoComponent } from './image-corso/image-corso.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxStarsModule } from 'ngx-stars';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { CardFeedbackComponent } from './cards/card-feedback/card-feedback.component';
 import { CardLezioneComponent } from './cards/card-lezione/card-lezione.component';
 import { CardCorsoComponent } from './cards/card-corso/card-corso.component';
@@ -20,7 +18,6 @@ import { PageCorsoComponent } from './pages/page-corso/page-corso.component';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { PageLezioneComponent } from './pages/page-lezione/page-lezione.component';
 import { ModalCorsoEditComponent } from './modals/modal-corso-edit/modal-corso-edit.component';
-import { SideBarComponent } from './side-bar/side-bar.component';
 import { ModalParagrafoEditComponent } from './modals/modal-paragrafo-edit/modal-paragrafo-edit.component';
 import { ModalParagrafoNewComponent } from './modals/modal-paragrafo-new/modal-paragrafo-new.component';
 import { CorsoServiceService } from './services/corso-service.service';
@@ -32,7 +29,11 @@ import { DelegateServiceService } from './services/delegate-service.service';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { ModalLoginUserComponent } from './modals/modal-login-user/modal-login-user.component'
-import {MatSnackBarModule} from '@angular/material/snack-bar'
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SpinnerComponent } from './varie/spinner/spinner.component'
+import { ImageCorsoComponent } from './varie/image-corso/image-corso.component';
+import { NavBarComponent } from './navs/nav-bar/nav-bar.component';
+import { SideBarComponent } from './navs/side-bar/side-bar.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar'
     SideBarComponent,
     ModalParagrafoEditComponent,
     ModalParagrafoNewComponent,
-    ModalLoginUserComponent
+    ModalLoginUserComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

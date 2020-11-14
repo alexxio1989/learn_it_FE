@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Corso } from '../model/Corso';
-import { CorsoServiceService } from '../services/corso-service.service';
-import { DelegateServiceService } from '../services/delegate-service.service';
-
+import { CorsoServiceService } from 'src/app/services/corso-service.service';
+import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -36,8 +34,8 @@ export class NavBarComponent implements OnInit {
   }
 
   openSideBar(){
-    console.log("egewrgaewr")
-    this.ds.updateSideBar(true);
+    this.ds.updateSideBar(!this.ds.isOpenSideBar);
+    this.ds.isOpenSideBar = !this.ds.isOpenSideBar;
   }
 
 

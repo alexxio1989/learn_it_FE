@@ -14,18 +14,21 @@ import { isEmptyString } from 'src/app/utils/Util';
 })
 export class ModalCorsoComponent implements OnInit {
 
-  @Input() tipoCorsoList;
-
   nomeCorso: string = '';
   descCorso: string = '';
   tipoCorso: Dominio;
+  tipoCorsoList = []
 
   ngOnInit(): void {
   }
 
   closeResult = '';
 
-  constructor(private modalService: NgbModal , private cs: CorsoServiceService , private ds: DelegateServiceService) {}
+  constructor(private modalService: NgbModal , private cs: CorsoServiceService , private ds: DelegateServiceService) {
+    this.cs.getOBSTypes().subscribe(next => {
+      this.tipoCorsoList = next;
+    })
+  }
 
   config: AngularEditorConfig = {
     editable: true,
