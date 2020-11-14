@@ -7,7 +7,7 @@
         <div class="w-100 p-2 d-flex justify-content-center">
             <app-modal-login-user></app-modal-login-user>
         </div>
-        <div class="w-100 p-2 d-flex justify-content-center">
+        <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
             <app-modal-corso></app-modal-corso>
         </div>
     </div>

@@ -21,9 +21,15 @@
         </div>
     </div>
     <div class="row no-gutters pt-0 pb-3 bg-light text-dark justify-content-end">
-        <a (click)="elimina()" class="btn btn-outline-danger btn-sm mr-3 mt-4">Elimina</a>
-        <app-modal-corso-edit [corso] = "corso"></app-modal-corso-edit>
-        <a (click)="goToCorso(corso)" class="btn btn-outline-success btn-sm mr-3 mt-4">Vai al corso</a>
+        <div *ngIf="isUtenteLogged">
+            <a (click)="elimina()" class="btn btn-outline-danger btn-sm mr-3 mt-4">Elimina</a>
+        </div>
+        <div *ngIf="isUtenteLogged">
+            <app-modal-corso-edit [corso] = "corso"></app-modal-corso-edit>            
+        </div>
+        <div>
+            <a (click)="goToCorso(corso)" class="btn btn-outline-success btn-sm mr-3 mt-4">Vai al corso</a>            
+        </div>
 
     </div>
 </div>

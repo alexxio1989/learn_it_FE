@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { User } from '../model/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DelegateServiceService {
 
+  utente: User;
+
   isOpenSideBar: boolean;
 
   private _sbjSpinner = new Subject();
   private _sbjResultService = new Subject();
   private _sbjSideBar = new Subject();
+  private _sbjUser = new Subject();
 
   constructor() { }
 
@@ -37,4 +41,5 @@ export class DelegateServiceService {
   getOBSSideBar (): Observable<any>{
     return this._sbjSideBar.asObservable();
   }
+  
 }

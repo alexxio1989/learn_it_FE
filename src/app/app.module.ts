@@ -34,6 +34,7 @@ import { SpinnerComponent } from './varie/spinner/spinner.component'
 import { ImageCorsoComponent } from './varie/image-corso/image-corso.component';
 import { NavBarComponent } from './navs/nav-bar/nav-bar.component';
 import { SideBarComponent } from './navs/side-bar/side-bar.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { SideBarComponent } from './navs/side-bar/side-bar.component';
     MatProgressSpinnerModule,
     MatButtonModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatPaginatorModule
   ],
   providers: [
     CorsoServiceService,
