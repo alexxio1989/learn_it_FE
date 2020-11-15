@@ -35,6 +35,7 @@ import { ImageCorsoComponent } from './varie/image-corso/image-corso.component';
 import { NavBarComponent } from './navs/nav-bar/nav-bar.component';
 import { SideBarComponent } from './navs/side-bar/side-bar.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { ModalSigninUserComponent } from './modals/modal-signin-user/modal-signin-user.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     ModalParagrafoEditComponent,
     ModalParagrafoNewComponent,
     ModalLoginUserComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ModalSigninUserComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/model/User';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { UtenteServiceService } from 'src/app/services/utente-service.service';
@@ -17,7 +18,7 @@ export class SideBarComponent implements OnInit {
     return localUser !== undefined && localUser !== null;
   }
 
-  constructor(private ds: DelegateServiceService) {
+  constructor(private ds: DelegateServiceService, private route: Router) {
     this.ds.getOBSSideBar().subscribe(next => {
       this.openSideBar = next
     })
@@ -30,6 +31,8 @@ export class SideBarComponent implements OnInit {
 
   logout(){
     localStorage.removeItem('USER');
+    this.route.navigate(['/']);
+    this.ds.updateSideBar(false);
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 @Component({
@@ -13,7 +14,7 @@ export class NavBarComponent implements OnInit {
   tabName: number = 0;
   showFiller = false;
 
-  constructor(private cs: CorsoServiceService , private ds: DelegateServiceService) { }
+  constructor(private cs: CorsoServiceService , private ds: DelegateServiceService, private route: Router) { }
 
   ngOnInit(): void { 
     this.cs.getOBSTypes().subscribe(next => {
@@ -26,6 +27,7 @@ export class NavBarComponent implements OnInit {
       var newArray = this.cs.listaCorsi.filter((data) => data.nomeCorso.toLowerCase().includes(nome.toLowerCase()));
       
       this.cs.filterCorsi(newArray);
+      this.route.navigate(['/']);
     }
   }
 

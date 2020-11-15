@@ -5,28 +5,26 @@ import { DelegateServiceService } from 'src/app/services/delegate-service.servic
 import { UtenteServiceService } from 'src/app/services/utente-service.service';
 
 @Component({
-  selector: 'app-modal-login-user',
-  templateUrl: './modal-login-user.component.html',
-  styleUrls: ['./modal-login-user.component.css']
+  selector: 'app-modal-signin-user',
+  templateUrl: './modal-signin-user.component.html',
+  styleUrls: ['./modal-signin-user.component.css']
 })
-export class ModalLoginUserComponent implements OnInit {
+export class ModalSigninUserComponent implements OnInit {
 
   user: User = new User();
 
   constructor(private modalService: NgbModal ,private ds: DelegateServiceService , private us: UtenteServiceService) { }
 
-  ngOnInit(): void {}
- 
+  ngOnInit(): void {
+  }
+
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.us.getOBSLogin(this.user).subscribe(next =>{
-        this.ds.updateResultService('Login Avvenuto con successo');
+      this.us.getOBSSignIn(this.user).subscribe(next =>{
+        this.ds.updateResultService('Registrazione utente Avvenuta con successo');
         this.ds.updateSpinner(false);
-        localStorage.setItem('USER',JSON.stringify(next));
-        this.ds.utente = next;
-        this.ds.updateSideBar(false);
       },error => {
-        this.ds.updateResultService('Login in errore');
+        this.ds.updateResultService('Registrazione utente in errore');
         this.ds.updateSpinner(false);
       });
     });

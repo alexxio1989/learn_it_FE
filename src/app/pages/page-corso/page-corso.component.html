@@ -38,7 +38,7 @@
   </div>
   <div *ngIf="corso.lezioni.length > 0">
     <div *ngFor="let lezione of corso.lezioni">
-      <app-card-lezione [lezione]="lezione" (newLezioni) = "changeListLezioni($event)" [lezioni] = "corso.lezioni"></app-card-lezione>
+      <app-card-lezione [lezione]="lezione" [corso]="corso" (newLezioni) = "changeListLezioni($event)" [lezioni] = "corso.lezioni"></app-card-lezione>
     </div>
   </div>
 </div>

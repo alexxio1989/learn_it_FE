@@ -15,4 +15,9 @@ export class UtenteServiceService {
     this.ds.updateSpinner(true);
     return this.http.post("https://routerbe.herokuapp.com/router/login", utente);
   }
+
+  getOBSSignIn(utente: User): Observable<any>{
+    this.ds.updateSpinner(true);
+    return this.http.post("https://routerbe.herokuapp.com/router/signin", utente);
+  }
 }

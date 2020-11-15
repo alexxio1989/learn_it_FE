@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Corso } from 'src/app/model/Corso';
 import { Lezione } from 'src/app/model/Lezione';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { LezioneServiceService } from 'src/app/services/lezione-service.service';
-import { isEmptyString } from 'src/app/utils/Util';
+import { getUserLS, isEmptyString, isSameUser } from 'src/app/utils/Util';
 
 @Component({
   selector: 'app-card-lezione',
@@ -17,6 +18,8 @@ export class CardLezioneComponent implements OnInit {
 
   @Input() lezione: Lezione;
 
+  @Input() corso: Corso;
+
   @Output() newLezioni = new EventEmitter<Lezione[]>();
   
 
@@ -28,6 +31,10 @@ export class CardLezioneComponent implements OnInit {
               private ls: LezioneServiceService , 
               private route: Router,
               private ds: DelegateServiceService) { }
+  
+  get isUtenteLogged(): boolean{
+    return isSameUser(getUserLS(),this.corso.owner);
+  }
 
   ngOnInit(): void {
     if(isEmptyString(this.lezione.title)){

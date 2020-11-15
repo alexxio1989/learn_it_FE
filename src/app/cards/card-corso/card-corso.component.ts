@@ -5,6 +5,7 @@ import { Corso } from 'src/app/model/Corso';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { User } from 'src/app/model/User';
+import { getUserLS, isSameUser } from 'src/app/utils/Util';
 
 @Component({
   selector: 'app-card-corso',
@@ -56,7 +57,7 @@ export class CardCorsoComponent implements OnInit {
   }
 
   get isUtenteLogged(): boolean{
-    return this.ds.utente !== undefined && this.ds.utente !== null && this.ds.utente.email === this.corso.owner.email ;
+    return isSameUser(getUserLS(),this.corso.owner);
   }
 
   constructor( private cs: CorsoServiceService ,private route: Router, private ds: DelegateServiceService) { }

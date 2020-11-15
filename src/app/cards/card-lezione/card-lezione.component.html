@@ -18,13 +18,13 @@
                 </div>
             </div>
             <div class="row pt-3 pb-3 bg-light text-dark d-flex justify-content-center pl-2">
-                <div *ngIf="edit" >
+                <div *ngIf="edit && isUtenteLogged" >
                     <a class="stretched-link" class="btn btn-outline-success btn-sm mr-2" (click)="save()">Salva</a>
                 </div>
-                <div *ngIf="!edit">
+                <div *ngIf="!edit && isUtenteLogged">
                     <a class="stretched-link" class="btn btn-outline-danger btn-sm mr-2" (click)="eliminaLezione()">Elimina</a>
                 </div>
-                <div *ngIf="!edit">
+                <div *ngIf="!edit && isUtenteLogged">
                     <a class="stretched-link" class="btn btn-outline-warning btn-sm mr-2" (click)="update()">Modifica</a>
                 </div>
                 <div *ngIf="!edit">

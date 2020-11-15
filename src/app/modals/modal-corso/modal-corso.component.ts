@@ -78,6 +78,7 @@ export class ModalCorsoComponent implements OnInit {
         this.ds.updateSpinner(false);
         this.ds.updateResultService('Inserimento corso avvenuta con successo');
         this.cs.updateCorsi(next);
+        this.ds.updateSideBar(false);
       });
     });
   }

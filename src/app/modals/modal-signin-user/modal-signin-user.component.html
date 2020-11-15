@@ -1,0 +1,39 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Registrati al sito</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input required id="email" class="form-control" [(ngModel)]="user.email" placeholder="inserisci email">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input required id="password" class="form-control" [(ngModel)]="user.password" placeholder="inserisci Password">
+        </div>
+
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input required id="nome" class="form-control" [(ngModel)]="user.nome" placeholder="inserisci nome utente">
+        </div>
+
+        <div class="form-group">
+            <label for="nome">Cognome</label>
+            <input required id="cognome" class="form-control" [(ngModel)]="user.cognome" placeholder="inserisci cognome utente">
+        </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')">Registrati</button>
+        </div>
+
+
+    </div>
+</ng-template> 
+
+<button mat-button (click)="open(content)">Registrati</button>
