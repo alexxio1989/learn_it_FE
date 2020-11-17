@@ -2,7 +2,7 @@
 <mat-sidenav style="z-index: 999" [mode]="'over'" [opened]="openSideBar" class="mat-elevation-z10 p-3 border-0">
     <div class="d-flex flex-column">
         <div class="w-100 p-2 d-flex justify-content-center">
-            <button mat-button ></button>
+            <button mat-button></button>
         </div>
         <div *ngIf="!isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
             <app-modal-signin-user></app-modal-signin-user>
@@ -18,20 +18,22 @@
         </div>
     </div>
 
-    <mat-divider></mat-divider>
+    <mat-divider style="margin-bottom: 5px;"></mat-divider>
     <mat-accordion class="example-headers-align" multi>
         <div *ngFor="let types of tipoCorsoList" class="d-flex flex-column">
-            <mat-expansion-panel style="box-shadow: 0px 0px 1px -2px rgba(0, 0, 0, 0.0), 0px 2px 2px 0px rgba(0, 0, 0, 0.0), 0px 1px 0px 0px rgba(0, 0, 0, 0.0);">
+            <mat-expansion-panel
+                style="box-shadow: 0px 0px 1px -2px rgba(0, 0, 0, 0.0), 0px 2px 2px 0px rgba(0, 0, 0, 0.0), 0px 1px 0px 0px rgba(0, 0, 0, 0.0);">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
                         {{types.descrizione}}
-                    </mat-panel-title>               
-                  </mat-expansion-panel-header>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
 
-                  <div *ngFor="let subtype of types.sottoTipi" class="d-flex flex-column">
-                    <button mat-button (click)="filterListCorsi(subtype)">{{subtype.descrizione}}</button>
-                  </div>
-            </mat-expansion-panel>            
+                <div *ngFor="let subtype of types.sottoTipi" class="d-flex flex-column">
+                    <button style=" color: #6c757d;" mat-button
+                        (click)="filterListCorsi(subtype)">{{subtype.descrizione}}</button>
+                </div>
+            </mat-expansion-panel>
         </div>
     </mat-accordion>
 </mat-sidenav>
