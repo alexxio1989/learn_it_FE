@@ -37,4 +37,8 @@ export class PageHomeComponent implements OnInit {
     })
   }
 
+  cleanListaCorsiFiltered(){
+    this.listaCorsiFiltered = [];
+  }
+
 }

@@ -44,6 +44,7 @@ export class SideBarComponent implements OnInit {
       return el.tipo.codice === dominio.codice ;
     });
     this.cs.filterCorsi(newArray);
+    this.openSideBar = false;
     this.route.navigate(['/']);
   }
 
