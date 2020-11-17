@@ -3,6 +3,7 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Corso } from 'src/app/model/Corso';
 import { Dominio } from 'src/app/model/Dominio';
+import { SubDominio } from 'src/app/model/SubDominio';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { isEmptyString } from 'src/app/utils/Util';
@@ -17,6 +18,7 @@ export class ModalCorsoComponent implements OnInit {
   nomeCorso: string = '';
   descCorso: string = '';
   tipoCorso: Dominio;
+  subTipo: SubDominio;
   tipoCorsoList = []
 
   ngOnInit(): void {
@@ -60,11 +62,15 @@ export class ModalCorsoComponent implements OnInit {
   };
 
   get disableSave(){
-    return isEmptyString(this.nomeCorso) || isEmptyString(this.descCorso) || (this.tipoCorso === undefined || this.tipoCorso.codice === '');
+    return isEmptyString(this.nomeCorso) || isEmptyString(this.descCorso) || (this.subTipo === undefined || this.subTipo.codice === '');
   }
 
   get labelTipoCorso(){
     return (this.tipoCorso === undefined || this.tipoCorso.codice === '') ? 'Scegli il tipo di corso' : 'Tipologia del corso : ' + this.tipoCorso.descrizione;
+  }
+
+  get labelSubTipoCorso(){
+    return (this.subTipo === undefined || this.subTipo.codice === '') ? 'Scegli il tipo di corso' : 'Tipologia del corso : ' + this.subTipo.descrizione;
   }
 
   open(content) {
@@ -72,19 +78,27 @@ export class ModalCorsoComponent implements OnInit {
       let corso = new Corso();
       corso.nomeCorso = this.nomeCorso;
       corso.descrizioneCorso = this.descCorso;
-      corso.tipo = this.tipoCorso;
-      corso.owner = this.cs.user;
+      corso.tipo = this.subTipo;
+      corso.owner = JSON.parse(localStorage.getItem('USER'));
       this.cs.getOBSInsertCorso(corso).subscribe(next => {
         this.ds.updateSpinner(false);
         this.ds.updateResultService('Inserimento corso avvenuta con successo');
         this.cs.updateCorsi(next);
         this.ds.updateSideBar(false);
+      },error => {
+        this.ds.updateSpinner(false);
+        this.ds.updateResultService('Inserimento corso in errore');
       });
     });
   }
 
   changeTipoCorso(obj: Dominio) {
+    this.subTipo = undefined;
     this.tipoCorso = obj;
+  }
+
+  changeSubTipoCorso(obj: SubDominio) {
+    this.subTipo = obj;
   }
 
 }

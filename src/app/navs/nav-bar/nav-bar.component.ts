@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Dominio } from 'src/app/model/Dominio';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 @Component({
@@ -9,7 +10,7 @@ import { DelegateServiceService } from 'src/app/services/delegate-service.servic
 })
 export class NavBarComponent implements OnInit {
 
-  tipoCorsoList = [{descrizione:"Java" , codice: "J"} , {descrizione:"Angular" , codice: "A"}]
+  @Input() tipoCorsoList: Dominio; 
 
   tabName: number = 0;
   showFiller = false;
@@ -17,9 +18,7 @@ export class NavBarComponent implements OnInit {
   constructor(private cs: CorsoServiceService , private ds: DelegateServiceService, private route: Router) { }
 
   ngOnInit(): void { 
-    this.cs.getOBSTypes().subscribe(next => {
-      this.tipoCorsoList = next;
-    })
+    
   }
 
   filterListCorsi(nome: string){

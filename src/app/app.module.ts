@@ -36,6 +36,8 @@ import { NavBarComponent } from './navs/nav-bar/nav-bar.component';
 import { SideBarComponent } from './navs/side-bar/side-bar.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ModalSigninUserComponent } from './modals/modal-signin-user/modal-signin-user.component';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -73,7 +75,9 @@ import { ModalSigninUserComponent } from './modals/modal-signin-user/modal-signi
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDividerModule,
+    MatExpansionModule
   ],
   providers: [
     CorsoServiceService,

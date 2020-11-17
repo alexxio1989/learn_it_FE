@@ -1,6 +1,6 @@
 <mat-sidenav-container fullscreen>
 
-    <app-nav-bar></app-nav-bar>
+    <app-nav-bar [tipoCorsoList] = "tipoCorsoList"></app-nav-bar>
 
     <div class="container">
         <div class="row">
@@ -11,6 +11,6 @@
     </div>
 
     <app-spinner></app-spinner>
-    <app-side-bar></app-side-bar>
+    <app-side-bar [tipoCorsoList] = "tipoCorsoList"></app-side-bar>
     
 </mat-sidenav-container>

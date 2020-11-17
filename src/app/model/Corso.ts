@@ -1,6 +1,7 @@
-import { Dominio } from './Dominio';
+
 import { Feedback } from './Feedback';
 import { Lezione } from './Lezione';
+import { SubDominio } from './SubDominio';
 import { User } from './User';
 
 export class Corso{
@@ -10,6 +11,6 @@ export class Corso{
     feeds: Feedback[] = [];
     nomeCorso: string = '';
     descrizioneCorso: string = '';
-    tipo: Dominio = new Dominio();
+    tipo: SubDominio = new SubDominio();
     enable: boolean;
 }

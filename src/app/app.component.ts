@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DelegateServiceService } from './services/delegate-service.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { CorsoServiceService } from './services/corso-service.service';
+import { Dominio } from './model/Dominio';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,8 @@ export class AppComponent {
   title = 'learnit';
   showSpinner: false;
 
+  tipoCorsoList = [];
+
   constructor(private ds: DelegateServiceService , private _snackBar: MatSnackBar , private cs: CorsoServiceService ){
     
     this.ds.getOBSSpinner().subscribe(next => {
@@ -19,6 +22,10 @@ export class AppComponent {
     })
     this.ds.getOBSResultService().subscribe(next => {
       this.openSnackBar(next);
+    })
+
+    this.cs.getOBSTypes().subscribe(next => {
+      this.tipoCorsoList = next;
     })
     
   }
