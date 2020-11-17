@@ -6,12 +6,19 @@
     </div>
   </div>
 
-  <div class="row d-flex justify-content-center">
+ 
+  <div *ngIf="!showFeeds" class="row d-flex justify-content-center">
     <div class="d-inline">
       <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
     </div>
-    <div class="d-inline" style="margin-top: -2px;">
-      ({{corso.feeds.length}})
+    <div class="d-inline" style="margin-top: -2px; margin-left: 4px;">
+      <a (click)="changeView()" class="stretched-link">({{corso.feeds.length}})</a>
+    </div>
+  </div>
+
+  <div *ngIf="showFeeds" class="row d-flex justify-content-center">    
+    <div class="d-inline" style="margin-top: -2px; margin-left: 4px;">
+      <a (click)="changeView()" class="stretched-link">Indietro</a>
     </div>
   </div>
 
@@ -44,6 +51,9 @@
 </div>
 
 <div *ngIf="showFeeds">
+  <div class="row justify-content-center mt-5" *ngIf="corso.feeds.length === 0">
+    Nessuna feedback associato al corso
+  </div>
   <div class="row mt-5">
     <div *ngFor="let feed of corso.feeds">
       <app-card-feedback [feed]="feed"></app-card-feedback>
