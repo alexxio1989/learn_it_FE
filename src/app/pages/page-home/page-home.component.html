@@ -12,6 +12,7 @@
 
         <div class="col-12">
             <h3 class="ml-2"><b>Corsi di {{item.key}}</b></h3>
+            <hr/>
         </div>
         <div *ngFor="let corso of  item.value" class="col-md-4 col-sm-6 col-xs-6">
             <app-card-corso [corso]="corso"></app-card-corso>
