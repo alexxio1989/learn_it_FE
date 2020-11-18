@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Corso } from '../model/Corso';
+import { Dominio } from '../model/Dominio';
+import { SubDominio } from '../model/SubDominio';
 import { User } from '../model/User';
 import { DelegateServiceService } from './delegate-service.service';
 
@@ -44,6 +46,14 @@ export class CorsoServiceService {
 
   getOBSTypes(): Observable<any>{
     return this.http.get("https://routerbe.herokuapp.com/router/datipagina/getTypes");
+  }
+
+  getOBSInsertTypes(dominio: Dominio): Observable<any>{
+    return this.http.post("https://routerbe.herokuapp.com/router/insertType" , dominio);
+  }
+
+  getOBSInsertSubTypes(dominio: SubDominio): Observable<any>{
+    return this.http.post("https://routerbe.herokuapp.com/router/insertSubType" , dominio);
   }
 
   getOBSInsertCorso(corso: Corso): Observable<any>{

@@ -34,7 +34,8 @@ export class ModalCorsoComponent implements OnInit {
 
   constructor(private modalService: NgbModal , private cs: CorsoServiceService , private ds: DelegateServiceService) {
     this.cs.getOBSTypes().subscribe(next => {
-      this.tipoCorsoList = next;
+      this.tipoCorsoList = next.tipi;
+      this.ds.updateResultService(next.esito);
     })
   }
 
@@ -117,6 +118,23 @@ export class ModalCorsoComponent implements OnInit {
 
   salvaTipo(){
     console.log(this.newType.descrizione);
+    this.cs.getOBSInsertTypes(this.newType).subscribe(next => {
+      this.tipoCorsoList = next.tipi;
+      this.ds.updateResultService(next.esito);
+    },error =>{
+      this.ds.updateResultService("Inserimento tipo in errore");
+    })
+  }
+
+  salvaSubTipo(){
+    console.log(this.newSubType.descrizione);
+    this.newSubType.idPadre = this.tipoCorso.id;
+    this.cs.getOBSInsertSubTypes(this.newSubType).subscribe(next => {
+      this.tipoCorsoList = next.tipi;
+      this.ds.updateResultService(next.esito);
+    },error =>{
+      this.ds.updateResultService("Inserimento sotto tipo in errore");
+    })
   }
 
 }

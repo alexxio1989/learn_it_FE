@@ -25,7 +25,8 @@ export class AppComponent {
     })
 
     this.cs.getOBSTypes().subscribe(next => {
-      this.tipoCorsoList = next;
+      this.tipoCorsoList = next.tipi;
+      this.ds.updateResultService(next.esito);
     })
     
   }
