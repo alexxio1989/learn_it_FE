@@ -9,8 +9,14 @@
         <div class="col-8">
             <div class="card-body pb-0">
 
-                <div class="row d-flex justify-content-center">
-                    <h2 class="md-display-1">{{corso.nomeCorso}}</h2>
+                <div *ngIf="corso.nomeCorso.length < 20" class="row d-flex justify-content-center p-1">
+                    <h2 class="md-display-1" style="font-size: 2.5vh">{{corso.nomeCorso}}</h2>
+                </div>
+
+                <div *ngIf="corso.nomeCorso.length > 20" class="card-text containerText mb-4">
+                    <div class="scrolling-text" [@scroll]="state" (@scroll.done)="scrollDone()">
+                        <h2 class="md-display-1" style="font-size: 2.5vh">{{corso.nomeCorso}}</h2>
+                    </div>
                 </div>
 
                 <div *ngIf="!isShowInfo" class="row d-flex justify-content-center">
@@ -24,9 +30,6 @@
                     </a>
                 </div>
 
-                <div *ngIf="false" class="card-text containerText mt-2">
-                    <div class="scrolling-text font-weight-light html" [@scroll]="state" (@scroll.done)="scrollDone()" [innerHTML]="corso.descrizioneCorso"></div>
-                </div>
                 
 
             </div>
