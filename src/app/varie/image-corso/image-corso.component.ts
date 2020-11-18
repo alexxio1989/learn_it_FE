@@ -35,7 +35,7 @@ export class ImageCorsoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.path = this.path + this.codiceCorso + ".png";
+    
   }
 
 }

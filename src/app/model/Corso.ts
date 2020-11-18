@@ -1,4 +1,5 @@
 
+import { Dominio } from './Dominio';
 import { Feedback } from './Feedback';
 import { Lezione } from './Lezione';
 import { SubDominio } from './SubDominio';
@@ -12,5 +13,6 @@ export class Corso{
     nomeCorso: string = '';
     descrizioneCorso: string = '';
     tipo: SubDominio = new SubDominio();
+    tipoPadre: Dominio= new Dominio();
     enable: boolean;
 }

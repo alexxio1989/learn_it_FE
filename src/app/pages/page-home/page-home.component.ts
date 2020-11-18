@@ -20,9 +20,11 @@ export class PageHomeComponent implements OnInit {
 
   get mapCorsi(){
 
-    let mCorsi = new Map<string, Corso>();
+    let mCorsi = new Map<string, Corso[]>();
     this.listaCorsiBase.forEach(value => {
-      mCorsi.set(value.tipo.descrizione,value);
+      var newArray = this.listaCorsiBase.filter(function (el) {
+        return el.tipoPadre.codice === value.tipoPadre.codice });
+      mCorsi.set(value.tipoPadre.descrizione,newArray);
     });
     return mCorsi;
   }
