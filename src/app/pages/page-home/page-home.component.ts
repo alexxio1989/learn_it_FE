@@ -18,8 +18,13 @@ export class PageHomeComponent implements OnInit {
 
   constructor(private cs: CorsoServiceService , private route: Router , private ds: DelegateServiceService) { }
 
-  get listaCorsi(){
-    return this.listaCorsiFiltered.length > 0 ? this.listaCorsiFiltered : this.listaCorsiBase;
+  get mapCorsi(){
+
+    let mCorsi = new Map<string, Corso>();
+    this.listaCorsiBase.forEach(value => {
+      mCorsi.set(value.tipo.descrizione,value);
+    });
+    return mCorsi;
   }
 
   ngOnInit(): void {    

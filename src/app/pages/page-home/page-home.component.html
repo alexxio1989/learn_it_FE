@@ -6,8 +6,14 @@
     </div>
 </div>
 
-<div class="row mt-4">
-    <div *ngFor="let corso of listaCorsi" class="col-md-4 col-sm-6 col-xs-6">
+<div *ngIf="listaCorsiFiltered.length === 0" class="row mt-4">
+    <div *ngFor="let corso of mapCorsi | keyvalue" class="col-md-4 col-sm-6 col-xs-6">
+        <app-card-corso [corso] = "corso.value"></app-card-corso>
+    </div> 
+</div>
+
+<div *ngIf="listaCorsiFiltered.length > 0" class="row mt-4">
+    <div *ngFor="let corso of listaCorsiFiltered" class="col-md-4 col-sm-6 col-xs-6">
         <app-card-corso [corso] = "corso"></app-card-corso>
     </div> 
 </div>
