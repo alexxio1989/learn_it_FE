@@ -12,18 +12,19 @@ export class ImageCorsoComponent implements OnInit {
   get getPath(){
     switch(this.codiceCorso) { 
       case "J": { 
-        return this.path + "java.png"; 
+        return this.path + "J.png"; 
         break; 
       } 
       case "A": { 
-        return this.path + "angular.png";
+        return this.path + "A.png";
          break; 
       } 
       case "B": { 
-        return this.path + "boostrap.png";
+        return this.path + "B.png";
          break; 
       }
       default: {
+        return this.path + "default.png";
          break; 
       } 
     } 

@@ -1,7 +1,10 @@
 <div class="card mb-3 shadow-sm" style="max-width: 540px;">
     <div *ngIf="!isShowInfo" class="row no-gutters mb-1">
         <div class="col-4 p-2" style="min-height: 8rem;">
-            <app-image-corso [codiceCorso]="corso.tipo.codice"></app-image-corso>
+            <div class="row d-flex justify-content-center p-1 pl-4">
+                <app-image-corso [codiceCorso]="corso.tipo.codice"></app-image-corso>
+
+            </div>
         </div>
         <div class="col-8">
             <div class="card-body pb-0">
@@ -16,7 +19,9 @@
                 </div>
 
                 <div class="row d-flex justify-content-center">
-                    <a (click)="showInfo()" class="stretched-link" style="color: #6c757d;">{{isShowInfo ? 'Chiudi info' : 'Visualizza info'}}</a>
+                    <a (click)="showInfo()" class="stretched-link" style="color: #6c757d;">
+                        {{isShowInfo ? 'Chiudi info' : 'Visualizza info'}}
+                    </a>
                 </div>
 
                 <div *ngIf="false" class="card-text containerText mt-2">
