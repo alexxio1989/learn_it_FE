@@ -21,6 +21,12 @@ export class ModalCorsoComponent implements OnInit {
   subTipo: SubDominio;
   tipoCorsoList = []
 
+  newType: Dominio = new Dominio();
+  newSubType: SubDominio = new SubDominio();
+
+  isShowSaveTipo: boolean;
+  isShowSaveSubTipo: boolean;
+
   ngOnInit(): void {
   }
 
@@ -99,6 +105,18 @@ export class ModalCorsoComponent implements OnInit {
 
   changeSubTipoCorso(obj: SubDominio) {
     this.subTipo = obj;
+  }
+
+  changeShowSaveTipo() {
+    this.isShowSaveTipo = !this.isShowSaveTipo;
+  }
+
+  changeShowSaveSubTipo() {
+    this.isShowSaveSubTipo = !this.isShowSaveSubTipo;
+  }
+
+  salvaTipo(){
+    console.log(this.newType.descrizione);
   }
 
 }
