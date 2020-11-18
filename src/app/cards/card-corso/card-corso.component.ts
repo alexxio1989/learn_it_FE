@@ -48,6 +48,7 @@ export class CardCorsoComponent implements OnInit {
   state = 0;
 
   isShowInfo: boolean;
+  isEmptyDescrizione: boolean;
 
   get getMediumFeeds(){
     
@@ -65,6 +66,13 @@ export class CardCorsoComponent implements OnInit {
   constructor( private cs: CorsoServiceService ,private route: Router, private ds: DelegateServiceService) { }
 
   ngOnInit(): void {
+    if(this.corso.descrizioneCorso === undefined || 
+       this.corso.descrizioneCorso === null || 
+       this.corso.descrizioneCorso.trim() === '' ||
+       this.corso.descrizioneCorso.trim().includes('>&#160;</font>')
+       ){
+      this.isEmptyDescrizione = true;
+    }
   }
 
 

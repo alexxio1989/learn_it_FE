@@ -38,9 +38,12 @@
                 <mat-icon style="margin-top: -3px;">clear</mat-icon>
             </button>
         </div>
-        <div class="col-12 mt-3">
+        <div *ngIf="!isEmptyDescrizione" class="col-12 mt-3">
             <div [innerHTML]="corso.descrizioneCorso"></div>
-        </div>
+        </div>   
+        <div *ngIf="isEmptyDescrizione" class="col-12 mt-3 d-flex justify-content-center">
+            <h4>Descrizione corso non disponibile</h4>
+        </div>     
     </div>
     <div class="row no-gutters pt-0 pb-3 bg-light text-dark justify-content-end">
         <div *ngIf="isUtenteLogged">
