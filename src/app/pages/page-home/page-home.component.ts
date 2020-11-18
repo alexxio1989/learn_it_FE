@@ -13,27 +13,25 @@ export class PageHomeComponent implements OnInit {
 
   listaCorsiBase: Array<Corso> = [];
   listaCorsiFiltered: Array<Corso> = [];
+  mapCorsi: Map<string, Corso[]> = new Map<string, Corso[]>();
+
+
+  constructor(private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService) { }
+
   
 
-
-  constructor(private cs: CorsoServiceService , private route: Router , private ds: DelegateServiceService) { }
-
-  get mapCorsi(){
-
-    let mCorsi = new Map<string, Corso[]>();
-    this.listaCorsiBase.forEach(value => {
-      var newArray = this.listaCorsiBase.filter(function (el) {
-        return el.tipoPadre.codice === value.tipoPadre.codice });
-      mCorsi.set(value.tipoPadre.descrizione,newArray);
-    });
-    return mCorsi;
-  }
-
-  ngOnInit(): void {    
+  ngOnInit(): void {
     this.cs.getOBSCorsi().subscribe(next => {
       this.ds.updateSpinner(false);
       this.listaCorsiBase = next;
       this.cs.listaCorsi = next;
+
+      next.forEach(value => {
+        var newArray = next.filter(function (el) {
+          return el.tipoPadre.codice === value.tipoPadre.codice
+        });
+        this.mapCorsi.set(value.tipoPadre.descrizione, newArray);
+      });
     })
     this.cs.getOBSCorsiFiltered().subscribe(next => {
       this.listaCorsiFiltered = next;
@@ -44,7 +42,7 @@ export class PageHomeComponent implements OnInit {
     })
   }
 
-  cleanListaCorsiFiltered(){
+  cleanListaCorsiFiltered() {
     this.listaCorsiFiltered = [];
   }
 
