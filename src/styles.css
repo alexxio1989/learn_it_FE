@@ -1,4 +1,5 @@
 
+ 
 /* You can add global styles to this file, and also import other style files */
 .card-img-top {
     width: 80%; 
@@ -48,3 +49,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
 }
+

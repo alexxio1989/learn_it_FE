@@ -1,23 +1,40 @@
 <div class="card mb-3 shadow-sm" style="max-width: 540px;">
-    <div class="row no-gutters mb-1">
+    <div *ngIf="!isShowInfo" class="row no-gutters mb-1">
         <div class="col-4 p-2" style="min-height: 8rem;">
             <app-image-corso [codiceCorso]="corso.tipo.codice"></app-image-corso>
         </div>
         <div class="col-8">
             <div class="card-body pb-0">
 
-                <h5 class="card-title" style="font-size:1rem;">{{corso.nomeCorso}}</h5>
-
                 <div class="row d-flex justify-content-center">
+                    <h2 class="md-display-1">{{corso.nomeCorso}}</h2>
+                </div>
+
+                <div *ngIf="!isShowInfo" class="row d-flex justify-content-center">
                     <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
                     <p class="card-text ml-1" style="margin-top: -3px;"><small class="text-muted">( {{corso.feeds.length}} )</small></p>
                 </div>
 
-                <div class="card-text containerText mt-2">
-                    <div class="scrolling-text font-weight-light html" [@scroll]="state" (@scroll.done)="scrollDone()" [innerHTML]="corso.descrizioneCorso"></div>
+                <div class="row d-flex justify-content-center">
+                    <a (click)="showInfo()" class="stretched-link" style="color: #6c757d;">{{isShowInfo ? 'Chiudi info' : 'Visualizza info'}}</a>
                 </div>
 
+                <div *ngIf="false" class="card-text containerText mt-2">
+                    <div class="scrolling-text font-weight-light html" [@scroll]="state" (@scroll.done)="scrollDone()" [innerHTML]="corso.descrizioneCorso"></div>
+                </div>
+                
+
             </div>
+        </div>
+    </div>
+    <div *ngIf="isShowInfo" class="row no-gutters mb-1">
+        <div class="col-12">
+            <button mat-icon-button (click)="showInfo()" style=" color: #6c757d;">
+                <mat-icon style="margin-top: -3px;">clear</mat-icon>
+            </button>
+        </div>
+        <div class="col-12 mt-3">
+            <div [innerHTML]="corso.descrizioneCorso"></div>
         </div>
     </div>
     <div class="row no-gutters pt-0 pb-3 bg-light text-dark justify-content-end">

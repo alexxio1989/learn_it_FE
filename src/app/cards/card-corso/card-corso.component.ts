@@ -47,6 +47,8 @@ export class CardCorsoComponent implements OnInit {
   
   state = 0;
 
+  isShowInfo: boolean;
+
   get getMediumFeeds(){
     
     let count = this.corso.feeds.reduce(function (s, a) {
@@ -81,6 +83,10 @@ export class CardCorsoComponent implements OnInit {
       this.ds.updateResultService('Eliminazione Corso avvenuta con successo');
       this.cs.updateCorsi(next);
     });
+  }
+
+  showInfo(){
+    this.isShowInfo = !this.isShowInfo;
   }
 
 }
