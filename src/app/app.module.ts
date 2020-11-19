@@ -38,6 +38,20 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { ModalSigninUserComponent } from './modals/modal-signin-user/modal-signin-user.component';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { CarouselComponent } from './carousel/carousel.component';
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  observer: true,
+  direction: 'horizontal',
+  threshold: 50,
+  spaceBetween: 5,
+  slidesPerView: 1,
+  centeredSlides: true
+};
 
 @NgModule({
   declarations: [
@@ -57,7 +71,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ModalParagrafoNewComponent,
     ModalLoginUserComponent,
     SpinnerComponent,
-    ModalSigninUserComponent
+    ModalSigninUserComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
@@ -77,13 +92,20 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatSnackBarModule,
     MatPaginatorModule,
     MatDividerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    SwiperModule,
+    BrowserModule,
+    FlexLayoutModule
   ],
   providers: [
     CorsoServiceService,
     LezioneServiceService,
     ParagrafoServiceService,
-    DelegateServiceService
+    DelegateServiceService,
+    {
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
+    }
   ],
   bootstrap: [AppComponent]
 })
