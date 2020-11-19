@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { SwiperComponent, SwiperDirective } from 'ngx-swiper-wrapper';
 import { SwiperOptions } from 'swiper';
 import { PaginationOptions } from 'swiper/types/components/pagination';
@@ -10,23 +11,26 @@ import { Corso } from '../model/Corso';
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent{
+export class CarouselComponent implements OnInit{
 
   public show: boolean = true;
 
   @Input() listaCorsi;
-  public slides = [
-    'First slide',
-    'Second slide',
-    'Third slide',
-    'Fourth slide',
-    'Fifth slide',
-    'Sixth slide'
-  ];
-
+ 
   public type: string = 'component';
 
   public disabled: boolean = false;
+
+  isDevice: boolean;
+
+
+  constructor(private deviceService: DeviceDetectorService) {}
+
+  ngOnInit(): void {
+    this.isDevice = this.deviceService.isMobile();
+    this.config.pagination = this.deviceService.isMobile();
+    this.config.navigation = !this.deviceService.isMobile();
+  }
 
   public config: SwiperOptions = {
     a11y: { enabled: true },
@@ -35,8 +39,8 @@ export class CarouselComponent{
     keyboard: true,
     mousewheel: true,
     scrollbar: false,
-    navigation: true,
-    pagination: false
+    navigation: false,
+    pagination: true
   };
 
   private scrollbar: ScrollbarOptions = {
@@ -54,7 +58,7 @@ export class CarouselComponent{
   @ViewChild(SwiperComponent, { static: false }) componentRef?: SwiperComponent;
   @ViewChild(SwiperDirective, { static: false }) directiveRef?: SwiperDirective;
 
-  constructor() {}
+  
 
   public toggleType(): void {
     this.type = (this.type === 'component') ? 'directive' : 'component';
@@ -76,30 +80,7 @@ export class CarouselComponent{
     }
   }
 
-  public toggleOverlayControls(): void {
-    if (this.config.navigation) {
-      this.config.scrollbar = false;
-      this.config.navigation = false;
-
-      this.config.pagination = this.pagination;
-    } else if (this.config.pagination) {
-      this.config.navigation = false;
-      this.config.pagination = false;
-
-      this.config.scrollbar = this.scrollbar;
-    } else {
-      this.config.scrollbar = false;
-      this.config.pagination = false;
-
-      this.config.navigation = true;
-    }
-
-    if (this.type === 'directive' && this.directiveRef) {
-      this.directiveRef.setIndex(0);
-    } else if (this.type === 'component' && this.componentRef && this.componentRef.directiveRef) {
-      this.componentRef.directiveRef.setIndex(0);
-    }
-  }
+ 
 
   public toggleKeyboardControl(): void {
     this.config.keyboard = !this.config.keyboard;

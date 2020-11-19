@@ -12,8 +12,8 @@
   
   }
   
-  .action-container {
-    padding: 16px;
+  .swiper-container-horizontal{
+    margin-top: 20px;
   }
   
   .vertical-container,
@@ -21,21 +21,6 @@
     min-height: 0 !important;
   }
   
-  .action-button {
-    box-sizing: border-box;
-    width: calc(100% - 16px);
-    min-height: 25px;
-    padding: 4px 16px;
-    margin: 8px;
-    border: 1px solid #555;
-    border-radius: 4px;
-  
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 14px;
-    text-align: center;
-  }
   
   .action-button:hover {
     color: #fff;

@@ -33,6 +33,7 @@
     "bootstrap": "^4.5.3",
     "easy-star-rating": "^1.0.1",
     "express": "^4.17.1",
+    "ngx-device-detector": "^2.0.0",
     "ngx-stars": "^1.4.3",
     "ngx-swiper-wrapper": "^10.0.0",
     "path": "^0.12.7",

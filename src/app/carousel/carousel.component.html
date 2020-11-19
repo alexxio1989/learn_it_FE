@@ -3,7 +3,7 @@
  
   
       
-      <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">
+      <div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto" style="margin-top: {{isDevice ? '-35px' : '-10px'}}">
         <swiper *ngIf="type == 'component' && show" class="swiper-container" fxFlex="auto" [config]="config" [disabled]="disabled" (indexChange)="onIndexChange($event)" (swiperTransitionStart)="onSwiperEvent('transitionStart')" (swiperTransitionEnd)="onSwiperEvent('transitionEnd')">
           <div *ngFor="let corso of listaCorsi" class="swiper-slide">
               <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
