@@ -30,6 +30,7 @@ export class CarouselComponent implements OnInit{
     this.isDevice = this.deviceService.isMobile();
     this.config.pagination = this.deviceService.isMobile();
     this.config.navigation = !this.deviceService.isMobile();
+    this.deviceService.isMobile() ? this.config.slidesPerView = 1 : this.config.slidesPerView = 2;
   }
 
   public config: SwiperOptions = {
