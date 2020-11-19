@@ -19,7 +19,7 @@
             <angular-editor [(ngModel)]="descCorso" [config]="config"></angular-editor>
         </div>
         <div *ngIf="!isShowSaveTipo" ngbDropdown class="row  form-group">
-            <div class="col-lg-6 col-xs-12">
+            <div class="col-8">
                 <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{labelTipoCorso}}</button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                     <div *ngFor="let tipo of tipoCorsoList">
@@ -27,9 +27,9 @@
                     </div>
                 </div>
             </div>
-            <div *ngIf="tipoCorso === undefined || tipoCorso === null" class="col-lg-6 col-xs-12">
-                <button mat-button (click)="changeShowSaveTipo()" style="color: #6c757d;">
-                    Non trovi il tipo di corso?
+            <div *ngIf="tipoCorso === undefined || tipoCorso === null" class="col-4">
+                <button class="btn btn-lg" (click)="changeShowSaveTipo()">
+                    <i class="fa fa-plus-square-o mr-2"></i>
                 </button>
             </div>
         </div>
@@ -59,7 +59,7 @@
 
 
         <div *ngIf="!isShowSaveSubTipo && tipoCorso !== undefined && tipoCorso !== null" ngbDropdown class="row form-group">
-            <div class="col-lg-6 col-xs-12">
+            <div class="col-8">
                 <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{labelSubTipoCorso}}</button>
                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                     <div *ngFor="let tipo of tipoCorso.sottoTipi">
@@ -68,9 +68,9 @@
                 </div>
 
             </div>
-            <div class="col-lg-6 col-xs-12">
-                <button mat-button (click)="changeShowSaveSubTipo()" style="color: #6c757d;">
-                    Non trovi il tipo di corso?
+            <div class="col-4">
+                <button class="btn btn-lg" (click)="changeShowSaveSubTipo()">
+                    <i class="fa fa-plus-square-o mr-2"></i>
                 </button>
             </div>
         </div>

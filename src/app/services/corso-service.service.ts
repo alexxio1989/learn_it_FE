@@ -21,6 +21,8 @@ export class CorsoServiceService {
 
   listaCorsi: Array<Corso> = [];
 
+  tipoCorsoList: Dominio[] = [];
+
   constructor(private http: HttpClient , private ds: DelegateServiceService) { }
 
   filterCorsi(newCorsi: Corso[]){
@@ -71,8 +73,5 @@ export class CorsoServiceService {
     return this.http.post("https://routerbe.herokuapp.com/router/deleteCorso", corso);
   }
 
-
-
-  
 
 }

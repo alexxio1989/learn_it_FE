@@ -28,14 +28,14 @@ export class ModalCorsoComponent implements OnInit {
   isShowSaveSubTipo: boolean;
 
   ngOnInit(): void {
+    this.tipoCorsoList = this.cs.tipoCorsoList;
   }
 
   closeResult = '';
 
   constructor(private modalService: NgbModal , private cs: CorsoServiceService , private ds: DelegateServiceService) {
-    this.cs.getOBSTypes().subscribe(next => {
-      this.tipoCorsoList = next.tipi;
-      this.ds.updateResultService(next.esito);
+    this.ds.getOBSTipiCorso().subscribe(next => {
+      this.tipoCorsoList = next;
     })
   }
 
@@ -118,9 +118,13 @@ export class ModalCorsoComponent implements OnInit {
 
   salvaTipo(){
     console.log(this.newType.descrizione);
+    this.ds.updateSpinner(true);
     this.cs.getOBSInsertTypes(this.newType).subscribe(next => {
       this.tipoCorsoList = next.tipi;
       this.ds.updateResultService(next.esito);
+      this.ds.updateSpinner(false);
+      this.ds.updateTipiCorso(next.tipi);
+      this.changeShowSaveTipo();
     },error =>{
       this.ds.updateResultService("Inserimento tipo in errore");
     })
@@ -129,9 +133,13 @@ export class ModalCorsoComponent implements OnInit {
   salvaSubTipo(){
     console.log(this.newSubType.descrizione);
     this.newSubType.idPadre = this.tipoCorso.id;
+    this.ds.updateSpinner(true);
     this.cs.getOBSInsertSubTypes(this.newSubType).subscribe(next => {
       this.tipoCorsoList = next.tipi;
       this.ds.updateResultService(next.esito);
+      this.ds.updateSpinner(false);
+      this.ds.updateTipiCorso(next.tipi);
+      this.changeShowSaveSubTipo();
     },error =>{
       this.ds.updateResultService("Inserimento sotto tipo in errore");
     })

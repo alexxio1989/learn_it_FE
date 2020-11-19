@@ -15,7 +15,7 @@ import { UtenteServiceService } from 'src/app/services/utente-service.service';
 export class SideBarComponent implements OnInit {
 
   openSideBar: boolean;
-  @Input() tipoCorsoList: Dominio; 
+  @Input() tipoCorsoList: Dominio[]; 
   
   get isUtenteLogged(): boolean{
     const localUser = localStorage.getItem('USER');

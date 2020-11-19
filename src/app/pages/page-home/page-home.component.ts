@@ -33,12 +33,20 @@ export class PageHomeComponent implements OnInit {
         this.mapCorsi.set(value.tipoPadre.descrizione, newArray);
       });
     })
+
     this.cs.getOBSCorsiFiltered().subscribe(next => {
       this.listaCorsiFiltered = next;
     })
+    
     this.cs.getOBSUpdateCorsi().subscribe(next => {
       this.listaCorsiBase = next;
       this.listaCorsiFiltered = [];
+      next.forEach(value => {
+        var newArray = next.filter(function (el) {
+          return el.tipoPadre.codice === value.tipoPadre.codice
+        });
+        this.mapCorsi.set(value.tipoPadre.descrizione, newArray);
+      });
     })
   }
 
