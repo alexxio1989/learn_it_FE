@@ -73,11 +73,11 @@ export class ModalCorsoComponent implements OnInit {
   }
 
   get labelTipoCorso(){
-    return (this.tipoCorso === undefined || this.tipoCorso.codice === '') ? 'Scegli il tipo di corso' : 'Tipologia del corso : ' + this.tipoCorso.descrizione;
+    return (this.tipoCorso === undefined || this.tipoCorso.codice === '') ? 'Scegli il tipo di corso' : this.tipoCorso.descrizione;
   }
 
   get labelSubTipoCorso(){
-    return (this.subTipo === undefined || this.subTipo.codice === '') ? 'Scegli il tipo di corso' : 'Tipologia del corso : ' + this.subTipo.descrizione;
+    return (this.subTipo === undefined || this.subTipo.codice === '') ? 'Scegli il tipo di corso' : this.subTipo.descrizione;
   }
 
   open(content) {

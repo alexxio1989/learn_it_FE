@@ -16,9 +16,11 @@ export class SideBarComponent implements OnInit {
 
   openSideBar: boolean;
   @Input() tipoCorsoList: Dominio[]; 
+  utente: User;
   
   get isUtenteLogged(): boolean{
     const localUser = localStorage.getItem('USER');
+    this.utente = JSON.parse(localUser);
     return localUser !== undefined && localUser !== null;
   }
 

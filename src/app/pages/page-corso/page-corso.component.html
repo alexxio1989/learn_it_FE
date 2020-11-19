@@ -12,7 +12,8 @@
       <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
     </div>
     <div class="d-inline" style="margin-top: -2px; margin-left: 4px;">
-      <a (click)="changeView()" class="stretched-link">({{corso.feeds.length}})</a>
+      
+      <button (click)="changeView()" class="button-link">({{corso.feeds.length}})</button>
     </div>
   </div>
 
@@ -23,10 +24,10 @@
   </div>
 
 
-  <div *ngIf="isUtenteLogged" class="row d-flex justify-content-center">
-    <button class="btn btn-lg" (click)="addLezione()">
-      <i class="fa fa-plus-square-o mr-2"></i>
-      <h6 class="float-right mt-1">Nuova Lezione</h6>
+  <div *ngIf="isUtenteLogged" class="row d-flex justify-content-center mt-3">
+    <button mat-button (click)="addLezione()" style="color: #6c757d;">
+      <mat-icon style="margin-top: -3px;">add</mat-icon>
+      Nuova Lezione
     </button>
   </div>
 
