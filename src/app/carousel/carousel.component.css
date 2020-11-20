@@ -11,10 +11,7 @@
     border-radius: 4px;
   
   }
-  
-  .swiper-container-horizontal{
-    margin-top: 20px;
-  }
+
   
   .vertical-container,
   .horizontal-container {
@@ -34,6 +31,7 @@
     bottom: 0;
     left: 0;
   }
-  
+
+
   
   
