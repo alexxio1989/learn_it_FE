@@ -14,6 +14,7 @@ export class PageHomeComponent implements OnInit {
   listaCorsiBase: Array<Corso> = [];
   listaCorsiFiltered: Array<Corso> = [];
   mapCorsi: Map<string, Corso[]> = new Map<string, Corso[]>();
+  viewList: boolean;
 
 
   constructor(private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService) { }
@@ -52,6 +53,10 @@ export class PageHomeComponent implements OnInit {
 
   cleanListaCorsiFiltered() {
     this.listaCorsiFiltered = [];
+  }
+
+  changView(){
+    this.viewList = !this.viewList;
   }
 
 }
