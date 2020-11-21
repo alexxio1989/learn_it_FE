@@ -1,61 +1,30 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Paragrafo } from 'src/app/model/Paragrafo';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { ParagrafoServiceService } from 'src/app/services/paragrafo-service.service';
+import { ContentModalParagrafoEditComponent } from './content-modal-paragrafo-edit/content-modal-paragrafo-edit.component';
 
 @Component({
   selector: 'app-modal-paragrafo-edit',
   templateUrl: './modal-paragrafo-edit.component.html',
   styleUrls: ['./modal-paragrafo-edit.component.css']
 })
-export class ModalParagrafoEditComponent implements OnInit {
+export class ModalParagrafoEditComponent {
 
   @Input() paragrafo: Paragrafo;
 
-  
-  ngOnInit(): void {
-  }
+  constructor(public dialog: MatDialog , private ps: ParagrafoServiceService) {}
 
-  constructor(private modalService: NgbModal , private ps: ParagrafoServiceService,private ds: DelegateServiceService) {}
+  openDialog() {
+    this.ps.paragrafoSelected = this.paragrafo;
+    const dialogRef = this.dialog.open(ContentModalParagrafoEditComponent);
 
-  config: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    height: '15rem',
-    minHeight: '5rem',
-    placeholder: 'Enter text here...',
-    translate: 'no',
-    defaultParagraphSeparator: 'p',
-    defaultFontName: 'Arial',
-    toolbarHiddenButtons: [
-      ['bold']
-      ],
-    customClasses: [
-      {
-        name: "quote",
-        class: "quote",
-      },
-      {
-        name: 'redText',
-        class: 'redText'
-      },
-      {
-        name: "titleText",
-        class: "titleText",
-        tag: "h1",
-      },
-    ]
-  };
-
-  open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => { 
-      this.ps.getOBSUpdateParagrafo(this.paragrafo).subscribe(next => {
-        this.ds.updateSpinner(false);
-        this.ds.updateResultService('Modifica paragrafo avvenuta con successo');
-      }); 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
     });
   }
 

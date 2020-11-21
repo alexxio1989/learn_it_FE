@@ -9,6 +9,8 @@ import { DelegateServiceService } from './delegate-service.service';
 })
 export class ParagrafoServiceService {
 
+  paragrafoSelected: Paragrafo;
+
   private _sbjParagrafo = new Subject();
 
   updateParagrafi(paragrafi: Paragrafo[]){

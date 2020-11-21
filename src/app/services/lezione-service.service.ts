@@ -27,4 +27,9 @@ export class LezioneServiceService {
     this.ds.updateSpinner(true);
     return this.http.post("https://routerbe.herokuapp.com/router/deleteLezione", lezione);
   }
+
+  getOBSGetLezione(id: number): Observable<any>{
+    this.ds.updateSpinner(true);
+    return this.http.post("https://routerbe.herokuapp.com/router/getLezione",{'id' : id});
+  }
 }
