@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Accedi al sito</h2>
+<mat-dialog-content class="mat-typography" class="p-5">
+
+
+    <div>
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput [(ngModel)]="user.email" [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                    Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                    Email  <strong>obbligatoria</strong>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+
+    <div>
+        <mat-form-field class="example-form-field">
+            <mat-label>Password</mat-label>
+            <input matInput type="text" [(ngModel)]="user.password">
+            <button mat-button *ngIf="user.password" matSuffix mat-icon-button aria-label="Clear"
+                (click)="user.password=''">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+
+   
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="login()" [disabled] = "disableSave">Login</button>
+</mat-dialog-actions>

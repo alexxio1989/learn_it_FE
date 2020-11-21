@@ -68,7 +68,7 @@ export class CardLezioneComponent implements OnInit {
 
   goToLezione(){
     this.ls.lezioneSelected = this.lezione;
-    this.route.navigate(['/lezione']);
+    this.route.navigate(['/lezione']); 
   }
 
   eliminaLezione(){

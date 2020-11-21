@@ -1,32 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/model/User';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { UtenteServiceService } from 'src/app/services/utente-service.service';
+import { ContentModalSigninComponent } from './content-modal-signin/content-modal-signin.component';
 
 @Component({
   selector: 'app-modal-signin-user',
   templateUrl: './modal-signin-user.component.html',
   styleUrls: ['./modal-signin-user.component.css']
 })
-export class ModalSigninUserComponent implements OnInit {
+export class ModalSigninUserComponent {
 
-  user: User = new User();
+  constructor(public dialog: MatDialog) {}
 
-  constructor(private modalService: NgbModal ,private ds: DelegateServiceService , private us: UtenteServiceService) { }
+  openDialog() {
+    const dialogRef = this.dialog.open(ContentModalSigninComponent);
 
-  ngOnInit(): void {
-  }
-
-  open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.us.getOBSSignIn(this.user).subscribe(next =>{
-        this.ds.updateResultService('Registrazione utente Avvenuta con successo');
-        this.ds.updateSpinner(false);
-      },error => {
-        this.ds.updateResultService('Registrazione utente in errore');
-        this.ds.updateSpinner(false);
-      });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
     });
   }
 

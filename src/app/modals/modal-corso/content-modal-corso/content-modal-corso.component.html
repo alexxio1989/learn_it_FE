@@ -1,0 +1,99 @@
+<h2 mat-dialog-title>Crea un nuovo corso</h2>
+<mat-dialog-content class="mat-typography">
+
+    <mat-form-field class="example-form-field">
+        <mat-label>Nome corso</mat-label>
+        <input matInput type="text" [(ngModel)]="nomeCorso">
+        <button mat-button *ngIf="nomeCorso" matSuffix mat-icon-button aria-label="Clear" (click)="nomeCorso=''">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Descrizione corso</label>
+        <angular-editor [(ngModel)]="descCorso" [config]="config"></angular-editor>
+    </div>
+    <div *ngIf="!isShowSaveTipo" class="row  form-group">
+        <div class="col-10 pr-0">
+            <button mat-button [matMenuTriggerFor]="menu">{{labelTipoCorso}}</button>
+            <mat-menu #menu="matMenu">
+                <div *ngFor="let tipo of tipoCorsoList">
+                    <button mat-menu-item (click)="changeTipoCorso(tipo)">{{tipo.descrizione}}</button>
+                </div>
+            </mat-menu>
+        </div>
+        <div *ngIf="tipoCorso === undefined || tipoCorso === null" class="col-2 pl-0">
+            <button mat-button (click)="changeShowSaveTipo()" style="color: #6c757d;">
+                <mat-icon>playlist_add</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="isShowSaveTipo" class="row  form-group">
+        <div class="col-lg-8 col-xs-7">
+            <div class="row">
+                <div class="col-8">
+                    <input required id="newType" class="form-control d-inline" [(ngModel)]="newType.descrizione"
+                        placeholder="inserisci tipologia corso">
+                </div>
+                <div class="col-2 pl-0">
+                    <button class="d-inline" mat-icon-button (click)="salvaTipo()" style=" color: #6c757d;">
+                        Salva
+                    </button>
+                </div>
+                <div class="col-2 pl-0">
+                    <button mat-icon-button (click)="changeShowSaveTipo()" style=" color: #6c757d;">
+                        Annulla
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <div *ngIf="!isShowSaveSubTipo && tipoCorso !== undefined && tipoCorso !== null" class="row form-group">
+        <div class="col-10 pr-0">
+
+            <button mat-button [matMenuTriggerFor]="menu">{{labelSubTipoCorso}}</button>
+            <mat-menu #menu="matMenu">
+                <div *ngFor="let tipo of tipoCorso.sottoTipi">
+                    <button mat-menu-item (click)="changeSubTipoCorso(tipo)">{{tipo.descrizione}}</button>
+                </div>
+            </mat-menu>
+            
+        </div>
+        <div class="col-2 pl-0">
+            <button mat-button (click)="changeShowSaveSubTipo()" style="color: #6c757d;">
+                <mat-icon>playlist_add</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="isShowSaveSubTipo" class="row  form-group">
+        <div class="col-lg-8 col-xs-7">
+            <div class="row">
+                <div class="col-8">
+                    <input required id="newSubType" class="form-control d-inline" [(ngModel)]="newSubType.descrizione"
+                        placeholder="inserisci tipologia corso">
+                </div>
+                <div class="col-2 pl-0">
+                    <button class="d-inline" mat-icon-button (click)="salvaSubTipo()" style=" color: #6c757d;">
+                        Salva
+                    </button>
+                </div>
+                <div class="col-2 pl-0">
+                    <button mat-icon-button (click)="changeShowSaveSubTipo()" style=" color: #6c757d;">
+                        Annulla
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="salva()" [disabled] ="disableSave">Salva</button>
+</mat-dialog-actions>

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Paragrafo } from '../model/Paragrafo';
 import { DelegateServiceService } from './delegate-service.service';
 
@@ -8,6 +8,16 @@ import { DelegateServiceService } from './delegate-service.service';
   providedIn: 'root'
 })
 export class ParagrafoServiceService {
+
+  private _sbjParagrafo = new Subject();
+
+  updateParagrafi(paragrafi: Paragrafo[]){
+    this._sbjParagrafo.next(paragrafi);
+  }
+
+  getOBSADDParagrafi(): Observable<any>{
+    return this._sbjParagrafo.asObservable();
+  }
 
   constructor(private http: HttpClient, private ds: DelegateServiceService) { }
 

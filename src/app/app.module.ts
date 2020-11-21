@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutes } from './app.routes';
@@ -30,7 +29,6 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { ModalLoginUserComponent } from './modals/modal-login-user/modal-login-user.component'
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { SpinnerComponent } from './varie/spinner/spinner.component'
 import { ImageCorsoComponent } from './varie/image-corso/image-corso.component';
 import { NavBarComponent } from './navs/nav-bar/nav-bar.component';
 import { SideBarComponent } from './navs/side-bar/side-bar.component';
@@ -43,6 +41,18 @@ import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CarouselComponent } from './carousel/carousel.component';
+import { SpinnerComponent } from './varie/spinner/spinner.component';
+import { ContentModalLoginComponent } from './modals/modal-login-user/content-modal-login/content-modal-login.component';
+import { ContentModalCorsoComponent } from './modals/modal-corso/content-modal-corso/content-modal-corso.component';
+import { ContentModalCorsoEditComponent } from './modals/modal-corso-edit/content-modal-corso-edit/content-modal-corso-edit.component';
+import { ContentModalParagrafoNewComponent } from './modals/modal-paragrafo-new/content-modal-paragrafo-new/content-modal-paragrafo-new.component';
+import { ContentModalParagrafoEditComponent } from './modals/modal-paragrafo-edit/content-modal-paragrafo-edit/content-modal-paragrafo-edit.component';
+import { ContentModalSigninComponent } from './modals/modal-signin-user/content-modal-signin/content-modal-signin.component'
+import {MatDialogModule} from '@angular/material/dialog'
+import {MatInputModule} from '@angular/material/input';
+import {MatMenuModule} from '@angular/material/menu';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
+
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
@@ -72,7 +82,13 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ModalLoginUserComponent,
     SpinnerComponent,
     ModalSigninUserComponent,
-    CarouselComponent
+    CarouselComponent,
+    ContentModalLoginComponent,
+    ContentModalCorsoComponent,
+    ContentModalCorsoEditComponent,
+    ContentModalParagrafoNewComponent,
+    ContentModalParagrafoEditComponent,
+    ContentModalSigninComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,7 +111,12 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatExpansionModule,
     SwiperModule,
     BrowserModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatDialogModule,
+    MatInputModule,
+    MatMenuModule,
+    ReactiveFormsModule
+
   ],
   providers: [
     CorsoServiceService,

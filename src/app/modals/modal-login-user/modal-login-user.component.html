@@ -1,35 +1,6 @@
-<ng-template #content let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Accedi al sito</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
 
 
-        <div class="form-group">
-            <label for="dateOfBirth">Email</label>
-            <input required id="dateOfBirth" class="form-control" [(ngModel)]="user.email"
-                placeholder="inserisci email">
-
-        </div>
-        <div class="form-group">
-            <label for="dateOfBirth">Password</label>
-            <input type="password" required id="dateOfBirth" class="form-control" [(ngModel)]="user.password"
-                placeholder="inserisci Password">
-
-        </div>
-
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')">Login</button>
-        </div>
-
-
-    </div>
-</ng-template> 
-
-<button mat-button (click)="open(content)" style="color: #6c757d;">
+<button mat-button (click)="openDialog()" style="color: #6c757d;">
     <mat-icon style="margin-top: -3px;">login</mat-icon>
     Accedi
 </button>

@@ -4,7 +4,9 @@ import { Corso } from 'src/app/model/Corso';
 import { Lezione } from 'src/app/model/Lezione';
 import { Paragrafo } from 'src/app/model/Paragrafo';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
+import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { LezioneServiceService } from 'src/app/services/lezione-service.service';
+import { ParagrafoServiceService } from 'src/app/services/paragrafo-service.service';
 import { getUserLS, isSameUser } from 'src/app/utils/Util';
 
 @Component({
@@ -20,7 +22,11 @@ export class PageLezioneComponent implements OnInit {
 
 
 
-  constructor(private cs: CorsoServiceService ,private ls: LezioneServiceService , private route: Router) { }
+  constructor(private ds: DelegateServiceService , private cs: CorsoServiceService ,private ls: LezioneServiceService , private route: Router , private ps: ParagrafoServiceService) {
+    this.ps.getOBSADDParagrafi().subscribe(next => {
+      this.lezione.listaParagrafi = next;
+    })
+  }
 
   get isUtenteLogged(): boolean{
     return isSameUser(getUserLS(),this.corso.owner);
@@ -39,9 +45,12 @@ export class PageLezioneComponent implements OnInit {
     this.edit = false;
   }
 
-  newParagrafo(paragrafo: Paragrafo){
-    this.lezione.listaParagrafi.push(paragrafo);
+  elimina(paragrafo: Paragrafo){
+    this.ps.getOBSDeleteParagrafo(paragrafo).subscribe(next => {
+      this.lezione.listaParagrafi = next;
+      this.ds.updateResultService("Eliminazione paragrafo avvenuta con successo");
+      this.ds.updateSpinner(false);
+    })
   }
-
 
 }

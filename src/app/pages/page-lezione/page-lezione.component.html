@@ -3,7 +3,7 @@
 </div>
 
 <div *ngIf="isUtenteLogged" class="row col-12 d-flex justify-content-center">
-    <app-modal-paragrafo-new (newParagrafo) ="newParagrafo($event)" [lezione]= "lezione"></app-modal-paragrafo-new>
+    <app-modal-paragrafo-new ></app-modal-paragrafo-new>
 </div>
 
 <div class="row mt-3 ">
@@ -13,6 +13,11 @@
                 <p id="{{paragrafo.idComponent}}" class="h5">{{paragrafo.titolo}}</p>
                 <div *ngIf="isUtenteLogged">
                     <app-modal-paragrafo-edit [paragrafo] = "paragrafo"></app-modal-paragrafo-edit>
+                </div>
+                <div *ngIf="isUtenteLogged">
+                    <button mat-button (click)="elimina(paragrafo)" style="color: #6c757d;">
+                        <mat-icon style="margin-top: -5px;">delete_outline</mat-icon>
+                    </button>
                 </div>
             </div>
             <div class="mt-1" [innerHTML]="paragrafo.content"></div>
