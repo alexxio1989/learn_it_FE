@@ -52,6 +52,8 @@ import {MatDialogModule} from '@angular/material/dialog'
 import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
+import { ModalInfoCorsoComponent } from './modals/modal-info-corso/modal-info-corso.component';
+import { ContentModalInfoCorsoComponent } from './modals/modal-info-corso/content-modal-info-corso/content-modal-info-corso.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -89,6 +91,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ContentModalParagrafoNewComponent,
     ContentModalParagrafoEditComponent,
     ContentModalSigninComponent,
+    ModalInfoCorsoComponent,
+    ContentModalInfoCorsoComponent,
   ],
   imports: [
     BrowserModule,

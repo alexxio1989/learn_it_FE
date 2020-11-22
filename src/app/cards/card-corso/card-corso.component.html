@@ -25,27 +25,13 @@
                 </div>
 
                 <div class="row d-flex justify-content-center">
-                    <a (click)="showInfo()" class="stretched-link" style="color: #6c757d;">
-                        {{isShowInfo ? 'Chiudi info' : 'Visualizza info'}}
-                    </a>
+                    <app-modal-info-corso [corso] = "corso"></app-modal-info-corso>
                 </div>
 
             </div>
         </div>
     </div>
-    <div *ngIf="isShowInfo" class="row no-gutters mb-1">
-        <div class="col-12">
-            <button mat-icon-button (click)="showInfo()" style=" color: #6c757d;">
-                <mat-icon style="margin-top: -3px;">clear</mat-icon>
-            </button>
-        </div>
-        <div *ngIf="!isEmptyDescrizione" class="col-12 mt-3">
-            <div [innerHTML]="corso.descrizioneCorso"></div>
-        </div>   
-        <div *ngIf="isEmptyDescrizione" class="col-12 mt-3 d-flex justify-content-center">
-            <h4>Descrizione corso non disponibile</h4>
-        </div>     
-    </div>
+    
     <div class="row no-gutters pt-0 pb-3 bg-light text-dark justify-content-end">
         <div *ngIf="isUtenteLogged">
             <a (click)="elimina()" class="btn btn-outline-danger btn-sm mr-3 mt-4">Elimina</a>

@@ -81,6 +81,7 @@ export class CardCorsoComponent implements OnInit {
   }
 
   goToCorso(corso: Corso){
+    localStorage.setItem('CORSO' , JSON.stringify(corso));
     this.cs.corsoSelected = corso;
     this.route.navigate(['/corso']);
   }

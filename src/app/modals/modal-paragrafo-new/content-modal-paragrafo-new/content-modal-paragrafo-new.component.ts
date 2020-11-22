@@ -31,7 +31,7 @@ export class ContentModalParagrafoNewComponent implements OnInit {
     defaultParagraphSeparator: 'p',
     defaultFontName: 'Arial',
     toolbarHiddenButtons: [
-      ['bold']
+     
       ],
     customClasses: [
       {

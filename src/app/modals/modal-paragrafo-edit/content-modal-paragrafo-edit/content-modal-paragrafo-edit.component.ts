@@ -29,7 +29,7 @@ export class ContentModalParagrafoEditComponent implements OnInit {
     defaultParagraphSeparator: 'p',
     defaultFontName: 'Arial',
     toolbarHiddenButtons: [
-      ['bold']
+      
       ],
     customClasses: [
       {

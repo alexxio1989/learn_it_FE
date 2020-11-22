@@ -11,11 +11,11 @@
         <div class="mb-4" *ngFor="let paragrafo of lezione.listaParagrafi">
             <div class="row col-12">
                 <p id="{{paragrafo.idComponent}}" class="h5">{{paragrafo.titolo}}</p>
-                <div *ngIf="isUtenteLogged">
+                <div style="margin-top: -5px;" *ngIf="isUtenteLogged">
                     <app-modal-paragrafo-edit [paragrafo] = "paragrafo"></app-modal-paragrafo-edit>
                 </div>
-                <div *ngIf="isUtenteLogged">
-                    <button mat-button (click)="elimina(paragrafo)" style="color: #6c757d;">
+                <div style="margin-top: -5px; margin-left: -5px;" *ngIf="isUtenteLogged">
+                    <button class="pl-0" mat-button (click)="elimina(paragrafo)" style="color: #6c757d;">
                         <mat-icon style="margin-top: -5px;">delete_outline</mat-icon>
                     </button>
                 </div>

@@ -30,13 +30,14 @@ export class PageLezioneComponent implements OnInit {
 
   get isUtenteLogged(): boolean{
     let owner = this.corso !== undefined && this.corso  !== null ? this.corso.owner : null;
-    return isSameUser(getUserLS(),this.corso.owner);
+    return isSameUser(getUserLS(),owner);
   }
 
   ngOnInit(): void {
     this.ar.queryParams.subscribe(params => {
 
       let id = params['id'];
+      this.corso = JSON.parse(localStorage.getItem('CORSO'));
       let lezioneSelected = JSON.parse(localStorage.getItem('LEZIONE'));
 
       if( isNotNullObj(lezioneSelected) &&  lezioneSelected.id !== id){

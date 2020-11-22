@@ -49,7 +49,7 @@ export class ContentModalCorsoComponent implements OnInit {
     defaultParagraphSeparator: 'p',
     defaultFontName: 'Arial',
     toolbarHiddenButtons: [
-      ['bold']
+     
       ],
     customClasses: [
       {
