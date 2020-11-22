@@ -54,7 +54,10 @@ import {MatMenuModule} from '@angular/material/menu';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { ModalInfoCorsoComponent } from './modals/modal-info-corso/modal-info-corso.component';
 import { ContentModalInfoCorsoComponent } from './modals/modal-info-corso/content-modal-info-corso/content-modal-info-corso.component';
-
+import {MatSelectModule} from '@angular/material/select';
+import {MatListModule} from '@angular/material/list';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatChipsModule} from '@angular/material/chips';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
@@ -93,6 +96,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ContentModalSigninComponent,
     ModalInfoCorsoComponent,
     ContentModalInfoCorsoComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -119,7 +123,11 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatDialogModule,
     MatInputModule,
     MatMenuModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatListModule,
+    MatStepperModule,
+    MatChipsModule
 
   ],
   providers: [

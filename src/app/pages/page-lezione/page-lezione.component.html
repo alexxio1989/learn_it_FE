@@ -3,16 +3,36 @@
 </div>
 
 <div *ngIf="isUtenteLogged" class="row col-12 d-flex justify-content-center">
-    <app-modal-paragrafo-new ></app-modal-paragrafo-new>
+    <app-modal-paragrafo-new></app-modal-paragrafo-new>
 </div>
 
 <div class="row mt-3 ">
-    <div class="col-12">
+    <div *ngIf="!isDevice" class="col-lg-3 bg-light">
+        <h3><b>Paragrafi :</b></h3>
+        <hr />
+        <mat-list role="list">
+            <div *ngFor="let paragrafo of lezione.listaParagrafi">
+                <mat-list-item role="listitem" (click)="scroll(paragrafo)" [innerHTML]="paragrafo.titolo">
+                </mat-list-item>
+            </div>
+        </mat-list>
+    </div>
+    <div *ngIf="isDevice" class=" p-2 scrollmenu">
+        <mat-form-field appearance="fill">
+            <mat-label>Vai al paragrafo ...</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let paragrafo of lezione.listaParagrafi" (click)="scroll(paragrafo)" [value]="paragrafo.titolo" [innerHTML]="paragrafo.titolo">
+               
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    <div class="col-lg-9 col-xs-12">
         <div class="mb-4" *ngFor="let paragrafo of lezione.listaParagrafi">
             <div class="row col-12">
                 <p id="{{paragrafo.idComponent}}" class="h5">{{paragrafo.titolo}}</p>
                 <div style="margin-top: -5px;" *ngIf="isUtenteLogged">
-                    <app-modal-paragrafo-edit [paragrafo] = "paragrafo"></app-modal-paragrafo-edit>
+                    <app-modal-paragrafo-edit [paragrafo]="paragrafo"></app-modal-paragrafo-edit>
                 </div>
                 <div style="margin-top: -5px; margin-left: -5px;" *ngIf="isUtenteLogged">
                     <button class="pl-0" mat-button (click)="elimina(paragrafo)" style="color: #6c757d;">

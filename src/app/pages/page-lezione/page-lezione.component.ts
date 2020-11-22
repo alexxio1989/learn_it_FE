@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { Corso } from 'src/app/model/Corso';
 import { Lezione } from 'src/app/model/Lezione';
 import { Paragrafo } from 'src/app/model/Paragrafo';
@@ -12,17 +14,18 @@ import { getUserLS, isEmptyString, isSameUser , isNotNullObj } from 'src/app/uti
 @Component({
   selector: 'app-page-lezione',
   templateUrl: './page-lezione.component.html',
-  styleUrls: ['./page-lezione.component.css']
+  styleUrls: ['./page-lezione.component.scss']
 })
 export class PageLezioneComponent implements OnInit {
-
+  toppings = new FormControl();
   edit: boolean;
   lezione: Lezione;
   corso: Corso;
   isExternalLink: boolean;
+  isDevice: boolean;
 
 
-  constructor(private ds: DelegateServiceService , private cs: CorsoServiceService ,private ls: LezioneServiceService , private route: Router ,private ar: ActivatedRoute , private ps: ParagrafoServiceService) {
+  constructor(private deviceService: DeviceDetectorService , private ds: DelegateServiceService , private cs: CorsoServiceService ,private ls: LezioneServiceService , private route: Router ,private ar: ActivatedRoute , private ps: ParagrafoServiceService) {
     this.ps.getOBSADDParagrafi().subscribe(next => {
       this.lezione.listaParagrafi = next;
     })
@@ -30,10 +33,12 @@ export class PageLezioneComponent implements OnInit {
 
   get isUtenteLogged(): boolean{
     let owner = this.corso !== undefined && this.corso  !== null ? this.corso.owner : null;
-    return isSameUser(getUserLS(),owner);
+    return isSameUser(getUserLS(),owner
+     );
   }
 
   ngOnInit(): void {
+    this.isDevice = this.deviceService.isMobile();
     this.ar.queryParams.subscribe(params => {
 
       let id = params['id'];
@@ -77,5 +82,12 @@ export class PageLezioneComponent implements OnInit {
       this.ds.updateSpinner(false);
     })
   }
+
+  scroll(paragrafo: Paragrafo) {
+    console.log(`scrolling to ${paragrafo.idComponent}`);
+    let el = document.getElementById(paragrafo.idComponent);
+    el.scrollIntoView();
+  }
+  
 
 }
