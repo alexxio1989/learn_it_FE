@@ -9,7 +9,7 @@ import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { LezioneServiceService } from 'src/app/services/lezione-service.service';
 import { ParagrafoServiceService } from 'src/app/services/paragrafo-service.service';
-import { getUserLS, isEmptyString, isSameUser , isNotNullObj } from 'src/app/utils/Util';
+import { getUserLS, isEmptyString, isSameUser , isNotNullObj, isSameUserID } from 'src/app/utils/Util';
 
 @Component({
   selector: 'app-page-lezione',
@@ -32,8 +32,7 @@ export class PageLezioneComponent implements OnInit {
   }
 
   get isUtenteLogged(): boolean{
-    let owner = this.corso !== undefined && this.corso  !== null ? this.corso.owner : null;
-    return isSameUser(getUserLS(),owner
+    return isSameUserID(getUserLS(),this.lezione.idOwner
      );
   }
 

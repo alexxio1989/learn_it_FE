@@ -1,4 +1,5 @@
 
+import { DecimalPipe } from '@angular/common';
 import { Dominio } from './Dominio';
 import { Feedback } from './Feedback';
 import { Lezione } from './Lezione';
@@ -15,4 +16,5 @@ export class Corso{
     tipo: SubDominio = new SubDominio();
     tipoPadre: Dominio= new Dominio();
     enable: boolean;
+    prezzo: number;
 }

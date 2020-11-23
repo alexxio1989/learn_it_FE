@@ -7,4 +7,5 @@ export class Lezione {
     title: string = '';
     content: string;
     listaParagrafi: Paragrafo[] = [];
+    idOwner: number;
 }

@@ -15,11 +15,14 @@ import { isEmptyString } from 'src/app/utils/Util';
 })
 export class ContentModalCorsoComponent implements OnInit {
 
+  aPagamento: boolean;
+
   nomeCorso: string = '';
   descCorso: string = '';
   tipoCorso: Dominio;
   subTipo: SubDominio;
   tipoCorsoList = []
+  prezzo: number;
 
   newType: Dominio = new Dominio();
   newSubType: SubDominio = new SubDominio();
@@ -87,6 +90,7 @@ export class ContentModalCorsoComponent implements OnInit {
       corso.descrizioneCorso = this.descCorso;
       corso.tipo = this.subTipo;
       corso.owner = JSON.parse(localStorage.getItem('USER'));
+      corso.prezzo = this.prezzo;
       this.cs.getOBSInsertCorso(corso).subscribe(next => {
         this.ds.updateSpinner(false);
         this.ds.updateResultService('Inserimento corso avvenuta con successo');

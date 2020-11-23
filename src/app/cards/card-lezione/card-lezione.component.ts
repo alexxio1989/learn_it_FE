@@ -45,6 +45,7 @@ export class CardLezioneComponent implements OnInit {
   }
 
   save(){
+    this.lezione.idOwner = this.corso.owner.id;
     this.lezione.title = this.title;
     if(this.lezione.id === 0 || this.lezione.id === undefined ){
       this.ls.getOBSInsertLezione(this.lezione).subscribe(next => {

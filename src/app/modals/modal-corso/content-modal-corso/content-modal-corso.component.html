@@ -1,16 +1,36 @@
 <h2 mat-dialog-title>Crea un nuovo corso</h2>
 <mat-dialog-content class="mat-typography">
 
-    <mat-form-field class="example-form-field">
-        <mat-label>Nome corso</mat-label>
-        <input matInput type="text" [(ngModel)]="nomeCorso">
-        <button mat-button *ngIf="nomeCorso" matSuffix mat-icon-button aria-label="Clear" (click)="nomeCorso=''">
-            <mat-icon>close</mat-icon>
-        </button>
-    </mat-form-field>
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">Descrizione corso</label>
-        <angular-editor [(ngModel)]="descCorso" [config]="config"></angular-editor>
+    <div class="row mb-2">
+        <div class="col-lg-3 col-xs-12">
+            <mat-form-field class="example-form-field">
+                <mat-label>Nome corso</mat-label>
+                <input matInput type="text" [(ngModel)]="nomeCorso">
+                <button mat-button *ngIf="nomeCorso" matSuffix mat-icon-button aria-label="Clear" (click)="nomeCorso=''">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+        <div class="col-lg-9 col-xs-12 pt-3">
+            <mat-slide-toggle [(ngModel)]="aPagamento">Corso a Pagamento</mat-slide-toggle>
+        </div>
+    </div>
+    <div class="row mb-2" *ngIf="aPagamento">
+        <div class="col-12">
+            <mat-form-field class="example-form-field">
+                <mat-label>Prezzo corso</mat-label>
+                <input matInput type="text" [(ngModel)]="prezzo" step=".01">
+                <button mat-button *ngIf="prezzo" matSuffix mat-icon-button aria-label="Clear" (click)="prezzo = 0.0">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Descrizione corso</label>
+            <angular-editor [(ngModel)]="descCorso" [config]="config"></angular-editor>
+        </div>
     </div>
     <div *ngIf="!isShowSaveTipo" class="row  form-group">
         <div class="col-10 pr-0">
@@ -62,7 +82,7 @@
                     <button mat-menu-item (click)="changeSubTipoCorso(tipo)">{{tipo.descrizione}}</button>
                 </div>
             </mat-menu>
-            
+
         </div>
         <div class="col-2 pl-0">
             <button mat-button (click)="changeShowSaveSubTipo()" style="color: #6c757d;">
@@ -95,5 +115,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="salva()" [disabled] ="disableSave">Salva</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="salva()"
+        [disabled]="disableSave">Salva</button>
 </mat-dialog-actions>

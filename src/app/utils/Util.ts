@@ -42,3 +42,7 @@ export function getUserLS(): User{
 export function isSameUser(user1: User , user2: User): boolean{
     return isNotNullObj(user1) && isNotNullObj(user2) && areSemeStrings(user1.email,user2.email);
 }
+
+export function isSameUserID(user1: User , id: number): boolean{
+    return isNotNullObj(user1) && user1.id === id;
+}

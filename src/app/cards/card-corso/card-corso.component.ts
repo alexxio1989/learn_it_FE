@@ -6,6 +6,8 @@ import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { User } from 'src/app/model/User';
 import { getUserLS, isSameUser } from 'src/app/utils/Util';
+import { MatDialog } from '@angular/material/dialog';
+import { ContentModalLoginComponent } from 'src/app/modals/modal-login-user/content-modal-login/content-modal-login.component';
 
 @Component({
   selector: 'app-card-corso',
@@ -63,7 +65,7 @@ export class CardCorsoComponent implements OnInit {
     return isSameUser(getUserLS(),this.corso.owner);
   }
 
-  constructor( private cs: CorsoServiceService ,private route: Router, private ds: DelegateServiceService) { }
+  constructor( private dialog: MatDialog , private cs: CorsoServiceService ,private route: Router, private ds: DelegateServiceService) { }
 
   ngOnInit(): void {
     if(this.corso.descrizioneCorso === undefined || 
@@ -96,6 +98,14 @@ export class CardCorsoComponent implements OnInit {
 
   showInfo(){
     this.isShowInfo = !this.isShowInfo;
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ContentModalLoginComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }
