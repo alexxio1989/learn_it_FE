@@ -15,5 +15,5 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 button:focus { outline:0 !important; }
 
 .swiper-pagination {
-  bottom: 25px !important;
+  bottom: 15px !important;
 }
