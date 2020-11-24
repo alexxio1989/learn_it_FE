@@ -1,0 +1,33 @@
+
+  
+  .action-container,
+  .content-container {
+    position: relative;
+  
+    overflow: auto;
+    height: 300px;
+    min-height: 0;
+    border-radius: 4px;
+  
+  }
+
+  
+  .vertical-container,
+  .horizontal-container {
+    min-height: 0 !important;
+  }
+  
+  
+  .action-button:hover {
+    color: #fff;
+    background-color: #555;
+  }
+  
+  .swiper-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  

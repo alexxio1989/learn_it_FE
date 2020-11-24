@@ -30,13 +30,14 @@ export class ContentModalLoginComponent implements OnInit {
  
   login() {
       this.us.getOBSLogin(this.user).subscribe(next =>{
-        this.ds.updateResultService('Login Avvenuto con successo');
-        this.ds.updateSpinner(false);
-        localStorage.setItem('USER',JSON.stringify(next));
-        this.ds.utente = next;
+        this.ds.updateResultService(next.esitoChiamata);
+        localStorage.setItem('USER',JSON.stringify(next.utente));
+        this.ds.utente = next.utente;
+        this.ds.updateUser(next.utente);
         this.ds.updateSideBar(false);
+        this.ds.updateSpinner(false);
       },error => {
-        this.ds.updateResultService('Login in errore');
+        this.ds.updateResultService(error.esitoChiamata);
         this.ds.updateSpinner(false);
       });
   }

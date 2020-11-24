@@ -37,6 +37,7 @@ export class SideBarComponent implements OnInit {
 
   logout(){
     localStorage.removeItem('USER');
+    this.ds.updateUser(null);
     this.route.navigate(['/']);
     this.ds.updateSideBar(false);
   }

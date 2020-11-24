@@ -51,5 +51,13 @@ export class DelegateServiceService {
   getOBSSideBar (): Observable<any>{
     return this._sbjSideBar.asObservable();
   }
+
+  updateUser (utente: User){
+    this._sbjUser.next(utente);
+  }
+
+  getOBSUser (): Observable<any>{
+    return this._sbjUser.asObservable();
+  }
   
 }

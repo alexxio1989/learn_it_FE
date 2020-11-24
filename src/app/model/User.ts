@@ -1,3 +1,4 @@
+import { Corso } from './Corso';
 
 export class User{
     id: number;
@@ -5,5 +6,7 @@ export class User{
     password: string;
     nome: string;
     cognome: string;
+    corsiLetti: Corso[];
+    propriCorsi: Corso[];
     
 }

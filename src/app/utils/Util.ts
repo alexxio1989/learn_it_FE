@@ -27,7 +27,7 @@ export function isEmptyArray(value: any[]): boolean{
 }
 
 export function isNotEmptyArray(value: any[]): boolean{
-    return value !== null || value !== undefined || value.length > 0;
+    return value !== undefined && value !== null && value.length > 0;
 }
 
 

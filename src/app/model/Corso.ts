@@ -2,6 +2,7 @@
 import { DecimalPipe } from '@angular/common';
 import { Dominio } from './Dominio';
 import { Feedback } from './Feedback';
+import { Lettura } from './Lettura';
 import { Lezione } from './Lezione';
 import { SubDominio } from './SubDominio';
 import { User } from './User';
@@ -17,4 +18,5 @@ export class Corso{
     tipoPadre: Dominio= new Dominio();
     enable: boolean;
     prezzo: number;
+    listLetture: Lettura[];
 }

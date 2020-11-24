@@ -1,51 +1,50 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { trigger, state, style, animate, transition } from '@angular/animations';
-import { Corso } from 'src/app/model/Corso';
-import { CorsoServiceService } from 'src/app/services/corso-service.service';
-import { DelegateServiceService } from 'src/app/services/delegate-service.service';
-import { User } from 'src/app/model/User';
-import { getUserLS, isNotEmptyArray, isNotNullObj, isSameUser } from 'src/app/utils/Util';
 import { MatDialog } from '@angular/material/dialog';
-import { ContentModalLoginComponent } from 'src/app/modals/modal-login-user/content-modal-login/content-modal-login.component';
-import { UtenteServiceService } from 'src/app/services/utente-service.service';
-import { Lettura } from 'src/app/model/Lettura';
+import { Router } from '@angular/router';
+import { Corso } from '../model/Corso';
+import { Lettura } from '../model/Lettura';
+import { CorsoServiceService } from '../services/corso-service.service';
+import { DelegateServiceService } from '../services/delegate-service.service';
+import { UtenteServiceService } from '../services/utente-service.service';
+import { getUserLS, isNotEmptyArray, isNotNullObj, isSameUser } from '../utils/Util';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+import { ContentModalLoginComponent } from '../modals/modal-login-user/content-modal-login/content-modal-login.component';
 
 @Component({
-  selector: 'app-card-corso',
-  templateUrl: './card-corso.component.html',
+  selector: 'app-card-corso-readed',
+  templateUrl: './card-corso-readed.component.html',
   styles: [`
-    .containerText {
-      height: 30px;
-      overflow: hidden;
-      position: relative;
-      width: 100%;
-    }
+  .containerText {
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
 
-    .scrolling-text {
-      position: absolute;
-      white-space: nowrap;
-    }
+  .scrolling-text {
+    position: absolute;
+    white-space: nowrap;
+  }
 
-    /* Below doesn't work to pause */
+  /* Below doesn't work to pause */
 
-    .scrolling-text:hover, .container:hover {
-      -moz-animation-play-state: paused;
-      -webkit-animation-play-state: paused;
-      animation-play-state: paused;
-    }
-  `],
-  animations: [
-    trigger('scroll', [
-      state('on', style({left: '-100px'})),
-      transition('* => *', [
-        style({right: '-100px'}),
-        animate(10000, style({right: '100%'}))
-      ])
+  .scrolling-text:hover, .container:hover {
+    -moz-animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+  }
+`],
+animations: [
+  trigger('scroll', [
+    state('on', style({left: '-100px'})),
+    transition('* => *', [
+      style({right: '-100px'}),
+      animate(10000, style({right: '100%'}))
     ])
-  ]
+  ])
+]
 })
-export class CardCorsoComponent implements OnInit {
+export class CardCorsoReadedComponent implements OnInit {
 
   @Input() corso: Corso;
   

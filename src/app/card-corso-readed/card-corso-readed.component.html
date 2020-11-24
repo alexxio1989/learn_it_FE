@@ -19,9 +19,7 @@
                     </div>
                 </div>
 
-                <div class="row d-flex justify-content-center">
-                    <h4 class="md-display-1" >Prezzo : {{corso.prezzo > 0 ? corso.prezzo + '€' : 'Free' }}</h4>
-                </div>
+              
 
                 <div *ngIf="!isShowInfo" class="row d-flex justify-content-center">
                     <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
@@ -37,24 +35,8 @@
     </div>
     
     <div class="row no-gutters pt-0 pb-3 bg-light text-dark justify-content-end">
-        <div *ngIf="isUtenteLogged">
-            <a (click)="elimina()" class="btn btn-outline-danger btn-sm mr-3 mt-4">Elimina</a>
-        </div>
-        <div *ngIf="isUtenteLogged">
-            <app-modal-corso-edit [corso] = "corso"></app-modal-corso-edit>            
-        </div>
-        <div *ngIf="isUtenteLogged && !isCorsoLetto">
-            <a (click)="goToCorso(corso)" class="btn btn-outline-success btn-sm mr-3 mt-4">Vai al corso</a>            
-        </div>
-
-        <div *ngIf="!isUtenteLogged">
-
-            <a (click)="openDialog()" class="btn btn-outline-primary btn-sm mr-3 mt-4">Accedi</a>
-           
-
-        </div>
-
-        <div *ngIf="isUtenteLogged && isCorsoLetto">
+        
+        <div>
 
             <a (click)="continua(corso)" class="btn btn-outline-success btn-sm mr-3 mt-4">Continua a leggere</a>
            
