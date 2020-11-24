@@ -9,16 +9,16 @@
      
     </div>
     <div class="col-6 " (click)="continua(corso)">
-      <div class="card-body pb-0">
+      <div class="card-body pb-2 pt-2">
 
         <div *ngIf="corso.nomeCorso.length < 20" class="row d-flex justify-content-center">
-          <h2 class="md-display-1" style="font-size: 2.5vh">{{corso.nomeCorso}}</h2>
+          <h2  style="font-size: 2.5vh">{{corso.nomeCorso}}</h2>
           
         </div>
 
         <div *ngIf="corso.nomeCorso.length > 20" class="card-text containerText">
           <div class="scrolling-text" [@scroll]="state" (@scroll.done)="scrollDone()">
-            <h2 class="md-display-1" style="font-size: 2.5vh">{{corso.nomeCorso}}</h2>
+            <h2 style="font-size: 2.5vh">{{corso.nomeCorso}}</h2>
           </div>
         </div>
 
@@ -42,7 +42,7 @@
       </button>
       <mat-menu #menu="matMenu">
         
-          <app-modal-info-corso [corso]="corso"></app-modal-info-corso>
+        <app-modal-info-corso [corso]="corso"></app-modal-info-corso>
        
         <button mat-menu-item>
           <mat-icon>dialpad</mat-icon>

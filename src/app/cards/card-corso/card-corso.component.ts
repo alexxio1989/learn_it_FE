@@ -133,4 +133,20 @@ export class CardCorsoComponent implements OnInit {
     });
   }
 
+  next(corso: Corso){
+
+    if(this.isUtenteLogged){
+
+      if(this.isCorsoLetto){
+        this.continua(corso);
+      } else {
+        this.goToCorso(corso);
+      }
+
+    } else {
+      this.openDialog();
+    }
+
+  }
+
 }
