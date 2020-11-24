@@ -1,6 +1,6 @@
-<div class="card mb-3 shadow-md" style="max-width: 400px;">
+<div class="card mb-3 shadow-md" style="max-width: 400px;" >
     <div *ngIf="!isShowInfo" class="row no-gutters mb-1">
-        <div class="col-4 p-2" style="min-height: 8rem;">
+        <div class="col-4 p-2" >
             <div class="row d-flex justify-content-center p-1 pl-4">
                 <app-image-corso [codiceCorso]="corso.tipo.codice"></app-image-corso>
 
@@ -20,15 +20,6 @@
                 </div>
 
               
-
-                <div *ngIf="!isShowInfo" class="row d-flex justify-content-center">
-                    <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
-                    <p class="card-text ml-1" style="margin-top: -3px;"><small class="text-muted">( {{corso.feeds.length}} )</small></p>
-                </div>
-
-                <div class="row d-flex justify-content-center">
-                    <app-modal-info-corso [corso] = "corso"></app-modal-info-corso>
-                </div>
 
             </div>
         </div>

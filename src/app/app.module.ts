@@ -61,6 +61,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { CardCorsoReadedComponent } from './card-corso-readed/card-corso-readed.component';
 import { CarouselReadedComponent } from './carousel-readed/carousel-readed.component';
+import { PageUtenteComponent } from './pages/page-utente/page-utente.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
@@ -101,6 +102,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ContentModalInfoCorsoComponent,
     CardCorsoReadedComponent,
     CarouselReadedComponent,
+    PageUtenteComponent,
     
   ],
   imports: [

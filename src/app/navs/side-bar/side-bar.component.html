@@ -5,7 +5,7 @@
             <button mat-button></button>
         </div>
         <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
-            <button mat-button (click)="logout()" style="color: #6c757d;">
+            <button mat-button (click)="goToPageUtente()" style="color: #6c757d;">
                 <mat-icon style="margin-top: -3px;">account_circle</mat-icon>
                 {{utente.nome}} {{utente.cognome}}
             </button>

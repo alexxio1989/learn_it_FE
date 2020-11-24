@@ -1,0 +1,20 @@
+<p>{{utente.nome}} {{utente.cognome}}</p>
+
+
+<div *ngIf="utente !== undefined && utente !== null && utente.corsiLetti !== undefined && utente.corsiLetti !== null && utente.corsiLetti.length > 0" class="one-edge-shadow p-2 pt-4">
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-muted" style="font-weight: 400;">Corsi letti di recente da {{utente.nome}}</h3>   
+        </div>
+    </div>
+    <app-carousel-readed [listaCorsi]="utente.corsiLetti"></app-carousel-readed>
+</div>
+
+<div *ngIf="utente !== undefined && utente !== null && utente.corsiLetti !== undefined && utente.propriCorsi !== null && utente.propriCorsi.length > 0" class="one-edge-shadow p-2 pt-4">
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-muted" style="font-weight: 400;">Corsi creati da {{utente.nome}}</h3>   
+        </div>
+    </div>
+    <app-carousel-readed [listaCorsi]="utente.propriCorsi"></app-carousel-readed>
+</div>

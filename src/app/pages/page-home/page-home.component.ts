@@ -17,21 +17,14 @@ export class PageHomeComponent implements OnInit {
   listaCorsiFiltered: Array<Corso> = [];
   mapCorsi: Map<string, Corso[]> = new Map<string, Corso[]>();
   viewList: boolean;
-  utenteLogged: User;
-
-  mapCorsiUtente: Map<string, Corso[]> = new Map<string, Corso[]>();
+  
 
 
-  constructor(private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService) {
-    this.ds.getOBSUser().subscribe(next=>{
-      this.utenteLogged = next;
-    })
-  }
+  constructor(private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService) {}
 
   
 
   ngOnInit(): void {
-    this.utenteLogged = getUserLS();
     this.cs.getOBSCorsi().subscribe(next => {
       this.ds.updateSpinner(false);
       this.listaCorsiBase = next;
@@ -52,12 +45,17 @@ export class PageHomeComponent implements OnInit {
     this.cs.getOBSUpdateCorsi().subscribe(next => {
       this.listaCorsiBase = next;
       this.listaCorsiFiltered = [];
-      next.forEach(value => {
-        var newArray = next.filter(function (el) {
-          return el.tipoPadre.codice === value.tipoPadre.codice
+      if(next.length > 0){
+        next.forEach(value => {
+          var newArray = next.filter(function (el) {
+            return el.tipoPadre.codice === value.tipoPadre.codice
+          });
+          this.mapCorsi.set(value.tipoPadre.descrizione, newArray);
         });
-        this.mapCorsi.set(value.tipoPadre.descrizione, newArray);
-      });
+
+      } else {
+        this.mapCorsi = new Map<string, Corso[]>();
+      }
     })
   }
 

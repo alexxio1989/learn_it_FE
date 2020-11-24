@@ -22,7 +22,7 @@ export class PageCorsoComponent implements OnInit {
   showFeeds: boolean;
 
 
-  constructor(private cs: CorsoServiceService , private route: Router , private ds: DelegateServiceService) { }
+  constructor(private cs: CorsoServiceService , private route: Router , private ds: DelegateServiceService) { } 
 
   get isUtenteLogged(): boolean{
     return isSameUser(getUserLS(),this.corso.owner);

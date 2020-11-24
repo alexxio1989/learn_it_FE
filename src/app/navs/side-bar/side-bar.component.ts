@@ -51,4 +51,9 @@ export class SideBarComponent implements OnInit {
     this.route.navigate(['/']);
   }
 
+  goToPageUtente(){
+    this.route.navigate(['/utente']);
+    this.ds.updateSideBar(false);
+  }
+
 }

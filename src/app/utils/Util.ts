@@ -6,6 +6,10 @@ export function isNotNullObj<T>(arg: T ){
     return arg !== undefined && arg !== null;
 }
 
+export function isNullObj<T>(arg: T ){
+    return arg === undefined || arg === null;
+}
+
 // STRINGS
 
 export function areSemeStrings(value1: string , value2: string): boolean{
