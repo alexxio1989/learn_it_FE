@@ -1,38 +1,78 @@
-<div class="card mb-3 shadow-md" style="max-width: 400px;" >
-    <div *ngIf="!isShowInfo" class="row no-gutters mb-1">
-        <div class="col-4 p-2" >
-            <div class="row d-flex justify-content-center p-1 pl-4">
-                <app-image-corso [codiceCorso]="corso.tipo.codice"></app-image-corso>
+<mat-card class="p-0 " matRipple style="max-width: 400px;" >
 
-            </div>
-        </div>
-        <div class="col-8">
-            <div class="card-body pb-0">
+  <div class="row pl-3 pr-0">
 
-                <div *ngIf="corso.nomeCorso.length < 20" class="row d-flex justify-content-center">
-                    <h2 class="md-display-1" style="font-size: 2.5vh">{{corso.nomeCorso}}</h2>
-                </div>
-
-                <div *ngIf="corso.nomeCorso.length > 20" class="card-text containerText">
-                    <div class="scrolling-text" [@scroll]="state" (@scroll.done)="scrollDone()">
-                        <h2 class="md-display-1" style="font-size: 2.5vh">{{corso.nomeCorso}}</h2>
-                    </div>
-                </div>
-
-              
-
-            </div>
-        </div>
+    <div class="col-4 " style="background: rgba(180, 180, 180, 0.2)">
+      <div class=" pl-3 pt-3 pb-3" style="border-radius: 50%;">
+        <app-image-corso [codiceCorso]="corso.tipo.codice"></app-image-corso>
+      </div>
+     
     </div>
-    
-    <div class="row no-gutters pt-0 pb-3 bg-light text-dark justify-content-end">
+    <div class="col-6 " (click)="continua(corso)">
+      <div class="card-body pb-0">
+
+        <div *ngIf="corso.nomeCorso.length < 20" class="row d-flex justify-content-center">
+          <h2 class="md-display-1" style="font-size: 2.5vh">{{corso.nomeCorso}}</h2>
+          
+        </div>
+
+        <div *ngIf="corso.nomeCorso.length > 20" class="card-text containerText">
+          <div class="scrolling-text" [@scroll]="state" (@scroll.done)="scrollDone()">
+            <h2 class="md-display-1" style="font-size: 2.5vh">{{corso.nomeCorso}}</h2>
+          </div>
+        </div>
+
+        <div class="row d-flex justify-content-center">
+          <h4 class="md-display-1">Prezzo : {{corso.prezzo > 0 ? corso.prezzo + '€' : 'Free' }}</h4>
+        </div>
+
+        <div *ngIf="!isShowInfo" class="row d-flex justify-content-center">
+          <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
+          <p class="card-text ml-1" style="margin-top: -3px;"><small class="text-muted">( {{corso.feeds.length}}
+              )</small></p>
+        </div>
+
         
-        <div>
 
-            <a (click)="continua(corso)" class="btn btn-outline-success btn-sm mr-3 mt-4">Continua a leggere</a>
-           
-
-        </div>
-
+      </div>
     </div>
-</div>
+    <div class="col-2 ">
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        
+          <app-modal-info-corso [corso]="corso"></app-modal-info-corso>
+       
+        <button mat-menu-item>
+          <mat-icon>dialpad</mat-icon>
+          <span>Redial</span>
+        </button>
+        <button mat-menu-item disabled>
+          <mat-icon>voicemail</mat-icon>
+          <span>Check voice mail</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>Disable alerts</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</mat-card>
+
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>dialpad</mat-icon>
+    <span>Redial</span>
+  </button>
+  <button mat-menu-item disabled>
+    <mat-icon>voicemail</mat-icon>
+    <span>Check voice mail</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>notifications_off</mat-icon>
+    <span>Disable alerts</span>
+  </button>
+</mat-menu>

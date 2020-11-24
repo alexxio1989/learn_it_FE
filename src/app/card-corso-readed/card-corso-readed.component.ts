@@ -14,35 +14,40 @@ import { ContentModalLoginComponent } from '../modals/modal-login-user/content-m
   selector: 'app-card-corso-readed',
   templateUrl: './card-corso-readed.component.html',
   styles: [`
-  .containerText {
-    height: 30px;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-  }
+    .opacityDiv div{
+      
+        opacity: 0.3;
+     
+    }
+    .containerText {
+      height: 30px;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
 
-  .scrolling-text {
-    position: absolute;
-    white-space: nowrap;
-  }
+    .scrolling-text {
+      position: absolute;
+      white-space: nowrap;
+    }
 
-  /* Below doesn't work to pause */
+    /* Below doesn't work to pause */
 
-  .scrolling-text:hover, .container:hover {
-    -moz-animation-play-state: paused;
-    -webkit-animation-play-state: paused;
-    animation-play-state: paused;
-  }
-`],
-animations: [
-  trigger('scroll', [
-    state('on', style({left: '-100px'})),
-    transition('* => *', [
-      style({right: '-100px'}),
-      animate(10000, style({right: '100%'}))
+    .scrolling-text:hover, .container:hover {
+      -moz-animation-play-state: paused;
+      -webkit-animation-play-state: paused;
+      animation-play-state: paused;
+    }
+  `],
+  animations: [
+    trigger('scroll', [
+      state('on', style({left: '-100px'})),
+      transition('* => *', [
+        style({right: '-100px'}),
+        animate(10000, style({right: '100%'}))
+      ])
     ])
-  ])
-]
+  ]
 })
 export class CardCorsoReadedComponent implements OnInit {
 
