@@ -10,6 +10,7 @@ import { User } from './User';
 export class Corso{
     id: number;
     owner: User;
+    image: String;
     lezioni: Lezione[] = [];
     feeds: Feedback[] = [];
     nomeCorso: string = '';

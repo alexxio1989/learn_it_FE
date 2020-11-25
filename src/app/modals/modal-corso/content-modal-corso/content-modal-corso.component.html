@@ -6,7 +6,8 @@
             <mat-form-field class="example-form-field">
                 <mat-label>Nome corso</mat-label>
                 <input matInput type="text" [(ngModel)]="nomeCorso">
-                <button mat-button *ngIf="nomeCorso" matSuffix mat-icon-button aria-label="Clear" (click)="nomeCorso=''">
+                <button mat-button *ngIf="nomeCorso" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="nomeCorso=''">
                     <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
@@ -24,6 +25,18 @@
                     <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-12 pl-0">
+            <button mat-button (click)="fileInput.click()">
+                <span>Seleziona immagine</span>
+                <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
+            </button>
+
+        </div>
+        <div class="col-12 pl-4" *ngIf="image !== undefined && image !== null">
+            <img style="max-width: 100px; max-height: 100px;" src="{{image}}" alt="Red dot" />
         </div>
     </div>
     <div class="row mt-4">

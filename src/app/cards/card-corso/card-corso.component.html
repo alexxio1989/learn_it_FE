@@ -4,31 +4,31 @@
 
     <div class="row pl-3 pr-0">
   
-      <div class="col-4 " style="background: rgba(180, 180, 180, 0.2)">
-        <div class=" pl-3 pt-3 pb-3" style="border-radius: 50%;">
-          <app-image-corso [codiceCorso]="corso.tipo.codice"></app-image-corso>
+      <div class="col-4 d-flex align-items-center" style="background: rgba(180, 180, 180, 0.2);min-height: 110px; max-height: 110px; " >
+        <div >
+          <img alt="Web Studio" class="img-fluid" src="{{corso.image}}" />
         </div>
        
       </div>
-      <div class="col-6 " (click)="next(corso)">
+      <div class="col-6 ml-auto d-flex align-items-center " (click)="next(corso)">
         <div class="card-body pb-2 pt-2">
   
-          <div *ngIf="corso.nomeCorso.length < 20" class="row d-flex justify-content-center">
+          <div *ngIf="corso.nomeCorso.length < 10" class="d-flex justify-content-center" style="margin-bottom: -15px; margin-top: -5px;">
             <h2  style="font-size: 2.5vh">{{corso.nomeCorso}}</h2>
             
           </div>
   
-          <div *ngIf="corso.nomeCorso.length > 20" class="card-text containerText">
+          <div *ngIf="corso.nomeCorso.length > 10" class="containerText">
             <div class="scrolling-text" [@scroll]="state" (@scroll.done)="scrollDone()">
               <h2 style="font-size: 2.5vh">{{corso.nomeCorso}}</h2>
             </div>
           </div>
   
-          <div class="row d-flex justify-content-center">
+          <div class=" d-flex justify-content-center mt-1">
             <h4 class="md-display-1">Prezzo : {{corso.prezzo > 0 ? corso.prezzo + '€' : 'Free' }}</h4>
           </div>
   
-          <div *ngIf="!isShowInfo" class="row d-flex justify-content-center">
+          <div *ngIf="!isShowInfo" class="row d-flex justify-content-center" style="margin-top: -5px;">
             <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
             <p class="card-text ml-1" style="margin-top: -3px;"><small class="text-muted">( {{corso.feeds.length}}
                 )</small></p>
@@ -38,7 +38,7 @@
   
         </div>
       </div>
-      <div class="col-2 ">
+      <div class="col-2 pl-0">
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
           <mat-icon>more_vert</mat-icon>
         </button>

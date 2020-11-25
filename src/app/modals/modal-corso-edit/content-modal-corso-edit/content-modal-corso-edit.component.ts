@@ -67,4 +67,13 @@ export class ContentModalCorsoEditComponent implements OnInit {
       });   
   }
 
+  fileChange(event){
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.corso.image = reader.result as string;
+    };
+  }
+
 }

@@ -1,9 +1,0 @@
-<div class="content-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto" style="margin-top: {{isDevice ? '-45px' : '-40px'}}">
-    <swiper class="swiper-container" fxFlex="auto" [config]="config" [disabled]="disabled" (indexChange)="onIndexChange($event)" (swiperTransitionStart)="onSwiperEvent('transitionStart')" (swiperTransitionEnd)="onSwiperEvent('transitionEnd')">
-      <div *ngFor="let corso of listaCorsi" class="swiper-slide">
-          <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
-            <app-card-corso-readed [corso]="corso"></app-card-corso-readed>
-          </div>
-      </div>
-    </swiper>
-  </div>

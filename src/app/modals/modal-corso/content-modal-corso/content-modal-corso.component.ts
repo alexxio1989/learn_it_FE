@@ -23,6 +23,7 @@ export class ContentModalCorsoComponent implements OnInit {
   subTipo: SubDominio;
   tipoCorsoList = []
   prezzo: number;
+  image: string;
 
   newType: Dominio = new Dominio();
   newSubType: SubDominio = new SubDominio();
@@ -89,6 +90,7 @@ export class ContentModalCorsoComponent implements OnInit {
       corso.nomeCorso = this.nomeCorso;
       corso.descrizioneCorso = this.descCorso;
       corso.tipo = this.subTipo;
+      corso.image = this.image;
       corso.owner = JSON.parse(localStorage.getItem('USER'));
       corso.prezzo = this.prezzo;
       this.cs.getOBSInsertCorso(corso).subscribe(next => {
@@ -147,6 +149,20 @@ export class ContentModalCorsoComponent implements OnInit {
     },error =>{
       this.ds.updateResultService("Inserimento sotto tipo in errore");
     })
+  }
+
+  openInput(){ 
+    document.getElementById("fileInput").click();
+  }
+
+  fileChange(event){
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.image = reader.result as string;
+      console.log(this.image);
+    };
   }
 
 }

@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Crea un nuovo corso</h2>
+<h2 mat-dialog-title>Modifica corso</h2>
 <mat-dialog-content class="mat-typography">
 
     <div class="row mb-2">
@@ -24,6 +24,18 @@
                     <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-12 pl-0">
+            <button mat-button (click)="fileInput.click()">
+                <span>{{corso.image !== undefined && corso.image !== null ? 'Modifica immagine' : 'Seleziona immagine'}}</span>
+                <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
+            </button>
+
+        </div>
+        <div class="col-12 pl-4" *ngIf="corso.image !== undefined && corso.image !== null">
+            <img style="max-width: 100px; max-height: 100px;" src="{{corso.image}}" alt="Red dot" />
         </div>
     </div>
     <div class="row mt-4">
