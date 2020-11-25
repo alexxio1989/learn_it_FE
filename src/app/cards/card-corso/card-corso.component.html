@@ -14,18 +14,18 @@
         <div class="card-body pb-2 pt-2">
   
           <div *ngIf="corso.nomeCorso.length < 10" class="d-flex justify-content-center" style="margin-bottom: -15px; margin-top: -5px;">
-            <h2  style="font-size: 2.5vh">{{corso.nomeCorso}}</h2>
+            <h3  style="opacity: 0.7;font-weight: 700; font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif!important;">{{corso.nomeCorso}}</h3>
             
           </div>
   
           <div *ngIf="corso.nomeCorso.length > 10" class="containerText">
             <div class="scrolling-text" [@scroll]="state" (@scroll.done)="scrollDone()">
-              <h2 style="font-size: 2.5vh">{{corso.nomeCorso}}</h2>
+              <h3 style="opacity: 0.7;font-weight: 700;font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif!important;">{{corso.nomeCorso}}</h3>
             </div>
           </div>
   
           <div class=" d-flex justify-content-center mt-1">
-            <h4 class="md-display-1">Prezzo : {{corso.prezzo > 0 ? corso.prezzo + '€' : 'Free' }}</h4>
+            <h5 class="md-display-1" style="font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif!important;">Prezzo : <b style="opacity: 0.7;">{{corso.prezzo > 0 ? corso.prezzo + '€' : 'Free' }}</b></h5>
           </div>
   
           <div *ngIf="!isShowInfo" class="row d-flex justify-content-center" style="margin-top: -5px;">
