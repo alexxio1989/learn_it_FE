@@ -1,8 +1,8 @@
 
 
-<mat-card class="p-0 " matRipple style="max-width: 400px;" >
+<mat-card *ngIf="!isPAy" class="p-0 " matRipple style="max-width: 400px;" >
 
-    <div class="row pl-3 pr-0">
+    <div  class="row pl-3 pr-0">
   
       <div class="col-4 d-flex align-items-center" style="background: rgba(180, 180, 180, 0.2);min-height: 110px; max-height: 110px; " >
         <div >
@@ -56,7 +56,29 @@
         </mat-menu>
       </div>
     </div>
+
+    
   </mat-card>
   
-  
+  <mat-card *ngIf="isPAy" style="min-width: 320px;" >
+    
+        <button mat-icon-button (click)="back()" style=" color: #6c757d;">
+          <mat-icon style="margin-top: -3px;">clear</mat-icon>
+        </button>
+
+
+        
+
+        <form novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
+          <input type="text" formControlName="name" placeholder="Inserisci il tuo nome">
+          <ngx-stripe-card
+            [options]="cardOptions"
+            [elementsOptions]="elementsOptions"
+          ></ngx-stripe-card>
+          <button type="submit">
+            CREATE TOKEN
+          </button>
+        </form>
+
+  </mat-card>
 

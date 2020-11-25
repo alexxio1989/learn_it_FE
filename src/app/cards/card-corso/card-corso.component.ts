@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Corso } from 'src/app/model/Corso';
@@ -10,31 +10,18 @@ import { MatDialog } from '@angular/material/dialog';
 import { ContentModalLoginComponent } from 'src/app/modals/modal-login-user/content-modal-login/content-modal-login.component';
 import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { Lettura } from 'src/app/model/Lettura';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+ 
+import { StripeService, StripeCardComponent } from 'ngx-stripe';
+import {
+  StripeCardElementOptions,
+  StripeElementsOptions
+} from '@stripe/stripe-js';
 
 @Component({
   selector: 'app-card-corso',
   templateUrl: './card-corso.component.html',
-  styles: [`
-    .containerText {
-      height: 30px;
-      overflow: hidden;
-      position: relative;
-      width: 100%;
-    }
-
-    .scrolling-text {
-      position: absolute;
-      white-space: nowrap;
-    }
-
-    /* Below doesn't work to pause */
-
-    .scrolling-text:hover, .container:hover {
-      -moz-animation-play-state: paused;
-      -webkit-animation-play-state: paused;
-      animation-play-state: paused;
-    }
-  `],
+  styleUrls: ['./card-corso.component.css'],
   animations: [
     trigger('scroll', [
       state('on', style({left: '-100px'})),
@@ -47,6 +34,8 @@ import { Lettura } from 'src/app/model/Lettura';
 })
 export class CardCorsoComponent implements OnInit {
 
+  @ViewChild(StripeCardComponent) card: StripeCardComponent;
+
   @Input() corso: Corso;
   
   state = 0;
@@ -54,6 +43,33 @@ export class CardCorsoComponent implements OnInit {
   isShowInfo: boolean;
   isEmptyDescrizione: boolean;
   isCorsoLetto: boolean;
+  isPAy: boolean;
+
+  cardOptions: StripeCardElementOptions = {
+    style: {
+      base: {
+        color: '#303238',
+        fontSize: '16px',
+        fontFamily: '"Open Sans", sans-serif',
+        fontSmoothing: 'antialiased',
+        '::placeholder': {
+          color: '#CFD7DF',
+        },
+      },
+      invalid: {
+        color: '#e5424d',
+        ':focus': {
+          color: '#303238',
+        },
+      },
+    }
+  };
+
+  elementsOptions: StripeElementsOptions = {
+    locale: 'it'
+  };
+
+  stripeTest: FormGroup;
 
   get getMediumFeeds(){
     
@@ -68,7 +84,7 @@ export class CardCorsoComponent implements OnInit {
     return isSameUser(getUserLS(),this.corso.owner);
   }
 
-  constructor(private us: UtenteServiceService , private dialog: MatDialog , private cs: CorsoServiceService ,private route: Router, private ds: DelegateServiceService) { }
+  constructor(private fb: FormBuilder, private stripeService: StripeService ,private us: UtenteServiceService , private dialog: MatDialog , private cs: CorsoServiceService ,private route: Router, private ds: DelegateServiceService) { }
 
   ngOnInit(): void {
     
@@ -81,6 +97,10 @@ export class CardCorsoComponent implements OnInit {
        ){
       this.isEmptyDescrizione = true;
     }
+
+    this.stripeTest = this.fb.group({
+      name: ['', [Validators.required]]
+    });
   }
 
 
@@ -140,13 +160,37 @@ export class CardCorsoComponent implements OnInit {
       if(this.isCorsoLetto){
         this.continua(corso);
       } else {
-        this.goToCorso(corso);
+        if(this.corso.prezzo > 0){
+          this.isPAy = true;
+        } else {
+          this.goToCorso(corso);
+
+        }
       }
 
     } else {
       this.openDialog();
     }
 
+  }
+
+  back(){
+    this.isPAy = false;
+  }
+
+  createToken(): void {
+    const name = this.stripeTest.get('name').value;
+    this.stripeService
+      .createToken(this.card.element, { name })
+      .subscribe((result) => {
+        if (result.token) {
+          // Use the token
+          console.log(result.token.id);
+        } else if (result.error) {
+          // Error creating the token
+          console.log(result.error.message);
+        }
+      });
   }
 
 }

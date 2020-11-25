@@ -62,6 +62,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { PageUtenteComponent } from './pages/page-utente/page-utente.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatRippleModule} from '@angular/material/core';
+import { NgxStripeModule } from 'ngx-stripe';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
@@ -110,6 +111,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     FormsModule,
     HttpClientModule,
     NgbModule,
+    NgxStripeModule.forRoot("pk_test_s8tEdMSkAYFFxo6AkOmhFyQc0050euNRAW"),
     RouterModule.forRoot(AppRoutes),
     HttpClientModule,
     BrowserAnimationsModule,
