@@ -30,12 +30,13 @@
     <div class="row mb-2">
         <div class="col-12 pl-0">
             <button mat-button (click)="fileInput.click()">
+                <mat-icon>add_photo_alternate</mat-icon>
                 <span>Seleziona immagine</span>
                 <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
             </button>
 
         </div>
-        <div class="col-12 pl-4" *ngIf="image !== undefined && image !== null">
+        <div class="col-12 pl-4 mt-2" *ngIf="image !== undefined && image !== null">
             <img style="max-width: 100px; max-height: 100px;" src="{{image}}" alt="Red dot" />
         </div>
     </div>
