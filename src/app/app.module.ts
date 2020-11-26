@@ -63,6 +63,7 @@ import { PageUtenteComponent } from './pages/page-utente/page-utente.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatRippleModule} from '@angular/material/core';
 import { NgxStripeModule } from 'ngx-stripe';
+import { PagamentiServiceService } from './services/pagamenti-service.service';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
@@ -145,6 +146,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     LezioneServiceService,
     ParagrafoServiceService,
     DelegateServiceService,
+    PagamentiServiceService,
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG

@@ -17,6 +17,7 @@ import {
   StripeCardElementOptions,
   StripeElementsOptions
 } from '@stripe/stripe-js';
+import { PagamentiServiceService } from 'src/app/services/pagamenti-service.service';
 
 @Component({
   selector: 'app-card-corso',
@@ -84,7 +85,7 @@ export class CardCorsoComponent implements OnInit {
     return isSameUser(getUserLS(),this.corso.owner);
   }
 
-  constructor(private fb: FormBuilder, private stripeService: StripeService ,private us: UtenteServiceService , private dialog: MatDialog , private cs: CorsoServiceService ,private route: Router, private ds: DelegateServiceService) { }
+  constructor(private ps: PagamentiServiceService ,private fb: FormBuilder, private stripeService: StripeService ,private us: UtenteServiceService , private dialog: MatDialog , private cs: CorsoServiceService ,private route: Router, private ds: DelegateServiceService) { }
 
   ngOnInit(): void {
     
@@ -155,7 +156,7 @@ export class CardCorsoComponent implements OnInit {
 
   next(corso: Corso){
 
-    if(this.isUtenteLogged){
+    if(isNotNullObj(getUserLS())){
 
       if(this.isCorsoLetto){
         this.continua(corso);
@@ -185,9 +186,15 @@ export class CardCorsoComponent implements OnInit {
       .subscribe((result) => {
         if (result.token) {
           // Use the token
+          this.corso.acquirente = getUserLS();
+          this.corso.stripeToken = result.token.id;
           console.log(result.token.id);
+          this.ps.getOBSPay(this.corso).subscribe(next=>{
+            this.ds.updateResultService(next.esito);
+            this.ds.updateSpinner(false);
+            this.goToCorso(this.corso);
+          })
         } else if (result.error) {
-          // Error creating the token
           console.log(result.error.message);
         }
       });

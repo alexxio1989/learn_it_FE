@@ -15,7 +15,7 @@ export class PageHomeComponent implements OnInit {
 
   listaCorsiBase: Array<Corso> = [];
   listaCorsiFiltered: Array<Corso> = [];
-  mapCorsi: Map<string, Corso[]> = new Map<string, Corso[]>();
+  mapCorsi: Map<string, Corso[]>;
   viewList: boolean;
   
 
@@ -30,12 +30,17 @@ export class PageHomeComponent implements OnInit {
       this.listaCorsiBase = next;
       this.cs.listaCorsi = next;
 
-      next.forEach(value => {
-        var newArray = next.filter(function (el) {
-          return el.tipoPadre.codice === value.tipoPadre.codice
+      if(next.length > 0){
+        this.mapCorsi = new Map<string, Corso[]>();
+        next.forEach(value => {
+          var newArray = next.filter(function (el) {
+            return el.tipoPadre.codice === value.tipoPadre.codice
+          });
+          this.mapCorsi.set(value.tipoPadre.descrizione, newArray);
         });
-        this.mapCorsi.set(value.tipoPadre.descrizione, newArray);
-      });
+
+       }
+
     })
 
     this.cs.getOBSCorsiFiltered().subscribe(next => {
@@ -46,6 +51,7 @@ export class PageHomeComponent implements OnInit {
       this.listaCorsiBase = next;
       this.listaCorsiFiltered = [];
       if(next.length > 0){
+        this.mapCorsi = new Map<string, Corso[]>();
         next.forEach(value => {
           var newArray = next.filter(function (el) {
             return el.tipoPadre.codice === value.tipoPadre.codice

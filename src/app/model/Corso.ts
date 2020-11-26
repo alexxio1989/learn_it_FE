@@ -20,4 +20,6 @@ export class Corso{
     enable: boolean;
     prezzo: number;
     listLetture: Lettura[];
+    stripeToken: string;
+    acquirente: User;
 }
