@@ -31,7 +31,8 @@ export class ContentModalLoginComponent implements OnInit {
   login() {
       this.us.getOBSLogin(this.user).subscribe(next =>{
         this.ds.updateResultService(next.esitoChiamata);
-        localStorage.setItem('USER',JSON.stringify(next.utente));
+        localStorage.setItem('JWT_TOKEN',next.headers.get('JWT_TOKEN'));
+        localStorage.setItem('USER',JSON.stringify(next.body.utente));
         this.ds.utente = next.utente;
         this.ds.updateUser(next.utente);
         this.ds.updateSideBar(false);

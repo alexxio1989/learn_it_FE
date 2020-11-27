@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { User } from '../model/User';
 
 // OBJECTS
@@ -49,4 +50,12 @@ export function isSameUser(user1: User , user2: User): boolean{
 
 export function isSameUserID(user1: User , id: number): boolean{
     return isNotNullObj(user1) && user1.id === id;
+}
+
+export function getJWTTOKEN(): string{
+    return localStorage.getItem('JWT_TOKEN');
+}
+
+export function getHeaders(): HttpHeaders{
+    return new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
 }
