@@ -20,6 +20,8 @@ export class ContentModalLoginComponent implements OnInit {
 
   user: User = new User();
 
+  hide: boolean;
+
   constructor(private modalService: NgbModal ,private ds: DelegateServiceService , private us: UtenteServiceService) { }
 
   ngOnInit(): void {}
