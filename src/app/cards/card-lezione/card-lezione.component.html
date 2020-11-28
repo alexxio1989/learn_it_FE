@@ -19,16 +19,24 @@
             </div>
             <div class="row pt-3 pb-3 bg-light text-dark d-flex justify-content-center pl-2">
                 <div *ngIf="edit && isUtenteLogged" >
-                    <a class="stretched-link" class="btn btn-outline-success btn-sm mr-2" (click)="save()">Salva</a>
+                    <button mat-button (click)="save()" style="color: #6c757d;">
+                        Salva
+                    </button>
+                </div>
+                <div *ngIf="!edit && isUtenteLogged"> 
+                    <button mat-button (click)="eliminaLezione()" style="color: #6c757d;">
+                        Elimina
+                    </button>
                 </div>
                 <div *ngIf="!edit && isUtenteLogged">
-                    <a class="stretched-link" class="btn btn-outline-danger btn-sm mr-2" (click)="eliminaLezione()">Elimina</a>
-                </div>
-                <div *ngIf="!edit && isUtenteLogged">
-                    <a class="stretched-link" class="btn btn-outline-warning btn-sm mr-2" (click)="update()">Modifica</a>
+                    <button mat-button (click)="update()" style="color: #6c757d;">
+                        Modifica
+                    </button> 
                 </div>
                 <div *ngIf="!edit">
-                    <a class="stretched-link" class="btn btn-outline-primary btn-sm mr-2" (click)="goToLezione()">Inizia</a>
+                    <button mat-button (click)="goToLezione()" style="color: #6c757d;">
+                        Inizia
+                    </button> 
                 </div>
             </div>
 

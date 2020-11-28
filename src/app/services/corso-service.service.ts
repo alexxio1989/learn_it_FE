@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Corso } from '../model/Corso';
 import { Dominio } from '../model/Dominio';
 import { SubDominio } from '../model/SubDominio';
 import { User } from '../model/User';
+import { getJWTTOKEN } from '../utils/Util';
 import { DelegateServiceService } from './delegate-service.service';
 
 @Injectable({
@@ -51,26 +52,31 @@ export class CorsoServiceService {
   }
 
   getOBSInsertTypes(dominio: Dominio): Observable<any>{
-    return this.http.post("https://routerbe.herokuapp.com/router/insertType" , dominio);
+    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
+    return this.http.post("http://routerbe.herokuapp.com/router/insertType" , dominio , {headers});
   }
 
   getOBSInsertSubTypes(dominio: SubDominio): Observable<any>{
-    return this.http.post("https://routerbe.herokuapp.com/router/insertSubType" , dominio);
+    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
+    return this.http.post("https://routerbe.herokuapp.com/router/insertSubType" , dominio , {headers});
   }
 
   getOBSInsertCorso(corso: Corso): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post("https://routerbe.herokuapp.com/router/saveCorso", corso);
+    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
+    return this.http.post("https://routerbe.herokuapp.com/router/saveCorso", corso , {headers});
   }
 
   getOBSUpdateCorso(corso: Corso): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post("https://routerbe.herokuapp.com/router/updateCorso", corso);
+    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
+    return this.http.post("https://routerbe.herokuapp.com/router/updateCorso", corso , {headers});
   }
 
   getOBSDeleteCorso(corso: Corso): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post("https://routerbe.herokuapp.com/router/deleteCorso", corso);
+    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
+    return this.http.post("https://routerbe.herokuapp.com/router/deleteCorso", corso , {headers});
   }
 
 

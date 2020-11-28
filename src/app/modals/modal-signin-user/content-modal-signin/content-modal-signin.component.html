@@ -39,7 +39,7 @@
     <div>
         <mat-form-field class="example-form-field">
             <mat-label>Password</mat-label>
-            <input matInput type="text" [(ngModel)]="user.password">
+            <input matInput type="password" [(ngModel)]="user.password">
             <button mat-button *ngIf="user.password" matSuffix mat-icon-button aria-label="Clear"
                 (click)="user.password=''">
                 <mat-icon>close</mat-icon>
@@ -50,7 +50,7 @@
     <div *ngIf="user.password !== undefined && user.password !== ''">
         <mat-form-field class="example-form-field">
             <mat-label>Conferma Password</mat-label>
-            <input matInput type="text" [(ngModel)]="confirmPassword">
+            <input matInput type="password" [(ngModel)]="confirmPassword">
             <button mat-button *ngIf="confirmPassword" matSuffix mat-icon-button aria-label="Clear"
                 (click)="confirmPassword=''">
                 <mat-icon>close</mat-icon>

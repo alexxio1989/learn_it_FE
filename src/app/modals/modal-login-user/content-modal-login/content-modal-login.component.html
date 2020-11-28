@@ -1,10 +1,9 @@
 <h2 mat-dialog-title>Accedi al sito</h2>
 <mat-dialog-content class="mat-typography" class="p-5">
 
-
+    
     <div>
-        <form class="example-form">
-            <mat-form-field class="example-full-width">
+            <mat-form-field style="width: 235px;" appearance="fill">
                 <mat-label>Email</mat-label>
                 <input type="email" matInput [(ngModel)]="user.email" [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
                 <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
@@ -14,16 +13,15 @@
                     Email  <strong>obbligatoria</strong>
                 </mat-error>
             </mat-form-field>
-        </form>
+
     </div>
 
     <div>
-        <mat-form-field class="example-form-field">
+        <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
-            <input matInput type="text" [(ngModel)]="user.password">
-            <button mat-button *ngIf="user.password" matSuffix mat-icon-button aria-label="Clear"
-                (click)="user.password=''">
-                <mat-icon>close</mat-icon>
+            <input matInput [(ngModel)]="user.password" [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
         </mat-form-field>
     </div>
