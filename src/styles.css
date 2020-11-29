@@ -17,3 +17,7 @@ button:focus { outline:0 !important; }
 .swiper-pagination {
   bottom: 10px !important;
 }
+
+.stars-line{
+  z-index: 9;
+}
