@@ -15,7 +15,11 @@ export class NavBarComponent implements OnInit {
   tabName: number = 0;
   showFiller = false;
 
-  constructor(private cs: CorsoServiceService , private ds: DelegateServiceService, private route: Router) { }
+  constructor(private cs: CorsoServiceService , private ds: DelegateServiceService, private route: Router) {
+    this.ds.getOBSSideBar().subscribe(next => {
+      this.ds.isOpenSideBar = next;
+    })
+   }
 
   ngOnInit(): void { 
     

@@ -1,4 +1,10 @@
 <!-- SIDENAV -->
+<div *ngIf="openSideBar" style="margin-left: 300px; margin-top: -300px;">
+    <button  mat-mini-fab color="white" (click) = "close()">
+        <mat-icon>clear</mat-icon>
+    </button>
+
+</div>
 <mat-sidenav style="z-index: 999" [mode]="'over'" [opened]="openSideBar" class="mat-elevation-z10 p-3 border-0">
     <div class="d-flex flex-column">
         <div class="w-100 p-2 d-flex justify-content-center">
@@ -7,7 +13,7 @@
         <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
             <button mat-button (click)="goToPageUtente()" style="color: #6c757d;">
                 <mat-icon style="margin-top: -3px;">account_circle</mat-icon>
-                {{utente.nome}} {{utente.cognome}}
+                {{utente !== undefined ? utente.nome : ''}} {{utente !== undefined ? utente.cognome : ''}}
             </button>
         </div>
         <div *ngIf="!isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
@@ -28,12 +34,14 @@
     </div>
 
     <mat-divider style="margin-bottom: 5px;"></mat-divider>
+
+    
     <mat-accordion class="example-headers-align" multi>
-        <div *ngFor="let types of tipoCorsoList" class="d-flex flex-column">
+        <div *ngFor="let types of tipoCorsoListFilter" class="d-flex flex-column">
             <mat-expansion-panel
                 style="box-shadow: 0px 0px 1px -2px rgba(0, 0, 0, 0.0), 0px 2px 2px 0px rgba(0, 0, 0, 0.0), 0px 1px 0px 0px rgba(0, 0, 0, 0.0);">
                 <mat-expansion-panel-header>
-                    <mat-panel-title>
+                    <mat-panel-title style="color: #6c757d ; font-weight: 500">
                         {{types.descrizione}}
                     </mat-panel-title>
                 </mat-expansion-panel-header>

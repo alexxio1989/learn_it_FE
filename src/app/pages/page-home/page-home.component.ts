@@ -29,17 +29,8 @@ export class PageHomeComponent implements OnInit {
       this.ds.updateSpinner(false);
       this.listaCorsiBase = next;
       this.cs.listaCorsi = next;
-
-      if(next.length > 0){
-        this.mapCorsi = new Map<string, Corso[]>();
-        next.forEach(value => {
-          var newArray = next.filter(function (el) {
-            return el.tipoPadre.codice === value.tipoPadre.codice
-          });
-          this.mapCorsi.set(value.tipoPadre.descrizione, newArray);
-        });
-
-       }
+      this.cs.updateCorsi(next);
+     
 
     })
 

@@ -4,5 +4,5 @@ export class Dominio{
     id: number;
     codice: string;
     descrizione: string;
-    sottoTipi: SubDominio[];
+    sottoTipi: SubDominio[] = [];
 }
