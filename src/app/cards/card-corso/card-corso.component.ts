@@ -45,6 +45,7 @@ export class CardCorsoComponent implements OnInit {
   isEmptyDescrizione: boolean;
   isCorsoLetto: boolean;
   isPAy: boolean;
+  user: User;
 
   cardOptions: StripeCardElementOptions = {
     style: {
@@ -85,12 +86,23 @@ export class CardCorsoComponent implements OnInit {
     return isSameUser(getUserLS(),this.corso.owner);
   }
 
-  constructor(private ps: PagamentiServiceService ,private fb: FormBuilder, private stripeService: StripeService ,private us: UtenteServiceService , private dialog: MatDialog , private cs: CorsoServiceService ,private route: Router, private ds: DelegateServiceService) { }
+  constructor(private ps: PagamentiServiceService ,
+              private fb: FormBuilder,
+              private stripeService: StripeService ,
+              private us: UtenteServiceService ,
+              private dialog: MatDialog ,
+              private cs: CorsoServiceService ,
+              private route: Router,
+              private ds: DelegateServiceService) {
+
+              this.ds.getOBSUser().subscribe(next => {
+                this.checkLettureUtente();
+              })
+
+  }
 
   ngOnInit(): void {
-    
-    this.isCorsoLetto = isNotNullObj(this.corso) && isNotEmptyArray(this.corso.listLetture) ? this.corso.listLetture.filter(el => el.idUtente === getUserLS().id).length > 0 : false;
-
+    this.checkLettureUtente();
     if(this.corso.descrizioneCorso === undefined || 
        this.corso.descrizioneCorso === null || 
        this.corso.descrizioneCorso.trim() === '' ||
@@ -102,6 +114,14 @@ export class CardCorsoComponent implements OnInit {
     this.stripeTest = this.fb.group({
       name: ['', [Validators.required]]
     });
+  }
+
+  checkLettureUtente(){
+    const user = getUserLS();
+    this.user = user;
+    this.isCorsoLetto = isNotNullObj(this.corso) &&
+                        isNotEmptyArray(this.corso.listLetture) &&
+                        isNotNullObj(user) ? this.corso.listLetture.filter(el => el.idUtente === user.id).length > 0 : false;
   }
 
 

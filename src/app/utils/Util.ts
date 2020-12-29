@@ -41,7 +41,7 @@ export function isNotEmptyArray(value: any[]): boolean{
 
 export function getUserLS(): User{
     let value = localStorage.getItem('USER');
-    return JSON.parse(value);
+    return  isNotNullObj(value) && value !== 'undefined'  ? JSON.parse(value) : null;
 }
 
 export function isSameUser(user1: User , user2: User): boolean{

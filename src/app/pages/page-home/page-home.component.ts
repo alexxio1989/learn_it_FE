@@ -29,6 +29,7 @@ export class PageHomeComponent implements OnInit {
       this.ds.updateSpinner(false);
       this.listaCorsiBase = next.list;
       this.cs.listaCorsi = next.list;
+      this.cs.updateCorsi(next.list);
 
       if(next.list.length > 0){
         this.mapCorsi = new Map<string, Corso[]>();
