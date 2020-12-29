@@ -14,10 +14,10 @@
                     <input type="text" class="form-control input-sm" [(ngModel)]="title" placeholder="titolo lezione">
                 </div>
                 <div class="mt-3" *ngIf="!edit">
-                    <h5>{{lezione.title}}</h5>              
+                    <h3>{{lezione.title}}</h3>              
                 </div>
             </div>
-            <div class="row pt-3 pb-3 bg-light text-dark d-flex justify-content-center pl-2">
+            <div class="row pt-0 pb-3 bg-light text-dark d-flex justify-content-center pl-2">
                 <div *ngIf="edit && isUtenteLogged" >
                     <button mat-button (click)="save()" style="color: #6c757d;">
                         Salva

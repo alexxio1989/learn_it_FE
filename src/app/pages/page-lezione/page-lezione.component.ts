@@ -19,7 +19,7 @@ import { getUserLS, isEmptyString, isSameUser , isNotNullObj, isSameUserID } fro
 export class PageLezioneComponent implements OnInit {
   toppings = new FormControl();
   edit: boolean;
-  lezione: Lezione;
+  lezione: Lezione = new Lezione();
   corso: Corso;
   isExternalLink: boolean;
   isDevice: boolean;

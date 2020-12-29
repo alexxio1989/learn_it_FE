@@ -54,7 +54,15 @@ export class ContentModalParagrafoNewComponent implements OnInit {
       let paragrafo = new Paragrafo();
       paragrafo.titolo = this.titolo;
       paragrafo.content = this.testo;
-      paragrafo.idlezione = this.ls.lezioneSelected.id;
+      let lezioneSelected;
+
+      let lezioneSelectedLS = JSON.parse(localStorage.getItem('LEZIONE'));
+      if(this.ls.lezioneSelected !== undefined){
+        lezioneSelected = this.ls.lezioneSelected
+      } else if(lezioneSelectedLS !== undefined){
+        lezioneSelected = lezioneSelectedLS;
+      }
+      paragrafo.idlezione = lezioneSelected.id;
       this.ps.getOBSInsertParagrafo(paragrafo).subscribe(next => {
         this.ds.updateSpinner(false);
         this.ds.updateResultService(next.status);

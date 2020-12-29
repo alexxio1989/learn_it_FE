@@ -7,17 +7,18 @@
 </div>
 
 <div class="row mt-3 ">
-    <div *ngIf="!isDevice" class="col-lg-3 bg-light">
-        <h3><b>Paragrafi :</b></h3>
+    <div *ngIf="!isDevice && lezione.listaParagrafi.length > 0" class="col-lg-3 p-3 pr-5 section-paragrafi">
+        <h4><b>Paragrafi :</b></h4>
         <hr />
         <mat-list role="list">
             <div *ngFor="let paragrafo of lezione.listaParagrafi">
-                <mat-list-item role="listitem" (click)="scroll(paragrafo)" [innerHTML]="paragrafo.titolo">
+                <mat-list-item role="listitem" (click)="scroll(paragrafo)" >
+                    <h6>{{paragrafo.titolo}}</h6>
                 </mat-list-item>
             </div>
         </mat-list>
     </div>
-    <div *ngIf="isDevice" class=" p-2 scrollmenu">
+    <div *ngIf="isDevice && lezione.listaParagrafi.length > 0" class=" p-2 scrollmenu">
         <mat-form-field appearance="fill">
             <mat-label>Vai al paragrafo ...</mat-label>
             <mat-select>
