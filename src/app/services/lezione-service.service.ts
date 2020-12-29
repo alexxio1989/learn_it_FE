@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Lezione } from '../model/Lezione';
 import { getJWTTOKEN } from '../utils/Util';
+import { ServiceCore } from './core/ServiceCore';
 import { DelegateServiceService } from './delegate-service.service';
 
 @Injectable({
@@ -17,24 +18,24 @@ export class LezioneServiceService {
   getOBSInsertLezione(lezione: Lezione): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post("https://routerbe.herokuapp.com/router/saveLezione", lezione , {headers});
+    return this.http.post(ServiceCore.baseURl + "/router/saveLezione", lezione , {headers});
   }
 
   getOBSUpdateLezione(lezione: Lezione): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post("https://routerbe.herokuapp.com/router/updateLezione", lezione , {headers});
+    return this.http.post(ServiceCore.baseURl + "/router/updateLezione", lezione , {headers});
   }
 
   getOBSDeleteLezione(lezione: Lezione): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post("https://routerbe.herokuapp.com/router/deleteLezione", lezione , {headers});
+    return this.http.post(ServiceCore.baseURl + "/router/deleteLezione", lezione , {headers});
   }
 
   getOBSGetLezione(id: number): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post("https://routerbe.herokuapp.com/router/getLezione",{'id' : id} , {headers});
+    return this.http.post(ServiceCore.baseURl + "/router/getLezione",{'id' : id} , {headers});
   }
 }

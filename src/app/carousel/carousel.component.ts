@@ -30,7 +30,7 @@ export class CarouselComponent implements OnInit{
     this.isDevice = this.deviceService.isMobile();
     this.config.pagination = this.deviceService.isMobile();
     this.config.navigation = !this.deviceService.isMobile();
-    this.deviceService.isMobile() ? this.config.slidesPerView = 1 : this.config.slidesPerView = 2;
+    this.deviceService.isMobile() ? this.config.slidesPerView = 1 : this.config.slidesPerView = 3;
   }
 
   public config: SwiperOptions = {
@@ -41,6 +41,9 @@ export class CarouselComponent implements OnInit{
     scrollbar: false,
     navigation: false,
     pagination: true,
+    // Default parameters   
+   slidesPerView: 4,   
+   spaceBetween: 40,
     breakpoints: {  
    
       // when window width is <= 320px     
@@ -57,7 +60,7 @@ export class CarouselComponent implements OnInit{
       // when window width is <= 640px     
       640: {       
          slidesPerView: 3,       
-         spaceBetween: 30     
+         spaceBetween: 20     
       } 
   
    } 

@@ -27,13 +27,13 @@ export class PageHomeComponent implements OnInit {
   ngOnInit(): void {
     this.cs.getOBSCorsi().subscribe(next => {
       this.ds.updateSpinner(false);
-      this.listaCorsiBase = next;
-      this.cs.listaCorsi = next;
+      this.listaCorsiBase = next.list;
+      this.cs.listaCorsi = next.list;
 
-      if(next.length > 0){
+      if(next.list.length > 0){
         this.mapCorsi = new Map<string, Corso[]>();
-        next.forEach(value => {
-          var newArray = next.filter(function (el) {
+        next.list.forEach(value => {
+          var newArray = next.list.filter(function (el) {
             return el.tipoPadre.codice === value.tipoPadre.codice
           });
           this.mapCorsi.set(value.tipoPadre.descrizione, newArray);
@@ -41,6 +41,9 @@ export class PageHomeComponent implements OnInit {
 
        }
 
+    },error => {
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService(error.status)
     })
 
     this.cs.getOBSCorsiFiltered().subscribe(next => {

@@ -6,6 +6,7 @@ import { Dominio } from '../model/Dominio';
 import { SubDominio } from '../model/SubDominio';
 import { User } from '../model/User';
 import { getJWTTOKEN } from '../utils/Util';
+import { ServiceCore } from './core/ServiceCore';
 import { DelegateServiceService } from './delegate-service.service';
 
 @Injectable({
@@ -44,11 +45,11 @@ export class CorsoServiceService {
 
   getOBSCorsi(): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.get("https://routerbe.herokuapp.com/router/datipagina/getCorsi");
+    return this.http.get(ServiceCore.baseURl + "/router/datipagina/getCorsi");
   }
 
   getOBSTypes(): Observable<any>{
-    return this.http.get("https://routerbe.herokuapp.com/router/datipagina/getTypes");
+    return this.http.get(ServiceCore.baseURl + "/router/datipagina/getTypes");
   }
 
   getOBSInsertTypes(dominio: Dominio): Observable<any>{
@@ -58,25 +59,25 @@ export class CorsoServiceService {
 
   getOBSInsertSubTypes(dominio: SubDominio): Observable<any>{
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post("https://routerbe.herokuapp.com/router/insertSubType" , dominio , {headers});
+    return this.http.post(ServiceCore.baseURl + "/router/insertSubType" , dominio , {headers});
   }
 
   getOBSInsertCorso(corso: Corso): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post("https://routerbe.herokuapp.com/router/saveCorso", corso , {headers});
+    return this.http.post(ServiceCore.baseURl + "/router/saveCorso", corso , {headers});
   }
 
   getOBSUpdateCorso(corso: Corso): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post("https://routerbe.herokuapp.com/router/updateCorso", corso , {headers});
+    return this.http.post(ServiceCore.baseURl + "/router/updateCorso", corso , {headers});
   }
 
   getOBSDeleteCorso(corso: Corso): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post("https://routerbe.herokuapp.com/router/deleteCorso", corso , {headers});
+    return this.http.post(ServiceCore.baseURl + "/router/deleteCorso", corso , {headers});
   }
 
 

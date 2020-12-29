@@ -57,8 +57,11 @@ export class ContentModalParagrafoNewComponent implements OnInit {
       paragrafo.idlezione = this.ls.lezioneSelected.id;
       this.ps.getOBSInsertParagrafo(paragrafo).subscribe(next => {
         this.ds.updateSpinner(false);
-        this.ds.updateResultService('Inserimento avvenuto con successo');
-        this.ps.updateParagrafi(next);
+        this.ds.updateResultService(next.status);
+        this.ps.updateParagrafi(next.list);
+      } , error => {
+        this.ds.updateSpinner(false);
+        this.ds.updateResultService(error.status);
       }); 
   }
 

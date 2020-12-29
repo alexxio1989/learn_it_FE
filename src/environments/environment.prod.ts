@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  API_ENDPOINT : 'https://routerbe.herokuapp.com',
+  API_PM_MANAGER : 'https://prjtmanager.herokuapp.com'
 };

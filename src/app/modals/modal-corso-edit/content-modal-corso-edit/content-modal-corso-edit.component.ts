@@ -62,8 +62,11 @@ export class ContentModalCorsoEditComponent implements OnInit {
   salva() {
       this.cs.getOBSUpdateCorso(this.corso).subscribe(next => {
         this.ds.updateSpinner(false);
-        this.ds.updateResultService('Modifica corso avvenuta con successo');
-        this.cs.updateCorsi(next);
+        this.ds.updateResultService(next.status);
+        this.cs.updateCorsi(next.list);
+      },error => {
+        this.ds.updateSpinner(false);
+        this.ds.updateResultService(error.status);
       });   
   }
 

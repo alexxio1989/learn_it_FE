@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Paragrafo } from '../model/Paragrafo';
 import { getJWTTOKEN } from '../utils/Util';
+import { ServiceCore } from './core/ServiceCore';
 import { DelegateServiceService } from './delegate-service.service';
 
 @Injectable({
@@ -19,7 +20,7 @@ export class ParagrafoServiceService {
   }
 
   getOBSADDParagrafi(): Observable<any>{
-    return this._sbjParagrafo.asObservable();
+    return this._sbjParagrafo.asObservable(); 
   }
 
   constructor(private http: HttpClient, private ds: DelegateServiceService) { }
@@ -27,18 +28,18 @@ export class ParagrafoServiceService {
   getOBSInsertParagrafo(paragrafo: Paragrafo): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post("https://routerbe.herokuapp.com/router/saveParagrafo", paragrafo , {headers});
+    return this.http.post(ServiceCore.baseURl + "/router/saveParagrafo", paragrafo , {headers});
   }
 
   getOBSUpdateParagrafo(paragrafo: Paragrafo): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post("https://routerbe.herokuapp.com/router/updateParagrafo", paragrafo , {headers});
+    return this.http.post(ServiceCore.baseURl + "/router/updateParagrafo", paragrafo , {headers});
   }
 
   getOBSDeleteParagrafo(paragrafo: Paragrafo): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN())
-    return this.http.post("https://routerbe.herokuapp.com/router/deleteParagrafo", paragrafo , {headers});
+    return this.http.post(ServiceCore.baseURl + "/router/deleteParagrafo", paragrafo , {headers});
   }
 }

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Lettura } from '../model/Lettura';
 import { User } from '../model/User';
 import { getJWTTOKEN } from '../utils/Util';
+import { ServiceCore } from './core/ServiceCore';
 import { DelegateServiceService } from './delegate-service.service';
 
 
@@ -14,20 +15,20 @@ export class UtenteServiceService {
 
   constructor(private http: HttpClient , private ds: DelegateServiceService) { }
 
-  getOBSLogin(utente: User): Observable<any>{
+  getOBSLogin(utente: User): Observable<any>{ 
     this.ds.updateSpinner(true);
-    return this.http.post("https://routerbe.herokuapp.com/router/login", utente , {observe: 'response'});
+    return this.http.post(ServiceCore.baseURl + "/router/login", utente , {observe: 'response'});
   }
 
   getOBSSignIn(utente: User): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post("https://routerbe.herokuapp.com/router/signin", utente);
+    return this.http.post(ServiceCore.baseURl + "/router/signin", utente);
   }
 
   getOBSInsertLettura(lettura: Lettura): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
 
-    return this.http.post("https://routerbe.herokuapp.com/router/insertLettura", lettura ,{headers});
+    return this.http.post(ServiceCore.baseURl + "/router/insertLettura", lettura ,{headers});
   }
 }

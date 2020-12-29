@@ -95,12 +95,12 @@ export class ContentModalCorsoComponent implements OnInit {
       corso.prezzo = this.prezzo;
       this.cs.getOBSInsertCorso(corso).subscribe(next => {
         this.ds.updateSpinner(false);
-        this.ds.updateResultService('Inserimento corso avvenuta con successo');
-        this.cs.updateCorsi(next);
+        this.ds.updateResultService(next.status);
+        this.cs.updateCorsi(next.list);
         this.ds.updateSideBar(false);
       },error => {
         this.ds.updateSpinner(false);
-        this.ds.updateResultService('Inserimento corso in errore');
+        this.ds.updateResultService(error.status);
       });
     
   }
@@ -126,13 +126,14 @@ export class ContentModalCorsoComponent implements OnInit {
     console.log(this.newType.descrizione);
     this.ds.updateSpinner(true);
     this.cs.getOBSInsertTypes(this.newType).subscribe(next => {
-      this.tipoCorsoList = next.tipi;
-      this.ds.updateResultService(next.esito);
+      this.tipoCorsoList = next.list;
+      this.ds.updateResultService(next.status);
       this.ds.updateSpinner(false);
-      this.ds.updateTipiCorso(next.tipi);
+      this.ds.updateTipiCorso(next.list);
       this.changeShowSaveTipo();
     },error =>{
       this.ds.updateResultService("Inserimento tipo in errore");
+      this.ds.updateSpinner(false);
     })
   }
 
@@ -141,13 +142,14 @@ export class ContentModalCorsoComponent implements OnInit {
     this.newSubType.idPadre = this.tipoCorso.id;
     this.ds.updateSpinner(true);
     this.cs.getOBSInsertSubTypes(this.newSubType).subscribe(next => {
-      this.tipoCorsoList = next.tipi;
-      this.ds.updateResultService(next.esito);
+      this.tipoCorsoList = next.list;
+      this.ds.updateResultService(next.status);
       this.ds.updateSpinner(false);
-      this.ds.updateTipiCorso(next.tipi);
+      this.ds.updateTipiCorso(next.list);
       this.changeShowSaveSubTipo();
     },error =>{
       this.ds.updateResultService("Inserimento sotto tipo in errore");
+      this.ds.updateSpinner(false);
     })
   }
 

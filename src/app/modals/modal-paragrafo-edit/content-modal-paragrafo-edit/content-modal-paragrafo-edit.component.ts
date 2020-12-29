@@ -51,8 +51,11 @@ export class ContentModalParagrafoEditComponent implements OnInit {
   salva() {
       this.ps.getOBSUpdateParagrafo(this.ps.paragrafoSelected).subscribe(next => {
         this.ds.updateSpinner(false);
-        this.ds.updateResultService('Modifica paragrafo avvenuta con successo');
-        this.ps.updateParagrafi(next);
+        this.ds.updateResultService(next.status);
+        this.ps.updateParagrafi(next.list);
+      },error => {
+        this.ds.updateSpinner(false);
+        this.ds.updateResultService(error.status);
       }); 
   }
 

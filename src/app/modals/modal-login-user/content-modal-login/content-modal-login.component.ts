@@ -32,11 +32,11 @@ export class ContentModalLoginComponent implements OnInit {
  
   login() {
       this.us.getOBSLogin(this.user).subscribe(next =>{
-        this.ds.updateResultService(next.body.esitoChiamata);
+        this.ds.updateResultService(next.body.status);
         localStorage.setItem('JWT_TOKEN',next.headers.get('JWT_TOKEN'));
-        localStorage.setItem('USER',JSON.stringify(next.body.utente));
-        this.ds.utente = next.body.utente;
-        this.ds.updateUser(next.body.utente);
+        localStorage.setItem('USER',JSON.stringify(next.body.obj));
+        this.ds.utente = next.body.obj;
+        this.ds.updateUser(next.body.obj); 
         this.ds.updateSideBar(false);
         this.ds.updateSpinner(false);
       },error => {

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Corso } from '../model/Corso';
 import { getJWTTOKEN } from '../utils/Util';
+import { ServiceCore } from './core/ServiceCore';
 import { DelegateServiceService } from './delegate-service.service';
 
 @Injectable({
@@ -15,6 +16,6 @@ export class PagamentiServiceService {
   getOBSPay(corso: Corso): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post("https://routerbe.herokuapp.com/router/pay",corso ,{headers});
+    return this.http.post(ServiceCore.baseURl + "/router/pay",corso ,{headers});
   }
 }

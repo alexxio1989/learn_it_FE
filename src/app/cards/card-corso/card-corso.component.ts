@@ -15,7 +15,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StripeService, StripeCardComponent } from 'ngx-stripe';
 import {
   StripeCardElementOptions,
-  StripeElementsOptions
+  StripeElementsOptions 
 } from '@stripe/stripe-js';
 import { PagamentiServiceService } from 'src/app/services/pagamenti-service.service';
 
@@ -115,16 +115,16 @@ export class CardCorsoComponent implements OnInit {
     lettura.idUtente = getUserLS().id;
     this.us.getOBSInsertLettura(lettura).subscribe(next=>{
       this.ds.updateSpinner(false);
-      this.ds.updateResultService(next.esitoChiamata);
+      this.ds.updateResultService(next.status);
       localStorage.removeItem('USER');
-      localStorage.setItem('USER',JSON.stringify(next.utente));
-      this.ds.utente = next.utente;
+      localStorage.setItem('USER',JSON.stringify(next.obj));
+      this.ds.utente = next.obj;
       localStorage.setItem('CORSO' , JSON.stringify(corso));
       this.cs.corsoSelected = corso;
       this.route.navigate(['/corso']);
     },error =>{
       this.ds.updateSpinner(false);
-      this.ds.updateResultService(error.esitoChiamata);
+      this.ds.updateResultService(error.status);
     })
   }
 
@@ -137,8 +137,11 @@ export class CardCorsoComponent implements OnInit {
   elimina(){
     this.cs.getOBSDeleteCorso(this.corso).subscribe(next => {
       this.ds.updateSpinner(false);
-      this.ds.updateResultService('Eliminazione Corso avvenuta con successo');
-      this.cs.updateCorsi(next);
+      this.ds.updateResultService(next.status);
+      this.cs.updateCorsi(next.list);
+    },error => {
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService(error.status);
     });
   }
 

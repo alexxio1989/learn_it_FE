@@ -48,7 +48,7 @@ export class PageLezioneComponent implements OnInit {
         console.log('CALL BE CARICA LEZIONE BY ID LEZIONE')
         // CALL BE CARICA LEZIONE BY ID LEZIONE
         this.ls.getOBSGetLezione(id).subscribe(next => {
-          this.lezione = next;
+          this.lezione = next.obj;
           this.isExternalLink = true;
           this.ds.updateSpinner(false);
         },error => {
@@ -76,9 +76,12 @@ export class PageLezioneComponent implements OnInit {
 
   elimina(paragrafo: Paragrafo){
     this.ps.getOBSDeleteParagrafo(paragrafo).subscribe(next => {
-      this.lezione.listaParagrafi = next;
-      this.ds.updateResultService("Eliminazione paragrafo avvenuta con successo");
+      this.lezione.listaParagrafi = next.list;
       this.ds.updateSpinner(false);
+      this.ds.updateResultService(next.status);
+    },error => {
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService(error.status);
     })
   }
 

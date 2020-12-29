@@ -50,14 +50,20 @@ export class CardLezioneComponent implements OnInit {
     if(this.lezione.id === 0 || this.lezione.id === undefined ){
       this.ls.getOBSInsertLezione(this.lezione).subscribe(next => {
         this.ds.updateSpinner(false);
-        this.ds.updateResultService('Inserimento lezione avvenuta con successo');
-        this.newLezioni.emit(next);
+        this.ds.updateResultService(next.status);
+        this.newLezioni.emit(next.list);
+      },error => {
+        this.ds.updateSpinner(false);
+        this.ds.updateResultService('Inserimento lezione in errore');
       });
     } else if(this.lezione.id > 0){
       this.ls.getOBSUpdateLezione(this.lezione).subscribe(next => {
         this.ds.updateSpinner(false);
-        this.ds.updateResultService('Modifica lezione avvenuta con successo');
-        this.newLezioni.emit(next);
+        this.ds.updateResultService(next.status);
+        this.newLezioni.emit(next.list);
+      },error => {
+        this.ds.updateSpinner(false);
+        this.ds.updateResultService('Modifica lezione in errore');
       });
     }
     this.edit = false;
@@ -77,8 +83,11 @@ export class CardLezioneComponent implements OnInit {
   eliminaLezione(){
     this.ls.getOBSDeleteLezione(this.lezione).subscribe(next => {
       this.ds.updateSpinner(false);
-      this.ds.updateResultService('Eliminazione lezione avvenuta con successo');
-      this.newLezioni.emit(next);
+      this.ds.updateResultService(next.status);
+      this.newLezioni.emit(next.list);
+    },error => {
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService('Eliminazione lezione in errore');
     });
   }
 
