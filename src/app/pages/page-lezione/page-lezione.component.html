@@ -28,8 +28,8 @@
             </mat-select>
           </mat-form-field>
     </div>
-    <div class="col-lg-9 col-xs-12">
-        <div class="mb-4" *ngFor="let paragrafo of lezione.listaParagrafi">
+    <div class="col-lg-9 col-xs-12 ">
+        <div class="mb-4 " *ngFor="let paragrafo of lezione.listaParagrafi">
             <div class="row col-12">
                 <p id="{{paragrafo.idComponent}}" class="h5">{{paragrafo.titolo}}</p>
                 <div style="margin-top: -5px;" *ngIf="isUtenteLogged">
@@ -41,7 +41,24 @@
                     </button>
                 </div>
             </div>
-            <div class="mt-1" [innerHTML]="paragrafo.content"></div>
+            <div class="mt-1 mb-3" [innerHTML]="paragrafo.content"></div>
+
+            <div *ngFor="let code of paragrafo.codes">
+                <div class="col-12 pl-0 pr-0 mb-3">
+                    <h4>{{code.title}}</h4>
+                    <ngx-codemirror [(ngModel)]="code.content" 
+                    [options]="{
+                        lineNumbers: true,
+                        theme: 'eclipse',
+                        mode: 'javascript',
+                        height: 'auto',
+                        matchBrackets: true,
+                        width: 'auto',
+                        lint: true
+                    }"></ngx-codemirror>
+
+                </div>
+            </div>
         </div>
 
     </div>

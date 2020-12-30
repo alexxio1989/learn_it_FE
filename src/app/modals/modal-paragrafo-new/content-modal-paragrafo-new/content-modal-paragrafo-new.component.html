@@ -6,13 +6,48 @@
             placeholder="inserisci il nome del corso">
 
     </div>
+   
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Contenuto Paragrafo</label>
         <angular-editor [(ngModel)]="testo" [config]="config"></angular-editor>
     </div>
+
+    <div class="form-group">
+
+        <div class="form-group">
+            <button mat-button (click)="addCodice()">Aggiungi codice <mat-icon>code</mat-icon></button>
+        </div>
+       
+
+        <div class="row">
+            <mat-accordion class="w-100" multi>
+                <div *ngFor="let code of codes">
+                    <mat-expansion-panel class="mb-2 mat-elevation-z0">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            <mat-icon>code</mat-icon> <h5 style="margin-top: 3px; margin-left: 5px;">{{code.title !== undefined && code.title  !== '' ? code.title : 'Titolo del nuovo codice'}}</h5>
+                          </mat-panel-title>
+                         
+                        </mat-expansion-panel-header>
+                    
+                        <label for="dateOfBirth">Titolo Codice</label>
+                        <input required class="form-control" [(ngModel)]="code.title">
     
+                        <hr />
+    
+                        <ngx-codemirror [(ngModel)]="code.content"
+                            [options]="{lineNumbers: true, theme: 'material', mode: 'markdown'}"></ngx-codemirror>
+                    
+                    </mat-expansion-panel>
+
+                </div>
+            </mat-accordion>
+           
+        </div>
+    </div>
+
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()" >Salva</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="save()">Salva</button>
 </mat-dialog-actions>

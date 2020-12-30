@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { Code } from 'src/app/model/Code';
 import { Paragrafo } from 'src/app/model/Paragrafo';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { LezioneServiceService } from 'src/app/services/lezione-service.service';
@@ -15,6 +16,9 @@ export class ContentModalParagrafoNewComponent implements OnInit {
   
   titolo: string = '';
   testo: string = '';
+  codes: Code[] = [];
+
+  isTextArea: boolean = true;
   
   ngOnInit(): void {
   }
@@ -54,6 +58,7 @@ export class ContentModalParagrafoNewComponent implements OnInit {
       let paragrafo = new Paragrafo();
       paragrafo.titolo = this.titolo;
       paragrafo.content = this.testo;
+      paragrafo.codes = this.codes;
       let lezioneSelected;
 
       let lezioneSelectedLS = JSON.parse(localStorage.getItem('LEZIONE'));
@@ -71,6 +76,12 @@ export class ContentModalParagrafoNewComponent implements OnInit {
         this.ds.updateSpinner(false);
         this.ds.updateResultService(error.status);
       }); 
+  }
+
+  addCodice(){
+    let code = new Code();
+    code.newCode = true;
+    this.codes.push(code);
   }
 
 }

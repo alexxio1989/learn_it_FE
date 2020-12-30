@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
+import { Code } from 'src/app/model/Code';
 import { Paragrafo } from 'src/app/model/Paragrafo';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { ParagrafoServiceService } from 'src/app/services/paragrafo-service.service';
@@ -57,6 +58,12 @@ export class ContentModalParagrafoEditComponent implements OnInit {
         this.ds.updateSpinner(false);
         this.ds.updateResultService(error.status);
       }); 
+  }
+
+  addCodice(){
+    let code = new Code();
+    code.newCode = true;
+    this.paragrafo.codes.push(code);
   }
 
 }

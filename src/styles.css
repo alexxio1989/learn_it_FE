@@ -1,4 +1,8 @@
-
+@import '~codemirror/lib/codemirror.css';
+@import '~codemirror/theme/idea.css';
+@import '~codemirror/theme/eclipse';
+@import '~codemirror/addon/fold/foldgutter.css';
+@import '~codemirror/addon/lint/lint.css';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
@@ -20,6 +24,10 @@ button:focus { outline:0 !important; }
 
 .stars-line{
   z-index: 9;
+}
+
+.CodeMirror {
+  height: auto;
 }
 
 h1{

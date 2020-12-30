@@ -1,4 +1,4 @@
-
+import {Code } from './Code';
 export class Paragrafo{
     id: number;
     titolo: string;
@@ -7,4 +7,5 @@ export class Paragrafo{
     idlezione: number;
     idComponent: string;
     edit: boolean;
+    codes: Code[];
 }

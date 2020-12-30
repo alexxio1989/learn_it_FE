@@ -64,6 +64,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatRippleModule} from '@angular/material/core';
 import { NgxStripeModule } from 'ngx-stripe';
 import { PagamentiServiceService } from './services/pagamenti-service.service';
+import { CodemirrorModule } from '@ctrl/ngx-codemirror';
+
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
@@ -138,7 +140,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatChipsModule,
     MatSlideToggleModule,
     MatCardModule,
-    MatRippleModule
+    MatRippleModule,
+    CodemirrorModule
 
   ],
   providers: [
