@@ -65,7 +65,41 @@ import {MatRippleModule} from '@angular/material/core';
 import { NgxStripeModule } from 'ngx-stripe';
 import { PagamentiServiceService } from './services/pagamenti-service.service';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
+import { NgcCookieConsentConfig, NgcCookieConsentModule } from 'ngx-cookieconsent';
+import { ServiceCore } from './services/core/ServiceCore';
 
+
+
+const cookieConfig: NgcCookieConsentConfig = {
+  cookie: {
+    domain: ServiceCore.baseURl 
+  },
+  position: "bottom",
+  theme: "classic",
+  palette: {
+    popup: {
+      background: "#000000",
+      text: "#ffffff",
+      link: "#ffffff"
+    },
+    button: {
+      background: "#f1d600",
+      text: "#000000",
+      border: "transparent"
+    }
+  },
+  type: "info",
+  content: {
+    message: "This website uses cookies to ensure you get the best experience on our website.",
+    dismiss: "Got it!",
+    deny: "Decline",
+    link: "Learn more",
+    href: "https://cookiesandyou.com",
+    policy: "Cookie Policy",
+    header: "Cookies used on the website!",
+    allow: "Allow cookies"
+  }
+}
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   observer: true,
@@ -141,7 +175,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatSlideToggleModule,
     MatCardModule,
     MatRippleModule,
-    CodemirrorModule
+    CodemirrorModule,
+    NgcCookieConsentModule.forRoot(cookieConfig),
 
   ],
   providers: [
