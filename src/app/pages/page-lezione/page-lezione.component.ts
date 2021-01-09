@@ -4,6 +4,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Corso } from 'src/app/model/Corso';
 import { Lezione } from 'src/app/model/Lezione';
+import { LezioneParagrafo } from 'src/app/model/LezioneParagrafo';
 import { Paragrafo } from 'src/app/model/Paragrafo';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
@@ -87,6 +88,14 @@ export class PageLezioneComponent implements OnInit {
 
   scroll(paragrafo: Paragrafo) {
     console.log(`scrolling to ${paragrafo.idComponent}`);
+    let obj = new LezioneParagrafo();
+    obj.paragrafo = paragrafo;
+    obj.lezione = this.lezione;
+    this.ls.getOBSUpdateIDParagrafoReaded(obj).subscribe(next => {
+
+    } , error => {
+      this.ds.updateResultService("Errore durante l'update dell'ultimpo paragrafo letto");
+    })
     let el = document.getElementById(paragrafo.idComponent);
     el.scrollIntoView();
   }

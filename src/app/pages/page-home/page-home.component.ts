@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/model/User';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
-import { getUserLS } from 'src/app/utils/Util';
+import { clearJWTTOKEN, getUserLS } from 'src/app/utils/Util';
 import { Corso } from '../../model/Corso';
 
 @Component({
@@ -17,6 +17,7 @@ export class PageHomeComponent implements OnInit {
   listaCorsiFiltered: Array<Corso> = [];
   mapCorsi: Map<string, Corso[]>;
   viewList: boolean;
+  text:string = '';
   
 
 
@@ -25,6 +26,7 @@ export class PageHomeComponent implements OnInit {
   
 
   ngOnInit(): void {
+    clearJWTTOKEN();
     this.cs.getOBSCorsi().subscribe(next => {
       this.ds.updateSpinner(false);
       this.listaCorsiBase = next.list;
@@ -67,6 +69,10 @@ export class PageHomeComponent implements OnInit {
         this.mapCorsi = new Map<string, Corso[]>();
       }
     })
+  }
+
+  get style(): string{
+    return "font-size: calc(" + this.text.length +"px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;";
   }
 
   cleanListaCorsiFiltered() {

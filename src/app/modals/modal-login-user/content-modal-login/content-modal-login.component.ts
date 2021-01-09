@@ -35,6 +35,8 @@ export class ContentModalLoginComponent implements OnInit {
         this.ds.updateResultService(next.body.status);
         localStorage.setItem('JWT_TOKEN',next.headers.get('JWT_TOKEN'));
         localStorage.setItem('USER',JSON.stringify(next.body.obj));
+        let dateString = new Date().toLocaleString()
+        localStorage.setItem('JWT_TIME',dateString);
         this.ds.utente = next.body.obj;
         this.ds.updateUser(next.body.obj); 
         this.ds.updateSideBar(false);

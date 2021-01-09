@@ -59,3 +59,22 @@ export function getJWTTOKEN(): string{
 export function getHeaders(): HttpHeaders{
     return new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
 }
+
+export function clearJWTTOKEN(){
+    const jwt_time = localStorage.getItem('JWT_TIME');
+    if(jwt_time !== undefined && jwt_time !== null && jwt_time !== ''){
+      let jwt_time_date = new Date(jwt_time).getTime();
+      let dateString = new Date().toLocaleString();
+      let time_now  = new Date(dateString).getTime();
+      const diff = time_now - jwt_time_date;
+      if (diff > 1000 * 23 * 60 * 60 ) {
+  
+        localStorage.clear();
+    
+        localStorage.removeItem('JWT_TIME');
+        localStorage.removeItem('USER');
+        localStorage.removeItem('JWT_TOKEN')
+        this.route.navigate(['/']);
+      }
+    }
+  }

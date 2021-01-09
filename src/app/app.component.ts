@@ -5,6 +5,8 @@ import { CorsoServiceService } from './services/corso-service.service';
 import { Dominio } from './model/Dominio';
 import { Subscription } from 'rxjs';
 import { NgcCookieConsentService, NgcInitializeEvent, NgcNoCookieLawEvent, NgcStatusChangeEvent } from 'ngx-cookieconsent';
+import { Router } from '@angular/router';
+import { clearJWTTOKEN } from './utils/Util';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +28,7 @@ export class AppComponent  implements OnInit, OnDestroy  {
 
   tipoCorsoList = [];
 
-  constructor(private ds: DelegateServiceService , private _snackBar: MatSnackBar , private cs: CorsoServiceService , private ccService: NgcCookieConsentService){
+  constructor(private ds: DelegateServiceService , private _snackBar: MatSnackBar , private cs: CorsoServiceService , private ccService: NgcCookieConsentService, private route: Router){
     
     this.ds.getOBSSpinner().subscribe(next => {
       this.showSpinner = next;
@@ -50,6 +52,7 @@ export class AppComponent  implements OnInit, OnDestroy  {
 
   ngOnInit() {
     // subscribe to cookieconsent observables to react to main events
+    clearJWTTOKEN();
     this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
       () => {
         // you can use this.ccService.getConfig() to do stuff...
@@ -67,7 +70,7 @@ export class AppComponent  implements OnInit, OnDestroy  {
  
     this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
       (event: NgcStatusChangeEvent) => {
-        // you can use this.ccService.getConfig() to do stuff...
+        localStorage.setItem("COOKIE_CONSENT" , "true");
       });
  
     this.revokeChoiceSubscription = this.ccService.revokeChoice$.subscribe(
@@ -79,7 +82,12 @@ export class AppComponent  implements OnInit, OnDestroy  {
       (event: NgcNoCookieLawEvent) => {
         // you can use this.ccService.getConfig() to do stuff...
       });
+
+      if(localStorage.getItem("COOKIE_CONSENT") !== undefined && localStorage.getItem("COOKIE_CONSENT") !== null){
+        this.ccService.fadeOut();
+      } 
   }
+
 
   ngOnDestroy() {
     // unsubscribe to cookieconsent observables to prevent memory leaks

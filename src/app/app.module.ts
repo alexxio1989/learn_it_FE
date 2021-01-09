@@ -67,6 +67,7 @@ import { PagamentiServiceService } from './services/pagamenti-service.service';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 import { NgcCookieConsentConfig, NgcCookieConsentModule } from 'ngx-cookieconsent';
 import { ServiceCore } from './services/core/ServiceCore';
+import { FormatTextPipe } from './pipes/format-text.pipe';
 
 
 
@@ -139,6 +140,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ModalInfoCorsoComponent,
     ContentModalInfoCorsoComponent,
     PageUtenteComponent,
+    FormatTextPipe,
     
   ],
   imports: [
@@ -148,7 +150,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     FormsModule,
     HttpClientModule,
     NgbModule,
-    NgxStripeModule.forRoot("pk_test_s8tEdMSkAYFFxo6AkOmhFyQc0050euNRAW"),
+    NgxStripeModule.forRoot("pk_live_rpWi9WRKeaD703jtVD9eKS0Q00Ai6Pbw6Y"),
     RouterModule.forRoot(AppRoutes),
     HttpClientModule,
     BrowserAnimationsModule,

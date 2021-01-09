@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Lezione } from '../model/Lezione';
+import { LezioneParagrafo } from '../model/LezioneParagrafo';
 import { getJWTTOKEN } from '../utils/Util';
 import { ServiceCore } from './core/ServiceCore';
 import { DelegateServiceService } from './delegate-service.service';
@@ -37,5 +38,9 @@ export class LezioneServiceService {
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
     return this.http.post(ServiceCore.baseURl + "/router/getLezione",{'id' : id} , {headers});
+  }
+
+  getOBSUpdateIDParagrafoReaded(obj: LezioneParagrafo): Observable<any>{
+    return this.http.post(ServiceCore.baseURl_node + "/lezione/updateparagraph",obj );
   }
 }
