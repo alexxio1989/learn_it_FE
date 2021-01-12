@@ -52,7 +52,7 @@ export class AppComponent  implements OnInit, OnDestroy  {
 
   ngOnInit() {
     // subscribe to cookieconsent observables to react to main events
-    clearJWTTOKEN();
+    clearJWTTOKEN(this.route);
     this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
       () => {
         // you can use this.ccService.getConfig() to do stuff...

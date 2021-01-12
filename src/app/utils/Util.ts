@@ -1,4 +1,5 @@
 import { HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { User } from '../model/User';
 
 // OBJECTS
@@ -60,7 +61,7 @@ export function getHeaders(): HttpHeaders{
     return new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
 }
 
-export function clearJWTTOKEN(){
+export function clearJWTTOKEN(route: Router){
     const jwt_time = localStorage.getItem('JWT_TIME');
     if(jwt_time !== undefined && jwt_time !== null && jwt_time !== ''){
       let jwt_time_date = new Date(jwt_time).getTime();
@@ -74,7 +75,7 @@ export function clearJWTTOKEN(){
         localStorage.removeItem('JWT_TIME');
         localStorage.removeItem('USER');
         localStorage.removeItem('JWT_TOKEN')
-        this.route.navigate(['/']);
+        route.navigate(['/']);
       }
     }
   }

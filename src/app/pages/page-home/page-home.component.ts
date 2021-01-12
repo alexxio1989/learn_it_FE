@@ -26,7 +26,7 @@ export class PageHomeComponent implements OnInit {
   
 
   ngOnInit(): void {
-    clearJWTTOKEN();
+    clearJWTTOKEN(this.route);
     this.cs.getOBSCorsi().subscribe(next => {
       this.ds.updateSpinner(false);
       this.listaCorsiBase = next.list;
