@@ -30,6 +30,12 @@ button:focus { outline:0 !important; }
   height: auto;
 }
 
+p{
+  font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif !important; 
+  line-height: 1.4;
+  font-weight: 700 !important;
+}
+
 h1{
   font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif !important; 
   font-size: calc(25px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
