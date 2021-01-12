@@ -140,7 +140,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ModalInfoCorsoComponent,
     ContentModalInfoCorsoComponent,
     PageUtenteComponent,
-    FormatTextPipe,
+    FormatTextPipe
     
   ],
   imports: [

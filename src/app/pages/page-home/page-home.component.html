@@ -18,7 +18,12 @@
                 <h4 class="text-muted" style="font-weight: 700; font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif!important;">Corsi di {{item.key}}</h4>   
             </div>
         </div>
-        <app-carousel [listaCorsi]="item.value"></app-carousel>
+        <div class="row">
+
+            <div *ngFor="let corso of item.value" class="col-lg-4 col-md-4 col-sm-6 col-xs-6 justify-content-center mb-3">
+                <app-card-corso [corso]="corso"></app-card-corso>
+            </div>
+        </div>
     </div>
 
 </div>
