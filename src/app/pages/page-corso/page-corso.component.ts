@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Lezione } from 'src/app/model/Lezione';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
@@ -22,19 +22,43 @@ export class PageCorsoComponent implements OnInit {
   showFeeds: boolean;
 
 
-  constructor(private cs: CorsoServiceService , private route: Router , private ds: DelegateServiceService) { } 
+  constructor(private cs: CorsoServiceService , private route: Router , private ds: DelegateServiceService,private ar: ActivatedRoute) { } 
 
   get isUtenteLogged(): boolean{
     return isSameUser(getUserLS(),this.corso.owner);
   }
 
   ngOnInit(): void {
-    this.corso = this.cs.corsoSelected;
-    if(this.corso === undefined || this.corso.nomeCorso === ''){
-      this.route.navigate(['/']);
-    } else {
-      this.isEmptyLezioni = isEmptyArray(this.corso.lezioni);
-    }
+    this.ar.queryParams.subscribe(params => {
+
+      let id = params['id'];
+      let corso = JSON.parse(localStorage.getItem('CORSO'));
+      if(id !== undefined && id !== null && id > 0){
+
+        if(corso !== undefined && corso !== null ){
+          this.corso = corso;
+        } else {
+          this.cs.getOBSGetCorso(id).subscribe(next => {
+            this.corso = next.obj;
+            this.ds.updateResultService("Recupero corso avvenuto con successo");
+            this.ds.updateSpinner(false);
+          },error=> {
+            this.ds.updateResultService("Recupero corso avvenuto con successo");
+            this.ds.updateSpinner(false);
+          })
+
+        }
+        
+       
+      
+        this.isEmptyLezioni = isEmptyArray(this.corso.lezioni);
+
+      } else {
+        this.route.navigate(['/']);
+      }
+
+
+    });
   }
 
   addLezione(){

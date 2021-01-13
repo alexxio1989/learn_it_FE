@@ -151,7 +151,7 @@ export class CardCorsoComponent implements OnInit {
   continua(corso: Corso){
     localStorage.setItem('CORSO' , JSON.stringify(corso));
     this.cs.corsoSelected = corso;
-    this.route.navigate(['/corso']);
+    this.route.navigate(['/corso'], { queryParams: { id: corso.id } }); 
   }
 
   elimina(){

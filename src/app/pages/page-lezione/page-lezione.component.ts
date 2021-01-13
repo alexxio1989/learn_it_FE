@@ -21,7 +21,7 @@ export class PageLezioneComponent implements OnInit {
   toppings = new FormControl();
   edit: boolean;
   lezione: Lezione = new Lezione();
-  corso: Corso;
+  corso: Corso = new Corso(); 
   isExternalLink: boolean;
   isDevice: boolean;
 
@@ -42,32 +42,57 @@ export class PageLezioneComponent implements OnInit {
     this.ar.queryParams.subscribe(params => {
 
       let id = params['id'];
-      this.corso = JSON.parse(localStorage.getItem('CORSO'));
+      let corso = JSON.parse(localStorage.getItem('CORSO'));
       let lezioneSelected = JSON.parse(localStorage.getItem('LEZIONE'));
 
-      if( isNotNullObj(lezioneSelected) &&  lezioneSelected.id !== id){
-        console.log('CALL BE CARICA LEZIONE BY ID LEZIONE')
-        // CALL BE CARICA LEZIONE BY ID LEZIONE
-        this.ls.getOBSGetLezione(id).subscribe(next => {
-          this.lezione = next.obj;
-          this.isExternalLink = true;
-          this.ds.updateSpinner(false);
-        },error => {
-          this.ds.updateSpinner(false);
-          this.route.navigate(['/']);
-        })
-      } else {
+      if(id !== undefined && id !== null && id > 0){
+
+        
+
         if(isNotNullObj(lezioneSelected)){
           this.lezione = lezioneSelected;
-        }else{
-          if(this.lezione === undefined || this.lezione.title === ''){
-            this.route.navigate(['/']);
+          if(isNotNullObj(corso)){
+            this.corso = corso;
+          } else {
+            this.retrieveCorso(this.lezione.idCorso);
           }
+        } else {
+          this.retrieveLezione(id);
         }
 
+      } else {
+        this.route.navigate(['/']);
       }
+
+
+      
     });
-    this.corso = this.cs.corsoSelected;
+    
+  }
+
+  private retrieveLezione(id: any) {
+    this.ls.getOBSGetLezione(id).subscribe(next => {
+      this.lezione = next.obj;
+
+      this.retrieveCorso(this.lezione.idCorso);
+
+      this.isExternalLink = true;
+      this.ds.updateSpinner(false);
+    }, error => {
+      this.ds.updateSpinner(false);
+      this.route.navigate(['/']);
+    });
+  }
+
+  private retrieveCorso(idCorso: number) {
+    this.cs.getOBSGetCorso(idCorso).subscribe(next => {
+      this.corso = next.obj;
+      this.ds.updateResultService("Recupero corso avvenuto con successo");
+      this.ds.updateSpinner(false);
+    }, error => {
+      this.ds.updateResultService("Recupero corso avvenuto con successo");
+      this.ds.updateSpinner(false);
+    });
   }
 
   editingLezione(lezione :Lezione){
