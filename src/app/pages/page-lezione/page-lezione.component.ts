@@ -45,19 +45,23 @@ export class PageLezioneComponent implements OnInit {
       let corso = JSON.parse(localStorage.getItem('CORSO'));
       let lezioneSelected = JSON.parse(localStorage.getItem('LEZIONE'));
 
-      if(id !== undefined && id !== null && id > 0){
+      if(id !== undefined && id !== null && parseInt(id) > 0){
 
-        
+        let idInt = parseInt(id);
 
         if(isNotNullObj(lezioneSelected)){
-          this.lezione = lezioneSelected;
-          if(isNotNullObj(corso)){
-            this.corso = corso;
+          if(idInt === lezioneSelected.id){
+            this.lezione = lezioneSelected;
+            if(isNotNullObj(corso)){
+              this.corso = corso;
+            } else {
+              this.retrieveCorso(this.lezione.idCorso);
+            }
           } else {
-            this.retrieveCorso(this.lezione.idCorso);
+            this.retrieveLezione(idInt);
           }
         } else {
-          this.retrieveLezione(id);
+          this.retrieveLezione(idInt);
         }
 
       } else {
