@@ -36,7 +36,8 @@ export class LezioneServiceService {
 
   getOBSGetLezione(id: number): Observable<any>{
     this.ds.updateSpinner(true);
-    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
+    let token = getJWTTOKEN();
+    const headers = new HttpHeaders().set("JWT_TOKEN",  token!== null ? token : '');
     return this.http.post(ServiceCore.baseURl + "/router/getLezione",{'id' : id} , {headers});
   }
 

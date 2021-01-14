@@ -82,8 +82,11 @@ export class CorsoServiceService {
 
   getOBSGetCorso(id: number): Observable<any>{
     this.ds.updateSpinner(true);
-    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/router/getCorso", {'id' : id}  , {headers});
+    let token = getJWTTOKEN();
+    const headers = new HttpHeaders().set("JWT_TOKEN",  token!== null ? token : '');
+    let corso = new Corso();
+    corso.id = id;
+    return this.http.post(ServiceCore.baseURl + "/router/getCorso", corso  , {headers});
   }
 
 

@@ -13,7 +13,7 @@ import { Corso } from '../../model/Corso';
 })
 export class PageCorsoComponent implements OnInit {
 
-  corso: Corso;
+  corso: Corso = new Corso();
 
   isEmptyLezioni: boolean;
 
@@ -43,7 +43,7 @@ export class PageCorsoComponent implements OnInit {
             this.ds.updateResultService("Recupero corso avvenuto con successo");
             this.ds.updateSpinner(false);
           },error=> {
-            this.ds.updateResultService("Recupero corso avvenuto con successo");
+            this.ds.updateResultService("Recupero corso in errore");
             this.ds.updateSpinner(false);
           })
 

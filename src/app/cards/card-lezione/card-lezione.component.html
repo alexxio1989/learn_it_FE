@@ -5,17 +5,16 @@
                 <p class="h6">Lezione</p>
             </div>
             <div class="w-100 d-flex justify-content-center">
-                <p class="h3">{{lezione.indexLezione > 9 ? lezione.indexLezione : '0' + lezione.indexLezione}}</p>
+                <h3>{{lezione.indexLezione > 9 ? lezione.indexLezione : '0' + lezione.indexLezione}}</h3>
             </div>
         </div>
         <div class="col-8">
-            <div class="row bg-light text-dark d-flex justify-content-center">             
-                <div class="w-75 mt-3" *ngIf="edit">
-                    <input type="text" class="form-control input-sm" [(ngModel)]="title" placeholder="titolo lezione">
-                </div>
-                <div class="mt-3" *ngIf="!edit">
-                    <h3>{{lezione.title}}</h3>              
-                </div>
+            <div class="row bg-light text-dark d-flex justify-content-center">  
+                <div class="col-12 pt-3 d-flex justify-content-center">
+                        <input *ngIf="edit" type="text" class="form-control input-sm" [(ngModel)]="title" placeholder="titolo lezione">
+                    
+                        <h3 *ngIf="!edit">{{lezione.title}}</h3>   
+                </div>          
             </div>
             <div class="row pt-0 pb-3 bg-light text-dark d-flex justify-content-center pl-2">
                 <div *ngIf="edit && isUtenteLogged" >

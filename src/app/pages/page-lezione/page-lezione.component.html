@@ -6,20 +6,9 @@
     <app-modal-paragrafo-new></app-modal-paragrafo-new>
 </div>
 
-<div class="row mt-3 ">
-    <div *ngIf="!isDevice && lezione.listaParagrafi.length > 0" class="col-lg-3 p-3 pr-5 section-paragrafi">
-        <h4><b>Paragrafi :</b></h4>
-        <hr />
-        <mat-list role="list">
-            <div *ngFor="let paragrafo of lezione.listaParagrafi">
-                <mat-list-item role="listitem" (click)="scroll(paragrafo)" >
-                    <h6>{{paragrafo.titolo}}</h6>
-                </mat-list-item>
-            </div>
-        </mat-list>
-    </div>
-    <div *ngIf="isDevice && lezione.listaParagrafi.length > 0" class=" p-2 scrollmenu">
-        <mat-form-field appearance="fill">
+<div class="row">
+    <div *ngIf="lezione.listaParagrafi.length > 0" class="col-12 d-flex justify-content-center">
+        <mat-form-field style="width: 300px;" appearance="fill">
             <mat-label>Vai al paragrafo ...</mat-label>
             <mat-select>
               <mat-option *ngFor="let paragrafo of lezione.listaParagrafi" (click)="scroll(paragrafo)" [value]="paragrafo.titolo" [innerHTML]="paragrafo.titolo">
@@ -28,8 +17,11 @@
             </mat-select>
           </mat-form-field>
     </div>
-    <div class="col-lg-9 col-xs-12 ">
-        <div class="mb-4 " *ngFor="let paragrafo of lezione.listaParagrafi">
+</div>
+
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="mb-5 " *ngFor="let paragrafo of lezione.listaParagrafi">
             <div class="row col-12">
                 <p id="{{paragrafo.idComponent}}" class="h5">{{paragrafo.titolo}}</p>
                 <div style="margin-top: -5px;" *ngIf="isUtenteLogged">

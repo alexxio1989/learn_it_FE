@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //API_ENDPOINT : 'https://learn-it-router.herokuapp.com',
-  API_ENDPOINT : 'http://localhost:8080',
+  API_ENDPOINT : 'https://learn-it-router.herokuapp.com',
+  //API_ENDPOINT : 'http://localhost:8080',
   //API_ENDPOINT_NODE : 'http://localhost:8000',
   API_ENDPOINT_NODE : 'https://learn-it-be-node.herokuapp.com',
   API_PM_MANAGER : 'https://prjtmanager.herokuapp.com'
