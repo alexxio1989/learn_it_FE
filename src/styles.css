@@ -62,7 +62,7 @@ h4{
   font-size: calc(14px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
   line-height: 1.4;
   font-weight: 600 !important;
-  opacity: 0.6 !important;
+  opacity: 0.7 !important;
 }
 
 h5{
