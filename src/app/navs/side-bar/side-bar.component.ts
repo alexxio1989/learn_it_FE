@@ -20,6 +20,7 @@ export class SideBarComponent implements OnInit {
   utente: User;
   listaCorsi: Array<Corso> = [];
   tipoCorsoListFilter: Dominio[] = [];
+  topGap = 64;
   
   get isUtenteLogged(): boolean{
     const localUser = localStorage.getItem('USER');

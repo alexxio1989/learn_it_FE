@@ -1,12 +1,12 @@
 <!-- SIDENAV -->
 
-<div *ngIf="openSideBar" style="margin-left: 300px; margin-top: -50px;">
+<div *ngIf="openSideBar" style="margin-left: 300px;">
     <button  mat-mini-fab color="white" (click) = "close()">
         <mat-icon>clear</mat-icon>
     </button>
 
 </div>
-<mat-sidenav style="z-index: 999" [mode]="'over'" [opened]="openSideBar" class="mat-elevation-z10 p-3 border-0">
+<mat-sidenav  [fixedInViewport]="true" [fixedTopGap]="topGap"style="z-index: 999" [mode]="'over'" [opened]="openSideBar" class="mat-elevation-z10 p-3 border-0">
     <div class="d-flex flex-column">
         <div class="w-100 p-2 d-flex justify-content-center">
             <button mat-button></button>
