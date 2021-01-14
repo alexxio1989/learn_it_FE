@@ -8,7 +8,6 @@ import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { isNotNullObj , isNotEmptyArray } from 'src/app/utils/Util';
-import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-side-bar',
@@ -21,8 +20,6 @@ export class SideBarComponent implements OnInit {
   utente: User;
   listaCorsi: Array<Corso> = [];
   tipoCorsoListFilter: Dominio[] = [];
-  topGap = 64;
-  options: FormGroup;
   
   get isUtenteLogged(): boolean{
     const localUser = localStorage.getItem('USER');
@@ -30,7 +27,7 @@ export class SideBarComponent implements OnInit {
     return localUser !== undefined && localUser !== null;
   }
 
-  constructor(private ds: DelegateServiceService, private route: Router, private cs: CorsoServiceService,fb: FormBuilder) {
+  constructor(private ds: DelegateServiceService, private route: Router, private cs: CorsoServiceService) {
     this.ds.getOBSSideBar().subscribe(next => {
       this.openSideBar = next
     })
@@ -40,13 +37,6 @@ export class SideBarComponent implements OnInit {
       this.tipoCorsoListFilter = [];
       this.buildListTypes();
     })
-
-
-    this.options = fb.group({
-      'fixed': false,
-      'top': 0,
-      'bottom': 0,
-    });
     
   }
 

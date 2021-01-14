@@ -1,17 +1,8 @@
-.my-fab {
-    width: 20px;
-    height: 20px;
-    line-height: 14px;
-    font-size: 14px;
-
-    &::ng-deep .mat-button-wrapper{
-        line-height: 14px;
-        padding: 0;
-
-         .mat-icon {
-             font-size: 14px;
-             padding-right: 4px;
-             padding-top: 4px;
-         }
-   }
+.side-bar {
+    width: 300px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
 }

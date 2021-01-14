@@ -1,13 +1,12 @@
-<!-- SIDENAV -->
 
-<div *ngIf="openSideBar" style="margin-left: 300px;">
-    <button  mat-mini-fab color="white" (click) = "close()">
-        <mat-icon>clear</mat-icon>
-    </button>
-
-</div>
-<mat-sidenav  [fixedInViewport]="true" [fixedTopGap]="topGap"
-[fixedBottomGap]="options.value.bottom" style="z-index: 999" [mode]="'over'" [opened]="openSideBar" class="mat-elevation-z10 p-3 border-0">
+<mat-card *ngIf="openSideBar" class="mat-elevation-z10 p-3 border-0 side-bar">
+    <div class="row">
+        <div class="col-12 text-right">
+            <button  mat-button (click) = "close()">
+                <mat-icon>clear</mat-icon>
+            </button>
+        </div>
+    </div>
     <div class="d-flex flex-column">
         <div class="w-100 p-2 d-flex justify-content-center">
             <button mat-button></button>
@@ -55,4 +54,4 @@
             </mat-expansion-panel>
         </div>
     </mat-accordion>
-</mat-sidenav>
+</mat-card>
