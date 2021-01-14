@@ -21,7 +21,7 @@ export class PageLezioneComponent implements OnInit {
   toppings = new FormControl();
   edit: boolean;
   lezione: Lezione = new Lezione();
-  corso: Corso = new Corso(); 
+  
   isExternalLink: boolean;
   isDevice: boolean;
 
@@ -42,7 +42,6 @@ export class PageLezioneComponent implements OnInit {
     this.ar.queryParams.subscribe(params => {
 
       let id = params['id'];
-      let corso = JSON.parse(localStorage.getItem('CORSO'));
       let lezioneSelected = JSON.parse(localStorage.getItem('LEZIONE'));
 
       if(id !== undefined && id !== null && parseInt(id) > 0){
@@ -52,11 +51,6 @@ export class PageLezioneComponent implements OnInit {
         if(isNotNullObj(lezioneSelected)){
           if(idInt === lezioneSelected.id){
             this.lezione = lezioneSelected;
-            if(isNotNullObj(corso)){
-              this.corso = corso;
-            } else {
-              this.retrieveCorso(this.lezione.idCorso);
-            }
           } else {
             this.retrieveLezione(idInt);
           }
@@ -77,27 +71,16 @@ export class PageLezioneComponent implements OnInit {
   private retrieveLezione(id: any) {
     this.ls.getOBSGetLezione(id).subscribe(next => {
       this.lezione = next.obj;
-
-      this.retrieveCorso(this.lezione.idCorso);
-
       this.isExternalLink = true;
+      this.ds.updateResultService("Recupero lezione avvenuto con successo");
       this.ds.updateSpinner(false);
     }, error => {
       this.ds.updateSpinner(false);
+      this.ds.updateResultService("Recupero lezione in errore");
       this.route.navigate(['/']);
     });
   }
 
-  private retrieveCorso(idCorso: number) {
-    this.cs.getOBSGetCorso(idCorso).subscribe(next => {
-      this.corso = next.obj;
-      this.ds.updateResultService("Recupero corso avvenuto con successo");
-      this.ds.updateSpinner(false);
-    }, error => {
-      this.ds.updateResultService("Recupero corso avvenuto con successo");
-      this.ds.updateSpinner(false);
-    });
-  }
 
   editingLezione(lezione :Lezione){
     this.lezione = lezione;
