@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { NgcCookieConsentService, NgcInitializeEvent, NgcNoCookieLawEvent, NgcStatusChangeEvent } from 'ngx-cookieconsent';
 import { Router } from '@angular/router';
 import { clearJWTTOKEN } from './utils/Util';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -27,8 +28,10 @@ export class AppComponent  implements OnInit, OnDestroy  {
   showSpinner: false;
 
   tipoCorsoList = [];
+  options: FormGroup;
+  topGap = 64;
 
-  constructor(private ds: DelegateServiceService , private _snackBar: MatSnackBar , private cs: CorsoServiceService , private ccService: NgcCookieConsentService, private route: Router){
+  constructor(private ds: DelegateServiceService , private _snackBar: MatSnackBar , private cs: CorsoServiceService , private ccService: NgcCookieConsentService, private route: Router,fb: FormBuilder){
     
     this.ds.getOBSSpinner().subscribe(next => {
       this.showSpinner = next;
@@ -47,6 +50,16 @@ export class AppComponent  implements OnInit, OnDestroy  {
       this.tipoCorsoList = next;
       this.cs.tipoCorsoList = next;
     })
+
+    document.addEventListener('scroll', () => {
+      this.topGap = Math.max(0, 64 - document.body.parentElement.scrollTop);
+    });
+
+    this.options = fb.group({
+      'fixed': false,
+      'top': 0,
+      'bottom': 0,
+    });
     
   }
 

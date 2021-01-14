@@ -6,7 +6,8 @@
     </button>
 
 </div>
-<mat-sidenav  [fixedInViewport]="true" [fixedTopGap]="topGap"style="z-index: 999" [mode]="'over'" [opened]="openSideBar" class="mat-elevation-z10 p-3 border-0">
+<mat-sidenav  [fixedInViewport]="true" [fixedTopGap]="topGap"
+[fixedBottomGap]="options.value.bottom" style="z-index: 999" [mode]="'over'" [opened]="openSideBar" class="mat-elevation-z10 p-3 border-0">
     <div class="d-flex flex-column">
         <div class="w-100 p-2 d-flex justify-content-center">
             <button mat-button></button>

@@ -1,5 +1,5 @@
 <mat-sidenav-container  fullscreen>
-    <mat-sidenav-content fixedInViewport>
+    <mat-sidenav-content [formGroup]="options" fixedInViewport>
         <app-nav-bar [tipoCorsoList] = "tipoCorsoList"></app-nav-bar>
 
         <app-side-bar></app-side-bar>
