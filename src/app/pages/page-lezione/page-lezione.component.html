@@ -34,7 +34,7 @@
                
             </div>
             <div class="row col-12 ">
-                <h4 >{{paragrafo.subTitolo}}</h4>
+                <h3 >{{paragrafo.subTitolo}}</h3>
                 
             </div>
             <div class="row col-12 pl-3">
@@ -48,11 +48,17 @@
                     </button>
                 </div>
             </div>
-            <div class="mt-1 mb-3" [innerHTML]="paragrafo.content"></div>
+            <div class="mt-1 mb-3 p-2" [innerHTML]="paragrafo.content"></div>
 
             <div *ngFor="let code of paragrafo.codes">
-                <div class="col-12 pl-0 pr-0 mb-3">
-                    <h4>{{code.title}}</h4>
+                <div class="col-12 p-2 mb-3">
+                    <div class="row">
+                        <div class="col-12 d-flex">
+                            <mat-icon class="mt-2">code</mat-icon>  <h4 class="mt-2 ml-2">{{code.title}}</h4>
+
+                        </div>
+
+                    </div>
                     <ngx-codemirror [(ngModel)]="code.content" 
                     [options]="{
                         lineNumbers: true,
