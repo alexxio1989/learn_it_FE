@@ -9,13 +9,13 @@
     </div>
 </div>
 
-<div *ngIf="isUtenteLogged" class="row col-12 d-flex justify-content-center">
+<div *ngIf="isUtenteLogged" class="row col-12 d-flex justify-content-center mt-2">
     <app-modal-paragrafo-new></app-modal-paragrafo-new>
 </div>
 
 <div class="row">
-    <div *ngIf="lezione.listaParagrafi.length > 0" class="col-12 d-flex justify-content-center">
-        <mat-form-field style="width: 300px;" appearance="fill">
+    <div *ngIf="lezione.listaParagrafi.length > 0" class="col-12 d-flex justify-content-center mt-2">
+        <mat-form-field style="width: 300px;" >
             <mat-label>Vai al paragrafo ...</mat-label>
             <mat-select>
               <mat-option *ngFor="let paragrafo of lezione.listaParagrafi" (click)="scroll(paragrafo)" [value]="paragrafo.titolo" [innerHTML]="paragrafo.titolo">
@@ -30,13 +30,21 @@
     <div class="col-12">
         <div class="mb-5 " *ngFor="let paragrafo of lezione.listaParagrafi">
             <div class="row col-12">
-                <p id="{{paragrafo.idComponent}}" class="h5">{{paragrafo.titolo}}</p>
+                <h2 id="{{paragrafo.idComponent}}" >{{paragrafo.titolo}}</h2>
+               
+            </div>
+            <div class="row col-12 ">
+                <h4 >{{paragrafo.subTitolo}}</h4>
+                
+            </div>
+            <div class="row col-12 pl-3">
+               
                 <div style="margin-top: -5px;" *ngIf="isUtenteLogged">
                     <app-modal-paragrafo-edit [paragrafo]="paragrafo"></app-modal-paragrafo-edit>
                 </div>
-                <div style="margin-top: -5px; margin-left: -5px;" *ngIf="isUtenteLogged">
+                <div style="margin-top: -5px;" class="ml-3" *ngIf="isUtenteLogged">
                     <button class="pl-0" mat-button (click)="elimina(paragrafo)" style="color: #6c757d;">
-                        <mat-icon style="margin-top: -5px;">delete_outline</mat-icon>
+                       <h5>Elimina</h5>
                     </button>
                 </div>
             </div>
