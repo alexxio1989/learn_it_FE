@@ -32,5 +32,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" (click)="openDialogSignin()">Registrati</button>
     <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="login()" [disabled] = "disableSave">Login</button>
 </mat-dialog-actions>

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/model/User';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { isEmptyString } from 'src/app/utils/Util';
+import {ContentModalSigninComponent} from 'src/app/modals/modal-signin-user/content-modal-signin/content-modal-signin.component'
 
 @Component({
   selector: 'app-content-modal-login',
@@ -22,7 +24,7 @@ export class ContentModalLoginComponent implements OnInit {
 
   hide: boolean;
 
-  constructor(private modalService: NgbModal ,private ds: DelegateServiceService , private us: UtenteServiceService) { }
+  constructor(private modalService: NgbModal ,private ds: DelegateServiceService , private us: UtenteServiceService,public dialog: MatDialog) { }
 
   ngOnInit(): void {}
 
@@ -45,6 +47,14 @@ export class ContentModalLoginComponent implements OnInit {
         this.ds.updateResultService(error.esitoChiamata);
         this.ds.updateSpinner(false);
       });
+  }
+
+  openDialogSignin(){
+    const dialogRef = this.dialog.open(ContentModalSigninComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }
