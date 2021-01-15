@@ -5,6 +5,7 @@ export class Lezione {
     idCorso: number;
     indexLezione: number = 0;
     title: string = '';
+    subTitle: string = '';
     content: string;
     listaParagrafi: Paragrafo[] = [];
     idOwner: number;

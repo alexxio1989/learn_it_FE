@@ -25,6 +25,8 @@ export class CardLezioneComponent implements OnInit {
 
   title: string = '';
 
+  subTitle: string = '';
+
   edit: boolean;
 
   constructor(private cs: CorsoServiceService , 
@@ -41,12 +43,14 @@ export class CardLezioneComponent implements OnInit {
       this.edit = true;
     } else {
       this.title = this.lezione.title;
+      this.subTitle = this.lezione.subTitle;
     }
   }
 
   save(){
     this.lezione.idOwner = this.corso.owner.id;
     this.lezione.title = this.title;
+    this.lezione.subTitle = this.subTitle;
     if(this.lezione.id === 0 || this.lezione.id === undefined ){
       this.ls.getOBSInsertLezione(this.lezione).subscribe(next => {
         this.ds.updateSpinner(false);

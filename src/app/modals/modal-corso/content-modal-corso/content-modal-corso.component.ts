@@ -18,6 +18,7 @@ export class ContentModalCorsoComponent implements OnInit {
   aPagamento: boolean;
 
   nomeCorso: string = '';
+  subNomeCorso: string = '';
   descCorso: string = '';
   tipoCorso: Dominio;
   subTipo: SubDominio;
@@ -88,6 +89,7 @@ export class ContentModalCorsoComponent implements OnInit {
    
       let corso = new Corso();
       corso.nomeCorso = this.nomeCorso;
+      corso.subNomeCorso = this.subNomeCorso;
       corso.descrizioneCorso = this.descCorso;
       corso.tipo = this.subTipo;
       corso.image = this.image;

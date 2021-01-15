@@ -71,6 +71,11 @@ h4{
   opacity: 0.7 !important;
 }
 
+
+.mat-h4, .mat-subheading-1, .mat-typography h4 {
+    margin: 0px 0 7px;
+}
+
 h5{
   font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif !important; 
   font-size: calc(12px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;

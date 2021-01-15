@@ -14,6 +14,7 @@ export class Corso{
     lezioni: Lezione[] = [];
     feeds: Feedback[] = [];
     nomeCorso: string = '';
+    subNomeCorso: string = '';
     descrizioneCorso: string = '';
     tipo: SubDominio = new SubDominio();
     tipoPadre: Dominio= new Dominio();

@@ -10,11 +10,16 @@
         </div>
         <div class="col-8">
             <div class="row bg-light text-dark d-flex justify-content-center">  
-                <div class="col-12 pt-3 d-flex justify-content-center">
+                <div class="col-12 pt-4 d-flex justify-content-center">
                         <input *ngIf="edit" type="text" class="form-control input-sm" [(ngModel)]="title" placeholder="titolo lezione">
                     
-                        <h4 *ngIf="!edit">{{lezione.title}}</h4>   
-                </div>          
+                        <h4  *ngIf="!edit">{{lezione.title}}</h4>   
+                </div> 
+                <div class="col-12 d-flex justify-content-center pt-0 pb-0">
+                    <input *ngIf="edit" type="text" class="form-control input-sm mb-2 mt-2" [(ngModel)]="subTitle" placeholder="Sotto titolo lezione">
+                
+                    <h5 *ngIf="!edit">{{lezione.subTitle}}</h5>   
+                </div>           
             </div>
             <div class="row pt-0  bg-light text-dark d-flex justify-content-center pl-2">
                 <div *ngIf="edit && isUtenteLogged" >

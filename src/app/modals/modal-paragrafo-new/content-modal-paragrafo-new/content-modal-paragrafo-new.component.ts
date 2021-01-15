@@ -15,6 +15,7 @@ export class ContentModalParagrafoNewComponent implements OnInit {
 
   
   titolo: string = '';
+  subTitolo: string = '';
   testo: string = '';
   codes: Code[] = [];
 
@@ -57,6 +58,7 @@ export class ContentModalParagrafoNewComponent implements OnInit {
   save() {
       let paragrafo = new Paragrafo();
       paragrafo.titolo = this.titolo;
+      paragrafo.subTitolo = this.subTitolo;
       paragrafo.content = this.testo;
       paragrafo.codes = this.codes;
       let lezioneSelected;

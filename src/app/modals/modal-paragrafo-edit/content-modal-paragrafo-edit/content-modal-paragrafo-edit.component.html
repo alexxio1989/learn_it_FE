@@ -7,6 +7,12 @@
 
     </div>
     <div class="form-group">
+        <label for="dateOfBirth">Sotto Titolo Paragrafo</label>
+        <input required id="dateOfBirth" class="form-control" [(ngModel)]="paragrafo.subTitolo"
+            placeholder="inserisci il Sotto titolo del paragrafo">
+
+    </div>
+    <div class="form-group">
         <label for="exampleFormControlTextarea1">Contenuto Paragrafo</label>
         <angular-editor [(ngModel)]="paragrafo.content" [config]="config"></angular-editor>
     </div>

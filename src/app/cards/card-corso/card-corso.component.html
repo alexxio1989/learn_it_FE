@@ -10,18 +10,23 @@
          class="card-img" src="../../../assets/images/default.png" />
 
       </div>
-      <div class="col-8">
+      <div class="col-8 pr-0 pl-0">
         <div class="card-body p-0 pt-3 pb-3">
-          <div class="d-flex justify-content-center" style="margin-bottom: -15px; margin-top: -5px;">
+          <div class="d-flex justify-content-center" >
             <p>{{corso.nomeCorso}}</p>
     
           </div>
+
+          <div class="d-flex justify-content-center" style="margin-top: -8px;">
+            <h5>{{corso.subNomeCorso}}</h5>
     
-          <div class=" d-flex justify-content-center mt-3">
+          </div>
+    
+          <div class=" d-flex justify-content-center ">
             <h5>Prezzo : <b style="opacity: 0.7;">{{corso.prezzo > 0 ? corso.prezzo + '€' : 'Free' }}</b></h5>
           </div>
     
-          <div *ngIf="!isShowInfo" class="row d-flex justify-content-center" style="margin-top: -5px;">
+          <div *ngIf="!isShowInfo" class="row d-flex justify-content-center" >
             <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
             <p class="card-text ml-1" style="margin-top: -3px;"><small class="text-muted">( {{corso.feeds.length}}
                 )</small></p>
