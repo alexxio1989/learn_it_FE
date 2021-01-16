@@ -35,13 +35,29 @@
                          
                         </mat-expansion-panel-header>
                     
-                        <label for="dateOfBirth">Titolo Codice</label>
-                        <input required class="form-control" [(ngModel)]="code.title">
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="dateOfBirth">Titolo Codice</label>
+                                <input required class="form-control" [(ngModel)]="code.title">
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <label for="dateOfBirth">Descrizione del codice</label>
+                                <angular-editor [(ngModel)]="code.description" [config]="configDescParag"></angular-editor>
+                            </div>
+                        </div>
     
                         <hr />
     
-                        <ngx-codemirror [(ngModel)]="code.content"
-                            [options]="{lineNumbers: true, theme: 'material', mode: 'markdown'}"></ngx-codemirror>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <label for="dateOfBirth">Inserisci il tuo codice qui</label>
+                                <ngx-codemirror [(ngModel)]="code.content"
+                                    [options]="{lineNumbers: true, theme: 'material', mode: 'markdown'}"></ngx-codemirror>
+
+                            </div>
+                        </div>
                     
                     </mat-expansion-panel>
 

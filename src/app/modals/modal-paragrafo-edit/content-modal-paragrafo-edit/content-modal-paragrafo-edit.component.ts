@@ -49,6 +49,35 @@ export class ContentModalParagrafoEditComponent implements OnInit {
     ]
   };
 
+  configDescParag: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '10rem',
+    minHeight: '5rem',
+    placeholder: 'Enter text here...',
+    translate: 'no',
+    defaultParagraphSeparator: 'p',
+    defaultFontName: 'Arial',
+    toolbarHiddenButtons: [
+      
+      ],
+    customClasses: [
+      {
+        name: "quote",
+        class: "quote",
+      },
+      {
+        name: 'redText',
+        class: 'redText'
+      },
+      {
+        name: "titleText",
+        class: "titleText",
+        tag: "h1",
+      },
+    ]
+  };
+
   salva() {
       this.ps.getOBSUpdateParagrafo(this.ps.paragrafoSelected).subscribe(next => {
         this.ds.updateSpinner(false);

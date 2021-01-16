@@ -28,12 +28,12 @@
 
 <div class="row mt-3">
     <div class="col-12">
-        <div class="mb-5 " *ngFor="let paragrafo of lezione.listaParagrafi">
+        <div class="mb-5 pb-3" *ngFor="let paragrafo of lezione.listaParagrafi">
             <div class="row col-12">
                 <h2 id="{{paragrafo.idComponent}}" >{{paragrafo.titolo}}</h2>
                
             </div>
-            <div class="row col-12 ">
+            <div *ngIf="paragrafo.subTitolo !== undefined && paragrafo.subTitolo !== null && paragrafo.subTitolo !== ''" class="row col-12 mb-2">
                 <h3 >{{paragrafo.subTitolo}}</h3>
                 
             </div>
@@ -55,6 +55,10 @@
                     <div class="row">
                         <div class="col-12 d-flex">
                             <mat-icon class="mt-2">code</mat-icon>  <h4 class="mt-2 ml-2">{{code.title}}</h4>
+
+                        </div>
+
+                        <div class="col-12 pl-5" [innerHTML]="code.description">
 
                         </div>
 
