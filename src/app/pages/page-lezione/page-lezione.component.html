@@ -18,8 +18,8 @@
         <mat-form-field style="width: 300px;" >
             <mat-label>Vai al paragrafo ...</mat-label>
             <mat-select>
-              <mat-option *ngFor="let paragrafo of lezione.listaParagrafi" (click)="scroll(paragrafo)" [value]="paragrafo.titolo" [innerHTML]="paragrafo.titolo">
-               
+              <mat-option *ngFor="let paragrafo of lezione.listaParagrafi" (click)="scroll(paragrafo)" [value]="paragrafo.titolo">
+               {{paragrafo.titolo }} {{  paragrafo.subTitolo !== undefined && paragrafo.subTitolo !== '' ? ' - ' + paragrafo.subTitolo : ''}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -33,7 +33,7 @@
                 <h2 id="{{paragrafo.idComponent}}" >{{paragrafo.titolo}}</h2>
                
             </div>
-            <div *ngIf="paragrafo.subTitolo !== undefined && paragrafo.subTitolo !== null && paragrafo.subTitolo !== ''" class="row col-12 mb-2">
+            <div *ngIf="paragrafo.subTitolo !== undefined && paragrafo.subTitolo !== null && paragrafo.subTitolo !== ''" style="margin-top: -10px;" class="row col-12 mb-2">
                 <h3 >{{paragrafo.subTitolo}}</h3>
                 
             </div>
