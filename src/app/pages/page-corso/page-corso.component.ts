@@ -33,11 +33,7 @@ export class PageCorsoComponent implements OnInit {
 
       let id = params['id'];
       let corso = JSON.parse(localStorage.getItem('CORSO'));
-      if(id !== undefined && id !== null && id > 0){
-
-        if(corso !== undefined && corso !== null ){
-          this.corso = corso;
-        } else {
+      
           this.cs.getOBSGetCorso(id).subscribe(next => {
             this.corso = next.obj;
             this.ds.updateResultService("Recupero corso avvenuto con successo");
@@ -47,15 +43,11 @@ export class PageCorsoComponent implements OnInit {
             this.ds.updateSpinner(false);
           })
 
-        }
-        
        
       
         this.isEmptyLezioni = isEmptyArray(this.corso.lezioni);
 
-      } else {
-        this.route.navigate(['/']);
-      }
+     
 
 
     });

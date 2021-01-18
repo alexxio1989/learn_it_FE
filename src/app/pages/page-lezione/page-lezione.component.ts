@@ -48,15 +48,7 @@ export class PageLezioneComponent implements OnInit {
 
         let idInt = parseInt(id);
 
-        if(isNotNullObj(lezioneSelected)){
-          if(idInt === lezioneSelected.id){
-            this.lezione = lezioneSelected;
-          } else {
-            this.retrieveLezione(idInt);
-          }
-        } else {
-          this.retrieveLezione(idInt);
-        }
+        this.retrieveLezione(idInt);
 
       } else {
         this.route.navigate(['/']);
