@@ -1,0 +1,9 @@
+
+<div class="NgxEditor__Wrapper">
+    <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+    <ngx-editor
+      [editor]="editor"
+      [(ngModel)]="inputModel"
+      (ngModelChange)="inputModelChange.emit(inputModel)"
+    ></ngx-editor>
+  </div>

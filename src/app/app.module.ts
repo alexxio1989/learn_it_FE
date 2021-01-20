@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AngularEditorModule } from '@kolkov/angular-editor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -68,6 +67,8 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 import { NgcCookieConsentConfig, NgcCookieConsentModule } from 'ngx-cookieconsent';
 import { ServiceCore } from './services/core/ServiceCore';
 import { FormatTextPipe } from './pipes/format-text.pipe';
+import { NgxEditorModule } from 'ngx-editor';
+import { TextEditorComponent } from './varie/text-editor/text-editor.component';
 
 
 
@@ -140,13 +141,13 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ModalInfoCorsoComponent,
     ContentModalInfoCorsoComponent,
     PageUtenteComponent,
-    FormatTextPipe
+    FormatTextPipe,
+    TextEditorComponent
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularEditorModule,
     FormsModule,
     HttpClientModule,
     NgbModule,
@@ -179,6 +180,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatRippleModule,
     CodemirrorModule,
     NgcCookieConsentModule.forRoot(cookieConfig),
+    NgxEditorModule
 
   ],
   providers: [

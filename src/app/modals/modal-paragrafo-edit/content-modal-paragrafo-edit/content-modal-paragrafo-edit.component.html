@@ -14,7 +14,7 @@
     </div>
     <div class="form-group">
         <label for="exampleFormControlTextarea1">Contenuto Paragrafo</label>
-        <angular-editor [(ngModel)]="paragrafo.content" [config]="config"></angular-editor>
+        <app-text-editor [(inputModel)] = "paragrafo.content"></app-text-editor>
     </div>
 
     <div class="form-group">
@@ -44,7 +44,7 @@
                         <div class="row mt-4">
                             <div class="col-12">
                                 <label for="dateOfBirth">Descrizione del codice</label>
-                                <angular-editor [(ngModel)]="code.description" [config]="configDescParag"></angular-editor>
+                                <app-text-editor [(inputModel)] = "code.description"></app-text-editor>
                             </div>
                         </div>
     

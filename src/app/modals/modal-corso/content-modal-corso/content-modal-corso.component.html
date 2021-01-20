@@ -54,7 +54,7 @@
     <div class="row mt-4">
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Descrizione corso</label>
-            <angular-editor [(ngModel)]="descCorso" [config]="config"></angular-editor>
+            <app-text-editor [(inputModel)] = "descCorso"></app-text-editor>
         </div>
     </div>
     <div *ngIf="!isShowSaveTipo" class="row  form-group">

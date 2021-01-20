@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { Corso } from 'src/app/model/Corso';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
@@ -25,34 +24,6 @@ export class ContentModalCorsoEditComponent implements OnInit {
 
   constructor(private cs: CorsoServiceService , private ds: DelegateServiceService) {}
 
-  config: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    height: '15rem',
-    minHeight: '5rem',
-    placeholder: 'Enter text here...',
-    translate: 'no',
-    defaultParagraphSeparator: 'p',
-    defaultFontName: 'Arial',
-    toolbarHiddenButtons: [
-      
-      ],
-    customClasses: [
-      {
-        name: "quote",
-        class: "quote",
-      },
-      {
-        name: 'redText',
-        class: 'redText'
-      },
-      {
-        name: "titleText",
-        class: "titleText",
-        tag: "h1",
-      },
-    ]
-  };
 
   get disableSave(){
     return isEmptyString(this.corso.nomeCorso) || isEmptyString(this.corso.descrizioneCorso);

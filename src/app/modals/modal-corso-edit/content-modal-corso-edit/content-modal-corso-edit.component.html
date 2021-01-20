@@ -53,7 +53,7 @@
     <div class="row mt-4">
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Descrizione corso</label>
-            <angular-editor [(ngModel)]="corso.descrizioneCorso" [config]="config"></angular-editor>
+            <app-text-editor [(inputModel)] = "corso.descrizioneCorso"></app-text-editor>
         </div>
     </div>
        
