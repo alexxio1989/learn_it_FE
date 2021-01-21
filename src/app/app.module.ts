@@ -142,7 +142,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ContentModalInfoCorsoComponent,
     PageUtenteComponent,
     FormatTextPipe,
-    TextEditorComponent
+    TextEditorComponent,
+    
     
   ],
   imports: [

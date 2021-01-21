@@ -1,6 +1,6 @@
 import { Component, OnInit , OnDestroy, Input, Output, EventEmitter} from '@angular/core';
 import { Editor, Toolbar } from 'ngx-editor';
-
+import plugins from "./plugins";
 
 @Component({
   selector: 'app-text-editor',
@@ -14,6 +14,8 @@ export class TextEditorComponent implements OnInit {
   @Input() inputModel = '';
   @Output() inputModelChange = new EventEmitter<string>();
 
+  uploadedImagePath='';
+
   toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline', 'strike'],
@@ -25,12 +27,19 @@ export class TextEditorComponent implements OnInit {
     ['align_left', 'align_center', 'align_right', 'align_justify'],
   ];
 
+
   ngOnInit(): void {
-    this.editor = new Editor();
+    this.editor = new Editor({
+      plugins
+    });
   }
 
   ngOnDestroy(): void {
     this.editor.destroy();
+  }
+
+  myCustomFunction(e: any){
+    console.log(e);
   }
 
 }

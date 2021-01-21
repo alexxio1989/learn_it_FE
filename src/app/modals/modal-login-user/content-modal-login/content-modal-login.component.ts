@@ -7,6 +7,7 @@ import { DelegateServiceService } from 'src/app/services/delegate-service.servic
 import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { isEmptyString } from 'src/app/utils/Util';
 import {ContentModalSigninComponent} from 'src/app/modals/modal-signin-user/content-modal-signin/content-modal-signin.component'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-content-modal-login',
@@ -24,7 +25,7 @@ export class ContentModalLoginComponent implements OnInit {
 
   hide: boolean;
 
-  constructor(private modalService: NgbModal ,private ds: DelegateServiceService , private us: UtenteServiceService,public dialog: MatDialog) { }
+  constructor(private route: Router ,private ds: DelegateServiceService , private us: UtenteServiceService,public dialog: MatDialog) { }
 
   ngOnInit(): void {}
 
@@ -37,7 +38,7 @@ export class ContentModalLoginComponent implements OnInit {
         this.ds.updateResultService(next.body.status);
         localStorage.setItem('JWT_TOKEN',next.headers.get('JWT_TOKEN'));
         localStorage.setItem('USER',JSON.stringify(next.body.obj));
-        let dateString = new Date().toLocaleString()
+        let dateString = new Date().toLocaleString('it-IT')
         localStorage.setItem('JWT_TIME',dateString);
         this.ds.utente = next.body.obj;
         this.ds.updateUser(next.body.obj); 
