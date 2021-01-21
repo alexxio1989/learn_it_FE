@@ -80,6 +80,11 @@ export class CorsoServiceService {
     return this.http.post(ServiceCore.baseURl + "/router/deleteCorso", corso , {headers});
   }
 
+  getOBSUpdateVisCorso(corso: Corso): Observable<any>{
+    this.ds.updateSpinner(true);
+    return this.http.post(ServiceCore.baseURl_node + "/corso/updateVisibilityCorso", corso );
+  }
+
   getOBSGetCorso(id: number): Observable<any>{
     this.ds.updateSpinner(true);
     let token = getJWTTOKEN();

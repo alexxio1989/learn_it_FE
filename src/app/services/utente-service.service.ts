@@ -25,6 +25,12 @@ export class UtenteServiceService {
     return this.http.post(ServiceCore.baseURl + "/router/signin", utente);
   }
 
+  getOBSPropriCorsi(utente: User): Observable<any>{
+    this.ds.updateSpinner(true);
+    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
+    return this.http.post(ServiceCore.baseURl + "/router/getProprioCorsi", utente,{headers});
+  }
+
   getOBSInsertLettura(lettura: Lettura): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());

@@ -1,16 +1,95 @@
 <h4>{{utente.nome}} {{utente.cognome}}</h4>
 
 
-<div *ngIf="utente !== undefined && utente !== null && utente.corsiLetti !== undefined && utente.propriCorsi !== null && utente.propriCorsi.length > 0" class="one-edge-shadow p-2 pt-4">
+<div *ngIf="utente !== undefined && utente !== null && utente.propriCorsi !== null && utente.propriCorsi.length > 0"
+    class="one-edge-shadow p-2 pt-4">
     <div class="row">
         <div class="col-12">
-            <h3 class="text-muted" style="font-weight: 400;">Corsi creati da {{utente.nome}}</h3>   
+            <h3 class="text-muted" style="font-weight: 400;">I Tuoi corsi</h3>
         </div>
     </div>
 
-    <div *ngFor="let corso of utente.propriCorsi" class="swiper-slide">
-        <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
-          <app-card-corso [corso]="corso"></app-card-corso>
+    <mat-list role="list">
+       
+           
+                <mat-list-item *ngFor="let corso of utente.propriCorsi" role="listitem" class="w-100 h-100 mb-2 p-1" style="background: rgba(180, 180, 180, 0.2);">
+                    <div class="row  w-100">
+                        <div class="col-12">
+                            <h4>{{corso.nomeCorso}}</h4>
+                        </div>
+                        <div class="col-12">
+                            <h5>{{corso.subNomeCorso}}</h5>
+                        </div>
+                        <div class="col-4 pr-2">
+                            <button mat-button (click)="goToCourse(corso)" style="color: #007bff; margin-top: -5px;">
+                                Vai al Corso
+                            </button>
+                        </div>
+                        <div class="col-8">
+                            <mat-slide-toggle [(ngModel)]="corso.enable" (click) = "updateVisCorso(corso)">
+                                {{corso.enable ? 'Nascondi corso' : 'Pubblica corso'}}</mat-slide-toggle>
+                        </div>
+                    </div>
+                </mat-list-item>
+           
+       
+    </mat-list>
+</div>
+
+<div *ngIf="utente !== undefined && utente !== null && (utente.propriCorsi === undefined || utente.propriCorsi === null || utente.propriCorsi.length === 0)"
+    class="one-edge-shadow p-2 pt-4">
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-muted" style="font-weight: 400;">I Tuoi corsi</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            Non hai pubblicato ancora nessun corso
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="utente !== undefined && utente !== null && utente.corsiLetti !== undefined && utente.corsiLetti !== null && utente.corsiLetti.length > 0"
+    class="one-edge-shadow p-2 pt-4">
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-muted" style="font-weight: 400;">I Corsi che stai leggendo</h3>
+        </div>
+    </div>
+
+    <mat-list role="list">
+        <div *ngFor="let corso of utente.corsiLetti" class="swiper-slide">
+            <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+                <mat-list-item role="listitem" class="mb-3 w-100">
+                    <div class="row pt-0 pb-0 w-100">
+                        <div class="col-12">
+                            <h4>{{corso.nomeCorso}}</h4>
+                        </div>
+
+                        <div class="col-12">
+                            <button mat-button (click)="goToCourse(corso)" style="color: #007bff; margin-top: -5px;">
+                                Vai al Corso
+                            </button>
+                        </div>
+                    </div>
+                </mat-list-item>
+            </div>
+        </div>
+    </mat-list>
+</div>
+
+<div *ngIf="utente !== undefined && utente !== null && (utente.corsiLetti === undefined || utente.corsiLetti === null || utente.corsiLetti.length === 0)"
+    class="one-edge-shadow p-2 pt-4">
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-muted" style="font-weight: 400;">I Corsi che stai seguendo</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            Non stai seguendo alcun corso
         </div>
     </div>
 </div>
