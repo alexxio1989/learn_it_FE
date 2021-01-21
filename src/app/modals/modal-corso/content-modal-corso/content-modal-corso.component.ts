@@ -73,7 +73,7 @@ export class ContentModalCorsoComponent implements OnInit {
         this.ds.updateSideBar(false);
       },error => {
         this.ds.updateSpinner(false);
-        this.ds.updateResultService(error.status);
+        this.ds.updateResultService("Errore durante la creazione del corso");
       });
     
   }

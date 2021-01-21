@@ -22,6 +22,8 @@ export class PageUtenteComponent implements OnInit {
     this.utente = getUserLS();
     if(isNullObj(this.utente)){
       this.route.navigate(['/']);
+    }else {
+      this.getOBSPropriCorsi();
     }
   }
 
@@ -36,16 +38,7 @@ export class PageUtenteComponent implements OnInit {
     this.cs.getOBSUpdateVisCorso(corso).subscribe(next=>{
       this.ds.updateResultService("Visibilità del corso modificata correttamente")
       this.ds.updateSpinner(false);
-      this.us.getOBSPropriCorsi(this.utente).subscribe(next => {
-        this.utente.propriCorsi = next.list;
-        localStorage.removeItem('USER');
-        localStorage.setItem('USER',JSON.stringify(this.utente));
-        this.ds.updateResultService("Recupero dei tuoi corsi avvenuto con successo")
-        this.ds.updateSpinner(false);
-      },error=>{
-      this.ds.updateResultService("Errore durante il recuper dei tuoi corsi")
-      this.ds.updateSpinner(false);
-    })
+      this.getOBSPropriCorsi();
 
     },error=>{
       this.ds.updateResultService("Errore durante la modificata alla visibilità del corso")
@@ -53,4 +46,17 @@ export class PageUtenteComponent implements OnInit {
     })
   }
 
+
+  private getOBSPropriCorsi() {
+    this.us.getOBSPropriCorsi(this.utente).subscribe(next => {
+      this.utente.propriCorsi = next.list;
+      localStorage.removeItem('USER');
+      localStorage.setItem('USER', JSON.stringify(this.utente));
+      this.ds.updateResultService("Recupero dei tuoi corsi avvenuto con successo");
+      this.ds.updateSpinner(false);
+    }, error => {
+      this.ds.updateResultService("Errore durante il recuper dei tuoi corsi");
+      this.ds.updateSpinner(false);
+    });
+  }
 }

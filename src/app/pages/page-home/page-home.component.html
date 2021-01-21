@@ -20,8 +20,16 @@
         </div>
         <div class="row">
 
-            <div *ngFor="let corso of item.value" class="col-lg-4 col-md-4 col-sm-6 col-xs-6 justify-content-center mb-3">
+            <div *ngFor="let corso of item.value.corsiAssociati |
+            slice: item.value.lowValue : item.value.highValue" class="col-lg-4 col-md-4 col-sm-6 col-xs-6 justify-content-center mb-3">
                 <app-card-corso [corso]="corso"></app-card-corso>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                        <mat-paginator style="background: rgba(180, 180, 180, 0.2);" [length]="item.value.corsiAssociati !== undefined ? item.value.corsiAssociati.length : 0" [pageSize]="item.value.pageSize" (page)="getPaginatorData($event,item.value)">
+                        </mat-paginator>
+
             </div>
         </div>
     </div>
