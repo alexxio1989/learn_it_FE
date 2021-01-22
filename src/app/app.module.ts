@@ -75,7 +75,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     domain: ServiceCore.baseURl 
   },
   position: "bottom",
-  theme: "classic",
+  theme: "edgeless",
   palette: {
     popup: {
       background: "#fcfcfc", 
