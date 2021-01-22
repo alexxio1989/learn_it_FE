@@ -78,9 +78,9 @@ const cookieConfig: NgcCookieConsentConfig = {
   theme: "classic",
   palette: {
     popup: {
-      background: "#000000",
-      text: "#ffffff",
-      link: "#ffffff"
+      background: "#fcfcfc", 
+      text: "#000000",
+      link: "#000000 "
     },
     button: {
       background: "#f1d600",
@@ -90,10 +90,10 @@ const cookieConfig: NgcCookieConsentConfig = {
   },
   type: "info",
   content: {
-    message: "This website uses cookies to ensure you get the best experience on our website.",
-    dismiss: "Got it!",
+    message: "Learn-it fa uso di cookie per migliorare l’esperienza di navigazione degli utenti e per raccogliere informazioni sull’utilizzo del sito stesso.",
+    dismiss: "Acconsento",
     deny: "Decline",
-    link: "Learn more",
+    link: "Maggiori info.",
     href: "https://cookiesandyou.com",
     policy: "Cookie Policy",
     header: "Cookies used on the website!",

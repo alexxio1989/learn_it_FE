@@ -68,7 +68,7 @@ export class ContentModalCorsoComponent implements OnInit {
       corso.prezzo = this.prezzo;
       this.cs.getOBSInsertCorso(corso).subscribe(next => {
         this.ds.updateSpinner(false);
-        this.ds.updateResultService(next.status);
+        this.ds.updateResultService("Corso salvato correttamente");
         this.cs.updateCorsi(next.list);
         this.ds.updateSideBar(false);
       },error => {
