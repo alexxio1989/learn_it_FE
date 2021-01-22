@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { Corso } from 'src/app/model/Corso';
 import { Lezione } from 'src/app/model/Lezione';
 import { LezioneParagrafo } from 'src/app/model/LezioneParagrafo';
 import { Paragrafo } from 'src/app/model/Paragrafo';
@@ -10,26 +9,38 @@ import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { LezioneServiceService } from 'src/app/services/lezione-service.service';
 import { ParagrafoServiceService } from 'src/app/services/paragrafo-service.service';
-import { getUserLS, isEmptyString, isSameUser , isNotNullObj, isSameUserID } from 'src/app/utils/Util';
+import { getUserLS, isSameUserID } from 'src/app/utils/Util';
+import { IPageCore } from '../IPageCore';
 
 @Component({
   selector: 'app-page-lezione',
   templateUrl: './page-lezione.component.html',
   styleUrls: ['./page-lezione.component.scss']
 })
-export class PageLezioneComponent implements OnInit {
+export class PageLezioneComponent implements OnInit, IPageCore {
   toppings = new FormControl();
   edit: boolean;
   lezione: Lezione = new Lezione();
   
   isExternalLink: boolean;
   isDevice: boolean;
+  renderPage: boolean;
 
 
-  constructor(private deviceService: DeviceDetectorService , private ds: DelegateServiceService , private cs: CorsoServiceService ,private ls: LezioneServiceService , private route: Router ,private ar: ActivatedRoute , private ps: ParagrafoServiceService) {
+  constructor(private deviceService: DeviceDetectorService ,
+              private ds: DelegateServiceService ,
+              private cs: CorsoServiceService ,
+              private ls: LezioneServiceService , 
+              private route: Router ,
+              private ar: ActivatedRoute , 
+              private ps: ParagrafoServiceService,
+              ) {
+
     this.ps.getOBSADDParagrafi().subscribe(next => {
       this.lezione.listaParagrafi = next;
     })
+
+
   }
 
   get isUtenteLogged(): boolean{
@@ -38,17 +49,20 @@ export class PageLezioneComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.isDevice = this.deviceService.isMobile();
     this.ar.queryParams.subscribe(params => {
-
+      
       let id = params['id'];
-      let lezioneSelected = JSON.parse(localStorage.getItem('LEZIONE'));
-
+      
       if(id !== undefined && id !== null && parseInt(id) > 0){
-
-        let idInt = parseInt(id);
-
-        this.retrieveLezione(idInt);
+        
+        this.ds.getOBSAbilitaNavigazione().subscribe(next => {
+          if(next){
+            this.retrieveLezione(id);
+          }
+        })
+        this.ds.checkUserLogged();
 
       } else {
         this.route.navigate(['/']);
@@ -66,6 +80,7 @@ export class PageLezioneComponent implements OnInit {
       this.isExternalLink = true;
       this.ds.updateResultService("Recupero lezione avvenuto con successo");
       this.ds.updateSpinner(false);
+      this.renderPage = true;
     }, error => {
       this.ds.updateSpinner(false);
       this.ds.updateResultService("Recupero lezione in errore");

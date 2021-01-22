@@ -6,17 +6,23 @@ import { DelegateServiceService } from 'src/app/services/delegate-service.servic
 import { User } from '../../model/User';
 import { getUserLS , isNullObj} from '../../utils/Util';
 import { UtenteServiceService } from 'src/app/services/utente-service.service';
+import { IPageCore } from '../IPageCore';
 
 @Component({
   selector: 'app-page-utente',
   templateUrl: './page-utente.component.html',
   styleUrls: ['./page-utente.component.css']
 })
-export class PageUtenteComponent implements OnInit {
+export class PageUtenteComponent implements OnInit , IPageCore{
 
   utente: User;
+  renderPage: boolean;
 
-  constructor(private route: Router,private cs: CorsoServiceService,private ds: DelegateServiceService,private us: UtenteServiceService) { }
+  constructor(private route: Router,private cs: CorsoServiceService,private ds: DelegateServiceService,private us: UtenteServiceService) {
+    this.ds.getOBSSpinner().subscribe(next => {
+      this.renderPage = !next;
+    })
+  }
 
   ngOnInit(): void {
     this.utente = getUserLS();

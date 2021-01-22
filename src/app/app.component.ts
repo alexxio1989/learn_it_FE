@@ -7,6 +7,8 @@ import { Subscription } from 'rxjs';
 import { NgcCookieConsentService, NgcInitializeEvent, NgcNoCookieLawEvent, NgcStatusChangeEvent } from 'ngx-cookieconsent';
 import { Router } from '@angular/router';
 import { clearJWTTOKEN } from './utils/Util';
+import { MatDialog } from '@angular/material/dialog';
+import { ContentModalLoginComponent } from './modals/modal-login-user/content-modal-login/content-modal-login.component';
 
 @Component({
   selector: 'app-root',
@@ -28,13 +30,22 @@ export class AppComponent  implements OnInit, OnDestroy  {
 
   tipoCorsoList = [];
 
-  constructor(private ds: DelegateServiceService , private _snackBar: MatSnackBar , private cs: CorsoServiceService , private ccService: NgcCookieConsentService, private route: Router){
+  constructor(private ds: DelegateServiceService , 
+              private _snackBar: MatSnackBar , 
+              private cs: CorsoServiceService , 
+              private ccService: NgcCookieConsentService, 
+              private route: Router,
+              private dialog: MatDialog){
     
     this.ds.getOBSSpinner().subscribe(next => {
       this.showSpinner = next;
     })
     this.ds.getOBSResultService().subscribe(next => {
       this.openSnackBar(next);
+    })
+
+    this.ds.getOBSOpenLogin().subscribe(next => {
+      this.openLogin();
     })
 
     this.cs.getOBSTypes().subscribe(next => {
@@ -97,6 +108,14 @@ export class AppComponent  implements OnInit, OnDestroy  {
     this.statusChangeSubscription.unsubscribe();
     this.revokeChoiceSubscription.unsubscribe();
     this.noCookieLawSubscription.unsubscribe();
+  }
+
+  openLogin() {
+    const dialogRef = this.dialog.open(ContentModalLoginComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   openSnackBar(message: string) {

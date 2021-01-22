@@ -13,7 +13,11 @@ import { ContentModalLoginComponent } from './content-modal-login/content-modal-
 })
 export class ModalLoginUserComponent{
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private ds: DelegateServiceService) {
+    this.ds.getOBSOpenLogin().subscribe(next => {
+      this.openDialog();
+    })
+  }
 
   openDialog() {
     const dialogRef = this.dialog.open(ContentModalLoginComponent);

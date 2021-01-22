@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { SubDominio } from 'src/app/model/SubDominio';
-import { User } from 'src/app/model/User';
+import { IPageCore } from 'src/app/pages/IPageCore';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { clearJWTTOKEN, getUserLS } from 'src/app/utils/Util';
@@ -13,7 +13,7 @@ import { Corso } from '../../model/Corso';
   templateUrl: './page-home.component.html',
   styleUrls: ['./page-home.component.css']
 })
-export class PageHomeComponent implements OnInit {
+export class PageHomeComponent implements OnInit , IPageCore {
 
   listaCorsiBase: Array<Corso> = [];
   listaCorsiFiltered: Array<Corso> = [];
@@ -25,10 +25,15 @@ export class PageHomeComponent implements OnInit {
   pageSize: number = 3;
   lowValue: number = 0;
   highValue: number = 3;
+  renderPage: boolean;
 
 
 
-  constructor(private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService,private deviceService: DeviceDetectorService) { }
+  constructor(private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService,private deviceService: DeviceDetectorService) { 
+    this.ds.getOBSSpinner().subscribe(next => {
+      this.renderPage = !next;
+    })
+  }
 
 
 

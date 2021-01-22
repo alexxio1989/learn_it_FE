@@ -1,66 +1,71 @@
-<div class="mt-3">
 
-  <div class="row">
-    <div class="col-12 d-flex justify-content-center">
-      <h3><b>{{corso.nomeCorso}}</b></h3>
+<div *ngIf="!renderPage"></div>
+
+<div *ngIf="renderPage">
+  <div class="mt-3">
+  
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center">
+        <h3><b>{{corso.nomeCorso}}</b></h3>
+      </div>
+    </div>
+  
+   
+    <div *ngIf="!showFeeds" class="row d-flex justify-content-center">
+      <div class="d-inline">
+        <ngx-stars style="z-index: 9;" [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
+      </div>
+      <div class="d-inline" style="margin-top: -2px; margin-left: 4px;">
+        
+        <button (click)="changeView()" class="button-link">({{corso.feeds.length}})</button>
+      </div>
+    </div>
+  
+    <div *ngIf="showFeeds" class="row d-flex justify-content-center">    
+      <div class="d-inline" style="margin-top: -2px; margin-left: 4px;">
+        <a (click)="changeView()" class="stretched-link">Indietro</a>
+      </div>
+    </div>
+  
+  
+    <div *ngIf="isUtenteLogged" class="row d-flex justify-content-center mt-3">
+      <button mat-button (click)="addLezione()" style="color: #6c757d;">
+        <mat-icon style="margin-top: -3px;">add</mat-icon>
+        Nuova Lezione
+      </button>
+    </div>
+  
+    <div  class="row bg-light text-dark p-3 mb-3">
+      <div class="col-12">
+        <h3>Informazioni sul corso</h3>
+      </div>
+      <div class="container" [innerHTML]="corso.descrizioneCorso"></div>
     </div>
   </div>
-
- 
-  <div *ngIf="!showFeeds" class="row d-flex justify-content-center">
-    <div class="d-inline">
-      <ngx-stars style="z-index: 9;" [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
+  
+  
+  
+  
+  
+  <div *ngIf="!showFeeds">
+    <div class="row justify-content-center mt-5" *ngIf="corso.lezioni.length === 0">
+      Nessuna lezione associata al corso
     </div>
-    <div class="d-inline" style="margin-top: -2px; margin-left: 4px;">
-      
-      <button (click)="changeView()" class="button-link">({{corso.feeds.length}})</button>
-    </div>
-  </div>
-
-  <div *ngIf="showFeeds" class="row d-flex justify-content-center">    
-    <div class="d-inline" style="margin-top: -2px; margin-left: 4px;">
-      <a (click)="changeView()" class="stretched-link">Indietro</a>
+    <div *ngIf="corso.lezioni.length > 0">
+      <div *ngFor="let lezione of corso.lezioni">
+        <app-card-lezione [lezione]="lezione" [corso]="corso" (newLezioni) = "changeListLezioni($event)" [lezioni] = "corso.lezioni"></app-card-lezione>
+      </div>
     </div>
   </div>
-
-
-  <div *ngIf="isUtenteLogged" class="row d-flex justify-content-center mt-3">
-    <button mat-button (click)="addLezione()" style="color: #6c757d;">
-      <mat-icon style="margin-top: -3px;">add</mat-icon>
-      Nuova Lezione
-    </button>
-  </div>
-
-  <div  class="row bg-light text-dark p-3 mb-3">
-    <div class="col-12">
-      <h3>Informazioni sul corso</h3>
+  
+  <div *ngIf="showFeeds">
+    <div class="row justify-content-center mt-5" *ngIf="corso.feeds.length === 0">
+      Nessuna feedback associato al corso
     </div>
-    <div class="container" [innerHTML]="corso.descrizioneCorso"></div>
-  </div>
-</div>
-
-
-
-
-
-<div *ngIf="!showFeeds">
-  <div class="row justify-content-center mt-5" *ngIf="corso.lezioni.length === 0">
-    Nessuna lezione associata al corso
-  </div>
-  <div *ngIf="corso.lezioni.length > 0">
-    <div *ngFor="let lezione of corso.lezioni">
-      <app-card-lezione [lezione]="lezione" [corso]="corso" (newLezioni) = "changeListLezioni($event)" [lezioni] = "corso.lezioni"></app-card-lezione>
-    </div>
-  </div>
-</div>
-
-<div *ngIf="showFeeds">
-  <div class="row justify-content-center mt-5" *ngIf="corso.feeds.length === 0">
-    Nessuna feedback associato al corso
-  </div>
-  <div class="row mt-5">
-    <div *ngFor="let feed of corso.feeds">
-      <app-card-feedback [feed]="feed"></app-card-feedback>
+    <div class="row mt-5">
+      <div *ngFor="let feed of corso.feeds">
+        <app-card-feedback [feed]="feed"></app-card-feedback>
+      </div>
     </div>
   </div>
 </div>

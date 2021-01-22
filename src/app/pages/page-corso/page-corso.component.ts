@@ -5,13 +5,14 @@ import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { getUserLS, isEmptyArray, isEmptyString, isNotEmptyArray, isSameUser } from 'src/app/utils/Util';
 import { Corso } from '../../model/Corso';
+import { IPageCore } from '../IPageCore';
 
 @Component({
   selector: 'app-page-corso',
   templateUrl: './page-corso.component.html',
   styleUrls: ['./page-corso.component.css']
 })
-export class PageCorsoComponent implements OnInit {
+export class PageCorsoComponent implements OnInit, IPageCore {
 
   corso: Corso = new Corso();
 
@@ -21,47 +22,64 @@ export class PageCorsoComponent implements OnInit {
 
   showFeeds: boolean;
 
+  renderPage: boolean;
 
-  constructor(private cs: CorsoServiceService , private route: Router , private ds: DelegateServiceService,private ar: ActivatedRoute) { } 
+  constructor(private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService, private ar: ActivatedRoute) {
+    this.ds.getOBSSpinner().subscribe(next => {
+      this.renderPage = !next;
+    })
+  }
 
-  get isUtenteLogged(): boolean{
-    return isSameUser(getUserLS(),this.corso.owner);
+  get isUtenteLogged(): boolean {
+    return isSameUser(getUserLS(), this.corso.owner);
   }
 
   ngOnInit(): void {
     this.ar.queryParams.subscribe(params => {
 
       let id = params['id'];
-      let corso = JSON.parse(localStorage.getItem('CORSO'));
-      
-          this.cs.getOBSGetCorso(id).subscribe(next => {
-            this.corso = next.obj;
-            this.ds.updateResultService("Recupero corso avvenuto con successo");
-            this.ds.updateSpinner(false);
-          },error=> {
-            this.ds.updateResultService("Recupero corso in errore");
-            this.ds.updateSpinner(false);
-          })
 
-       
-      
-        this.isEmptyLezioni = isEmptyArray(this.corso.lezioni);
+      if (id !== undefined && id !== null && parseInt(id) > 0) {
+        this.ds.getOBSAbilitaNavigazione().subscribe(next => {
+          if(next){
+            this.retrieveCorso(id);
+          }
+        })
+        this.ds.checkUserLogged();
 
-     
+      } else {
+        this.route.navigate(['/']);
+      }
+
+
+
 
 
     });
   }
 
-  addLezione(){
+  private retrieveCorso(id: any) {
+    this.cs.getOBSGetCorso(id).subscribe(next => {
+      this.corso = next.obj;
+      this.ds.updateResultService("Recupero corso avvenuto con successo");
+      this.ds.updateSpinner(false);
+      this.renderPage = true;
+    }, error => {
+      this.ds.updateResultService("Recupero corso in errore");
+      this.ds.updateSpinner(false);
+    });
+    this.isEmptyLezioni = isEmptyArray(this.corso.lezioni);
+  }
+
+  addLezione() {
     this.lezione = new Lezione;
     this.lezione.idCorso = this.corso.id;
     this.lezione.indexLezione = this.corso.lezioni.length + 1;
     this.corso.lezioni.push(this.lezione);
   }
 
-  get getMediumFeeds(){
-    
+  get getMediumFeeds() {
+
     let count = this.corso.feeds.reduce(function (s, a) {
       return s + a.feed;
     }, 0);
@@ -69,11 +87,11 @@ export class PageCorsoComponent implements OnInit {
     return count / this.corso.feeds.length;
   }
 
-  changeView(){
+  changeView() {
     this.showFeeds = !this.showFeeds;
   }
 
-  changeListLezioni(lezioni: Lezione[]){
+  changeListLezioni(lezioni: Lezione[]) {
     this.corso.lezioni = lezioni;
   }
 

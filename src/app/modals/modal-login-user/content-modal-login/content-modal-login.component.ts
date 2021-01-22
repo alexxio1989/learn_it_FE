@@ -35,7 +35,7 @@ export class ContentModalLoginComponent implements OnInit {
  
   login() {
       this.us.getOBSLogin(this.user).subscribe(next =>{
-        this.ds.updateResultService(next.body.status);
+        this.ds.updateResultService("Login avvenuto con successo");
         localStorage.setItem('JWT_TOKEN',next.headers.get('JWT_TOKEN'));
         localStorage.setItem('USER',JSON.stringify(next.body.obj));
         let dateString = new Date().toLocaleString('it-IT')
@@ -44,8 +44,9 @@ export class ContentModalLoginComponent implements OnInit {
         this.ds.updateUser(next.body.obj); 
         this.ds.updateSideBar(false);
         this.ds.updateSpinner(false);
+        this.ds.updateAbilitaNavigazione(true);
       },error => {
-        this.ds.updateResultService(error.esitoChiamata);
+        this.ds.updateResultService("Errore durante la login");
         this.ds.updateSpinner(false);
       });
   }

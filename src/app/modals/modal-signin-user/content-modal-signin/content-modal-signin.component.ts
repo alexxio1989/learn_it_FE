@@ -32,10 +32,11 @@ export class ContentModalSigninComponent implements OnInit {
 
   save() {
       this.us.getOBSSignIn(this.user).subscribe(next =>{
-        this.ds.updateResultService(next.esitoChiamata); 
+        this.ds.updateResultService("Registrazione avvenuta con successo"); 
         this.ds.updateSpinner(false);
+        this.ds.updateOpenLogin(true);
       },error => {
-        this.ds.updateResultService(error.esitoChiamata);
+        this.ds.updateResultService("Errore durante la registrazione");
         this.ds.updateSpinner(false);
       });
    

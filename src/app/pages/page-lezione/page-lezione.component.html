@@ -1,82 +1,89 @@
-<div class="row mt-3">
-    <div class="col-12 d-flex justify-content-center">
-        <h2 class="display-4" style="font-size: 2rem">{{lezione.title}}</h2>
+<div *ngIf="!renderPage"></div>
+<div *ngIf="renderPage">
+    <div class="row mt-3">
+        <div class="col-12 d-flex justify-content-center">
+            <h2 class="display-4" style="font-size: 2rem">{{lezione.title}}</h2>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-12 d-flex justify-content-center">
-        <h3 class="display-4" style="font-size: 2rem">{{lezione.subTitle}}</h3>
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+            <h3 class="display-4" style="font-size: 2rem">{{lezione.subTitle}}</h3>
+        </div>
     </div>
-</div>
 
-<div *ngIf="isUtenteLogged" class="row col-12 d-flex justify-content-center mt-2">
-    <app-modal-paragrafo-new></app-modal-paragrafo-new>
-</div>
-
-<div class="row">
-    <div *ngIf="lezione.listaParagrafi.length > 0" class="col-12 d-flex justify-content-center mt-2">
-        <mat-form-field style="width: 300px;" >
-            <mat-label>Vai al paragrafo ...</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let paragrafo of lezione.listaParagrafi" (click)="scroll(paragrafo)" [value]="paragrafo.titolo">
-               {{paragrafo.titolo }} {{  paragrafo.subTitolo !== undefined && paragrafo.subTitolo !== '' ? ' - ' + paragrafo.subTitolo : ''}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+    <div *ngIf="isUtenteLogged" class="row col-12 d-flex justify-content-center mt-2">
+        <app-modal-paragrafo-new></app-modal-paragrafo-new>
     </div>
-</div>
 
-<div class="row mt-3">
-    <div class="col-12">
-        <div class="mb-5 pb-3" *ngFor="let paragrafo of lezione.listaParagrafi">
-            <div class="row col-12">
-                <h2 id="{{paragrafo.idComponent}}" >{{paragrafo.titolo}}</h2>
-               
-            </div>
-            <div *ngIf="paragrafo.subTitolo !== undefined && paragrafo.subTitolo !== null && paragrafo.subTitolo !== ''" style="margin-top: -10px;" class="row col-12 mb-2">
-                <h3 >{{paragrafo.subTitolo}}</h3>
-                
-            </div>
-            <div class="row col-12 pl-3">
-               
-                <div style="margin-top: -5px;" *ngIf="isUtenteLogged">
-                    <app-modal-paragrafo-edit [paragrafo]="paragrafo"></app-modal-paragrafo-edit>
+    <div class="row">
+        <div *ngIf="lezione.listaParagrafi.length > 0" class="col-12 d-flex justify-content-center mt-2">
+            <mat-form-field style="width: 300px;">
+                <mat-label>Vai al paragrafo ...</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let paragrafo of lezione.listaParagrafi" (click)="scroll(paragrafo)"
+                        [value]="paragrafo.titolo">
+                        {{paragrafo.titolo }}
+                        {{  paragrafo.subTitolo !== undefined && paragrafo.subTitolo !== '' ? ' - ' + paragrafo.subTitolo : ''}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-12">
+            <div class="mb-5 pb-3" *ngFor="let paragrafo of lezione.listaParagrafi">
+                <div class="row col-12">
+                    <h2 id="{{paragrafo.idComponent}}">{{paragrafo.titolo}}</h2>
+
                 </div>
-                <div style="margin-top: -5px;" class="ml-3" *ngIf="isUtenteLogged">
-                    <button class="pl-0" mat-button (click)="elimina(paragrafo)" style="color: #6c757d;">
-                       <h5>Elimina</h5>
-                    </button>
-                </div>
-            </div>
-            <div class="mt-1 mb-3 p-2" [innerHTML]="paragrafo.content"></div>
+                <div *ngIf="paragrafo.subTitolo !== undefined && paragrafo.subTitolo !== null && paragrafo.subTitolo !== ''"
+                    style="margin-top: -10px;" class="row col-12 mb-2">
+                    <h3>{{paragrafo.subTitolo}}</h3>
 
-            <div *ngFor="let code of paragrafo.codes">
-                <div class="col-12 p-2 mb-3">
-                    <div class="row mb-3">
-                        <div class="col-12 d-flex">
-                            <mat-icon class="mt-2">code</mat-icon>  <h4 class="mt-2 ml-2">{{code.title}}</h4>
+                </div>
+                <div class="row col-12 pl-3">
+
+                    <div style="margin-top: -5px;" *ngIf="isUtenteLogged">
+                        <app-modal-paragrafo-edit [paragrafo]="paragrafo"></app-modal-paragrafo-edit>
+                    </div>
+                    <div style="margin-top: -5px;" class="ml-3" *ngIf="isUtenteLogged">
+                        <button class="pl-0" mat-button (click)="elimina(paragrafo)" style="color: #6c757d;">
+                            <h5>Elimina</h5>
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-1 mb-3 p-2" [innerHTML]="paragrafo.content"></div>
+
+                <div *ngFor="let code of paragrafo.codes">
+                    <div class="col-12 p-2 mb-3">
+                        <div class="row mb-3">
+                            <div class="col-12 d-flex">
+                                <mat-icon class="mt-2">code</mat-icon>
+                                <h4 class="mt-2 ml-2">{{code.title}}</h4>
+
+                            </div>
+
+                            <div class="col-12 pl-5 mt-2" [innerHTML]="code.description">
+
+                            </div>
 
                         </div>
-
-                        <div class="col-12 pl-5 mt-2" [innerHTML]="code.description">
-
-                        </div>
+                        <ngx-codemirror [(ngModel)]="code.content" [options]="{
+                            lineNumbers: true,
+                            theme: 'eclipse',
+                            mode: 'javascript',
+                            height: 'auto',
+                            matchBrackets: true,
+                            width: 'auto',
+                            lint: true
+                        }"></ngx-codemirror>
 
                     </div>
-                    <ngx-codemirror [(ngModel)]="code.content" 
-                    [options]="{
-                        lineNumbers: true,
-                        theme: 'eclipse',
-                        mode: 'javascript',
-                        height: 'auto',
-                        matchBrackets: true,
-                        width: 'auto',
-                        lint: true
-                    }"></ngx-codemirror>
-
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
+
 </div>
