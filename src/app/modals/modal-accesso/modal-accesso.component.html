@@ -1,0 +1,118 @@
+<div class="row">
+    <div class="col-12" >
+        <h3 mat-dialog-title>{{isLogin ? 'Accedi al sito' : 'Registrati al sito'}}</h3>
+    </div>
+</div>
+<mat-dialog-content class="mat-typography" class="p-2">
+    <form class="accesso-form">
+        <mat-tab-group (selectedTabChange)="changeTab($event)">
+            <mat-tab label="Accedi">
+
+                <div class="row w-100 p-3">
+
+                    <div class="col-12 d-flex justify-content-center">
+                        <mat-form-field style="width: 235px;">
+                            <mat-label>Email</mat-label>
+                            <input type="email" matInput [(ngModel)]="user.email" [formControl]="emailFormControl"
+                                placeholder="Ex. pat@example.com" name="email">
+                            <mat-error
+                                *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                Please enter a valid email address
+                            </mat-error>
+                            <mat-error *ngIf="emailFormControl.hasError('required')">
+                                Email <strong>obbligatoria</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center">
+                        <mat-form-field style="width: 235px;">
+                            <mat-label>Password</mat-label>
+                            <input matInput [(ngModel)]="user.password" [type]="hide ? 'password' : 'text'"
+                                name="password">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+
+            </mat-tab>
+            <mat-tab label="Registrati">
+
+                <div class="row w-100 p-3">
+                    <div class="col-12 d-flex justify-content-center">
+                        <mat-form-field class="example-form-field" style="width: 235px;">
+                            <mat-label>Nome</mat-label>
+                            <input matInput type="text" [(ngModel)]="user.nome" name="nome">
+                            <button mat-button *ngIf="user.nome" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="user.nome=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <mat-form-field class="example-form-field" style="width: 235px;">
+                            <mat-label>Cognome</mat-label>
+                            <input matInput type="text" [(ngModel)]="user.cognome" name="cognome">
+                            <button mat-button *ngIf="user.cognome" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="user.cognome=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <mat-form-field class="example-full-width" style="width: 235px;">
+                            <mat-label>Email</mat-label>
+                            <input type="email" matInput [(ngModel)]="user.email" [formControl]="emailFormControl"
+                                placeholder="Ex. pat@example.com" name="email">
+                            <mat-error
+                                *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                Please enter a valid email address
+                            </mat-error>
+                            <mat-error *ngIf="emailFormControl.hasError('required')">
+                                Email <strong>obbligatoria</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <mat-form-field class="example-form-field" style="width: 235px;">
+                            <mat-label>Password</mat-label>
+                            <input matInput type="password" [(ngModel)]="user.password" name="password">
+                            <button mat-button *ngIf="user.password" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="user.password=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div *ngIf="user.password !== undefined && user.password !== ''"
+                        class="col-12 d-flex justify-content-center">
+                        <mat-form-field class="example-form-field" style="width: 235px;">
+                            <mat-label>Conferma Password</mat-label>
+                            <input matInput type="password" [(ngModel)]="confirmPassword" name="cognome2">
+                            <button mat-button *ngIf="confirmPassword" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="confirmPassword=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                            <mat-error *ngIf="confirmPassword !== user.password">
+                                Le due password devono coincidere
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+            </mat-tab>
+        </mat-tab-group>
+
+
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button *ngIf="isLogin" [mat-dialog-close]="true" cdkFocusInitial (click)="login()"
+        [disabled]="disableSave">Login</button>
+    <button mat-button *ngIf="!isLogin" [mat-dialog-close]="false" cdkFocusInitial (click)="save()"
+        [disabled]="disableSave">Registrati</button>
+</mat-dialog-actions>

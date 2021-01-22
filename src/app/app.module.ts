@@ -26,13 +26,11 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import { DelegateServiceService } from './services/delegate-service.service';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import { ModalLoginUserComponent } from './modals/modal-login-user/modal-login-user.component'
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ImageCorsoComponent } from './varie/image-corso/image-corso.component';
 import { NavBarComponent } from './navs/nav-bar/nav-bar.component';
 import { SideBarComponent } from './navs/side-bar/side-bar.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { ModalSigninUserComponent } from './modals/modal-signin-user/modal-signin-user.component';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { SwiperModule } from 'ngx-swiper-wrapper';
@@ -41,12 +39,10 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CarouselComponent } from './carousel/carousel.component';
 import { SpinnerComponent } from './varie/spinner/spinner.component';
-import { ContentModalLoginComponent } from './modals/modal-login-user/content-modal-login/content-modal-login.component';
 import { ContentModalCorsoComponent } from './modals/modal-corso/content-modal-corso/content-modal-corso.component';
 import { ContentModalCorsoEditComponent } from './modals/modal-corso-edit/content-modal-corso-edit/content-modal-corso-edit.component';
 import { ContentModalParagrafoNewComponent } from './modals/modal-paragrafo-new/content-modal-paragrafo-new/content-modal-paragrafo-new.component';
 import { ContentModalParagrafoEditComponent } from './modals/modal-paragrafo-edit/content-modal-paragrafo-edit/content-modal-paragrafo-edit.component';
-import { ContentModalSigninComponent } from './modals/modal-signin-user/content-modal-signin/content-modal-signin.component'
 import {MatDialogModule} from '@angular/material/dialog'
 import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
@@ -69,6 +65,8 @@ import { ServiceCore } from './services/core/ServiceCore';
 import { FormatTextPipe } from './pipes/format-text.pipe';
 import { NgxEditorModule } from 'ngx-editor';
 import { TextEditorComponent } from './varie/text-editor/text-editor.component';
+import { ModalAccessoComponent } from './modals/modal-accesso/modal-accesso.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -128,22 +126,18 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SideBarComponent,
     ModalParagrafoEditComponent,
     ModalParagrafoNewComponent,
-    ModalLoginUserComponent,
     SpinnerComponent,
-    ModalSigninUserComponent,
     CarouselComponent,
-    ContentModalLoginComponent,
     ContentModalCorsoComponent,
     ContentModalCorsoEditComponent,
     ContentModalParagrafoNewComponent,
     ContentModalParagrafoEditComponent,
-    ContentModalSigninComponent,
     ModalInfoCorsoComponent,
     ContentModalInfoCorsoComponent,
     PageUtenteComponent,
     FormatTextPipe,
-    TextEditorComponent
-    
+    TextEditorComponent,
+    ModalAccessoComponent
     
   ],
   imports: [
@@ -181,7 +175,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatRippleModule,
     CodemirrorModule,
     NgcCookieConsentModule.forRoot(cookieConfig),
-    NgxEditorModule
+    NgxEditorModule,
+    MatTabsModule
 
   ],
   providers: [

@@ -8,7 +8,7 @@ import { NgcCookieConsentService, NgcInitializeEvent, NgcNoCookieLawEvent, NgcSt
 import { Router } from '@angular/router';
 import { clearJWTTOKEN } from './utils/Util';
 import { MatDialog } from '@angular/material/dialog';
-import { ContentModalLoginComponent } from './modals/modal-login-user/content-modal-login/content-modal-login.component';
+import { ModalAccessoComponent } from './modals/modal-accesso/modal-accesso.component';
 
 @Component({
   selector: 'app-root',
@@ -111,7 +111,7 @@ export class AppComponent  implements OnInit, OnDestroy  {
   }
 
   openLogin() {
-    const dialogRef = this.dialog.open(ContentModalLoginComponent);
+    const dialogRef = this.dialog.open(ModalAccessoComponent);
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

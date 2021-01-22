@@ -110,4 +110,8 @@ export class SideBarComponent implements OnInit {
     this.ds.updateSideBar(false);
   }
 
+  openLogin(){
+    this.ds.updateOpenLogin(true);
+  }
+
 }

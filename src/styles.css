@@ -37,6 +37,10 @@ button:focus { outline:0 !important; }
 }
 
 
+.mat-snack-bar-container {
+
+  margin-bottom: 80px !important;
+}
 
 
 p{

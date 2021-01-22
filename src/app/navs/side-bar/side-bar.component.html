@@ -17,9 +17,7 @@
                 {{utente !== undefined ? utente.nome : ''}} {{utente !== undefined ? utente.cognome : ''}}
             </button>
         </div>
-        <div *ngIf="!isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
-            <app-modal-signin-user></app-modal-signin-user>
-        </div>
+       
         <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
             <button mat-button (click)="logout()" style="color: #6c757d;">
                 <mat-icon style="margin-top: -3px;">exit_to_app</mat-icon>
@@ -27,7 +25,10 @@
             </button>
         </div>
         <div *ngIf="!isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
-            <app-modal-login-user></app-modal-login-user>
+            <button mat-button (click)="openLogin()" style="color: #6c757d;">
+                <mat-icon style="margin-top: -3px;">login</mat-icon>
+                Accedi / Registrati
+            </button>
         </div>
         <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
             <app-modal-corso></app-modal-corso>

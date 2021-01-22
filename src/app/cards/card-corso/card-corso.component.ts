@@ -6,8 +6,7 @@ import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { User } from 'src/app/model/User';
 import { getUserLS, isNotEmptyArray, isNotNullObj, isSameUser } from 'src/app/utils/Util';
-import { MatDialog } from '@angular/material/dialog';
-import { ContentModalLoginComponent } from 'src/app/modals/modal-login-user/content-modal-login/content-modal-login.component';
+
 import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { Lettura } from 'src/app/model/Lettura';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -90,7 +89,6 @@ export class CardCorsoComponent implements OnInit {
               private fb: FormBuilder,
               private stripeService: StripeService ,
               private us: UtenteServiceService ,
-              private dialog: MatDialog ,
               private cs: CorsoServiceService ,
               private route: Router,
               private ds: DelegateServiceService) {
@@ -169,12 +167,8 @@ export class CardCorsoComponent implements OnInit {
     this.isShowInfo = !this.isShowInfo;
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(ContentModalLoginComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+  openLogin() {
+      this.ds.updateOpenLogin(true);
   }
 
   next(corso: Corso){
@@ -193,7 +187,7 @@ export class CardCorsoComponent implements OnInit {
       }
 
     } else {
-      this.openDialog();
+      this.openLogin();
     }
 
   }

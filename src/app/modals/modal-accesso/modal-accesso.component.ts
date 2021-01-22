@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/model/User';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { isEmptyString } from 'src/app/utils/Util';
-import {ContentModalSigninComponent} from 'src/app/modals/modal-signin-user/content-modal-signin/content-modal-signin.component'
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-content-modal-login',
-  templateUrl: './content-modal-login.component.html',
-  styleUrls: ['./content-modal-login.component.css']
+  selector: 'app-modal-accesso',
+  templateUrl: './modal-accesso.component.html',
+  styleUrls: ['./modal-accesso.component.css']
 })
-export class ContentModalLoginComponent implements OnInit {
+export class ModalAccessoComponent implements OnInit {
 
+  isLogin: boolean = true;
+
+  confirmPassword: string = '';
+  
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -51,12 +53,23 @@ export class ContentModalLoginComponent implements OnInit {
       });
   }
 
-  openDialogSignin(){
-    const dialogRef = this.dialog.open(ContentModalSigninComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+  save() {
+    this.us.getOBSSignIn(this.user).subscribe(next =>{
+      this.ds.updateResultService("Registrazione avvenuta con successo"); 
+      this.ds.updateSpinner(false);
+      this.ds.updateOpenLogin(true);
+    },error => {
+      this.ds.updateResultService("Errore durante la registrazione");
+      this.ds.updateSpinner(false);
     });
+ 
   }
+
+  changeTab(event: any){
+    this.user = new User();
+    this.isLogin = (event.index === 0);
+  }
+
 
 }
