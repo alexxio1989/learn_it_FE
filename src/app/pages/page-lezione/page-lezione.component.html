@@ -34,7 +34,7 @@
         <div class="col-12">
             <div class="mb-5 pb-2" *ngFor="let paragrafo of lezione.listaParagrafi">
                 <div class="row col-12 pl-4">
-                    <h3 id="{{paragrafo.idComponent}}">{{paragrafo.titolo}}</h3>
+                    <h3 id="{{paragrafo.idComponent}}" class="title-parag">{{paragrafo.titolo}}</h3>
 
                 </div>
                 <div *ngIf="paragrafo.subTitolo !== undefined && paragrafo.subTitolo !== null && paragrafo.subTitolo !== ''"
