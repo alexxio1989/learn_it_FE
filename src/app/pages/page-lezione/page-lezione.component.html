@@ -7,7 +7,7 @@
     </div>
     <div class="row">
         <div class="col-12 d-flex justify-content-center">
-            <h3 class="display-4" style="font-size: 2rem">{{lezione.subTitle}}</h3>
+            <h3 class="display-4" style="font-size: 2rem ;opacity: 0.6 !important;">{{lezione.subTitle}}</h3>
         </div>
     </div>
 
@@ -30,24 +30,24 @@
         </div>
     </div>
 
-    <div class="row mt-3">
+    <div class="row mt-2">
         <div class="col-12">
-            <div class="mb-5 pb-3" *ngFor="let paragrafo of lezione.listaParagrafi">
-                <div class="row col-12">
-                    <h2 id="{{paragrafo.idComponent}}">{{paragrafo.titolo}}</h2>
+            <div class="mb-5 pb-2" *ngFor="let paragrafo of lezione.listaParagrafi">
+                <div class="row col-12 pl-4">
+                    <h3 id="{{paragrafo.idComponent}}">{{paragrafo.titolo}}</h3>
 
                 </div>
                 <div *ngIf="paragrafo.subTitolo !== undefined && paragrafo.subTitolo !== null && paragrafo.subTitolo !== ''"
-                    style="margin-top: -10px;" class="row col-12 mb-2">
-                    <h3>{{paragrafo.subTitolo}}</h3>
+                    class="row col-12 mb-2 pl-4">
+                    <h4>{{paragrafo.subTitolo}}</h4>
 
                 </div>
-                <div class="row col-12 pl-3">
+                <div class="row col-12 pl-4">
 
-                    <div style="margin-top: -5px;" *ngIf="isUtenteLogged">
+                    <div *ngIf="isUtenteLogged" style="margin-left: -3px;">
                         <app-modal-paragrafo-edit [paragrafo]="paragrafo"></app-modal-paragrafo-edit>
                     </div>
-                    <div style="margin-top: -5px;" class="ml-3" *ngIf="isUtenteLogged">
+                    <div class="ml-3" *ngIf="isUtenteLogged">
                         <button class="pl-0" mat-button (click)="elimina(paragrafo)" style="color: #6c757d;">
                             <h5>Elimina</h5>
                         </button>
