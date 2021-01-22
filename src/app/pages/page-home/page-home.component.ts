@@ -30,9 +30,7 @@ export class PageHomeComponent implements OnInit , IPageCore {
 
 
   constructor(private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService,private deviceService: DeviceDetectorService) { 
-    this.ds.getOBSSpinner().subscribe(next => {
-      this.renderPage = !next;
-    })
+    
   }
 
 
@@ -64,6 +62,7 @@ export class PageHomeComponent implements OnInit , IPageCore {
         });
 
       }
+      this.renderPage = true;
 
     }, error => {
       this.ds.updateSpinner(false);

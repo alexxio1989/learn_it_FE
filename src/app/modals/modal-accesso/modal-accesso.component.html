@@ -96,9 +96,11 @@
                                 (click)="confirmPassword=''">
                                 <mat-icon>close</mat-icon>
                             </button>
-                            <mat-error *ngIf="confirmPassword !== user.password">
+                            <mat-error
+                                *ngIf="passwordConfermaControl.hasError('password') && !passwordConfermaControl.hasError('required')">
                                 Le due password devono coincidere
                             </mat-error>
+                       
                         </mat-form-field>
                     </div>
                 </div>
@@ -112,7 +114,7 @@
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
     <button mat-button *ngIf="isLogin" [mat-dialog-close]="true" cdkFocusInitial (click)="login()"
-        [disabled]="disableSave">Login</button>
+        [disabled]="disableLogin">Login</button>
     <button mat-button *ngIf="!isLogin" [mat-dialog-close]="false" cdkFocusInitial (click)="save()"
-        [disabled]="disableSave">Registrati</button>
+        [disabled]="disableSignin">Registrati</button>
 </mat-dialog-actions>

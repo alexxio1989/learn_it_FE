@@ -23,6 +23,11 @@ export class ModalAccessoComponent implements OnInit {
     Validators.email,
   ]);
 
+  passwordConfermaControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
   user: User = new User();
 
   hide: boolean;
@@ -31,8 +36,12 @@ export class ModalAccessoComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  get disableSave(){
+  get disableLogin(){
     return  isEmptyString(this.user.email) || isEmptyString(this.user.password);
+  }
+
+  get disableSignin(){
+    return isEmptyString(this.user.nome) || isEmptyString(this.user.cognome) || isEmptyString(this.user.email) || isEmptyString(this.user.password) || isEmptyString(this.confirmPassword) || this.confirmPassword !== this.user.password;
   }
  
   login() {

@@ -1,58 +1,65 @@
-
 <mat-card *ngIf="openSideBar" class="mat-elevation-z10 p-3 border-0 side-bar">
     <div class="row">
         <div class="col-12 text-right">
-            <button  mat-button (click) = "close()">
+            <button mat-button (click)="close()">
                 <mat-icon>clear</mat-icon>
             </button>
         </div>
     </div>
-    <div class="d-flex flex-column">
-        <div class="w-100 p-2 d-flex justify-content-center">
-            <button mat-button></button>
-        </div>
-        <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
-            <button mat-button (click)="goToPageUtente()" style="color: #6c757d;">
-                <mat-icon style="margin-top: -3px;">account_circle</mat-icon>
-                {{utente !== undefined ? utente.nome : ''}} {{utente !== undefined ? utente.cognome : ''}}
-            </button>
-        </div>
-       
-        <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
-            <button mat-button (click)="logout()" style="color: #6c757d;">
-                <mat-icon style="margin-top: -3px;">exit_to_app</mat-icon>
-                Logout
-            </button>
-        </div>
-        <div *ngIf="!isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
-            <button mat-button (click)="openLogin()" style="color: #6c757d;">
-                <mat-icon style="margin-top: -3px;">login</mat-icon>
-                Accedi / Registrati
-            </button>
-        </div>
-        <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
-            <app-modal-corso></app-modal-corso>
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex flex-column">
+                <div class="w-100 p-2 d-flex justify-content-center">
+                    <button mat-button></button>
+                </div>
+                <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
+                    <button mat-button (click)="goToPageUtente()" style="color: #6c757d;">
+                        <mat-icon style="margin-top: -3px;">account_circle</mat-icon>
+                        {{utente !== undefined ? utente.nome : ''}} {{utente !== undefined ? utente.cognome : ''}}
+                    </button>
+                </div>
+    
+                <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
+                    <button mat-button (click)="logout()" style="color: #6c757d;">
+                        <mat-icon style="margin-top: -3px;">exit_to_app</mat-icon>
+                        Logout
+                    </button>
+                </div>
+                <div *ngIf="!isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
+                    <button mat-button (click)="openLogin()" style="color: #6c757d;">
+                        <mat-icon style="margin-top: -3px;">login</mat-icon>
+                        Accedi / Registrati
+                    </button>
+                </div>
+                <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
+                    <app-modal-corso></app-modal-corso>
+                </div>
+            </div>
         </div>
     </div>
 
-    <mat-divider style="margin-bottom: 5px;"></mat-divider>
+    <mat-divider></mat-divider>
 
-    
-    <mat-accordion class="example-headers-align" multi>
-        <div *ngFor="let types of tipoCorsoListFilter" class="d-flex flex-column">
-            <mat-expansion-panel
-                style="box-shadow: 0px 0px 1px -2px rgba(0, 0, 0, 0.0), 0px 2px 2px 0px rgba(0, 0, 0, 0.0), 0px 1px 0px 0px rgba(0, 0, 0, 0.0);">
-                <mat-expansion-panel-header>
-                    <mat-panel-title style="color: #6c757d ; font-weight: 500">
-                        {{types.descrizione}}
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
+    <div class="row mt-3">
+        <div class="col-12">
+            <mat-accordion class="example-headers-align mt-3" multi>
+                <div *ngFor="let types of tipoCorsoListFilter" class="d-flex flex-column">
+                    <mat-expansion-panel
+                        style="box-shadow: 0px 0px 1px -2px rgba(0, 0, 0, 0.0), 0px 2px 2px 0px rgba(0, 0, 0, 0.0), 0px 1px 0px 0px rgba(0, 0, 0, 0.0);">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title style="color: #6c757d ; font-weight: 500">
+                                {{types.descrizione}}
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
 
-                <div *ngFor="let subtype of types.sottoTipi" class="d-flex flex-column">
-                    <button style=" color: #6c757d;" mat-button
-                        (click)="filterListCorsi(subtype)">{{subtype.descrizione}}</button>
+                        <div *ngFor="let subtype of types.sottoTipi" class="d-flex flex-column">
+                            <button style=" color: #6c757d;" mat-button
+                                (click)="filterListCorsi(subtype)">{{subtype.descrizione}}</button>
+                        </div>
+                    </mat-expansion-panel>
                 </div>
-            </mat-expansion-panel>
+            </mat-accordion>
+
         </div>
-    </mat-accordion>
+    </div>
 </mat-card>
