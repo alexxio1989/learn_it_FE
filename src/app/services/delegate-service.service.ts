@@ -23,9 +23,9 @@ export class DelegateServiceService {
 
   constructor() {}
 
-  checkUserLogged(): boolean{
+  checkUserLogged(page: string): boolean{
     if(getUserLS()){
-      this.updateAbilitaNavigazione(true);
+      this.updateAbilitaNavigazione(page);
       return true;
     } else {
       this.updateOpenLogin(true)
@@ -83,8 +83,8 @@ export class DelegateServiceService {
     return this._sbjUser.asObservable();
   }
 
-  updateAbilitaNavigazione(update: boolean) {
-    this._sbjAbilitaNavigazione.next(update);
+  updateAbilitaNavigazione(page: string) {
+    this._sbjAbilitaNavigazione.next(page);
   }
 
   getOBSAbilitaNavigazione(): Observable<any> {

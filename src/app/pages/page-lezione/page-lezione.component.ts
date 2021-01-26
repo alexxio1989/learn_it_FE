@@ -18,6 +18,8 @@ import { IPageCore } from '../IPageCore';
   styleUrls: ['./page-lezione.component.scss']
 })
 export class PageLezioneComponent implements OnInit, IPageCore {
+
+  public PAGE = 'LEZIONE';
   toppings = new FormControl();
   edit: boolean;
   lezione: Lezione = new Lezione();
@@ -25,6 +27,8 @@ export class PageLezioneComponent implements OnInit, IPageCore {
   isExternalLink: boolean;
   isDevice: boolean;
   renderPage: boolean;
+
+
 
 
   constructor(private deviceService: DeviceDetectorService ,
@@ -58,11 +62,11 @@ export class PageLezioneComponent implements OnInit, IPageCore {
       if(id !== undefined && id !== null && parseInt(id) > 0){
         
         this.ds.getOBSAbilitaNavigazione().subscribe(next => {
-          if(next){
+          if(next === this.PAGE){
             this.retrieveLezione(id);
           }
         })
-        this.ds.checkUserLogged();
+        this.ds.checkUserLogged(this.PAGE);
 
       } else {
         this.route.navigate(['/']);

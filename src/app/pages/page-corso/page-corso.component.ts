@@ -14,6 +14,8 @@ import { IPageCore } from '../IPageCore';
 })
 export class PageCorsoComponent implements OnInit, IPageCore {
 
+  public PAGE = 'CORSO';
+
   corso: Corso = new Corso();
 
   isEmptyLezioni: boolean;
@@ -41,11 +43,11 @@ export class PageCorsoComponent implements OnInit, IPageCore {
 
       if (id !== undefined && id !== null && parseInt(id) > 0) {
         this.ds.getOBSAbilitaNavigazione().subscribe(next => {
-          if(next){
+          if(next === this.PAGE){
             this.retrieveCorso(id);
           }
         })
-        this.ds.checkUserLogged();
+        this.ds.checkUserLogged(this.PAGE);
 
       } else {
         this.route.navigate(['/']);
