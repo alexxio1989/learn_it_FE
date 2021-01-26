@@ -13,6 +13,8 @@ export class DelegateServiceService {
 
   isOpenSideBar: boolean;
 
+  page: string;
+
   private _sbjAbilitaNavigazione= new Subject();
   private _sbjOpenLogin = new Subject();
   private _sbjSpinner = new Subject();

@@ -55,7 +55,7 @@ export class ModalAccessoComponent implements OnInit {
         this.ds.updateUser(next.body.obj); 
         this.ds.updateSideBar(false);
         this.ds.updateSpinner(false);
-        this.ds.updateAbilitaNavigazione(true);
+        this.ds.updateAbilitaNavigazione(this.ds.page);
       },error => {
         this.ds.updateResultService("Errore durante la login");
         this.ds.updateSpinner(false);

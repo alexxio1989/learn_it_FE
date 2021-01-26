@@ -66,6 +66,7 @@ export class PageLezioneComponent implements OnInit, IPageCore {
             this.retrieveLezione(id);
           }
         })
+        this.ds.page = this.PAGE;
         this.ds.checkUserLogged(this.PAGE);
 
       } else {

@@ -47,6 +47,7 @@ export class PageCorsoComponent implements OnInit, IPageCore {
             this.retrieveCorso(id);
           }
         })
+        this.ds.page = this.PAGE;
         this.ds.checkUserLogged(this.PAGE);
 
       } else {
