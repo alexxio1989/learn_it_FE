@@ -139,7 +139,7 @@ export class CardCorsoComponent implements OnInit {
       this.ds.utente = next.obj;
       localStorage.setItem('CORSO' , JSON.stringify(corso));
       this.cs.corsoSelected = corso;
-      this.route.navigate(['/corso']);
+      this.route.navigate(['/corso']); 
     },error =>{
       this.ds.updateSpinner(false);
       this.ds.updateResultService(error.status);
