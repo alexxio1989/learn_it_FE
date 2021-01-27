@@ -15,6 +15,14 @@ export class ContentModalParagrafoEditComponent implements OnInit {
   
   ngOnInit(): void {
     this.paragrafo = this.ps.paragrafoSelected;
+    if(this.paragrafo.codes !== undefined && this.paragrafo.codes !== null && this.paragrafo.codes.length > 0){
+
+    }
+    this.paragrafo.codes.forEach(code => {
+      if(code.description === undefined || code.description === null) {
+        code.description = '';
+      }
+    })
   }
 
   constructor(private ps: ParagrafoServiceService,private ds: DelegateServiceService) {}
