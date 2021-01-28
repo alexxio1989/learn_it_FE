@@ -37,4 +37,9 @@ export class UtenteServiceService {
 
     return this.http.post(ServiceCore.baseURl + "/router/insertLettura", lettura ,{headers});
   }
+
+  getOBSRecuperoPsw(utente: User): Observable<any>{
+    this.ds.updateSpinner(true);
+    return this.http.post(ServiceCore.baseURl + "/router/richiediPws", utente);
+  }
 }

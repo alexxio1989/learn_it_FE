@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 export class ModalAccessoComponent implements OnInit {
 
   isLogin: boolean = true;
+  isRecuperaPassword: boolean = false;
 
   confirmPassword: string = '';
   
@@ -42,6 +43,10 @@ export class ModalAccessoComponent implements OnInit {
 
   get disableSignin(){
     return isEmptyString(this.user.nome) || isEmptyString(this.user.cognome) || isEmptyString(this.user.email) || isEmptyString(this.user.password) || isEmptyString(this.confirmPassword) || this.confirmPassword !== this.user.password;
+  }
+
+  get disableRecuperaPsw(){
+    return  isEmptyString(this.user.email);
   }
  
   login() {
@@ -78,6 +83,23 @@ export class ModalAccessoComponent implements OnInit {
   changeTab(event: any){
     this.user = new User();
     this.isLogin = (event.index === 0);
+  }
+
+  recuperaPws(){
+
+    this.us.getOBSRecuperoPsw(this.user).subscribe(next => {
+      this.ds.updateResultService("Recupero Password avvenuto con successo : controlla la tua Email");
+      this.ds.updateSpinner(false);
+      const dialogRef = this.dialog.open(ModalAccessoComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+    },error => {
+      this.ds.updateResultService("Errore durante il recupero della password");
+      this.ds.updateSpinner(false);
+    })
+
   }
 
 
