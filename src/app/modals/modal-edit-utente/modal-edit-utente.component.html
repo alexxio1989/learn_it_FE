@@ -20,6 +20,14 @@
 
                 <div class="row w-100 p-3">
                     <div class="col-12 d-flex justify-content-center">
+                        <button mat-button (click)="fileInput.click()"> 
+                            <mat-icon>add_photo_alternate</mat-icon>
+                            <span>Seleziona immagine</span>
+                            <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
+                        </button>
+            
+                    </div>
+                    <div class="col-12 d-flex justify-content-center mt-3">
                         <mat-form-field class="example-form-field" style="width: 235px;">
                             <mat-label>Nome</mat-label>
                             <input matInput type="text" [(ngModel)]="user.nome" name="nome">
@@ -63,16 +71,6 @@
                             </button>
                         </mat-form-field>
                     </div>
-
-                    <div class="col-12 d-flex justify-content-center">
-                        <button mat-button (click)="fileInput.click()"> 
-                            <mat-icon>add_photo_alternate</mat-icon>
-                            <span>Seleziona immagine</span>
-                            <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
-                        </button>
-            
-                    </div>
-                
                     
                 </div>
 

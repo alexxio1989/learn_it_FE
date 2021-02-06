@@ -55,8 +55,8 @@
     
                 </mat-tab>
                 <mat-tab label="I Tuoi Corsi">
-                    <div class="row w-100" *ngIf="utente !== undefined && utente !== null && utente.propriCorsi !== null && utente.propriCorsi.length > 0"
-                        class="one-edge-shadow p-2 pt-4">
+                    <div *ngIf="utente !== undefined && utente !== null && utente.propriCorsi !== null && utente.propriCorsi.length > 0"
+                        class="one-edge-shadow p-2 row w-100">
                         <div class="row">
                             <div class="col-12">
                                 <h3 class="text-muted" style="font-weight: 400;">I Tuoi corsi</h3>
@@ -92,7 +92,7 @@
                     </div>
                 
                     <div  *ngIf="utente !== undefined && utente !== null && (utente.propriCorsi === undefined || utente.propriCorsi === null || utente.propriCorsi.length === 0)"
-                        class="one-edge-shadow row w-100">
+                        class="one-edge-shadow row w-100 p-2">
                         
                             <div class="col-12">
                                 <h3 class="text-muted" style="font-weight: 400;">I Tuoi corsi</h3>
@@ -109,7 +109,7 @@
                 <mat-tab label="I Corsi Letti">
     
                     <div *ngIf="utente !== undefined && utente !== null && utente.corsiLetti !== undefined && utente.corsiLetti !== null && utente.corsiLetti.length > 0"
-                        class="one-edge-shadow row w-100">
+                        class="one-edge-shadow row w-100 p-2">
                        
                             <div class="col-12">
                                 <h3 class="text-muted" style="font-weight: 400;">I Corsi che stai leggendo</h3>
@@ -139,7 +139,7 @@
                     </div>
                 
                     <div *ngIf="utente !== undefined && utente !== null && (utente.corsiLetti === undefined || utente.corsiLetti === null || utente.corsiLetti.length === 0)"
-                        class="one-edge-shadow row w-100">
+                        class="one-edge-shadow row w-100 p-2">
                         
                             <div class="col-12">
                                 <h3 class="text-muted" style="font-weight: 400;">I Corsi che stai seguendo</h3>
