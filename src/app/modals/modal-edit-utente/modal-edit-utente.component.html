@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-12" >
+        <h3 mat-dialog-title>Modifica Profilo</h3>
+    </div>
+</div>
+<mat-dialog-content class="mat-typography" class="p-2">
+    <div class="row w-100 p-3">
+        <div class="col-12 d-flex justify-content-center">
+
+            <div class="box-img-utente shadow">
+                <img *ngIf="user.img !== undefined && user.img !== null && user.img !== ''" alt="Web Studio"
+                class="card-img" src="{{user.img}}" />
+                <img *ngIf="user.img === undefined || user.img === null || user.img === ''" alt="Web Studio"
+                class="card-img" src="../../../assets/images/default.png" />
+            </div>
+
+        </div>
+    </div>
+    <form class="accesso-form">
+
+                <div class="row w-100 p-3">
+                    <div class="col-12 d-flex justify-content-center">
+                        <mat-form-field class="example-form-field" style="width: 235px;">
+                            <mat-label>Nome</mat-label>
+                            <input matInput type="text" [(ngModel)]="user.nome" name="nome">
+                            <button mat-button *ngIf="user.nome" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="user.nome=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <mat-form-field class="example-form-field" style="width: 235px;">
+                            <mat-label>Cognome</mat-label>
+                            <input matInput type="text" [(ngModel)]="user.cognome" name="cognome">
+                            <button mat-button *ngIf="user.cognome" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="user.cognome=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <mat-form-field class="example-full-width" style="width: 235px;">
+                            <mat-label>Email</mat-label>
+                            <input type="email" matInput [(ngModel)]="user.email" [formControl]="emailFormControl"
+                                placeholder="Ex. pat@example.com" name="email">
+                            <mat-error
+                                *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                Please enter a valid email address
+                            </mat-error>
+                            <mat-error *ngIf="emailFormControl.hasError('required')">
+                                Email <strong>obbligatoria</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <mat-form-field class="example-form-field" style="width: 235px;">
+                            <mat-label>Password</mat-label>
+                            <input matInput type="password" [(ngModel)]="user.password" name="password">
+                            <button mat-button *ngIf="user.password" matSuffix mat-icon-button aria-label="Clear"
+                                (click)="user.password=''">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center">
+                        <button mat-button (click)="fileInput.click()"> 
+                            <mat-icon>add_photo_alternate</mat-icon>
+                            <span>Seleziona immagine</span>
+                            <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
+                        </button>
+            
+                    </div>
+                
+                    
+                </div>
+
+       
+
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    
+    <button mat-button mat-dialog-close >Chiudi</button>
+    <button mat-button [mat-dialog-close]="false" (click)="salva()" [disabled]="disableSave">Salva</button>
+</mat-dialog-actions>

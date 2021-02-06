@@ -7,6 +7,8 @@ import { User } from '../../model/User';
 import { getUserLS , isNullObj} from '../../utils/Util';
 import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { IPageCore } from '../IPageCore';
+import { ModalEditUtenteComponent } from 'src/app/modals/modal-edit-utente/modal-edit-utente.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-page-utente',
@@ -18,7 +20,7 @@ export class PageUtenteComponent implements OnInit , IPageCore{
   utente: User;
   renderPage: boolean;
 
-  constructor(private route: Router,private cs: CorsoServiceService,private ds: DelegateServiceService,private us: UtenteServiceService) {
+  constructor(private route: Router,private cs: CorsoServiceService,private ds: DelegateServiceService,private us: UtenteServiceService,public dialog: MatDialog) {
     this.ds.getOBSSpinner().subscribe(next => {
       this.renderPage = !next;
     })
@@ -63,6 +65,16 @@ export class PageUtenteComponent implements OnInit , IPageCore{
     }, error => {
       this.ds.updateResultService("Errore durante il recuper dei tuoi corsi");
       this.ds.updateSpinner(false);
+    });
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ModalEditUtenteComponent);
+
+    this.ds.utente = this.utente;
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
     });
   }
 }

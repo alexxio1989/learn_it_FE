@@ -38,6 +38,13 @@ export class UtenteServiceService {
     return this.http.post(ServiceCore.baseURl + "/router/insertLettura", lettura ,{headers});
   }
 
+  getOBSUpdateUser(utente: User): Observable<any>{
+    this.ds.updateSpinner(true);
+    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
+
+    return this.http.post(ServiceCore.baseURl + "/router/updateUtente", utente ,{headers});
+  }
+
   getOBSRecuperoPsw(utente: User): Observable<any>{
     this.ds.updateSpinner(true);
     return this.http.post(ServiceCore.baseURl + "/router/richiediPws", utente);

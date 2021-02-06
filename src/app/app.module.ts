@@ -67,6 +67,7 @@ import { NgxEditorModule } from 'ngx-editor';
 import { TextEditorComponent } from './varie/text-editor/text-editor.component';
 import { ModalAccessoComponent } from './modals/modal-accesso/modal-accesso.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { ModalEditUtenteComponent } from './modals/modal-edit-utente/modal-edit-utente.component';
 
 
 
@@ -137,7 +138,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     PageUtenteComponent,
     FormatTextPipe,
     TextEditorComponent,
-    ModalAccessoComponent
+    ModalAccessoComponent,
+    ModalEditUtenteComponent
     
   ],
   imports: [

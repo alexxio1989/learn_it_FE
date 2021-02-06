@@ -1,4 +1,5 @@
 import { Corso } from './Corso';
+import { Dominio } from './Dominio';
 
 export class User{
     id: number;
@@ -6,7 +7,10 @@ export class User{
     password: string;
     nome: string;
     cognome: string;
+    tipo: Dominio = new Dominio();
     corsiLetti: Corso[];
     propriCorsi: Corso[];
+    descrizione: string;
+    img: string;
     
 }
