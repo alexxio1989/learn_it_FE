@@ -19,6 +19,7 @@ export class PageUtenteComponent implements OnInit , IPageCore{
 
   utente: User;
   renderPage: boolean;
+  renderEditorInfoUser: boolean;
 
   constructor(private route: Router,private cs: CorsoServiceService,private ds: DelegateServiceService,private us: UtenteServiceService,public dialog: MatDialog) {
     this.ds.getOBSSpinner().subscribe(next => {
@@ -77,4 +78,16 @@ export class PageUtenteComponent implements OnInit , IPageCore{
       console.log(`Dialog result: ${result}`);
     });
   }
+
+  updateUser(){
+    this.us.getOBSUpdateUser(this.utente).subscribe(next => {
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService(next.status);
+    },error => {
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService("Errore durante l'aggiornamento utente");
+    })
+
+  }
+
 }
