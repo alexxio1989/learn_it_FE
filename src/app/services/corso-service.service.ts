@@ -54,7 +54,7 @@ export class CorsoServiceService {
 
   getOBSInsertTypes(dominio: Dominio): Observable<any>{
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post("http://routerbe.herokuapp.com/router/insertType" , dominio , {headers});
+    return this.http.post(ServiceCore.baseURl + "/router/insertType" , dominio , {headers});
   }
 
   getOBSInsertSubTypes(dominio: SubDominio): Observable<any>{

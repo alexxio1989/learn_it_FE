@@ -1,19 +1,19 @@
 <div *ngIf="!renderPage"></div>
 <div *ngIf="renderPage">
-    <div class="row">
-        <div class="col-12">
-            <div class="box-img-utente shadow d-inline-block">
+    <div class="row mb-3">
+        <div class="col-12 ">
+            <div class="box-img-utente shadow ">
                 <img *ngIf="utente.img !== undefined && utente.img !== null && utente.img !== ''" alt="Web Studio"
                 class="card-img" src="{{utente.img}}" />
                 <img *ngIf="utente.img === undefined || utente.img === null || utente.img === ''" alt="Web Studio"
                 class="card-img" src="../../../assets/images/default.png" />
             </div>
-            <div class="col-12">
-                <div class="ml-2 mt-3 d-inline-block">
+            <div class="col-12 d-flex justify-content-center">
+                <div class="ml-5 mt-3 d-inline-block">
                     <h4>{{utente.nome}} {{utente.cognome}}</h4>
     
                 </div>
-                <div class="d-inline-block">
+                <div class="d-inline-block pt-2">
                     <button mat-button (click)="openDialog()">
                         <mat-icon style="font-size: 20px; opacity: 0.6 !important;">edit_outline</mat-icon>
                     </button>
@@ -57,13 +57,9 @@
                 <mat-tab label="I Tuoi Corsi">
                     <div *ngIf="utente !== undefined && utente !== null && utente.propriCorsi !== null && utente.propriCorsi.length > 0"
                         class="one-edge-shadow p-2 row w-100">
-                        <div class="row">
-                            <div class="col-12">
-                                <h3 class="text-muted" style="font-weight: 400;">I Tuoi corsi</h3>
-                            </div>
-                        </div>
+                      
                 
-                        <mat-list role="list">
+                        <mat-list role="list" class="w-100">
                 
                 
                             <mat-list-item *ngFor="let corso of utente.propriCorsi" role="listitem" class="w-100 h-100 mb-2 p-1"
@@ -94,11 +90,9 @@
                     <div  *ngIf="utente !== undefined && utente !== null && (utente.propriCorsi === undefined || utente.propriCorsi === null || utente.propriCorsi.length === 0)"
                         class="one-edge-shadow row w-100 p-2">
                         
-                            <div class="col-12">
-                                <h3 class="text-muted" style="font-weight: 400;">I Tuoi corsi</h3>
-                            </div>
+                            
                         
-                            <div class="col-12">
+                            <div class="col-12 d-flex justify-content-center mt-3">
                                 Non hai pubblicato ancora nessun corso
                             </div>
                         
@@ -141,11 +135,9 @@
                     <div *ngIf="utente !== undefined && utente !== null && (utente.corsiLetti === undefined || utente.corsiLetti === null || utente.corsiLetti.length === 0)"
                         class="one-edge-shadow row w-100 p-2">
                         
-                            <div class="col-12">
-                                <h3 class="text-muted" style="font-weight: 400;">I Corsi che stai seguendo</h3>
-                            </div>
+                          
                        
-                            <div class="col-12">
+                            <div class="col-12 d-flex justify-content-center mt-3">
                                 Non stai seguendo alcun corso
                             </div>
                        
