@@ -1,4 +1,10 @@
 <div class="card">
+  <div class="card-header pb-0">
+    
+    <div class=" d-flex justify-content-center " style="margin-top: -8px;">
+      <app-info-utente [utente] = "corso.owner" [isSideBar] ="false" [isCardCorso] ="true"></app-info-utente>
+    </div>
+  </div>
   <div *ngIf="!isPAy" class="card-horizontal pl-3">
 
     <div class="row pl-0 pr-0 w-100">
@@ -25,7 +31,7 @@
           <div class=" d-flex justify-content-center ">
             <h5>Prezzo : <b style="opacity: 0.7;">{{corso.prezzo > 0 ? corso.prezzo + '€' : 'Free' }}</b></h5>
           </div>
-    
+         
           <div *ngIf="!isShowInfo" class="row d-flex justify-content-center" >
             <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
             <p class="card-text ml-1" style="margin-top: -3px;"><small class="text-muted">( {{corso.feeds.length}}

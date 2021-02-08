@@ -16,6 +16,7 @@ export class InfoUtenteComponent implements OnInit {
 
   @Input() utente: User;
   @Input() isSideBar: boolean;
+  @Input() isCardCorso: boolean;
   isDevice: boolean;
 
   imgCrop = "150px";
@@ -26,17 +27,14 @@ export class InfoUtenteComponent implements OnInit {
     this.isDevice = this.deviceService.isMobile();
     this.utente.attivita = "Sviluppatore Front-End / Back-End"
 
-    if(this.isSideBar){
+    if(this.isCardCorso){
+      this.imgCrop = "30px";
+    } else if(this.isSideBar){
       this.imgCrop = "60px";
     } else {
-
-      if(this.isDevice){
-        this.imgCrop = "100px";
-      } else {
-        this.imgCrop = "150px"
-      }
-
+      this.imgCrop = "100px";
     }
+
 
   }
 

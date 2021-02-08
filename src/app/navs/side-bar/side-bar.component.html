@@ -6,7 +6,7 @@
             </button>
         </div>
         <div *ngIf="isUtenteLogged" class="col-12">
-            <app-info-utente [utente] = "utente" [isSideBar] ="true"></app-info-utente>
+            <app-info-utente [utente] = "utente" [isSideBar] ="true" [isCardCorso] ="false"></app-info-utente>
         </div>
         <div *ngIf="!isUtenteLogged" class="col-12 p-2 pb-3 d-flex justify-content-center">
             <button mat-button (click)="openLogin()" style="color: #6c757d;">

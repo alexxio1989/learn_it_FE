@@ -28,5 +28,9 @@
     animation-play-state: paused;
   }
 
+  app-info-utente {
+    width: 100%;
+  }
+
 
   
