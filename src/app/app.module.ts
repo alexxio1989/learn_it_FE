@@ -69,6 +69,8 @@ import { ModalAccessoComponent } from './modals/modal-accesso/modal-accesso.comp
 import {MatTabsModule} from '@angular/material/tabs';
 import { ModalEditUtenteComponent } from './modals/modal-edit-utente/modal-edit-utente.component';
 import { InfoUtenteComponent } from './varie/info-utente/info-utente.component';
+import { PageAdminComponent } from './pages/page-admin/page-admin.component';
+import { ModalRichiestaComponent } from './modals/modal-richiesta/modal-richiesta.component';
 
 
 
@@ -142,7 +144,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     TextEditorComponent,
     ModalAccessoComponent,
     ModalEditUtenteComponent,
-    InfoUtenteComponent
+    InfoUtenteComponent,
+    PageAdminComponent,
+    ModalRichiestaComponent
     
   ],
   imports: [

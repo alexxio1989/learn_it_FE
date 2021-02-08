@@ -27,9 +27,27 @@
                         Logout
                     </button>
                 </div>
-               
-                <div class="w-100 p-2 d-flex justify-content-center">
+                <div *ngIf="isSuperUser || isWriter" class="w-100 p-2 d-flex justify-content-center">
                     <app-modal-corso></app-modal-corso>
+                </div>
+                <div *ngIf="isUser" class="row p-2">
+                    <div class="col-12 d-flex justify-content-center">
+                        <h6>Vuoi creare i tuoi corsi?</h6>
+
+                    </div>
+                    <div class="col-12 d-flex justify-content-center pt-0">
+                        <button mat-button style="color: #6c757d; margin-top: -20px;" (click) ="openRichiesta()">
+                            Invia richiesta
+                        </button>
+
+                    </div>
+                </div>
+                <div *ngIf="isSuperUser"  class="row p-2">
+                    <div class="col-12 d-flex justify-content-center ">
+                        <button mat-button style="color: #6c757d;" (click) ="gotToPageAdmin()">
+                            Area Admin
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ModalRichiestaComponent } from 'src/app/modals/modal-richiesta/modal-richiesta.component';
 import { Corso } from 'src/app/model/Corso';
 import { Dominio } from 'src/app/model/Dominio';
 import { SubDominio } from 'src/app/model/SubDominio';
@@ -7,7 +9,7 @@ import { User } from 'src/app/model/User';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { UtenteServiceService } from 'src/app/services/utente-service.service';
-import { isNotNullObj , isNotEmptyArray } from 'src/app/utils/Util';
+import { getUserLS , isNotEmptyArray } from 'src/app/utils/Util';
 
 @Component({
   selector: 'app-side-bar',
@@ -20,14 +22,15 @@ export class SideBarComponent implements OnInit {
   utente: User;
   listaCorsi: Array<Corso> = [];
   tipoCorsoListFilter: Dominio[] = [];
+  isShowRichiesta: boolean;
   
-  get isUtenteLogged(): boolean{
-    const localUser = localStorage.getItem('USER');
-    isNotNullObj(localUser) && localUser !== 'undefined'  ? this.utente = JSON.parse(localUser) : null;
-    return localUser !== undefined && localUser !== null;
-  }
+  isUtenteLogged: boolean;
+  isSuperUser: boolean;
+  isUser: boolean;
+  isRichiedente: boolean;
+  isWriter: boolean;
 
-  constructor(private ds: DelegateServiceService, private route: Router, private cs: CorsoServiceService) {
+  constructor(private ds: DelegateServiceService, private route: Router, private cs: CorsoServiceService,public dialog: MatDialog) {
     this.ds.getOBSSideBar().subscribe(next => {
       this.openSideBar = next
     })
@@ -37,10 +40,25 @@ export class SideBarComponent implements OnInit {
       this.tipoCorsoListFilter = [];
       this.buildListTypes();
     })
+
+    this.ds.getOBSUser().subscribe(next => {
+      this.utente = next;
+      this.setRoles();
+    })
     
   }
 
+  private setRoles() {
+    this.isUtenteLogged = this.utente !== null && this.utente !== undefined;
+    this.isSuperUser = this.utente !== null && this.utente !== undefined && this.utente.tipo.codice === "SU";
+    this.isUser = this.utente !== null && this.utente !== undefined && this.utente.tipo.codice === "U";
+    this.isRichiedente = this.utente !== null && this.utente !== undefined && this.utente.tipo.codice === "R";
+    this.isWriter = this.utente !== null && this.utente !== undefined && this.utente.tipo.codice === "W";
+  }
+
   ngOnInit(): void {
+    this.utente = getUserLS();
+    this.setRoles();
     this.listaCorsi = this.cs.listaCorsi;
     this.buildListTypes();
    
@@ -104,6 +122,19 @@ export class SideBarComponent implements OnInit {
   goToPageUtente(){
     this.route.navigate(['/utente']);
     this.ds.updateSideBar(false);
+  }
+
+  gotToPageAdmin(){
+    this.route.navigate(['/admin']);
+    this.ds.updateSideBar(false);
+  }
+
+  openRichiesta(){
+    const dialogRef = this.dialog.open(ModalRichiestaComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   close(){
