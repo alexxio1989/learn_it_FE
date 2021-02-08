@@ -11,6 +11,7 @@ export class User{
     corsiLetti: Corso[];
     propriCorsi: Corso[];
     descrizione: string;
+    attivita: string;
     img: string;
     
 }

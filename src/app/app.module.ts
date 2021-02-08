@@ -68,6 +68,8 @@ import { TextEditorComponent } from './varie/text-editor/text-editor.component';
 import { ModalAccessoComponent } from './modals/modal-accesso/modal-accesso.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ModalEditUtenteComponent } from './modals/modal-edit-utente/modal-edit-utente.component';
+import { InfoUtenteComponent } from './varie/info-utente/info-utente.component';
+
 
 
 
@@ -139,7 +141,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     FormatTextPipe,
     TextEditorComponent,
     ModalAccessoComponent,
-    ModalEditUtenteComponent
+    ModalEditUtenteComponent,
+    InfoUtenteComponent
     
   ],
   imports: [

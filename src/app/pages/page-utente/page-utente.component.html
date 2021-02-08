@@ -1,30 +1,8 @@
 <div *ngIf="!renderPage"></div>
 <div *ngIf="renderPage">
-    <div class="row mb-3">
-        <div class="col-12 ">
-            <div class="box-img-utente shadow ">
-                <img *ngIf="utente.img !== undefined && utente.img !== null && utente.img !== ''" alt="Web Studio"
-                class="card-img" src="{{utente.img}}" />
-                <img *ngIf="utente.img === undefined || utente.img === null || utente.img === ''" alt="Web Studio"
-                class="card-img" src="../../../assets/images/default.png" />
-            </div>
-            <div class="col-12 d-flex justify-content-center">
-                <div class="ml-5 mt-3 d-inline-block">
-                    <h4>{{utente.nome}} {{utente.cognome}}</h4>
-    
-                </div>
-                <div class="d-inline-block pt-2">
-                    <button mat-button (click)="openDialog()">
-                        <mat-icon style="font-size: 20px; opacity: 0.6 !important;">edit_outline</mat-icon>
-                    </button>
-    
-                </div>
 
-            </div>
 
-        </div>
-    </div>
-
+   <app-info-utente [utente] = "utente" [isSideBar] ="false"></app-info-utente>
 
     <mat-dialog-content class="mat-typography" class="p-2">
         <form class="accesso-form">
@@ -62,24 +40,40 @@
                         <mat-list role="list" class="w-100">
                 
                 
-                            <mat-list-item *ngFor="let corso of utente.propriCorsi" role="listitem" class="w-100 h-100 mb-2 p-1"
-                                style="background: rgba(180, 180, 180, 0.2);">
+                            <mat-list-item *ngFor="let corso of utente.propriCorsi" role="listitem" class="w-100 h-100 mb-2 p-2">
                                 <div class="row  w-100">
-                                    <div class="col-12">
-                                        <h4>{{corso.nomeCorso}}</h4>
-                                    </div>
-                                    <div class="col-12">
-                                        <h5>{{corso.subNomeCorso}}</h5>
-                                    </div>
-                                    <div class="col-4 pr-2">
-                                        <button mat-button (click)="goToCourse(corso)" style="color: #007bff; margin-top: -5px;">
-                                            Vai al Corso
+                                    <div class="col-2 text-right pr-0">
+                                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="margin-top: -7px;">
+                                          <mat-icon>more_vert</mat-icon>
                                         </button>
+                                        <mat-menu #menu="matMenu">
+                                    
+                                            <div class="row w-100">
+                                                <div class="col-12 d-flex justify-content-center">
+                                                    <button mat-button (click)="goToCourse(corso)" style="color: #007bff; margin-top: -5px;">
+                                                        Vai al Corso
+                                                    </button>
+                                                </div>
+                                                <div class="col-12 d-flex justify-content-center">
+                                                    <mat-slide-toggle [(ngModel)]="corso.enable" (click)="updateVisCorso(corso)">
+                                                        {{corso.enable ? 'Nascondi corso' : 'Pubblica corso'}}</mat-slide-toggle>
+                                                </div>
+                                            </div>
+                                        </mat-menu>
+                                
+                                      </div>
+                                    <div class="col-10">
+                                        <div class="col-12">
+                                            <h4>{{corso.nomeCorso}}</h4>
+                                        </div>
+                                        <div class="col-12">
+                                            <h5>{{corso.subNomeCorso}}</h5>
+                                        </div>
+                                        <div class="col-12">
+                                            <ngx-stars [readonly]="true" [size]="0.8" [color]="'#007bff'" [initialStars]="0"></ngx-stars>
+                                        </div>
                                     </div>
-                                    <div class="col-8">
-                                        <mat-slide-toggle [(ngModel)]="corso.enable" (click)="updateVisCorso(corso)">
-                                            {{corso.enable ? 'Nascondi corso' : 'Pubblica corso'}}</mat-slide-toggle>
-                                    </div>
+                                   
                                 </div>
                             </mat-list-item>
                 

@@ -69,16 +69,6 @@ export class PageUtenteComponent implements OnInit , IPageCore{
     });
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(ModalEditUtenteComponent);
-
-    this.ds.utente = this.utente;
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-
   updateUser(){
     this.us.getOBSUpdateUser(this.utente).subscribe(next => {
       this.ds.updateSpinner(false);
