@@ -8,26 +8,27 @@
         <div *ngIf="isUtenteLogged" class="col-12">
             <app-info-utente [utente] = "utente" [isSideBar] ="true"></app-info-utente>
         </div>
+        <div *ngIf="!isUtenteLogged" class="col-12 p-2 pb-3 d-flex justify-content-center">
+            <button mat-button (click)="openLogin()" style="color: #6c757d;">
+                <mat-icon style="margin-top: -3px;">login</mat-icon>
+                Accedi / Registrati
+            </button>
+        </div>
     </div>
-    <div class="row">
+    <div *ngIf="isUtenteLogged" class="row">
         <div class="col-12">
             <div class="d-flex flex-column">
                 <div class="w-100 p-2 d-flex justify-content-center">
                     <button mat-button></button>
                 </div>
-                <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
+                <div class="w-100 p-2 d-flex justify-content-center">
                     <button mat-button (click)="logout()" style="color: #6c757d;">
                         <mat-icon style="margin-top: -3px;">exit_to_app</mat-icon>
                         Logout
                     </button>
                 </div>
-                <div *ngIf="!isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
-                    <button mat-button (click)="openLogin()" style="color: #6c757d;">
-                        <mat-icon style="margin-top: -3px;">login</mat-icon>
-                        Accedi / Registrati
-                    </button>
-                </div>
-                <div *ngIf="isUtenteLogged" class="w-100 p-2 d-flex justify-content-center">
+               
+                <div class="w-100 p-2 d-flex justify-content-center">
                     <app-modal-corso></app-modal-corso>
                 </div>
             </div>
