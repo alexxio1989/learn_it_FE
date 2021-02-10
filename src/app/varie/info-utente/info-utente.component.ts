@@ -17,6 +17,8 @@ export class InfoUtenteComponent implements OnInit {
   @Input() utente: User;
   @Input() isSideBar: boolean;
   @Input() isCardCorso: boolean;
+  @Input() isRichiesta: boolean;
+  @Input() editInfo: boolean;
   isDevice: boolean;
 
   imgCrop = "150px";
@@ -25,11 +27,10 @@ export class InfoUtenteComponent implements OnInit {
 
   ngOnInit(): void {
     this.isDevice = this.deviceService.isMobile();
-    this.utente.attivita = "Sviluppatore Front-End / Back-End"
 
     if(this.isCardCorso){
       this.imgCrop = "30px";
-    } else if(this.isSideBar){
+    } else if(this.isSideBar || this.isRichiesta){
       this.imgCrop = "60px";
     } else {
       this.imgCrop = "100px";
@@ -63,6 +64,11 @@ export class InfoUtenteComponent implements OnInit {
 
   goToPageUtente(){
     this.route.navigate(['/utente']);
+    this.ds.updateSideBar(false);
+  }
+
+  goToPageUtenteWithID(){
+    this.route.navigate(['/utente'], { queryParams: { id: this.utente.id } });
     this.ds.updateSideBar(false);
   }
 

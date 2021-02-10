@@ -42,11 +42,11 @@ export class ModalAccessoComponent implements OnInit {
   }
 
   get disableSignin(){
-    return isEmptyString(this.user.nome) || isEmptyString(this.user.cognome) || isEmptyString(this.user.email) || isEmptyString(this.user.password) || isEmptyString(this.confirmPassword) || this.confirmPassword !== this.user.password;
+    return isEmptyString(this.user.attivita) || isEmptyString(this.user.nome) || isEmptyString(this.user.cognome) || isEmptyString(this.user.email) || isEmptyString(this.user.password) || isEmptyString(this.confirmPassword) || this.confirmPassword !== this.user.password;
   }
 
   get disableRecuperaPsw(){
-    return  isEmptyString(this.user.email);
+    return  isEmptyString(this.user.email); 
   }
  
   login() {

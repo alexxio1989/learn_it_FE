@@ -1,15 +1,22 @@
 <div class="row">
     <div class="col-12" >
-        Modulo Richiesta
+        <h4>Modulo Richiesta</h4>
+        
     </div>
 </div>
 <mat-dialog-content class="mat-typography" class="p-2">
     <form class="accesso-form">
-
+        <div class="row mt-4">
+            <div class="col-12">
+                <label for="dateOfBirth">Motivo della richiesta</label>
+                <app-text-editor [(inputModel)] = "richiesta.motivazione"></app-text-editor>
+            </div>
+        </div>
 
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
    
     <button mat-button mat-dialog-close >Chiudi</button>
+    <button mat-button mat-dialog-close (click) = "salva()" [disabled] = "richiesta.motivazione === undefined || richiesta.motivazione === null || richiesta.motivazione ===''">Salva</button>
 </mat-dialog-actions>
