@@ -132,10 +132,10 @@ export class PageLezioneComponent implements OnInit, IPageCore {
     this.ls.insertVideo(fileLearnIt).subscribe(next => {
       this.lezione = next.obj;
       this.ds.updateSpinner(false);
-      this.ds.updateResultService(next.status);
+      this.ds.updateResultService("Eliminazione video avvenuto con successo");
     },error => {
       this.ds.updateSpinner(false);
-      this.ds.updateResultService(error.status);
+      this.ds.updateResultService("Eliminazione video in errore");
     })
   }
 
