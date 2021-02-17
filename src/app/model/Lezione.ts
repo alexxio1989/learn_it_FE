@@ -1,3 +1,4 @@
+import { FileLearnIt } from './FileLearnIt';
 import { Paragrafo } from './Paragrafo';
 
 export class Lezione {
@@ -9,4 +10,5 @@ export class Lezione {
     content: string;
     listaParagrafi: Paragrafo[] = [];
     idOwner: number;
+    video: FileLearnIt = new FileLearnIt();
 }

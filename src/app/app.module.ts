@@ -71,6 +71,8 @@ import { ModalEditUtenteComponent } from './modals/modal-edit-utente/modal-edit-
 import { InfoUtenteComponent } from './varie/info-utente/info-utente.component';
 import { PageAdminComponent } from './pages/page-admin/page-admin.component';
 import { ModalRichiestaComponent } from './modals/modal-richiesta/modal-richiesta.component';
+import { VideoPlayerComponent } from './varie/video-player/video-player.component';
+
 
 
 
@@ -146,7 +148,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ModalEditUtenteComponent,
     InfoUtenteComponent,
     PageAdminComponent,
-    ModalRichiestaComponent
+    ModalRichiestaComponent,
+    VideoPlayerComponent
     
   ],
   imports: [

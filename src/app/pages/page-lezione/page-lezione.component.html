@@ -15,6 +15,19 @@
         <app-modal-paragrafo-new></app-modal-paragrafo-new>
     </div>
 
+    <div class="col-12 d-flex justify-content-center">
+        <button *ngIf="lezione.video.url === undefined || lezione.video.url === ''" mat-button (click)="fileInput.click()"> 
+            
+            <span>Aggiungi video</span>
+            <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
+        </button>
+
+    </div>
+    <div *ngIf="lezione.video.url !== undefined && lezione.video.url !== ''" class="col-12 d-flex justify-content-center">
+        <app-video-player [url] = "lezione.video.url"></app-video-player>
+
+    </div>
+
     <div class="row">
         <div *ngIf="lezione.listaParagrafi.length > 0" class="col-12 d-flex justify-content-center mt-2">
             <mat-form-field style="width: 300px;">

@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { FileLearnIt } from '../model/FileLearnIt';
 import { Lezione } from '../model/Lezione';
 import { LezioneParagrafo } from '../model/LezioneParagrafo';
 import { getJWTTOKEN } from '../utils/Util';
@@ -43,5 +44,11 @@ export class LezioneServiceService {
 
   getOBSUpdateIDParagrafoReaded(obj: LezioneParagrafo): Observable<any>{
     return this.http.post(ServiceCore.baseURl_node + "/lezione/updateparagraph",obj );
+  }
+
+  insertVideo(obj: FileLearnIt): Observable<any>{
+    this.ds.updateSpinner(true);
+    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
+    return this.http.post(ServiceCore.baseURl + "/router/updateVideoLezione", obj , {headers});
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { FileLearnIt } from 'src/app/model/FileLearnIt';
 import { Lezione } from 'src/app/model/Lezione';
 import { LezioneParagrafo } from 'src/app/model/LezioneParagrafo';
 import { Paragrafo } from 'src/app/model/Paragrafo';
@@ -122,6 +123,55 @@ export class PageLezioneComponent implements OnInit, IPageCore {
     })
     let el = document.getElementById(paragrafo.idComponent);
     el.scrollIntoView();
+  }
+
+  fileChange(event){
+    let fileLearnIt = new FileLearnIt();
+    const file = event.target.files[0];
+    let newtitolo = this.lezione.title.replace(/ /g,"_") + Math.floor(Math.random() * 100);
+    fileLearnIt.titolo = newtitolo;
+    let type = file.type;
+    fileLearnIt.formato = type.substring(type.indexOf('/') + 1, type.length) ;
+    if(file.size < 104857600){
+
+      if('video/mp4' === type){
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          let base64 = reader.result as string;
+          const start = base64.indexOf('base64,') + 7;
+          const end = base64.length;
+          var mySubString = base64.substring(start, end);
+          if (mySubString ==='' || mySubString.trim() ===''){ 
+            this.ds.updateResultService("Base 64 errato"); 
+          }
+          try {
+            let isCorrectBase64 = btoa(atob(mySubString)) == mySubString;
+            if(isCorrectBase64){
+              fileLearnIt.base64 = mySubString;
+              fileLearnIt.idPadre = this.lezione.id;
+              this.ls.insertVideo(fileLearnIt).subscribe(next => {
+                this.lezione = next.obj;
+                this.ds.updateSpinner(false);
+                this.ds.updateResultService(next.status);
+              },error => {
+                this.ds.updateSpinner(false);
+                this.ds.updateResultService(error.status);
+              })
+            } else {
+              this.ds.updateResultService("Base 64 errato"); 
+            }
+          } catch (err) {
+             this.ds.updateResultService("Base 64 errato"); 
+          }
+        };
+        
+      } else {
+        this.ds.updateResultService("Formato del video non corretto");
+      }
+    } else {
+      this.ds.updateResultService("Dimensioni del file superiore a 100 MB");
+    }
   }
   
 
