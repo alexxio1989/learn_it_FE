@@ -125,6 +125,20 @@ export class PageLezioneComponent implements OnInit, IPageCore {
     el.scrollIntoView();
   }
 
+  eliminaVideo(){
+    let fileLearnIt = new FileLearnIt();
+    fileLearnIt.base64 = '';
+    fileLearnIt.idPadre = this.lezione.id;
+    this.ls.insertVideo(fileLearnIt).subscribe(next => {
+      this.lezione = next.obj;
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService(next.status);
+    },error => {
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService(error.status);
+    })
+  }
+
   fileChange(event){
     let fileLearnIt = new FileLearnIt();
     const file = event.target.files[0];
@@ -139,31 +153,17 @@ export class PageLezioneComponent implements OnInit, IPageCore {
         reader.readAsDataURL(file);
         reader.onload = () => {
           let base64 = reader.result as string;
-          const start = base64.indexOf('base64,') + 7;
-          const end = base64.length;
-          var mySubString = base64.substring(start, end);
-          if (mySubString ==='' || mySubString.trim() ===''){ 
-            this.ds.updateResultService("Base 64 errato"); 
-          }
-          try {
-            let isCorrectBase64 = btoa(atob(mySubString)) == mySubString;
-            if(isCorrectBase64){
-              fileLearnIt.base64 = mySubString;
-              fileLearnIt.idPadre = this.lezione.id;
-              this.ls.insertVideo(fileLearnIt).subscribe(next => {
-                this.lezione = next.obj;
-                this.ds.updateSpinner(false);
-                this.ds.updateResultService(next.status);
-              },error => {
-                this.ds.updateSpinner(false);
-                this.ds.updateResultService(error.status);
-              })
-            } else {
-              this.ds.updateResultService("Base 64 errato"); 
-            }
-          } catch (err) {
-             this.ds.updateResultService("Base 64 errato"); 
-          }
+          
+          fileLearnIt.base64 = base64;
+          fileLearnIt.idPadre = this.lezione.id;
+          this.ls.insertVideo(fileLearnIt).subscribe(next => {
+            this.lezione = next.obj;
+            this.ds.updateSpinner(false);
+            this.ds.updateResultService(next.status);
+          },error => {
+            this.ds.updateSpinner(false);
+            this.ds.updateResultService(error.status);
+          })
         };
         
       } else {

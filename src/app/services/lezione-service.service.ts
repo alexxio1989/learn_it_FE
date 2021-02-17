@@ -50,5 +50,6 @@ export class LezioneServiceService {
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
     return this.http.post(ServiceCore.baseURl + "/router/updateVideoLezione", obj , {headers});
+    //return this.http.post("http://localhost:8082"+ "/lezione/updateVideoLezione", obj , {headers});
   }
 }

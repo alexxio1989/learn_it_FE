@@ -16,15 +16,20 @@
     </div>
 
     <div class="col-12 d-flex justify-content-center">
-        <button *ngIf="lezione.video.url === undefined || lezione.video.url === ''" mat-button (click)="fileInput.click()"> 
+        <button *ngIf="lezione.video.base64 === undefined || lezione.video.base64 === '' || lezione.video.base64 === null" mat-button (click)="fileInput.click()"> 
             
             <span>Aggiungi video</span>
             <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
         </button>
 
     </div>
-    <div *ngIf="lezione.video.url !== undefined && lezione.video.url !== ''" class="col-12 d-flex justify-content-center">
-        <app-video-player [url] = "lezione.video.url"></app-video-player>
+    <div *ngIf="lezione.video.base64 !== undefined && lezione.video.base64 !== '' && lezione.video.base64 !== null" class="col-12 d-flex justify-content-center">
+        <app-video-player [url] = "lezione.video.base64"></app-video-player>
+
+    </div>
+    <div *ngIf="lezione.video.base64 !== undefined && lezione.video.base64 !== '' && lezione.video.base64 !== null" class="col-12 d-flex justify-content-center">
+       
+        <button mat-button (click)="eliminaVideo()">Elimina Video</button>
 
     </div>
 
