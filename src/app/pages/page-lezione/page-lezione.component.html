@@ -15,23 +15,11 @@
         <app-modal-paragrafo-new></app-modal-paragrafo-new>
     </div>
 
-    <div class="col-12 d-flex justify-content-center">
-        <button *ngIf="lezione.video.base64 === undefined || lezione.video.base64 === '' || lezione.video.base64 === null" mat-button (click)="fileInput.click()"> 
-            
-            <span>Aggiungi video</span>
-            <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
-        </button>
+    
+        <app-video-player [idPadre] = "lezione.id" [typePadre] = "'L'" [title] = "lezione.title"></app-video-player>
 
-    </div>
-    <div *ngIf="lezione.video.base64 !== undefined && lezione.video.base64 !== '' && lezione.video.base64 !== null" class="col-12 d-flex justify-content-center">
-        <app-video-player [url] = "lezione.video.base64"></app-video-player>
-
-    </div>
-    <div *ngIf="lezione.video.base64 !== undefined && lezione.video.base64 !== '' && lezione.video.base64 !== null" class="col-12 d-flex justify-content-center">
-       
-        <button mat-button (click)="eliminaVideo()">Elimina Video</button>
-
-    </div>
+   
+   
 
     <div class="row">
         <div *ngIf="lezione.listaParagrafi.length > 0" class="col-12 d-flex justify-content-center mt-2">

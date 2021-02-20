@@ -1,10 +1,40 @@
-<div id="instructions">
-	<video id="my_video_1" class="video-js vjs-default-skin" controls preload="none"
+
+<div class="row MT-4" *ngIf="isLoading">
+	<div class="col-12 d-flex justify-content-center pt-4">
+		<mat-progress-spinner diameter=50 mode="indeterminate" color="accent"></mat-progress-spinner>
+	</div>
+</div>
+<div class="row" *ngIf="!isLoading && base64 !== undefined && base64 !== null">
+	<div class="col-12 d-flex justify-content-center">
 		
-		data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'>
-		<source src="{{url}}" type='video/mp4' />
+		<div id="instructions">
+			<video id="my_video_1" class="video-js vjs-default-skin" width="{{width}}" height="{{height}}" controls preload="none"
+				
+				data-setup='{ "aspectRatio":"640:267", "playbackRates": [1, 1.5, 2] }'>
+				<source src="{{base64}}" type='video/mp4' media="all and (max-width: 480px)"/>
+			
+			</video>
+		
+		</div>
 	
-	</video>
+	</div>
 
 </div>
+
+<div class="row"  *ngIf="!isLoading && (base64 === undefined || base64 === null)">
+	<div class="col-12 d-flex justify-content-center">
+		<button mat-button (click)="fileInput.click()"> 
+				
+			<span>Aggiungi video</span>
+			<input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
+		</button> 
+	</div>
+</div>
+
+<div *ngIf="!isLoading && (base64 !== undefined && base64 !== null)" class="row">
+	<div class="col-12 d-flex justify-content-center">  
+		<button mat-button (click)="eliminaVideo()">Elimina Video</button>
+	</div>
+</div>
+
 

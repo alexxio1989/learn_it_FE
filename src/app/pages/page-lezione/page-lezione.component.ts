@@ -125,54 +125,9 @@ export class PageLezioneComponent implements OnInit, IPageCore {
     el.scrollIntoView();
   }
 
-  eliminaVideo(){
-    let fileLearnIt = new FileLearnIt();
-    fileLearnIt.base64 = '';
-    fileLearnIt.idPadre = this.lezione.id;
-    this.ls.insertVideo(fileLearnIt).subscribe(next => {
-      this.lezione = next.obj;
-      this.ds.updateSpinner(false);
-      this.ds.updateResultService("Eliminazione video avvenuto con successo");
-    },error => {
-      this.ds.updateSpinner(false);
-      this.ds.updateResultService("Eliminazione video in errore");
-    })
-  }
+  
 
-  fileChange(event){
-    let fileLearnIt = new FileLearnIt();
-    const file = event.target.files[0];
-    let newtitolo = this.lezione.title.replace(/ /g,"_") + Math.floor(Math.random() * 100);
-    fileLearnIt.titolo = newtitolo;
-    let type = file.type;
-    fileLearnIt.formato = type.substring(type.indexOf('/') + 1, type.length) ;
-    if(file.size < 104857600){
-
-      if('video/mp4' === type){
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-          let base64 = reader.result as string;
-          
-          fileLearnIt.base64 = base64;
-          fileLearnIt.idPadre = this.lezione.id;
-          this.ls.insertVideo(fileLearnIt).subscribe(next => {
-            this.lezione = next.obj;
-            this.ds.updateSpinner(false);
-            this.ds.updateResultService(next.status);
-          },error => {
-            this.ds.updateSpinner(false);
-            this.ds.updateResultService(error.status);
-          })
-        };
-        
-      } else {
-        this.ds.updateResultService("Formato del video non corretto");
-      }
-    } else {
-      this.ds.updateResultService("Dimensioni del file superiore a 100 MB");
-    }
-  }
+  
   
 
 }

@@ -18,6 +18,7 @@ export class DelegateServiceService {
   private _sbjAbilitaNavigazione= new Subject();
   private _sbjOpenLogin = new Subject();
   private _sbjSpinner = new Subject();
+  private _sbjVideo = new Subject();
   private _sbjResultService = new Subject();
   private _sbjSideBar = new Subject();
   private _sbjTipiCorso = new Subject();
@@ -51,6 +52,14 @@ export class DelegateServiceService {
 
   getOBSSpinner(): Observable<any> {
     return this._sbjSpinner.asObservable();
+  }
+
+  updateSpinnerVideos(update: boolean) {
+    this._sbjVideo.next(update);
+  }
+
+  getOBSSpinnerVideo(): Observable<any> {
+    return this._sbjVideo.asObservable();
   }
 
   updateResultService(result: string) {
