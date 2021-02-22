@@ -32,7 +32,7 @@ export class VideoPlayerComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getVideos();
+    this.getVideo();
     
     const isMobile = this.deviceService.isMobile();
     if(isMobile){
@@ -45,19 +45,17 @@ export class VideoPlayerComponent implements OnInit {
   }
 
 
-  private getVideos() {
+  private getVideo() {
     this.fileLearnIt.idPadre = this.idPadre;
     this.fileLearnIt.typePadre = this.typePadre;
     this.fs.get(this.fileLearnIt).subscribe(next => {
       if (next.obj !== null && next.obj !== undefined) {
 
-        let file = new FileLearnIt();
-        file = next.obj;
-        this.base64 = file.base64;
+        this.fileLearnIt = next.obj;
        
 
       } else {
-        this.base64 = undefined;
+        this.fileLearnIt.base64 = undefined;
       }
       this.ds.updateSpinnerVideos(false);
     }, error => {
@@ -89,7 +87,7 @@ export class VideoPlayerComponent implements OnInit {
           this.fileLearnIt.idPadre = this.idPadre;
           this.fileLearnIt.typePadre = this.typePadre;
           this.fs.save(this.fileLearnIt).subscribe(next => {
-            this.getVideos();
+            this.getVideo();
             this.ds.updateResultService(next.status);
           },error => {
             this.ds.updateSpinnerVideos(false);
@@ -108,7 +106,7 @@ export class VideoPlayerComponent implements OnInit {
     this.fileLearnIt.delete = true;
    
     this.fs.delete(this.fileLearnIt).subscribe(next => {
-      this.getVideos();
+      this.getVideo();
       this.ds.updateSpinner(false);
       this.ds.updateResultService(next.status);
     },error => {
