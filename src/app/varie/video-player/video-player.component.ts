@@ -44,24 +44,17 @@ export class VideoPlayerComponent implements OnInit {
     }
   }
 
-  name = "Angular";
-  @ViewChild("videoPlayer", { static: false }) videoplayer: ElementRef;
-  isPlay: boolean = false;
 
   private getVideos() {
     this.fileLearnIt.idPadre = this.idPadre;
     this.fileLearnIt.typePadre = this.typePadre;
-    this.fs.getVideos(this.fileLearnIt).subscribe(next => {
-      if (next.list !== null && next.list !== undefined && next.list.length > 0) {
+    this.fs.get(this.fileLearnIt).subscribe(next => {
+      if (next.obj !== null && next.obj !== undefined) {
+
         let file = new FileLearnIt();
-        file = next.list[0];
-        this.fileLearnIt.id = file.id;
-        console.log(file.formato + file.base64);
-        let base64 = '';
-        next.list.forEach(element => {
-          base64 = base64 + element.base64;
-        });
-        this.base64 =file.formato + base64;
+        file = next.obj;
+        this.base64 = file.base64;
+       
 
       } else {
         this.base64 = undefined;
@@ -73,39 +66,7 @@ export class VideoPlayerComponent implements OnInit {
     });
   }
 
-  toggleVideo(event: any) {
-    this.videoplayer.nativeElement.play();
-  }
-  playPause() {
-    var myVideo: any = document.getElementById("my_video_1");
-    if (myVideo.paused) myVideo.play();
-    else myVideo.pause();
-  }
 
-  makeBig() {
-    var myVideo: any = document.getElementById("my_video_1");
-    myVideo.width = 560;
-  }
-
-  makeSmall() {
-    var myVideo: any = document.getElementById("my_video_1");
-    myVideo.width = 320;
-  }
-
-  makeNormal() {
-    var myVideo: any = document.getElementById("my_video_1");
-    myVideo.width = 420;
-  }
-
-  skip(value) {
-    let video: any = document.getElementById("my_video_1");
-    video.currentTime += value;
-  }
-
-  restart() {
-    let video: any = document.getElementById("my_video_1");
-    video.currentTime = 0;
-  }
 
   fileChange(event){
     
@@ -128,8 +89,7 @@ export class VideoPlayerComponent implements OnInit {
           this.fileLearnIt.idPadre = this.idPadre;
           this.fileLearnIt.typePadre = this.typePadre;
           this.fs.save(this.fileLearnIt).subscribe(next => {
-           
-            this.ds.updateSpinnerVideos(false);
+            this.getVideos();
             this.ds.updateResultService(next.status);
           },error => {
             this.ds.updateSpinnerVideos(false);
@@ -147,10 +107,10 @@ export class VideoPlayerComponent implements OnInit {
     
     this.fileLearnIt.delete = true;
    
-    this.ls.insertVideo(this.fileLearnIt).subscribe(next => {
+    this.fs.delete(this.fileLearnIt).subscribe(next => {
       this.getVideos();
       this.ds.updateSpinner(false);
-      this.ds.updateResultService("Eliminazione video avvenuto con successo");
+      this.ds.updateResultService(next.status);
     },error => {
       this.ds.updateSpinner(false);
       this.ds.updateResultService("Eliminazione video in errore");

@@ -12,15 +12,18 @@ export class FileService {
 
   constructor(private http: HttpClient, private ds: DelegateServiceService) { } 
 
-  getVideos(obj: FileLearnIt): Observable<any>{
+  get(obj: FileLearnIt): Observable<any>{
     this.ds.updateSpinnerVideos(true);
-    return this.http.post("https://learn-it-be.herokuapp.com/file/get", obj );
-    //return this.http.post("http://localhost:8082"+ "/file/get", obj);
+    return this.http.post(ServiceCore.baseURl_node+ "/file/getFile", obj );
   }
 
   save(obj: FileLearnIt): Observable<any>{
     this.ds.updateSpinnerVideos(true);
-    //return this.http.post("https://learn-it-be.herokuapp.com/file/get", obj );
-    return this.http.post(ServiceCore.baseURl_node+ "/file/save", obj);
+    return this.http.post(ServiceCore.baseURl_node+ "/file/saveFile", obj);
+  }
+
+  delete(obj: FileLearnIt): Observable<any>{
+    this.ds.updateSpinnerVideos(true);
+    return this.http.post(ServiceCore.baseURl_node+ "/file/deleteFile", obj);
   }
 }
