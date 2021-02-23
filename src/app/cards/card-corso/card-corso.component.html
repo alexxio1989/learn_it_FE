@@ -66,21 +66,15 @@
 
     <div class="row">
       <div class="col-2">
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-    
-          <app-modal-info-corso [corso]="corso"></app-modal-info-corso>
-    
-          <button mat-menu-item (click)="elimina()" *ngIf="isUtenteLogged">
-            <mat-icon>delete_outline</mat-icon>
-            <span>Elimina</span>
-          </button>
-          <div *ngIf="isUtenteLogged">
-            <app-modal-corso-edit [corso]="corso"></app-modal-corso-edit>
-          </div>
-        </mat-menu>
+        <app-edit-menu 
+        [typePadre] = "'C'" 
+        [section] = "'Corso'" 
+        [withVideo] = "false"
+        [withAdd] = "false"
+        [obj] = "corso"
+        [withElimina] = "true"
+        [withModifica] = "true"
+        [withInfo] = "true" ></app-edit-menu>
 
       </div>
       <div class="col-10 text-right">

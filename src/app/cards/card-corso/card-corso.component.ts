@@ -152,16 +152,6 @@ export class CardCorsoComponent implements OnInit {
     this.route.navigate(['/corso'], { queryParams: { id: corso.id } }); 
   }
 
-  elimina(){
-    this.cs.getOBSDeleteCorso(this.corso).subscribe(next => {
-      this.ds.updateSpinner(false);
-      this.ds.updateResultService(next.status);
-      this.cs.updateCorsi(next.list);
-    },error => {
-      this.ds.updateSpinner(false);
-      this.ds.updateResultService(error.status);
-    });
-  }
 
   showInfo(){
     this.isShowInfo = !this.isShowInfo;

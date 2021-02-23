@@ -1,0 +1,38 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" style="margin-top: 2px;" class="ml-3" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+
+    <input #csvInput hidden="true" type="file" onclick="this.value=null" (change)="addVideo($event)" />
+    <button *ngIf="withVideo && !isLoading && (fileLearnIt.base64 === undefined || fileLearnIt.base64 === null)" mat-menu-item color="primary" (click)="csvInput.click()">
+        <mat-icon>add</mat-icon>
+        <span>Aggiungi video ( Formato MP4 )</span>
+    </button>
+
+
+    <button *ngIf="withVideo && !isLoading && (fileLearnIt.base64 !== undefined && fileLearnIt.base64 !== null)" mat-menu-item (click)="eliminaVideo()">
+        <mat-icon>delete_outline</mat-icon>
+        <span>Elimina Video</span>
+    </button>
+
+    <button *ngIf="withAdd" mat-menu-item (click)="add()">
+        <mat-icon>add</mat-icon>
+        <span>Aggiungi {{section}}</span>
+    </button>
+    
+    <button *ngIf="withInfo" mat-menu-item (click)="info()">
+        <mat-icon>info_outline</mat-icon>
+        <span>Info {{section}}</span>
+    </button>
+
+    <button *ngIf="withElimina" mat-menu-item (click)="elimina()">
+      <mat-icon>delete_outline</mat-icon>
+      <span>Elimina</span>
+    </button>
+
+    <button *ngIf="withModifica" mat-menu-item (click)="edit()">
+        <mat-icon>edit_outline</mat-icon>
+        <span>Modifica</span>
+    </button>
+
+</mat-menu>

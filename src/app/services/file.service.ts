@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { FileLearnIt } from '../model/FileLearnIt';
 import { ServiceCore } from './core/ServiceCore';
 import { DelegateServiceService } from './delegate-service.service';
@@ -9,6 +9,18 @@ import { DelegateServiceService } from './delegate-service.service';
   providedIn: 'root'
 })
 export class FileService {
+
+  fileLearnIt = new FileLearnIt();
+
+  private _sbj = new Subject();
+
+  updateSBJ(video: FileLearnIt) {
+    this._sbj.next(video);
+  }
+
+  getSBJ(): Observable<any> {
+    return this._sbj.asObservable();
+  }
 
   constructor(private http: HttpClient, private ds: DelegateServiceService) { } 
 
@@ -26,4 +38,5 @@ export class FileService {
     this.ds.updateSpinnerVideos(true);
     return this.http.post(ServiceCore.baseURl_node+ "/file/deleteFile", obj);
   }
+  
 }

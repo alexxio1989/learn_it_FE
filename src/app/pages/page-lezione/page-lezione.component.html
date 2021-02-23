@@ -2,7 +2,20 @@
 <div *ngIf="renderPage">
     <div class="row mt-3">
         <div class="col-12 d-flex justify-content-center">
-            <h2 class="display-4" style="font-size: 2rem">{{lezione.title}}</h2>
+           
+            
+            <h2 class="mt-2" style="font-size: 2rem">{{lezione.title}}</h2>
+            <app-edit-menu [idPadre] = "lezione.id" 
+                           [typePadre] = "'L'" 
+                           [section] = "'Paragrafo'" 
+                           [title] = "lezione.title" 
+                           [withVideo] = "true"
+                           [withAdd] = "true"
+                           [withElimina] = "false"
+                           [withModifica] = "false"
+                           [withInfo] = "false" ></app-edit-menu>
+            
+    
         </div>
     </div>
     <div class="row">
@@ -11,12 +24,13 @@
         </div>
     </div>
 
-    <div *ngIf="isUtenteLogged" class="row col-12 d-flex justify-content-center mt-2">
-        <app-modal-paragrafo-new></app-modal-paragrafo-new>
-    </div>
 
+   
+    <div class="row">
+
+    </div>
     
-        <app-video-player [idPadre] = "lezione.id" [typePadre] = "'L'" [title] = "lezione.title"></app-video-player>
+    <app-video-player></app-video-player> 
 
    
    

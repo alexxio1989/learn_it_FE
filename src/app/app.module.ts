@@ -15,7 +15,7 @@ import { ModalCorsoComponent } from './modals/modal-corso/modal-corso.component'
 import { PageCorsoComponent } from './pages/page-corso/page-corso.component';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { PageLezioneComponent } from './pages/page-lezione/page-lezione.component';
-import { ModalCorsoEditComponent } from './modals/modal-corso-edit/modal-corso-edit.component';
+
 import { ModalParagrafoEditComponent } from './modals/modal-paragrafo-edit/modal-paragrafo-edit.component';
 import { ModalParagrafoNewComponent } from './modals/modal-paragrafo-new/modal-paragrafo-new.component';
 import { CorsoServiceService } from './services/corso-service.service';
@@ -40,15 +40,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CarouselComponent } from './carousel/carousel.component';
 import { SpinnerComponent } from './varie/spinner/spinner.component';
 import { ContentModalCorsoComponent } from './modals/modal-corso/content-modal-corso/content-modal-corso.component';
-import { ContentModalCorsoEditComponent } from './modals/modal-corso-edit/content-modal-corso-edit/content-modal-corso-edit.component';
 import { ContentModalParagrafoNewComponent } from './modals/modal-paragrafo-new/content-modal-paragrafo-new/content-modal-paragrafo-new.component';
 import { ContentModalParagrafoEditComponent } from './modals/modal-paragrafo-edit/content-modal-paragrafo-edit/content-modal-paragrafo-edit.component';
 import {MatDialogModule} from '@angular/material/dialog'
 import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
-import { ModalInfoCorsoComponent } from './modals/modal-info-corso/modal-info-corso.component';
-import { ContentModalInfoCorsoComponent } from './modals/modal-info-corso/content-modal-info-corso/content-modal-info-corso.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
 import {MatStepperModule} from '@angular/material/stepper';
@@ -72,6 +69,9 @@ import { InfoUtenteComponent } from './varie/info-utente/info-utente.component';
 import { PageAdminComponent } from './pages/page-admin/page-admin.component';
 import { ModalRichiestaComponent } from './modals/modal-richiesta/modal-richiesta.component';
 import { VideoPlayerComponent } from './varie/video-player/video-player.component';
+import { EditMenuComponent } from './varie/edit-menu/edit-menu.component';
+import { ContentModalCorsoEditComponent } from './modals/content-modal-corso-edit/content-modal-corso-edit.component';
+import { ContentModalInfoCorsoComponent } from './modals/content-modal-info-corso/content-modal-info-corso.component';
 
 
 
@@ -129,7 +129,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     PageCorsoComponent,
     PageHomeComponent,
     PageLezioneComponent,
-    ModalCorsoEditComponent,
     SideBarComponent,
     ModalParagrafoEditComponent,
     ModalParagrafoNewComponent,
@@ -139,7 +138,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ContentModalCorsoEditComponent,
     ContentModalParagrafoNewComponent,
     ContentModalParagrafoEditComponent,
-    ModalInfoCorsoComponent,
     ContentModalInfoCorsoComponent,
     PageUtenteComponent,
     FormatTextPipe,
@@ -149,7 +147,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     InfoUtenteComponent,
     PageAdminComponent,
     ModalRichiestaComponent,
-    VideoPlayerComponent
+    VideoPlayerComponent,
+    EditMenuComponent
     
   ],
   imports: [
