@@ -14,6 +14,8 @@ import { UtenteServiceService } from 'src/app/services/utente-service.service';
 })
 export class InfoUtenteComponent implements OnInit {
 
+  modalModalEditUtente = ModalEditUtenteComponent;
+
   @Input() utente: User;
   @Input() isSideBar: boolean;
   @Input() isCardCorso: boolean;
@@ -23,7 +25,7 @@ export class InfoUtenteComponent implements OnInit {
 
   imgCrop = "150px";
 
-  constructor(private route: Router,private ds: DelegateServiceService,private us: UtenteServiceService,public dialog: MatDialog,private deviceService: DeviceDetectorService) { }
+  constructor(private route: Router,private ds: DelegateServiceService,private us: UtenteServiceService,private deviceService: DeviceDetectorService) { }
 
   ngOnInit(): void {
     this.isDevice = this.deviceService.isMobile();
@@ -33,7 +35,7 @@ export class InfoUtenteComponent implements OnInit {
     } else if(this.isSideBar || this.isRichiesta){
       this.imgCrop = "60px";
     } else {
-      this.imgCrop = "100px";
+      this.imgCrop = "110px";
     }
 
 
@@ -52,15 +54,6 @@ export class InfoUtenteComponent implements OnInit {
     };
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(ModalEditUtenteComponent);
-
-    this.ds.utente = this.utente;
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
 
   goToPageUtente(){
     this.route.navigate(['/utente']);

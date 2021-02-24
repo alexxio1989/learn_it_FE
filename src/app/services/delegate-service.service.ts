@@ -9,6 +9,8 @@ import { getUserLS } from '../utils/Util';
 })
 export class DelegateServiceService {
 
+  objSelected : any;
+
   utente: User;
 
   isOpenSideBar: boolean;

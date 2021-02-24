@@ -65,11 +65,13 @@
                 <div class="row col-12 pl-4">
 
                     <div *ngIf="isUtenteLogged" style="margin-left: -3px;">
-                        <app-modal-paragrafo-edit [paragrafo]="paragrafo"></app-modal-paragrafo-edit>
+                        <button class="pl-1" mat-button (click)="openModalEditParagrafo(paragrafo)" style="color: #6c757d;">
+                            <h5>Modifica</h5> 
+                        </button>
                     </div>
                     <div class="ml-3" *ngIf="isUtenteLogged">
                         <button class="pl-0" mat-button (click)="elimina(paragrafo)" style="color: #6c757d;">
-                            <h5>Elimina</h5>
+                            <h5>Elimina</h5> 
                         </button>
                     </div>
                 </div>

@@ -18,16 +18,23 @@
                     <h4>{{utente.nome}} {{utente.cognome}}</h4>
     
                 </div>
-                <div class="d-inline-block pt-2">
-                    <button *ngIf="editInfo" mat-button (click)="openDialog()">
-                        <mat-icon style="font-size: 20px; opacity: 0.6 !important;">edit_outline</mat-icon>
-                    </button>
-                </div>
+                
             </div>
         </div>
         <div class="row">
             <div class="col-12">
                 <h6>{{utente.attivita}}</h6>
+            </div>
+        </div>
+        <div class="row" style="margin-top: -5px;">
+            <div class="col-12">
+                <app-modal-core [visible] = "editInfo"
+                                    [icon] ="'edit'"
+                                    [descButton] = "'Modifica'" 
+                                    [objSelected] = "utente" 
+                                    [isButton] = "true" 
+                                    [component] = "modalModalEditUtente"
+                                    [class] = "'p-0'"></app-modal-core>
             </div>
         </div>
         

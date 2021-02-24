@@ -117,9 +117,14 @@ export class CardCorsoComponent implements OnInit {
   checkLettureUtente(){
     const user = getUserLS();
     this.user = user;
-    this.isCorsoLetto = isNotNullObj(this.corso) &&
-                        isNotEmptyArray(this.corso.listLetture) &&
-                        isNotNullObj(user) ? this.corso.listLetture.filter(el => el.idUtente === user.id).length > 0 : false;
+    if(this.isUtenteLogged){
+      this.isCorsoLetto = true;
+    } else {
+
+      this.isCorsoLetto = isNotNullObj(this.corso) &&
+                          isNotEmptyArray(this.corso.listLetture) &&
+                          isNotNullObj(user) ? this.corso.listLetture.filter(el => el.idUtente === user.id).length > 0 : false;
+    }
   }
 
 

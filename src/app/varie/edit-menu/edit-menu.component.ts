@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConstantsComponent } from 'src/app/constants/ConstantsComponent';
 import { ContentModalCorsoEditComponent } from 'src/app/modals/content-modal-corso-edit/content-modal-corso-edit.component';
 import { ContentModalInfoCorsoComponent } from 'src/app/modals/content-modal-info-corso/content-modal-info-corso.component';
-import { ContentModalParagrafoNewComponent } from 'src/app/modals/modal-paragrafo-new/content-modal-paragrafo-new/content-modal-paragrafo-new.component';
+import { ContentModalParagrafoNewComponent } from 'src/app/modals/content-modal-paragrafo-new/content-modal-paragrafo-new.component';
 import { FileLearnIt } from 'src/app/model/FileLearnIt';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
@@ -34,7 +34,8 @@ export class EditMenuComponent implements OnInit {
 
   component: ComponentType<any>;
 
-  constructor(public dialog: MatDialog,private fs: FileService,
+  constructor(public dialog: MatDialog,
+              private fs: FileService,
               private ds: DelegateServiceService,
               private cs: CorsoServiceService ) { }
 

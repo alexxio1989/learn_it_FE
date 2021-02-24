@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { FileLearnIt } from '../model/FileLearnIt';
 import { Lezione } from '../model/Lezione';
 import { LezioneParagrafo } from '../model/LezioneParagrafo';
@@ -14,6 +14,8 @@ import { DelegateServiceService } from './delegate-service.service';
 export class LezioneServiceService {
 
   lezioneSelected: Lezione;
+
+  private _sbjUpdateLezioni = new Subject();
 
   constructor(private http: HttpClient, private ds: DelegateServiceService) { } 
 
@@ -44,6 +46,15 @@ export class LezioneServiceService {
 
   getOBSUpdateIDParagrafoReaded(obj: LezioneParagrafo): Observable<any>{
     return this.http.post(ServiceCore.baseURl_node + "/lezione/updateparagraph",obj );
+  }
+
+  updateLezioni(lezioni: Lezione[]){
+    this._sbjUpdateLezioni.next(lezioni);
+  }
+
+
+  getOBSUpdateLezioni(): Observable<any> {
+    return this._sbjUpdateLezioni.asObservable();
   }
 
 }

@@ -22,7 +22,11 @@ export class PageUtenteComponent implements OnInit , IPageCore{
   renderEditorInfoUser: boolean;
   extraUtenteLogged: boolean;
 
-  constructor(private ar: ActivatedRoute , private route: Router,private cs: CorsoServiceService,private ds: DelegateServiceService,private us: UtenteServiceService,public dialog: MatDialog) {
+  constructor(private ar: ActivatedRoute , 
+              private route: Router,
+              private cs: CorsoServiceService,
+              private ds: DelegateServiceService,
+              private us: UtenteServiceService) {
     this.ds.getOBSSpinner().subscribe(next => {
       this.renderPage = !next;
     })

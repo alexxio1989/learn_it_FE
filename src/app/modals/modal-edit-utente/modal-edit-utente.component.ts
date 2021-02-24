@@ -21,14 +21,14 @@ export class ModalEditUtenteComponent implements OnInit {
     Validators.email,
   ]);
 
-  constructor(private route: Router ,private ds: DelegateServiceService , private us: UtenteServiceService,public dialog: MatDialog) { }
+  constructor(private route: Router ,private ds: DelegateServiceService , private us: UtenteServiceService) { }
 
   get disableSave(){
     return isEmptyString(this.user.nome) || isEmptyString(this.user.cognome) || isEmptyString(this.user.email) || isEmptyString(this.user.password) ;
   }
 
   ngOnInit(): void {
-    this.user = this.ds.utente;
+    this.user = this.ds.objSelected;
   }
 
   fileChange(event){

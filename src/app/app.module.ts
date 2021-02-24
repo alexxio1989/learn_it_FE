@@ -11,13 +11,9 @@ import { NgxStarsModule } from 'ngx-stars';
 import { CardFeedbackComponent } from './cards/card-feedback/card-feedback.component';
 import { CardLezioneComponent } from './cards/card-lezione/card-lezione.component';
 import { CardCorsoComponent } from './cards/card-corso/card-corso.component';
-import { ModalCorsoComponent } from './modals/modal-corso/modal-corso.component';
 import { PageCorsoComponent } from './pages/page-corso/page-corso.component';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { PageLezioneComponent } from './pages/page-lezione/page-lezione.component';
-
-import { ModalParagrafoEditComponent } from './modals/modal-paragrafo-edit/modal-paragrafo-edit.component';
-import { ModalParagrafoNewComponent } from './modals/modal-paragrafo-new/modal-paragrafo-new.component';
 import { CorsoServiceService } from './services/corso-service.service';
 import { LezioneServiceService } from './services/lezione-service.service';
 import { ParagrafoServiceService } from './services/paragrafo-service.service';
@@ -39,9 +35,6 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CarouselComponent } from './carousel/carousel.component';
 import { SpinnerComponent } from './varie/spinner/spinner.component';
-import { ContentModalCorsoComponent } from './modals/modal-corso/content-modal-corso/content-modal-corso.component';
-import { ContentModalParagrafoNewComponent } from './modals/modal-paragrafo-new/content-modal-paragrafo-new/content-modal-paragrafo-new.component';
-import { ContentModalParagrafoEditComponent } from './modals/modal-paragrafo-edit/content-modal-paragrafo-edit/content-modal-paragrafo-edit.component';
 import {MatDialogModule} from '@angular/material/dialog'
 import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
@@ -72,6 +65,10 @@ import { VideoPlayerComponent } from './varie/video-player/video-player.componen
 import { EditMenuComponent } from './varie/edit-menu/edit-menu.component';
 import { ContentModalCorsoEditComponent } from './modals/content-modal-corso-edit/content-modal-corso-edit.component';
 import { ContentModalInfoCorsoComponent } from './modals/content-modal-info-corso/content-modal-info-corso.component';
+import { ContentModalCorsoComponent } from './modals/content-modal-corso/content-modal-corso.component';
+import { ContentModalParagrafoNewComponent } from './modals/content-modal-paragrafo-new/content-modal-paragrafo-new.component';
+import { ContentModalParagrafoEditComponent } from './modals/content-modal-paragrafo-edit/content-modal-paragrafo-edit.component';
+import { ModalCoreComponent } from './modals/core/modal-core/modal-core.component';
 
 
 
@@ -120,7 +117,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 @NgModule({
   declarations: [
     AppComponent,
-    ModalCorsoComponent,
     ImageCorsoComponent,
     CardCorsoComponent,
     NavBarComponent,
@@ -130,8 +126,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     PageHomeComponent,
     PageLezioneComponent,
     SideBarComponent,
-    ModalParagrafoEditComponent,
-    ModalParagrafoNewComponent,
+    ContentModalParagrafoEditComponent,
     SpinnerComponent,
     CarouselComponent,
     ContentModalCorsoComponent,
@@ -148,7 +143,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     PageAdminComponent,
     ModalRichiestaComponent,
     VideoPlayerComponent,
-    EditMenuComponent
+    EditMenuComponent,
+    ModalCoreComponent
     
   ],
   imports: [

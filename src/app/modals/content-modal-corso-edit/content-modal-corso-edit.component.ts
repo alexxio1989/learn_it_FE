@@ -26,7 +26,7 @@ export class ContentModalCorsoEditComponent implements OnInit {
 
 
   get disableSave(){
-    return isEmptyString(this.corso.nomeCorso) || isEmptyString(this.corso.descrizioneCorso);
+    return isEmptyString(this.corso.nomeCorso) 
   }
 
 

@@ -20,7 +20,7 @@ export class CardLezioneComponent implements OnInit {
 
   @Input() corso: Corso;
 
-  @Output() newLezioni = new EventEmitter<Lezione[]>();
+  
   
 
   title: string = '';
@@ -55,7 +55,7 @@ export class CardLezioneComponent implements OnInit {
       this.ls.getOBSInsertLezione(this.lezione).subscribe(next => {
         this.ds.updateSpinner(false);
         this.ds.updateResultService(next.status);
-        this.newLezioni.emit(next.list);
+        this.ls.updateLezioni(next.list);
       },error => {
         this.ds.updateSpinner(false);
         this.ds.updateResultService('Inserimento lezione in errore');
@@ -64,7 +64,7 @@ export class CardLezioneComponent implements OnInit {
       this.ls.getOBSUpdateLezione(this.lezione).subscribe(next => {
         this.ds.updateSpinner(false);
         this.ds.updateResultService(next.status);
-        this.newLezioni.emit(next.list);
+        this.ls.updateLezioni(next.list);
       },error => {
         this.ds.updateSpinner(false);
         this.ds.updateResultService('Modifica lezione in errore');
@@ -79,7 +79,7 @@ export class CardLezioneComponent implements OnInit {
 
   goToLezione(){
     this.ls.lezioneSelected = this.lezione;
-    localStorage.removeItem('LEZIONE');
+    localStorage.removeItem('LEZIONE'); 
     localStorage.setItem('LEZIONE',JSON.stringify(this.ls.lezioneSelected));
     this.route.navigate(['/lezione'], { queryParams: {  id: this.ls.lezioneSelected.id } });  
   }
@@ -88,7 +88,7 @@ export class CardLezioneComponent implements OnInit {
     this.ls.getOBSDeleteLezione(this.lezione).subscribe(next => {
       this.ds.updateSpinner(false);
       this.ds.updateResultService(next.status);
-      this.newLezioni.emit(next.list);
+      this.ls.updateLezioni(next.list);
     },error => {
       this.ds.updateSpinner(false);
       this.ds.updateResultService('Eliminazione lezione in errore');

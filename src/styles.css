@@ -45,9 +45,9 @@ button:focus { outline:0 !important; }
 }
 
 
-.mat-snack-bar-container {
-
-  margin-bottom: 80px !important;
+.cdk-overlay-container {
+  position: fixed;
+  z-index: 9999;
 }
 
 .mat-paginator-container {

@@ -45,7 +45,7 @@ export class ContentModalCorsoComponent implements OnInit {
 
 
   get disableSave(){
-    return isEmptyString(this.nomeCorso) || isEmptyString(this.descCorso) || (this.subTipo === undefined || this.subTipo.codice === '');
+    return isEmptyString(this.nomeCorso)  || (this.subTipo === undefined || this.subTipo.codice === '');
   }
 
   get labelTipoCorso(){

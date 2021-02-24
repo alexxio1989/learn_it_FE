@@ -8,7 +8,10 @@ export class FormatTextPipe implements PipeTransform {
   
 
   transform(value: string): string {  
-    return '';  
+    if(value.length > 25){
+      return '<h5 class="pl-3 pr-3">' + value + '</h5>';  
+    } 
+    return '<h5>' + value + '</h5>';  
   } 
 
 }

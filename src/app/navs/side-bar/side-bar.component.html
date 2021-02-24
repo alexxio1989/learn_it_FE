@@ -23,12 +23,13 @@
                 </div>
                 <div class="w-100 p-2 d-flex justify-content-center">
                     <button mat-button (click)="logout()" style="color: #6c757d;">
-                        <mat-icon style="margin-top: -3px;">exit_to_app</mat-icon>
+                        <mat-icon >exit_to_app</mat-icon>
                         Logout
                     </button>
                 </div>
                 <div *ngIf="isSuperUser || isWriter" class="w-100 p-2 d-flex justify-content-center">
-                    <app-modal-corso></app-modal-corso>
+                    <app-modal-core [visible] = "isSuperUser || isWriter" [descButton] = "'Nuovo Corso'" [icon] ="'add'" [isButton] = "true" [component] = "modalCorsoComponent"></app-modal-core>
+                
                 </div>
                 <div *ngIf="isUser" class="row p-2">
                     <div class="col-12 d-flex justify-content-center">
@@ -36,15 +37,15 @@
 
                     </div>
                     <div class="col-12 d-flex justify-content-center pt-0">
-                        <button mat-button style="color: #6c757d; margin-top: -20px;" (click) ="openRichiesta()">
-                            Invia richiesta
-                        </button>
+                        <app-modal-core [descButton] = "'Invia richiesta'" [isButton] = "true" [component] = "modalRichiestaComponent"></app-modal-core>
+              
 
                     </div>
                 </div>
                 <div *ngIf="isSuperUser"  class="row p-2">
                     <div class="col-12 d-flex justify-content-center ">
                         <button mat-button style="color: #6c757d;" (click) ="gotToPageAdmin()">
+                            <mat-icon >settings</mat-icon>
                             Area Admin
                         </button>
                     </div>

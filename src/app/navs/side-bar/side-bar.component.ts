@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { ContentModalCorsoComponent } from 'src/app/modals/content-modal-corso/content-modal-corso.component';
 import { ModalRichiestaComponent } from 'src/app/modals/modal-richiesta/modal-richiesta.component';
 import { Corso } from 'src/app/model/Corso';
 import { Dominio } from 'src/app/model/Dominio';
@@ -30,7 +31,10 @@ export class SideBarComponent implements OnInit {
   isRichiedente: boolean;
   isWriter: boolean;
 
-  constructor(private ds: DelegateServiceService, private route: Router, private cs: CorsoServiceService,public dialog: MatDialog) {
+  modalRichiestaComponent = ModalRichiestaComponent;
+  modalCorsoComponent = ContentModalCorsoComponent
+
+  constructor(private ds: DelegateServiceService, private route: Router, private cs: CorsoServiceService) {
     this.ds.getOBSSideBar().subscribe(next => {
       this.openSideBar = next
     })
@@ -128,15 +132,7 @@ export class SideBarComponent implements OnInit {
     this.route.navigate(['/admin']);
     this.ds.updateSideBar(false);
   }
-
-  openRichiesta(){
-    const dialogRef = this.dialog.open(ModalRichiestaComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-
+  
   close(){
     this.ds.updateSideBar(false);
   }
