@@ -5,7 +5,7 @@
       <app-info-utente [utente] = "corso.owner" [isSideBar] ="false" [isCardCorso] ="true"></app-info-utente>
     </div>
   </div>
-  <div *ngIf="!isPAy" class="card-horizontal pl-3">
+  <div class="card-horizontal pl-3">
 
     <div class="row pl-0 pr-0 w-100">
       <div class="col-4 p-2 my-auto">
@@ -42,29 +42,13 @@
 
 
   </div>
-  <div *ngIf="isPAy" class="card-horizontal pl-3">
 
-    <button mat-icon-button (click)="back()" style=" color: #6c757d; margin-top: -10;">
-      <mat-icon>clear</mat-icon>
-    </button>
-  
-    <hr />
-  
-  
-    <form novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
-      <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
-  
-      <button mat-button type="submit" style="color: #6c757d;">
-        Acquista
-      </button>
-    </form>
-
-  </div>
   <div class="card-footer pt-1 pb-1">
 
     <div class="row">
       <div class="col-2">
         <app-edit-menu 
+        [owner] = "corso.owner"
         [typePadre] = "'C'" 
         [section] = "'Corso'" 
         [withVideo] = "false"
@@ -76,9 +60,13 @@
 
       </div>
       <div class="col-10 text-right">
-        <button mat-button (click)="next(corso)" style="color: #6c757d;">
+        <button *ngIf="showAccedi"  mat-button (click)="openLogin()" style="color: #6c757d;">
+          Accedi
+        </button>
+        <button *ngIf="showContinua"  mat-button (click)="next(corso)" style="color: #6c757d;">
           {{isCorsoLetto ? 'Continua' : 'Inizia Ora'}}
         </button>
+        <app-modal-core  [visible] = "showAcquista"  [descButton] = "'Acquista'" [objSelected] = "acquisto" [isButton] = "true" [component] = "modalPagamentoComponent"></app-modal-core>
       </div>
     </div>
       

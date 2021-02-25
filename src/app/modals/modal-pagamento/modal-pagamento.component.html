@@ -1,0 +1,20 @@
+<h3 mat-dialog-title>Pagamento</h3>
+<form style="width: 260px;"  novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
+    <mat-dialog-content style="width: auto; max-width: 100%; margin: 0 0px; padding: 0 0px;">
+
+        <div class="row w-100 mt-3 mb-3">
+            <div class="col-12 pr-0">
+                <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions" (change)="cardUpdated($event)" (error)="error = $event"></ngx-stripe-card>
+
+            </div>
+        </div>
+
+        
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button *ngIf="!complete" [disabled]="!complete" cdkFocusInitial style="color: #b4b4b4;">Acquista</button>
+        <button mat-button *ngIf="complete" cdkFocusInitial (click)="createToken()" type="submit" style="color: #007bff;">Acquista</button>
+    </mat-dialog-actions>
+</form>
+

@@ -69,6 +69,8 @@ import { ContentModalCorsoComponent } from './modals/content-modal-corso/content
 import { ContentModalParagrafoNewComponent } from './modals/content-modal-paragrafo-new/content-modal-paragrafo-new.component';
 import { ContentModalParagrafoEditComponent } from './modals/content-modal-paragrafo-edit/content-modal-paragrafo-edit.component';
 import { ModalCoreComponent } from './modals/core/modal-core/modal-core.component';
+import { ModalPagamentoComponent } from './modals/modal-pagamento/modal-pagamento.component';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -144,7 +146,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ModalRichiestaComponent,
     VideoPlayerComponent,
     EditMenuComponent,
-    ModalCoreComponent
+    ModalCoreComponent,
+    ModalPagamentoComponent
     
   ],
   imports: [
@@ -153,7 +156,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     FormsModule,
     HttpClientModule,
     NgbModule,
-    NgxStripeModule.forRoot("pk_live_rpWi9WRKeaD703jtVD9eKS0Q00Ai6Pbw6Y"),
+    NgxStripeModule.forRoot(environment.STRIPE_PUBLIC_TOKEN),
     RouterModule.forRoot(AppRoutes),
     HttpClientModule,
     BrowserAnimationsModule,

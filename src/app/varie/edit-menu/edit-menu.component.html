@@ -4,18 +4,18 @@
 <mat-menu #menu="matMenu">
 
     <input #csvInput hidden="true" type="file" onclick="this.value=null" (change)="addVideo($event)" />
-    <button *ngIf="withVideo && !isLoading && (fileLearnIt.base64 === undefined || fileLearnIt.base64 === null)" mat-menu-item color="primary" (click)="csvInput.click()">
+    <button *ngIf="withVideo && !isLoading && (fileLearnIt.base64 === undefined || fileLearnIt.base64 === null)  && isSamEUser" mat-menu-item color="primary" (click)="csvInput.click()">
         <mat-icon>add</mat-icon>
         <span>Aggiungi video ( Formato MP4 )</span>
     </button>
 
 
-    <button *ngIf="withVideo && !isLoading && (fileLearnIt.base64 !== undefined && fileLearnIt.base64 !== null)" mat-menu-item (click)="eliminaVideo()">
+    <button *ngIf="withVideo && !isLoading && (fileLearnIt.base64 !== undefined && fileLearnIt.base64 !== null)  && isSamEUser" mat-menu-item (click)="eliminaVideo()">
         <mat-icon>delete_outline</mat-icon>
         <span>Elimina Video</span>
     </button>
 
-    <button *ngIf="withAdd" mat-menu-item (click)="add()">
+    <button *ngIf="withAdd && isSamEUser" mat-menu-item (click)="add()">
         <mat-icon>add</mat-icon>
         <span>Aggiungi {{section}}</span>
     </button>
@@ -25,12 +25,12 @@
         <span>Info {{section}}</span>
     </button>
 
-    <button *ngIf="withElimina" mat-menu-item (click)="elimina()">
+    <button *ngIf="withElimina  && isSamEUser" mat-menu-item (click)="elimina()">
       <mat-icon>delete_outline</mat-icon>
       <span>Elimina</span>
     </button>
 
-    <button *ngIf="withModifica" mat-menu-item (click)="edit()">
+    <button *ngIf="withModifica && isSamEUser" mat-menu-item (click)="edit()">
         <mat-icon>edit_outline</mat-icon>
         <span>Modifica</span>
     </button>

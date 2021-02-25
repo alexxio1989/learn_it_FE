@@ -6,9 +6,11 @@ import { ContentModalCorsoEditComponent } from 'src/app/modals/content-modal-cor
 import { ContentModalInfoCorsoComponent } from 'src/app/modals/content-modal-info-corso/content-modal-info-corso.component';
 import { ContentModalParagrafoNewComponent } from 'src/app/modals/content-modal-paragrafo-new/content-modal-paragrafo-new.component';
 import { FileLearnIt } from 'src/app/model/FileLearnIt';
+import { User } from 'src/app/model/User';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { FileService } from 'src/app/services/file.service';
+import { isSameUser , getUserLS , isSameUserID} from 'src/app/utils/Util';
 
 
 @Component({
@@ -19,7 +21,9 @@ import { FileService } from 'src/app/services/file.service';
 export class EditMenuComponent implements OnInit {
   
   fileLearnIt = new FileLearnIt();
-
+  @Input() owner: User;
+  @Input() idowner: number;
+  user: User;
   @Input() withVideo: boolean;
   @Input() withAdd: boolean;
   @Input() withElimina: boolean;
@@ -31,16 +35,38 @@ export class EditMenuComponent implements OnInit {
   @Input() typePadre: string;
   @Input() title: string;
   isLoading: boolean;
+  isSamEUser : boolean;
 
   component: ComponentType<any>;
 
   constructor(public dialog: MatDialog,
               private fs: FileService,
               private ds: DelegateServiceService,
-              private cs: CorsoServiceService ) { }
+              private cs: CorsoServiceService ) { 
+                this.ds.getOBSUser().subscribe(next => {
+                  this.user = next;
+                  if(this.owner !== undefined){
+                    this.isSamEUser = isSameUser(next,this.owner);
+
+                  } else if(this.idowner !== undefined && this.idowner > 0) {
+
+                    this.isSamEUser = isSameUserID(next,this.idowner);
+
+                  }
+                })
+              }
 
   ngOnInit(): void {
+    
+    if(this.owner !== undefined){
+      this.isSamEUser = isSameUser(getUserLS(),this.owner);
 
+    } else if(this.idowner !== undefined && this.idowner > 0) {
+
+      this.isSamEUser = isSameUserID(getUserLS(),this.idowner);
+      
+    }
+    
     if(this.withVideo){
       this.getVideo();
     }

@@ -17,6 +17,8 @@ import {
   StripeElementsOptions 
 } from '@stripe/stripe-js';
 import { PagamentiServiceService } from 'src/app/services/pagamenti-service.service';
+import { Acquisto } from 'src/app/model/Acquisto';
+import { ModalPagamentoComponent } from 'src/app/modals/modal-pagamento/modal-pagamento.component';
 
 @Component({
   selector: 'app-card-corso',
@@ -34,7 +36,6 @@ import { PagamentiServiceService } from 'src/app/services/pagamenti-service.serv
 })
 export class CardCorsoComponent implements OnInit {
 
-  @ViewChild(StripeCardComponent) card: StripeCardComponent;
 
   @Input() corso: Corso;
   
@@ -43,34 +44,16 @@ export class CardCorsoComponent implements OnInit {
   isShowInfo: boolean;
   isEmptyDescrizione: boolean;
   isCorsoLetto: boolean;
+  isCorsoDaPagare: boolean;
   isPAy: boolean;
   user: User;
+  acquisto = new Acquisto();
+  modalPagamentoComponent = ModalPagamentoComponent;
 
-  cardOptions: StripeCardElementOptions = {
-    style: {
-      base: {
-        color: '#303238',
-        fontSize: '16px',
-        fontFamily: '"Open Sans", sans-serif',
-        fontSmoothing: 'antialiased',
-        '::placeholder': {
-          color: '#CFD7DF',
-        },
-      },
-      invalid: {
-        color: '#e5424d',
-        ':focus': {
-          color: '#303238',
-        },
-      },
-    }
-  };
+  showAcquista: boolean;
+  showContinua: boolean;
+  showAccedi: boolean;
 
-  elementsOptions: StripeElementsOptions = {
-    locale: 'it'
-  };
-
-  stripeTest: FormGroup;
 
   get getMediumFeeds(){
     
@@ -81,26 +64,36 @@ export class CardCorsoComponent implements OnInit {
     return count / this.corso.feeds.length;
   }
 
-  get isUtenteLogged(): boolean{
-    return isSameUser(getUserLS(),this.corso.owner);
-  }
 
-  constructor(private ps: PagamentiServiceService ,
-              private fb: FormBuilder,
-              private stripeService: StripeService ,
+  constructor(private fb: FormBuilder,
               private us: UtenteServiceService ,
               private cs: CorsoServiceService ,
               private route: Router,
-              private ds: DelegateServiceService) {
+              private ds: DelegateServiceService,
+              private ps: PagamentiServiceService) {
 
               this.ds.getOBSUser().subscribe(next => {
                 this.checkLettureUtente();
               })
 
+              this.ps.getOBSAcquisto().subscribe(next => {
+                if("CORSO" === next){
+                  this.goToCorso(this.corso);
+                }
+              })
+
   }
 
   ngOnInit(): void {
+
+    
+    this.acquisto.acquirente = getUserLS();
+    this.acquisto.owner = this.corso.owner;
+    this.acquisto.causale = "Acquisto corso " + this.corso.nomeCorso;
+    this.acquisto.total = this.corso.prezzo;
+    this.acquisto.type = "CORSO"
     this.checkLettureUtente();
+
     if(this.corso.descrizioneCorso === undefined || 
        this.corso.descrizioneCorso === null || 
        this.corso.descrizioneCorso.trim() === '' ||
@@ -109,15 +102,25 @@ export class CardCorsoComponent implements OnInit {
       this.isEmptyDescrizione = true;
     }
 
-    this.stripeTest = this.fb.group({
-      name: ['', [Validators.required]]
-    });
+  }
+
+  private setFlags() {
+    if (this.user !== undefined && this.user !== null) {
+      this.showAccedi = false;
+      this.showAcquista = this.corso.prezzo !== undefined && this.corso.prezzo > 0 && !this.isCorsoLetto;
+      this.showContinua = !this.showAcquista;
+
+    } else {
+      this.showAccedi = true;
+      this.showAcquista = false;
+      this.showContinua = false;
+    }
   }
 
   checkLettureUtente(){
     const user = getUserLS();
     this.user = user;
-    if(this.isUtenteLogged){
+    if(isSameUser(getUserLS(),this.corso.owner)){
       this.isCorsoLetto = true;
     } else {
 
@@ -125,6 +128,8 @@ export class CardCorsoComponent implements OnInit {
                           isNotEmptyArray(this.corso.listLetture) &&
                           isNotNullObj(user) ? this.corso.listLetture.filter(el => el.idUtente === user.id).length > 0 : false;
     }
+
+    this.setFlags();
   }
 
 
@@ -168,48 +173,13 @@ export class CardCorsoComponent implements OnInit {
 
   next(corso: Corso){
 
-    if(isNotNullObj(getUserLS())){
-
       if(this.isCorsoLetto){
         this.continua(corso);
       } else {
-        if(this.corso.prezzo > 0){
-          this.isPAy = true;
-        } else {
           this.goToCorso(corso);
-
-        }
       }
-
-    } else {
-      this.openLogin();
-    }
-
   }
 
-  back(){
-    this.isPAy = false;
-  }
 
-  createToken(): void {
-    const name = this.stripeTest.get('name').value;
-    this.stripeService
-      .createToken(this.card.element, { name })
-      .subscribe((result) => {
-        if (result.token) {
-          // Use the token
-          this.corso.acquirente = getUserLS();
-          this.corso.stripeToken = result.token.id;
-          console.log(result.token.id);
-          this.ps.getOBSPay(this.corso).subscribe(next=>{
-            this.ds.updateResultService(next.esito);
-            this.ds.updateSpinner(false);
-            this.goToCorso(this.corso);
-          })
-        } else if (result.error) {
-          console.log(result.error.message);
-        }
-      });
-  }
 
 }
