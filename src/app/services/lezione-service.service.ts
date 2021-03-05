@@ -22,26 +22,26 @@ export class LezioneServiceService {
   getOBSInsertLezione(lezione: Lezione): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/router/saveLezione", lezione , {headers});
+    return this.http.post(ServiceCore.baseURl + "/lezione/save", lezione , {headers});
   }
 
   getOBSUpdateLezione(lezione: Lezione): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/router/updateLezione", lezione , {headers});
+    return this.http.post(ServiceCore.baseURl + "/lezione/update", lezione , {headers});
   }
 
   getOBSDeleteLezione(lezione: Lezione): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/router/deleteLezione", lezione , {headers});
+    return this.http.post(ServiceCore.baseURl + "/lezione/delete", lezione , {headers});
   }
 
   getOBSGetLezione(id: number): Observable<any>{
     this.ds.updateSpinner(true);
     let token = getJWTTOKEN();
     const headers = new HttpHeaders().set("JWT_TOKEN",  token!== null ? token : '');
-    return this.http.post(ServiceCore.baseURl + "/router/getLezione",{'id' : id} , {headers});
+    return this.http.post(ServiceCore.baseURl + "/lezione/get",{'id' : id} , {headers});
   }
 
   getOBSUpdateIDParagrafoReaded(obj: LezioneParagrafo): Observable<any>{

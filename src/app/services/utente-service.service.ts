@@ -17,42 +17,42 @@ export class UtenteServiceService {
 
   getOBSLogin(utente: User): Observable<any>{ 
     this.ds.updateSpinner(true);
-    return this.http.post(ServiceCore.baseURl + "/router/login", utente , {observe: 'response'});
+    return this.http.post(ServiceCore.baseURl + "/soggetto/login", utente , {observe: 'response'});
   }
 
   getOBSSignIn(utente: User): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post(ServiceCore.baseURl + "/router/signin", utente);
+    return this.http.post(ServiceCore.baseURl + "/soggetto/save", utente);
   }
 
   getOBSPropriCorsi(utente: User): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/router/getProprioCorsi", utente,{headers});
+    return this.http.post(ServiceCore.baseURl + "/soggetto/getProprioCorsi", utente,{headers});
   }
 
   getOBSUtenteById(utente: User): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/router/getUtenteById", utente,{headers});
+    return this.http.post(ServiceCore.baseURl + "/soggetto/getByID", utente,{headers});
   }
 
   getOBSInsertLettura(lettura: Lettura): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
 
-    return this.http.post(ServiceCore.baseURl + "/router/insertLettura", lettura ,{headers});
+    return this.http.post(ServiceCore.baseURl + "/soggetto/insertLettura", lettura ,{headers});
   }
 
   getOBSUpdateUser(utente: User): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
 
-    return this.http.post(ServiceCore.baseURl + "/router/updateUtente", utente ,{headers});
+    return this.http.post(ServiceCore.baseURl + "/soggetto/update", utente ,{headers});
   }
 
   getOBSRecuperoPsw(utente: User): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.post(ServiceCore.baseURl + "/router/richiediPws", utente);
+    return this.http.post(ServiceCore.baseURl + "/soggetto/richiediPws", utente);
   }
 }

@@ -16,18 +16,18 @@ export class RichiestaServiceService {
   getOBSSave(richiesta: Richiesta): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/router/saveRichiesta", richiesta , {headers});
+    return this.http.post(ServiceCore.baseURl + "/richiesta/save", richiesta , {headers});
   }
 
   getOBSUpdate(richiesta: Richiesta): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/router/updateRichiesta", richiesta , {headers});
+    return this.http.post(ServiceCore.baseURl + "/richiesta/update", richiesta , {headers});
   }
 
   getOBSGetAll(): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.get(ServiceCore.baseURl + "/router/getAllRichiesta", {headers});
+    return this.http.get(ServiceCore.baseURl + "/richiesta/getAll", {headers});
   }
 }

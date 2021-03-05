@@ -45,39 +45,39 @@ export class CorsoServiceService {
 
   getOBSCorsi(): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.get(ServiceCore.baseURl + "/router/datipagina/getCorsi");
+    return this.http.get(ServiceCore.baseURl + "/corso/getCorsi");
   }
 
   getOBSTypes(): Observable<any>{
-    return this.http.get(ServiceCore.baseURl + "/router/datipagina/getTypes");
+    return this.http.get(ServiceCore.baseURl + "/type/getAll");
   }
 
   getOBSInsertTypes(dominio: Dominio): Observable<any>{
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/router/insertType" , dominio , {headers});
+    return this.http.post(ServiceCore.baseURl + "/type/save" , dominio , {headers});
   }
 
   getOBSInsertSubTypes(dominio: SubDominio): Observable<any>{
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/router/insertSubType" , dominio , {headers});
+    return this.http.post(ServiceCore.baseURl + "/type/insertSubType" , dominio , {headers});
   }
 
   getOBSInsertCorso(corso: Corso): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/router/saveCorso", corso , {headers});
+    return this.http.post(ServiceCore.baseURl + "/corso/save", corso , {headers});
   }
 
   getOBSUpdateCorso(corso: Corso): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/router/updateCorso", corso , {headers});
+    return this.http.post(ServiceCore.baseURl + "/corso/update", corso , {headers});
   }
 
   getOBSDeleteCorso(corso: Corso): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/router/deleteCorso", corso , {headers});
+    return this.http.post(ServiceCore.baseURl + "/corso/delete", corso , {headers});
   }
 
   getOBSUpdateVisCorso(corso: Corso): Observable<any>{
@@ -91,7 +91,7 @@ export class CorsoServiceService {
     const headers = new HttpHeaders().set("JWT_TOKEN",  token!== null ? token : '');
     let corso = new Corso();
     corso.id = id;
-    return this.http.post(ServiceCore.baseURl + "/router/getCorso", corso  , {headers});
+    return this.http.post(ServiceCore.baseURl + "/corso/getCorso", corso  , {headers});
   }
 
 

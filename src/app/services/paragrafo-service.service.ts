@@ -28,18 +28,18 @@ export class ParagrafoServiceService {
   getOBSInsertParagrafo(paragrafo: Paragrafo): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/router/saveParagrafo", paragrafo , {headers});
+    return this.http.post(ServiceCore.baseURl + "/paragrafo/save", paragrafo , {headers});
   }
 
   getOBSUpdateParagrafo(paragrafo: Paragrafo): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/router/updateParagrafo", paragrafo , {headers});
+    return this.http.post(ServiceCore.baseURl + "/paragrafo/update", paragrafo , {headers});
   }
 
   getOBSDeleteParagrafo(paragrafo: Paragrafo): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN())
-    return this.http.post(ServiceCore.baseURl + "/router/deleteParagrafo", paragrafo , {headers});
+    return this.http.post(ServiceCore.baseURl + "/paragrafo/delete", paragrafo , {headers});
   }
 }
