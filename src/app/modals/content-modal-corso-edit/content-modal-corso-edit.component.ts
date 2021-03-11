@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Corso } from 'src/app/model/Corso';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
-import { isEmptyString } from 'src/app/utils/Util';
+import { isEmptyString ,getUserLS } from 'src/app/utils/Util';
 
 @Component({
   selector: 'app-content-modal-corso-edit',
@@ -14,10 +14,13 @@ export class ContentModalCorsoEditComponent implements OnInit {
   corso: Corso;
 
   aPagamento: boolean;
+  enableCorsoAPagamento: boolean;
 
   ngOnInit(): void {
     this.corso = this.cs.corsoSelected;
     this.aPagamento = this.corso.prezzo > 0;
+    let utente = getUserLS();
+    this.enableCorsoAPagamento = utente !== undefined && utente !== null && ( 'SU' === utente.tipo.codice || 'WF' === utente.tipo.codice )
   }
 
   closeResult = ''; 

@@ -5,7 +5,7 @@ import { Dominio } from 'src/app/model/Dominio';
 import { SubDominio } from 'src/app/model/SubDominio';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
-import { isEmptyString } from 'src/app/utils/Util';
+import { isEmptyString,getUserLS } from 'src/app/utils/Util';
 
 @Component({
   selector: 'app-content-modal-corso',
@@ -24,6 +24,7 @@ export class ContentModalCorsoComponent implements OnInit {
   tipoCorsoList = []
   prezzo: number;
   image: string;
+  enableCorsoAPagamento: boolean;
 
   newType: Dominio = new Dominio();
   newSubType: SubDominio = new SubDominio();
@@ -33,6 +34,8 @@ export class ContentModalCorsoComponent implements OnInit {
 
   ngOnInit(): void {
     this.tipoCorsoList = this.cs.tipoCorsoList;
+    let utente = getUserLS();
+    this.enableCorsoAPagamento = utente !== undefined && utente !== null && ( 'SU' === utente.tipo.codice || 'WF' === utente.tipo.codice )
   }
 
   closeResult = '';
