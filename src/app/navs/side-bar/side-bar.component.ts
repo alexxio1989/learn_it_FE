@@ -106,7 +106,7 @@ export class SideBarComponent implements OnInit {
   }
 
   logout(){
-    localStorage.removeItem('USER');
+    
     localStorage.removeItem('JWT_TOKEN')
     localStorage.removeItem('COOKIE_CONSENT')
     this.ds.updateUser(null);

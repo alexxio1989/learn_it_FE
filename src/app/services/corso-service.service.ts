@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Corso } from '../model/Corso';
@@ -45,11 +45,11 @@ export class CorsoServiceService {
 
   getOBSCorsi(): Observable<any>{
     this.ds.updateSpinner(true);
-    return this.http.get(ServiceCore.baseURl + "/corso/getCorsi");
+    return this.http.get(ServiceCore.baseURl + "/corso/getall");
   }
 
   getOBSTypes(): Observable<any>{
-    return this.http.get(ServiceCore.baseURl + "/type/getAll");
+    return this.http.get(ServiceCore.baseURl + "/type/getall");
   }
 
   getOBSInsertTypes(dominio: Dominio): Observable<any>{
@@ -89,9 +89,28 @@ export class CorsoServiceService {
     this.ds.updateSpinner(true);
     let token = getJWTTOKEN();
     const headers = new HttpHeaders().set("JWT_TOKEN",  token!== null ? token : '');
-    let corso = new Corso();
-    corso.id = id;
-    return this.http.post(ServiceCore.baseURl + "/corso/getCorso", corso  , {headers});
+    let params = new HttpParams();
+    params = params.append('id', id.toString());
+
+    const httpOptions = {
+      headers: headers,
+      params: params
+    };
+    return this.http.get(ServiceCore.baseURl + "/corso/get" , httpOptions);
+  }
+
+  getOBSGetAllUtente(utente: User): Observable<any>{
+    this.ds.updateSpinner(true);
+    let token = getJWTTOKEN();
+    const headers = new HttpHeaders().set("JWT_TOKEN",  token!== null ? token : '');
+    let params = new HttpParams();
+    params = params.append('id', utente.id.toString());
+
+    const httpOptions = {
+      headers: headers,
+      params: params
+    };
+    return this.http.get(ServiceCore.baseURl + "/corso/getallbyid" , httpOptions);
   }
 
 

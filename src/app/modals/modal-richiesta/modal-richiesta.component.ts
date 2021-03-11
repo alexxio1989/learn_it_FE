@@ -27,7 +27,6 @@ export class ModalRichiestaComponent implements OnInit {
     this.rs.getOBSSave(this.richiesta).subscribe(next => {
       let utente = next.obj.utente;
       localStorage.removeItem('USER');
-      localStorage.setItem('USER',JSON.stringify(utente));
       this.ds.updateUser(utente); 
       this.ds.updateResultService("Richiesta salvata correttamente")
       this.ds.updateSpinner(false);

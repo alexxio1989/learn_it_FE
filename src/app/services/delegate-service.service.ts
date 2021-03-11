@@ -81,6 +81,12 @@ export class DelegateServiceService {
   }
 
   updateUser(utente: User) {
+    if(utente === undefined || utente === null){
+      localStorage.removeItem('USER');
+    } else {
+      localStorage.removeItem('USER');
+      localStorage.setItem('USER',JSON.stringify(utente));
+    }
     this._sbjUser.next(utente);
   }
 

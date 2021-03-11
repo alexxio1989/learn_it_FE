@@ -22,6 +22,7 @@ export class InfoUtenteComponent implements OnInit {
   @Input() isRichiesta: boolean;
   @Input() editInfo: boolean;
   isDevice: boolean;
+  confirmDelete: boolean;
 
   imgCrop = "150px";
 
@@ -48,9 +49,7 @@ export class InfoUtenteComponent implements OnInit {
       'height': this.imgCrop,
       'width': this.imgCrop,
       'border-radius': '100%',
-      'text-align':'center',
-      'margin-left': 'auto',
-      'margin-right': 'auto',
+      'text-align':'center'
     };
   }
 
@@ -63,6 +62,21 @@ export class InfoUtenteComponent implements OnInit {
   goToPageUtenteWithID(){
     this.route.navigate(['/utente'], { queryParams: { id: this.utente.id } });
     this.ds.updateSideBar(false);
+  }
+
+  eliminaAccount(){
+
+    this.us.getOBSDelete(this.utente).subscribe(next => {
+      localStorage.removeItem('JWT_TOKEN')
+      localStorage.removeItem('COOKIE_CONSENT')
+      this.ds.updateUser(null);
+      this.route.navigate(['/']);
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService(next.status);
+    },error => {
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService("Errore durante l'eliminazione utente");
+    })
   }
 
 }

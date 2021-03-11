@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Lettura } from '../model/Lettura';
@@ -17,7 +17,7 @@ export class UtenteServiceService {
 
   getOBSLogin(utente: User): Observable<any>{ 
     this.ds.updateSpinner(true);
-    return this.http.post(ServiceCore.baseURl + "/soggetto/login", utente , {observe: 'response'});
+    return this.http.post(ServiceCore.baseURl + "/soggetto/retrieve", utente , {observe: 'response'});
   }
 
   getOBSSignIn(utente: User): Observable<any>{
@@ -25,16 +25,19 @@ export class UtenteServiceService {
     return this.http.post(ServiceCore.baseURl + "/soggetto/save", utente);
   }
 
-  getOBSPropriCorsi(utente: User): Observable<any>{
-    this.ds.updateSpinner(true);
-    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/soggetto/getProprioCorsi", utente,{headers});
-  }
+  
 
   getOBSUtenteById(utente: User): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/soggetto/getByID", utente,{headers});
+    let params = new HttpParams();
+    params = params.append('id', utente.id.toString());
+
+    const httpOptions = {
+      headers: headers,
+      params: params
+    };
+    return this.http.get(ServiceCore.baseURl + "/soggetto/get", httpOptions);
   }
 
   getOBSInsertLettura(lettura: Lettura): Observable<any>{
@@ -54,5 +57,12 @@ export class UtenteServiceService {
   getOBSRecuperoPsw(utente: User): Observable<any>{
     this.ds.updateSpinner(true);
     return this.http.post(ServiceCore.baseURl + "/soggetto/richiediPws", utente);
+  }
+
+  getOBSDelete(utente: User): Observable<any>{
+    this.ds.updateSpinner(true);
+    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
+    this.ds.updateSpinner(true);
+    return this.http.post(ServiceCore.baseURl + "/soggetto/delete", utente,{headers});
   }
 }

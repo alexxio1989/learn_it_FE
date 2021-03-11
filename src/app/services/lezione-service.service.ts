@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { FileLearnIt } from '../model/FileLearnIt';
@@ -41,7 +41,15 @@ export class LezioneServiceService {
     this.ds.updateSpinner(true);
     let token = getJWTTOKEN();
     const headers = new HttpHeaders().set("JWT_TOKEN",  token!== null ? token : '');
-    return this.http.post(ServiceCore.baseURl + "/lezione/get",{'id' : id} , {headers});
+
+    let params = new HttpParams();
+    params = params.append('id', id.toString());
+
+    const httpOptions = {
+      headers: headers,
+      params: params
+    };
+    return this.http.get(ServiceCore.baseURl + "/lezione/get",httpOptions);
   }
 
   getOBSUpdateIDParagrafoReaded(obj: LezioneParagrafo): Observable<any>{

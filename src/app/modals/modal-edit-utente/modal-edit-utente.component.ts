@@ -43,6 +43,8 @@ export class ModalEditUtenteComponent implements OnInit {
   salva(){
 
     this.us.getOBSUpdateUser(this.user).subscribe(next => {
+      this.user = next.obj;
+      this.ds.updateUser(this.user);
       this.ds.updateSpinner(false);
       this.ds.updateResultService(next.status);
     },error => {

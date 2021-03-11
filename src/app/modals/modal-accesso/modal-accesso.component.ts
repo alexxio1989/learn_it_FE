@@ -6,6 +6,7 @@ import { DelegateServiceService } from 'src/app/services/delegate-service.servic
 import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { isEmptyString } from 'src/app/utils/Util';
 import { Router } from '@angular/router';
+import {Country} from '@angular-material-extensions/select-country'; 
 
 @Component({
   selector: 'app-modal-accesso',
@@ -53,8 +54,7 @@ export class ModalAccessoComponent implements OnInit {
       this.us.getOBSLogin(this.user).subscribe(next =>{
         this.ds.updateResultService("Login avvenuto con successo");
         localStorage.setItem('JWT_TOKEN',next.headers.get('JWT_TOKEN'));
-        localStorage.setItem('USER',JSON.stringify(next.body.obj));
-        let dateString = new Date().toLocaleString('it-IT')
+        let dateString = new Date().toLocaleString('it-IT') 
         localStorage.setItem('JWT_TIME',dateString);
         this.ds.utente = next.body.obj;
         this.ds.updateUser(next.body.obj); 
@@ -100,6 +100,20 @@ export class ModalAccessoComponent implements OnInit {
       this.ds.updateSpinner(false);
     })
 
+  }
+
+  fileChange(event){
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.user.img = reader.result as string;
+    };
+  }
+
+  onCountrySelected(country: Country) {
+    console.log(country);
+    this.user.recapito.country= country;
   }
 
 

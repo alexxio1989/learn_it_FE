@@ -41,11 +41,11 @@ export class PageUtenteComponent implements OnInit , IPageCore{
         utente.id = id;
         this.us.getOBSUtenteById(utente).subscribe(
           next=>{
-            this.utente = next;
+            this.utente = next.obj;
             this.extraUtenteLogged = true;
             this.ds.updateResultService("Recupero utente avvenuto con successo")
             this.ds.updateSpinner(false);
-            this.getOBSPropriCorsiUtenteRetrieved(next);
+            this.renderPage = true;
       
           },error=>{
             this.ds.updateResultService("Errore durante la modificata alla visibilità del corso")
@@ -58,7 +58,16 @@ export class PageUtenteComponent implements OnInit , IPageCore{
         if(isNullObj(this.utente)){
           this.route.navigate(['/']);
         }else {
-          this.getOBSPropriCorsi();
+          this.cs.getOBSGetAllUtente(this.utente).subscribe(next=>{
+            this.utente.propriCorsi = next.list;
+            this.ds.updateResultService("Recupero dei tuoi corsi")
+            this.ds.updateSpinner(false);
+            this.renderPage = true;
+      
+          },error=>{
+            this.ds.updateResultService("Errore durante il recupero dei tuoi corsi")
+            this.ds.updateSpinner(false);
+          })
         }
 
       }
@@ -78,41 +87,18 @@ export class PageUtenteComponent implements OnInit , IPageCore{
     this.cs.getOBSUpdateVisCorso(corso).subscribe(next=>{
       this.ds.updateResultService("Visibilità del corso modificata correttamente")
       this.ds.updateSpinner(false);
-      this.getOBSPropriCorsi();
-
     },error=>{
       this.ds.updateResultService("Errore durante la modificata alla visibilità del corso")
       this.ds.updateSpinner(false);
     })
   }
 
-  private getOBSPropriCorsiUtenteRetrieved(utente:User) {
-    this.us.getOBSPropriCorsi(utente).subscribe(next => {
-      this.utente.propriCorsi = next.list;
-      
-      this.ds.updateSpinner(false);
-    }, error => {
-      this.ds.updateResultService("Errore durante il recupero corsi");
-      this.ds.updateSpinner(false);
-    });
-  }
-
-
-  private getOBSPropriCorsi() {
-    this.us.getOBSPropriCorsi(this.utente).subscribe(next => {
-      this.utente.propriCorsi = next.list;
-      localStorage.removeItem('USER');
-      localStorage.setItem('USER', JSON.stringify(this.utente));
-      this.ds.updateResultService("Recupero dei tuoi corsi avvenuto con successo");
-      this.ds.updateSpinner(false);
-    }, error => {
-      this.ds.updateResultService("Errore durante il recuper dei tuoi corsi");
-      this.ds.updateSpinner(false);
-    });
-  }
+  
 
   updateUser(){
     this.us.getOBSUpdateUser(this.utente).subscribe(next => {
+      this.utente = next.obj;
+      this.ds.updateUser(this.utente);
       this.ds.updateSpinner(false);
       this.ds.updateResultService(next.status);
     },error => {

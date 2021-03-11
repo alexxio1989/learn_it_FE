@@ -1,9 +1,9 @@
 <div *ngIf="!isSideBar && !isCardCorso && !isRichiesta" class="row mb-3">
 
     <div *ngIf="!isDevice" class="col-3"></div>
-    <div class="{{isDevice ? 'col-4':'col-2 pl-0 pr-0'}}">
+    <div  class="{{isDevice ? 'col-4 d-flex justify-content-center':'col-2 pl-0 pr-0 d-flex justify-content-center align-items-center'}}">
 
-        <div [ngStyle]="boxImgUtente()">
+        <div   [ngStyle]="boxImgUtente()">
             <img *ngIf="utente.img !== undefined && utente.img !== null && utente.img !== ''" alt="Web Studio"
             class="card-img" src="{{utente.img}}" />
             <img *ngIf="utente.img === undefined || utente.img === null || utente.img === ''" alt="Web Studio"
@@ -35,6 +35,25 @@
                                     [isButton] = "true" 
                                     [component] = "modalModalEditUtente"
                                     [class] = "'p-0'"></app-modal-core>
+            </div>
+            <div *ngIf="editInfo && !confirmDelete" class="col-12 pl-0">
+                <button mat-button (click)="confirmDelete = true" style="color: red;">
+                    <mat-icon>delete_outline</mat-icon>
+                    Elimina account
+                    
+                </button>
+            </div>
+            <div *ngIf="editInfo && confirmDelete" class="col-12 pl-0">
+               
+                Confermi ?
+                <button mat-button (click)="eliminaAccount()" style="color: red;">
+                    Si
+                    
+                </button>
+                <button mat-button (click)="confirmDelete = false" style="color: #6c757d;">
+                    No
+                    
+                </button>
             </div>
         </div>
         

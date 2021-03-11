@@ -1,7 +1,10 @@
+import { Bank } from './Bank';
 import { Corso } from './Corso';
 import { Dominio } from './Dominio';
+import { Recapito } from './Recapito';
 
 export class User{
+
     id: number;
     email: string;
     password: string;
@@ -13,5 +16,10 @@ export class User{
     descrizione: string;
     attivita: string;
     img: string;
+    idStripe: string;
+    phone: string;
+    dataNascita: Date;
+    recapito: Recapito = new Recapito();
+    bank: Bank = new Bank();
     
 }

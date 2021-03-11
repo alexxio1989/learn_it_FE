@@ -15,6 +15,8 @@ export function isNullObj<T>(arg: T) {
 
 // STRINGS
 
+
+
 export function areSemeStrings(value1: string, value2: string): boolean {
     return isNotEmptyString(value1) && isNotEmptyString(value2) && value1 === value2;
 }
@@ -47,7 +49,7 @@ export function getUserLS(): User {
 }
 
 export function isSameUser(user1: User, user2: User): boolean {
-    return isNotNullObj(user1) && isNotNullObj(user2) && areSemeStrings(user1.email, user2.email);
+    return isNotNullObj(user1) && isNotNullObj(user2) && user1.id ===  user2.id;
 }
 
 export function isSameUserID(user1: User, id: number): boolean {

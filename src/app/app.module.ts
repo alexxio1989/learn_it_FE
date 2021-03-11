@@ -71,6 +71,7 @@ import { ContentModalParagrafoEditComponent } from './modals/content-modal-parag
 import { ModalCoreComponent } from './modals/core/modal-core/modal-core.component';
 import { ModalPagamentoComponent } from './modals/modal-pagamento/modal-pagamento.component';
 import { environment } from 'src/environments/environment';
+import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 
 
 
@@ -186,7 +187,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CodemirrorModule,
     NgcCookieConsentModule.forRoot(cookieConfig),
     NgxEditorModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSelectCountryModule.forRoot('it')
 
   ],
   providers: [
