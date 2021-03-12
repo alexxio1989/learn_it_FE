@@ -1,10 +1,12 @@
 import { ComponentType } from '@angular/cdk/portal';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ConstantsComponent } from 'src/app/constants/ConstantsComponent';
 import { ContentModalCorsoEditComponent } from 'src/app/modals/content-modal-corso-edit/content-modal-corso-edit.component';
 import { ContentModalInfoCorsoComponent } from 'src/app/modals/content-modal-info-corso/content-modal-info-corso.component';
 import { ContentModalParagrafoNewComponent } from 'src/app/modals/content-modal-paragrafo-new/content-modal-paragrafo-new.component';
+import { Corso } from 'src/app/model/Corso';
 import { FileLearnIt } from 'src/app/model/FileLearnIt';
 import { User } from 'src/app/model/User';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
@@ -29,6 +31,8 @@ export class EditMenuComponent implements OnInit {
   @Input() withElimina: boolean;
   @Input() withModifica: boolean;
   @Input() withInfo: boolean;
+  @Input() withGoTo: boolean;
+  @Input() withDisable: boolean;
   @Input() obj: any;
   @Input() idPadre: number;
   @Input() section: string;
@@ -36,12 +40,15 @@ export class EditMenuComponent implements OnInit {
   @Input() title: string;
   isLoading: boolean;
   isSamEUser : boolean;
+  confirmDelete: boolean;
+  corso: Corso;
 
   component: ComponentType<any>;
 
   constructor(public dialog: MatDialog,
               private fs: FileService,
               private ds: DelegateServiceService,
+              private route: Router,
               private cs: CorsoServiceService ) { 
                 this.ds.getOBSUser().subscribe(next => {
                   this.user = next;
@@ -69,6 +76,10 @@ export class EditMenuComponent implements OnInit {
     
     if(this.withVideo){
       this.getVideo();
+    }
+
+    if(ConstantsComponent.CORSO === this.typePadre ){
+      this.corso = this.obj;
     }
   }
 
@@ -120,7 +131,7 @@ export class EditMenuComponent implements OnInit {
     
    
 
-      if ('video/mp4' === type){
+      if ('video/mp4' === type){ 
 
         if(file.size < 104857600){
             const reader = new FileReader();
@@ -195,6 +206,33 @@ export class EditMenuComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+
+  updateVisCorso(){ 
+    let corso = this.obj;
+    corso.enable = !corso.enable;
+    this.cs.getOBSUpdateVisCorso(corso).subscribe(next=>{
+      this.ds.updateResultService("Visibilità del corso modificata correttamente")
+      this.ds.updateSpinner(false);
+    },error=>{
+      this.ds.updateResultService("Errore durante la modificata alla visibilità del corso")
+      this.ds.updateSpinner(false);
+    })
+  }
+
+
+  goTo(){
+
+    if(ConstantsComponent.CORSO === this.typePadre ){
+      let corso = this.obj;
+      localStorage.setItem('CORSO' , JSON.stringify(corso));
+      this.cs.corsoSelected = corso;
+      this.route.navigate(['/corso'], { queryParams: { id: corso.id } }); 
+
+    } else if(ConstantsComponent.LEZIONE === this.typePadre ){
+
+    }
   }
 
 }

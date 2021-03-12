@@ -79,7 +79,7 @@ export class CardLezioneComponent implements OnInit {
 
   goToLezione(){
     this.ls.lezioneSelected = this.lezione;
-    localStorage.removeItem('LEZIONE'); 
+    localStorage.removeItem('LEZIONE');  
     localStorage.setItem('LEZIONE',JSON.stringify(this.ls.lezioneSelected));
     this.route.navigate(['/lezione'], { queryParams: {  id: this.ls.lezioneSelected.id } });  
   }

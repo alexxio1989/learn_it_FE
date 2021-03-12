@@ -18,4 +18,16 @@
       height : 100%;
       object-fit: contain;
       border-radius: 50%;
-     }
+  }
+  
+.card-img{
+    min-height: auto; 
+    max-height: auto; 
+    min-width: auto;
+    max-height: auto;
+    height: 90px;
+    width: 90px;
+    border-radius: 100%;
+    text-align:center;
+    margin-left: 30px;
+}

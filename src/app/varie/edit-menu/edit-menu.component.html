@@ -6,7 +6,7 @@
     <input #csvInput hidden="true" type="file" onclick="this.value=null" (change)="addVideo($event)" />
     <button *ngIf="withVideo && !isLoading && (fileLearnIt.base64 === undefined || fileLearnIt.base64 === null)  && isSamEUser" mat-menu-item color="primary" (click)="csvInput.click()">
         <mat-icon>add</mat-icon>
-        <span>Aggiungi video ( Formato MP4 )</span>
+        <span>Aggiungi video ( Formato MP4 )</span> 
     </button>
 
 
@@ -19,16 +19,40 @@
         <mat-icon>add</mat-icon>
         <span>Aggiungi {{section}}</span>
     </button>
+
+    <button *ngIf="withDisable  && isSamEUser" mat-menu-item (click)="updateVisCorso()">
+        <mat-icon *ngIf="corso !== undefined && corso.enable">visibility_off</mat-icon>
+        <mat-icon *ngIf="corso !== undefined && !corso.enable">visibility</mat-icon>
+        <span>{{corso !== undefined && corso.enable ? 'Disabilita Corso' : 'Abilita Corso'}}</span>
+    </button>
+
+    <button *ngIf="withGoTo  && isSamEUser" mat-menu-item (click)="goTo()">
+        <mat-icon>arrow_right_alt</mat-icon>
+        <span>Vai al {{section}}</span>
+    </button>
     
     <button *ngIf="withInfo" mat-menu-item (click)="info()">
         <mat-icon>info_outline</mat-icon>
         <span>Info {{section}}</span>
     </button>
 
-    <button *ngIf="withElimina  && isSamEUser" mat-menu-item (click)="elimina()">
+    <button *ngIf="withElimina  && isSamEUser && !confirmDelete" mat-menu-item (click)="$event.stopPropagation(); confirmDelete = true">
       <mat-icon>delete_outline</mat-icon>
       <span>Elimina</span>
     </button>
+
+    <div *ngIf="confirmDelete" class="col-12 p-3">
+               
+        Confermi ?
+        <button mat-button (click)="elimina" style="color: red;">
+            Si
+            
+        </button>
+        <button mat-button (click)="$event.stopPropagation(); confirmDelete = false" style="color: #6c757d;">
+            No
+            
+        </button>
+    </div>
 
     <button *ngIf="withModifica && isSamEUser" mat-menu-item (click)="edit()">
         <mat-icon>edit_outline</mat-icon>

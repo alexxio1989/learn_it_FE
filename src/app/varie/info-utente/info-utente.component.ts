@@ -36,12 +36,18 @@ export class InfoUtenteComponent implements OnInit {
     } else if(this.isSideBar || this.isRichiesta){
       this.imgCrop = "60px";
     } else {
-      this.imgCrop = "110px";
+      if(this.isDevice){
+        this.imgCrop = "80px";
+      } else {
+        this.imgCrop = "110px";
+
+      }
     }
 
 
   }
 
+  
   
 
   boxImgUtente() {
@@ -49,7 +55,8 @@ export class InfoUtenteComponent implements OnInit {
       'height': this.imgCrop,
       'width': this.imgCrop,
       'border-radius': '100%',
-      'text-align':'center'
+      'text-align':'center',
+      'margin-top':this.isDevice && !this.isSideBar ? '15px' : '0px'
     };
   }
 

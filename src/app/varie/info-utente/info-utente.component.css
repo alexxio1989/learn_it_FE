@@ -8,3 +8,9 @@ img {
 .box-button-user{
     min-width: 250px !important;
 }
+
+.boxshadows{
+    box-shadow: 0 3px 6px -6px rgb(156, 156, 156);
+    padding-bottom: 20px;
+    background-image: linear-gradient(rgba(255,0,0,0), rgb(242, 242, 242));
+  }

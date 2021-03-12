@@ -76,7 +76,7 @@ export class PageUtenteComponent implements OnInit , IPageCore{
     
   }
 
-  goToCourse(corso: Corso){
+  goToCourse(corso: Corso){ 
     localStorage.setItem('CORSO' , JSON.stringify(corso));
     this.cs.corsoSelected = corso;
     this.route.navigate(['/corso'], { queryParams: { id: corso.id } }); 

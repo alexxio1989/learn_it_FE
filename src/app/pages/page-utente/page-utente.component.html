@@ -33,64 +33,48 @@
     
                 </mat-tab>
                 <mat-tab label="{{extraUtenteLogged ? 'I Suoi Corsi' : 'I Tuoi Corsi'}}">
-                    <div *ngIf="utente !== undefined && utente !== null && utente.propriCorsi !== null && utente.propriCorsi.length > 0"
-                        class="one-edge-shadow p-2 row w-100">
-                      
                 
-                        <mat-list role="list" class="w-100">
-                
-                
-                            <mat-list-item *ngFor="let corso of utente.propriCorsi" role="listitem" class="w-100 h-100 mb-2 p-2">
-                                <div class="row  w-100">
-                                    <div class="col-2 text-right pr-0">
-                                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" style="margin-top: -7px;">
-                                          <mat-icon>more_vert</mat-icon>
-                                        </button>
-                                        <mat-menu #menu="matMenu">
-                                    
-                                            <div class="row w-100">
-                                                <div class="col-12 d-flex justify-content-center">
-                                                    <button mat-button (click)="goToCourse(corso)" style="color: #007bff; margin-top: -5px;">
-                                                        Vai al Corso
-                                                    </button>
-                                                </div>
-                                                <div *ngIf="!extraUtenteLogged" class="col-12 d-flex justify-content-center">
-                                                    <mat-slide-toggle [(ngModel)]="corso.enable" (click)="updateVisCorso(corso)">
-                                                        {{corso.enable ? 'Nascondi corso' : 'Pubblica corso'}}</mat-slide-toggle>
-                                                </div>
-                                            </div>
-                                        </mat-menu>
-                                
-                                      </div>
-                                    <div class="col-10">
-                                        <div class="col-12">
-                                            <h4>{{corso.nomeCorso}}</h4>
-                                        </div>
-                                        <div class="col-12">
-                                            <h5>{{corso.subNomeCorso}}</h5>
-                                        </div>
-                                        <div class="col-12">
-                                            <ngx-stars [readonly]="true" [size]="0.8" [color]="'#007bff'" [initialStars]="0"></ngx-stars>
-                                        </div>
-                                    </div>
-                                   
-                                </div>
-                            </mat-list-item>
-                
-                
-                        </mat-list>
-                    </div>
-                
-                    <div  *ngIf="utente !== undefined && utente !== null && (utente.propriCorsi === undefined || utente.propriCorsi === null || utente.propriCorsi.length === 0)"
-                        class="one-edge-shadow row w-100 p-2">
+                    <div *ngFor="let corso of utente.propriCorsi" class="row w-100 p-3 mt-3" style="background-color: #f6f6f6; min-width: 100%;">
                         
+                        <div class="col-2 d-flex justify-content-center align-items-center my-auto">
                             
-                        
-                            <div class="col-12 d-flex justify-content-center mt-3">
-                                Non hai pubblicato ancora nessun corso
+                            <img *ngIf="corso.image !== undefined && corso.image !== null && corso.image !== ''" alt="Web Studio"
+                            class="card-img" src="{{corso.image}}" />
+                            <img *ngIf="corso.image === undefined || corso.image === null || corso.image === ''" alt="Web Studio"
+                            class="card-img" src="../../../assets/images/default.png" /> 
+                            
+                        </div>
+                        <div class="col-8 pt-2 pl-5">
+                            <div class="col-12">
+                                <h4>{{corso.nomeCorso}}</h4>
                             </div>
+                            <div class="col-12">
+                                <h5>{{corso.subNomeCorso}}</h5>
+                            </div>
+                            <div class="col-12">
+                                <ngx-stars [readonly]="true" [size]="0.8" [color]="'#007bff'" [initialStars]="0"></ngx-stars>
+                            </div>
+                        </div>
+                        <div class="col-2 text-right pr-0">
                         
+                            <app-edit-menu 
+                            [owner] = "corso.owner"
+                            [typePadre] = "'C'" 
+                            [section] = "'Corso'" 
+                            [withVideo] = "false"
+                            [withAdd] = "false"
+                            [obj] = "corso"
+                            [withElimina] = "true"
+                            [withModifica] = "true"
+                            [withInfo] = "true"
+                            [withGoTo] = "true"
+                            [withDisable] = "true" >
+                            </app-edit-menu>
+                    
+                        </div>
                     </div>
+                          
+                   
                 
                 
                 </mat-tab>
