@@ -54,6 +54,12 @@ export class CardCorsoComponent implements OnInit {
   showContinua: boolean;
   showAccedi: boolean;
 
+  randomArray = [
+    '#2582A1'  , '#FFBED2' ,  '#FDB931' , '#EDB380' , '#DCDCDC'
+ ];
+
+ color: string;
+
 
   get getMediumFeeds(){
     
@@ -86,6 +92,8 @@ export class CardCorsoComponent implements OnInit {
 
   ngOnInit(): void {
 
+    const random = Math.floor(Math.random() * this.randomArray.length);
+    this.color = this.randomArray[random]
     
     this.acquisto.acquirente = getUserLS();
     this.acquisto.owner = this.corso.owner;

@@ -5,7 +5,7 @@
 <!-- Don't forget to copy small-card.css file too! -->
 
 <div class="card card-custom bg-white border-white">
-  <div class="card-custom-img" style="background-color: rgb(231, 231, 231);">
+<div class="card-custom-img" [ngStyle]="{'background-color': color} ">
       <div class="col-12 text-right pr-1">
           <app-edit-menu 
           [owner] = "corso.owner"
@@ -36,10 +36,9 @@
     </div>
     <div class="d-flex justify-content-center">
       <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
+      <p class="card-text ml-1" style="margin-top: -3px;"><small class="text-muted">( {{corso.feeds.length}} )</small></p>
     </div>
-    <div class="d-flex justify-content-center">
-      <p class="card-text ml-1" style="margin-top: -3px;"><small class="text-muted">( {{corso.feeds.length}})</small></p>
-    </div>
+    
 
   </div>
 

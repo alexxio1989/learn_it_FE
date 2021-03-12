@@ -4,7 +4,7 @@
 
   .card-custom {
     overflow: hidden;
-    min-height: 265px;
+    min-height: 245px;
     border: 0;
     box-shadow: 0 0 2px rgba(10, 10, 10, 0.3);
   }
@@ -16,6 +16,7 @@
     background-size: cover;
     background-position: center;
     border-color: inherit;
+    
   }
   
   /* First border-left-width setting is a fallback */
@@ -47,6 +48,7 @@
     left: 1.25rem;
     width: 90px;
     height: 90px;
+    background-color: white;
   }
 
 
@@ -55,7 +57,7 @@
     flex: 1 1 auto;
     min-height: 1px;
     padding: 1.25rem;
-    max-height: 110px;
+    max-height: 90px;
 }
 
   
