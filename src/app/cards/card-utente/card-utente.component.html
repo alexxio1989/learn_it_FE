@@ -1,0 +1,57 @@
+<!-- This card needs Bootstrap 4 Beta to work. -->
+<!-- Don't forget to copy small-card.css file too! -->
+
+<div class="card card-custom bg-white border-white">
+    <div class="card-custom-img" style="background-color: rgb(231, 231, 231);">
+        <div *ngIf="isSideBar" class="col-12 text-right pr-1">
+            <button class="pr-0" mat-button (click)="close()">
+                <mat-icon>clear</mat-icon>
+            </button>
+        </div></div>
+    <div class="card-custom-avatar">
+    
+      <img *ngIf="utente.img !== undefined && utente.img !== null && utente.img !== ''" alt="Web Studio"
+            class="img-fluid" src="{{utente.img}}" />
+            <img *ngIf="utente.img === undefined || utente.img === null || utente.img === ''" alt="Web Studio"
+            class="img-fluid" src="../../../assets/images/default.png" />
+    </div>
+    <div class="card-body" style="overflow-y: auto">
+      <h4 class="card-title">{{utente.nome}} {{utente.cognome}}</h4>
+      <h6 class="card-text">{{utente.attivita}}</h6>
+    </div>
+    <div class="card-footer" style="background: inherit; border-color: inherit;">
+        <div class="row" *ngIf="!isSideBar" class="pl-1" style="margin-top: -5px;">
+        
+            <app-modal-core [visible]="editInfo && !confirmDelete" [icon]="'edit'" [descButton]="'Modifica'"
+                [objSelected]="utente" [isButton]="true" [component]="modalModalEditUtente" [class]="'p-0'"></app-modal-core>
+        
+        
+            <button *ngIf="editInfo && !confirmDelete" mat-button (click)="confirmDelete = true"
+                class="{{isDevice ? 'pl-0':''}}" style="color: red;">
+                <mat-icon>delete_outline</mat-icon>
+                Elimina account
+        
+            </button>
+        
+            <div *ngIf="editInfo && confirmDelete" class="col-12 pl-0">
+        
+                Confermi ?
+                <button mat-button (click)="eliminaAccount()" style="color: red;">
+                    Si
+        
+                </button>
+                <button mat-button (click)="confirmDelete = false" style="color: #6c757d;">
+                    No
+        
+                </button>
+            </div>
+        </div>
+        <div class="row" *ngIf="isSideBar"  style="margin-top: -5px;">
+            <div class="col-12 p-0">
+                <button class="btn btn-lg" (click)="goToPageUtente()" style="margin-top: -15px;">
+                    <h5 class="text-primary"> Profilo</h5>
+                </button>
+            </div>
+        </div>
+    </div>
+  </div>

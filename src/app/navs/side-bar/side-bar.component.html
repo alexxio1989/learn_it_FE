@@ -1,14 +1,11 @@
 <mat-card *ngIf="openSideBar" class="mat-elevation-z10 border-0 side-bar pt-0">
     <div class="row " style="background-color: #f2f2f2;margin-top: 1px;">
-        <div class="col-12 text-right pr-1">
-            <button class="pr-0" mat-button (click)="close()">
-                <mat-icon>clear</mat-icon>
-            </button>
+       
+        <div *ngIf="isUtenteLogged" class="col-12 p-0">
+            
+            <app-card-utente [utente] = "utente" [isSideBar] ="true" [isCardCorso] ="false" ></app-card-utente>
         </div>
-        <div *ngIf="isUtenteLogged" class="col-12">
-            <app-info-utente [utente] = "utente" [isSideBar] ="true" [isCardCorso] ="false"></app-info-utente>
-        </div>
-        <div *ngIf="!isUtenteLogged" class="col-12 p-2 pb-3 d-flex justify-content-center">
+        <div *ngIf="!isUtenteLogged" class="col-12 p-3 pb-3 d-flex justify-content-center">
             <button mat-button (click)="openLogin()" style="color: #6c757d;">
                 <mat-icon style="margin-top: -3px;">login</mat-icon>
                 Accedi / Registrati

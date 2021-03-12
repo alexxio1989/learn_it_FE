@@ -72,6 +72,7 @@ import { ModalCoreComponent } from './modals/core/modal-core/modal-core.componen
 import { ModalPagamentoComponent } from './modals/modal-pagamento/modal-pagamento.component';
 import { environment } from 'src/environments/environment';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
+import { CardUtenteComponent } from './cards/card-utente/card-utente.component';
 
 
 
@@ -148,7 +149,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     VideoPlayerComponent,
     EditMenuComponent,
     ModalCoreComponent,
-    ModalPagamentoComponent
+    ModalPagamentoComponent,
+    CardUtenteComponent
     
   ],
   imports: [
