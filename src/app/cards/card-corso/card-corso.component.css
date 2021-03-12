@@ -1,36 +1,61 @@
-.card-horizontal {
-  display: flex;
-  flex: 1 1 auto;
-  height: auto;
-}
 
-.container-img{
-  background: rgba(180, 180, 180, 0.2);
-}
 
-.card-img{
-  min-height: auto; 
-  max-height: auto; 
-  min-width: auto;
-  max-height: auto;
-}
 
-  .scrolling-text {
+
+  .card-custom {
+    overflow: hidden;
+    min-height: 265px;
+    border: 0;
+    box-shadow: 0 0 2px rgba(10, 10, 10, 0.3);
+  }
+  
+  .card-custom-img {
+    height: 100px;
+    min-height: 100px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-color: inherit;
+  }
+  
+  /* First border-left-width setting is a fallback */
+  .card-custom-img::after {
     position: absolute;
-    white-space: nowrap;
+    content: '';
+    top: 60px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-top-width: 40px;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 545px;
+    border-left-width: calc(575px - 5vw);
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: inherit;
+    
+  }
+  
+  .card-custom-avatar img {
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(10, 10, 10, 0.3);
+    position: absolute;
+    top: 10px;
+    left: 1.25rem;
+    width: 90px;
+    height: 90px;
   }
 
-  /* Below doesn't work to pause */
 
-  .scrolling-text:hover, .container:hover {
-    -moz-animation-play-state: paused;
-    -webkit-animation-play-state: paused;
-    animation-play-state: paused;
-  }
 
-  app-info-utente {
-    width: 100%;
-  }
-
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+    max-height: 110px;
+}
 
   
