@@ -23,4 +23,6 @@ export class Corso{
     listLetture: Lettura[];
     stripeToken: string;
     acquirente: User;
+    aPagamento: boolean;
+    colorCard: string ;
 }

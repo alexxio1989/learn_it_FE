@@ -39,6 +39,7 @@
     "express": "^4.17.1",
     "moment": "^2.29.1",
     "ng-country-select": "^0.1.4",
+    "ngx-color-picker": "^11.0.0",
     "ngx-cookieconsent": "^2.2.3",
     "ngx-device-detector": "^2.0.5",
     "ngx-editor": "^7.0.1",

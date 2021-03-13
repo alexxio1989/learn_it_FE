@@ -26,7 +26,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ImageCorsoComponent } from './varie/image-corso/image-corso.component';
 import { NavBarComponent } from './navs/nav-bar/nav-bar.component';
 import { SideBarComponent } from './navs/side-bar/side-bar.component';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { SwiperModule } from 'ngx-swiper-wrapper';
@@ -63,7 +63,6 @@ import { PageAdminComponent } from './pages/page-admin/page-admin.component';
 import { ModalRichiestaComponent } from './modals/modal-richiesta/modal-richiesta.component';
 import { VideoPlayerComponent } from './varie/video-player/video-player.component';
 import { EditMenuComponent } from './varie/edit-menu/edit-menu.component';
-import { ContentModalCorsoEditComponent } from './modals/content-modal-corso-edit/content-modal-corso-edit.component';
 import { ContentModalInfoCorsoComponent } from './modals/content-modal-info-corso/content-modal-info-corso.component';
 import { ContentModalCorsoComponent } from './modals/content-modal-corso/content-modal-corso.component';
 import { ContentModalParagrafoNewComponent } from './modals/content-modal-paragrafo-new/content-modal-paragrafo-new.component';
@@ -73,7 +72,8 @@ import { ModalPagamentoComponent } from './modals/modal-pagamento/modal-pagament
 import { environment } from 'src/environments/environment';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { CardUtenteComponent } from './cards/card-utente/card-utente.component';
-
+import { ColorPickerModule } from 'ngx-color-picker';
+import { CustomMatPaginatorIntl } from './varie/custom-mat-paginator-int';
 
 
 
@@ -134,7 +134,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SpinnerComponent,
     CarouselComponent,
     ContentModalCorsoComponent,
-    ContentModalCorsoEditComponent,
     ContentModalParagrafoNewComponent,
     ContentModalParagrafoEditComponent,
     ContentModalInfoCorsoComponent,
@@ -190,7 +189,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     NgcCookieConsentModule.forRoot(cookieConfig),
     NgxEditorModule,
     MatTabsModule,
-    MatSelectCountryModule.forRoot('it')
+    MatSelectCountryModule.forRoot('it'),
+    ColorPickerModule
 
   ],
   providers: [
@@ -202,6 +202,10 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
+    },
+    {
+      provide: MatPaginatorIntl, 
+      useClass: CustomMatPaginatorIntl
     }
   ],
   bootstrap: [AppComponent]

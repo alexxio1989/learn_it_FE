@@ -14,16 +14,11 @@ import { isEmptyString,getUserLS } from 'src/app/utils/Util';
 })
 export class ContentModalCorsoComponent implements OnInit {
 
-  aPagamento: boolean;
+  corso = new Corso();
 
-  nomeCorso: string = '';
-  subNomeCorso: string = '';
-  descCorso: string = '';
   tipoCorso: Dominio;
   subTipo: SubDominio;
   tipoCorsoList = []
-  prezzo: number;
-  image: string;
   enableCorsoAPagamento: boolean;
 
   newType: Dominio = new Dominio();
@@ -34,6 +29,11 @@ export class ContentModalCorsoComponent implements OnInit {
 
   ngOnInit(): void {
     this.tipoCorsoList = this.cs.tipoCorsoList;
+    if(this.cs.corsoSelected !== undefined && this.cs.corsoSelected !== null){
+      this.corso = this.cs.corsoSelected;
+    } else {
+      this.corso.colorCard = '#8cb8e0';
+    }
     let utente = getUserLS();
     this.enableCorsoAPagamento = utente !== undefined && utente !== null && ( 'SU' === utente.tipo.codice || 'WF' === utente.tipo.codice )
   }
@@ -48,7 +48,7 @@ export class ContentModalCorsoComponent implements OnInit {
 
 
   get disableSave(){
-    return isEmptyString(this.nomeCorso)  || (this.subTipo === undefined || this.subTipo.codice === '');
+    return this.corso.id === undefined || this.corso.id === 0 ? isEmptyString(this.corso.nomeCorso)  || (this.subTipo === undefined || this.subTipo.codice === '') : isEmptyString(this.corso.nomeCorso);
   }
 
   get labelTipoCorso(){
@@ -56,20 +56,16 @@ export class ContentModalCorsoComponent implements OnInit {
   }
 
   get labelSubTipoCorso(){
-    return (this.subTipo === undefined || this.subTipo.codice === '') ? 'Scegli il tipo di corso' : this.subTipo.descrizione;
+    return (this.subTipo === undefined || this.subTipo.codice === '') ? 'Scegli il sotto tipo di corso' : this.subTipo.descrizione;
   }
 
   salva() {
-   
-      let corso = new Corso();
-      corso.nomeCorso = this.nomeCorso;
-      corso.subNomeCorso = this.subNomeCorso;
-      corso.descrizioneCorso = this.descCorso;
-      corso.tipo = this.subTipo;
-      corso.image = this.image;
-      corso.owner = JSON.parse(localStorage.getItem('USER'));
-      corso.prezzo = this.prezzo;
-      this.cs.getOBSInsertCorso(corso).subscribe(next => {
+
+    if(this.corso.id === undefined || this.corso.id === 0 ){
+
+      this.corso.tipo = this.subTipo;
+      this.corso.owner = JSON.parse(localStorage.getItem('USER'));
+      this.cs.getOBSInsertCorso(this.corso).subscribe(next => {
         this.ds.updateSpinner(false);
         this.ds.updateResultService("Corso salvato correttamente");
         this.cs.updateCorsi(next.list);
@@ -78,6 +74,18 @@ export class ContentModalCorsoComponent implements OnInit {
         this.ds.updateSpinner(false);
         this.ds.updateResultService("Errore durante la creazione del corso");
       });
+    } else {
+      this.cs.getOBSUpdateCorso(this.corso).subscribe(next => {
+        this.ds.updateSpinner(false);
+        this.ds.updateResultService("Corso modificato correttamente");
+        this.cs.updateCorsi(next.list);
+        this.ds.updateSideBar(false);
+      },error => {
+        this.ds.updateSpinner(false);
+        this.ds.updateResultService("Errore durante la modifica del corso");
+      });
+    }
+   
     
   }
 
@@ -138,8 +146,8 @@ export class ContentModalCorsoComponent implements OnInit {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      this.image = reader.result as string;
-      console.log(this.image);
+      this.corso.image = reader.result as string;
+      console.log(this.corso.image);
     };
   }
 

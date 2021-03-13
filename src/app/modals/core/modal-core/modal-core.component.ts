@@ -1,6 +1,7 @@
 import { ComponentType } from '@angular/cdk/portal';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 
 @Component({
@@ -28,13 +29,13 @@ export class ModalCoreComponent implements OnInit {
 
   @Input() component: ComponentType<any>;
 
-  constructor(public dialog: MatDialog,private ds: DelegateServiceService) { }
+  constructor(public dialog: MatDialog,private ds: DelegateServiceService , private cs: CorsoServiceService) { }
 
   ngOnInit(): void {
   }
 
   openDialog() {
-    
+    this.cs.corsoSelected = undefined;
     this.ds.objSelected = this.objSelected;
     const dialogRef = this.dialog.open(this.component);
 

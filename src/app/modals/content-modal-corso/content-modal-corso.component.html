@@ -1,141 +1,141 @@
+
 <h2 mat-dialog-title>Crea un nuovo corso</h2>
-<mat-dialog-content class="mat-typography">
+<mat-dialog-content class="mat-typography pl-0 pr-0">
+    <div class="card card-custom bg-white border-white">
+        <div class="card-custom-img" [ngStyle]="{'background-color': corso.colorCard}" >
+            
+        </div>
+        <div class="card-custom-avatar">
+            <img *ngIf="corso.image !== undefined && corso.image !== null"  style="max-width: 100px; max-height: 100px;" src="{{corso.image}}" alt="Red dot" />
+            <img *ngIf="corso.image === undefined || corso.image === null || corso.image === ''" alt="Web Studio" class="card-img" src="../../../assets/images/default.png" /> 
+        </div>   
 
-    <div class="row mb-2">
-        <div class="col-12 d-flex justify-content-center ">
-            <mat-form-field class="example-form-field">
-                <mat-label>Nome corso</mat-label>
-                <input matInput type="text" [(ngModel)]="nomeCorso">
-                <button mat-button *ngIf="nomeCorso" matSuffix mat-icon-button aria-label="Clear" (click)="nomeCorso=''">
-                    <mat-icon>close</mat-icon>
-                </button>
-            </mat-form-field>
-        </div>
-        <div class="col-12 d-flex justify-content-center ">
-            <mat-form-field class="example-form-field">
-                <mat-label>Sotto Nome corso</mat-label>
-                <input matInput type="text" [(ngModel)]="subNomeCorso">
-                <button mat-button *ngIf="subNomeCorso" matSuffix mat-icon-button aria-label="Clear"
-                    (click)="subNomeCorso=''">
-                    <mat-icon>close</mat-icon>
-                </button>
-            </mat-form-field>
-        </div>
-    </div>
-    <div class="row mb-2">
-        <div class="col-12 d-flex justify-content-center pt-3">
-            <mat-slide-toggle *ngIf="enableCorsoAPagamento" [(ngModel)]="aPagamento">Corso a Pagamento</mat-slide-toggle>
-        </div>
-    </div>
-    <div class="row mb-2 mt-4" *ngIf="aPagamento">
-        <div class="col-12 d-flex justify-content-center">
-            <mat-form-field >
-                <mat-label>Prezzo corso</mat-label>
-                <input matInput type="number" [(ngModel)]="prezzo" class="example-right-align">
-                <span matPrefix>€&nbsp;</span>
-                <span matSuffix>.00</span>
-              </mat-form-field>
-        </div>
-    </div>
-    <div class="row mb-2">
-        <div class="col-12 d-flex justify-content-center pl-3 mt-3">
-            <button mat-button (click)="fileInput.click()"> 
-                <mat-icon>add_photo_alternate</mat-icon>
-                <span>Seleziona immagine</span>
-                <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
-            </button>
+        <button class="button-add-image" mat-button (click)="fileInput.click()"> 
+            <mat-icon>add_a_photo</mat-icon>
+            <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
+        </button>
 
-        </div>
-        <div class="col-12 d-flex justify-content-center pl-4 mt-2" *ngIf="image !== undefined && image !== null">
-            <img style="max-width: 100px; max-height: 100px;" src="{{image}}" alt="Red dot" />
-        </div>
-    </div>
-    <div class="row mt-4">
-        <div class="form-group">
-            <label for="exampleFormControlTextarea1">Descrizione corso</label>
-            <app-text-editor [(inputModel)] = "descCorso" style="width: 100%;"></app-text-editor>
-        </div>
-    </div>
-    <div *ngIf="!isShowSaveTipo" class="row  form-group">
-        <div class="col-10 pr-0">
-            <button mat-button [matMenuTriggerFor]="menu">{{labelTipoCorso}}</button>
-            <mat-menu #menu="matMenu">
-                <div *ngFor="let tipo of tipoCorsoList">
-                    <button mat-menu-item (click)="changeTipoCorso(tipo)">{{tipo.descrizione}}</button>
-                </div>
-            </mat-menu>
-        </div>
-        <div *ngIf="tipoCorso === undefined || tipoCorso === null" class="col-2 pl-0">
-            <button mat-button (click)="changeShowSaveTipo()" style="color: #6c757d;">
-                <mat-icon>playlist_add</mat-icon>
-            </button>
-        </div>
-    </div>
+        <button mat-button class="button-color" (click)="inputColor.click()">
+            <img alt="Web Studio" class="card-img" style="max-width: 50px; max-height: 50px;" src="../../../assets/images/colors.png" /> 
+            <input class="input-color" #inputColor [value]="corso.colorCard" [(colorPicker)]="corso.colorCard"/>
+        </button>
 
-    <div *ngIf="isShowSaveTipo" class="row  form-group">
-        <div class="col-lg-8 col-xs-7">
-            <div class="row">
-                <div class="col-8">
-                    <input required id="newType" class="form-control d-inline" [(ngModel)]="newType.descrizione"
-                        placeholder="inserisci tipologia corso">
-                </div>
-                <div class="col-2 pl-0">
-                    <button class="d-inline" mat-icon-button (click)="salvaTipo()" style=" color: #6c757d;">
-                        Salva
+            <div class="col-12 mt-3 mb-3 d-flex justify-content-center">
+                <mat-slide-toggle *ngIf="enableCorsoAPagamento" [(ngModel)]="corso.aPagamento">Corso a Pagamento</mat-slide-toggle>
+            </div>
+       
+            <div class="col-12 mt-3 d-flex justify-content-center "> 
+                <mat-form-field class="example-form-field">
+                    <mat-label>Nome corso</mat-label>
+                    <input matInput type="text" [(ngModel)]="corso.nomeCorso">
+                    <button mat-button *ngIf="corso.nomeCorso" matSuffix mat-icon-button aria-label="Clear" (click)="corso.nomeCorso=''">
+                        <mat-icon>close</mat-icon>
                     </button>
-                </div>
-                <div class="col-2 pl-0">
-                    <button mat-icon-button (click)="changeShowSaveTipo()" style=" color: #6c757d;">
-                        Annulla
+                </mat-form-field>
+            </div>
+            <div class="col-12 d-flex justify-content-center ">
+                <mat-form-field class="example-form-field">
+                    <mat-label>Sotto Nome corso</mat-label>
+                    <input matInput type="text" [(ngModel)]="corso.subNomeCorso">
+                    <button mat-button *ngIf="corso.subNomeCorso" matSuffix mat-icon-button aria-label="Clear"
+                        (click)="corso.subNomeCorso=''">
+                        <mat-icon>close</mat-icon>
                     </button>
-                </div>
+                </mat-form-field>
+            </div>
+     
+        <div class="row mb-2 mt-4" *ngIf="corso.aPagamento">
+            <div class="col-12 d-flex justify-content-center">
+                <mat-form-field >
+                    <mat-label>Prezzo corso</mat-label>
+                    <input matInput type="number" [(ngModel)]="corso.prezzo" class="example-right-align">
+                    <span matPrefix>€&nbsp;</span>
+                    <span matSuffix>.00</span>
+                  </mat-form-field>
             </div>
         </div>
 
-    </div>
 
-
-
-
-    <div *ngIf="!isShowSaveSubTipo && tipoCorso !== undefined && tipoCorso !== null" class="row form-group">
-        <div class="col-10 pr-0">
-
-            <button mat-button [matMenuTriggerFor]="menu">{{labelSubTipoCorso}}</button>
-            <mat-menu #menu="matMenu">
-                <div *ngFor="let tipo of tipoCorso.sottoTipi">
-                    <button mat-menu-item (click)="changeSubTipoCorso(tipo)">{{tipo.descrizione}}</button>
-                </div>
-            </mat-menu>
-
+        <div *ngIf="!isShowSaveTipo && (corso.id === undefined || corso.id === 0)" class="row  form-group mt-3">
+           
+            <div class="col-12  d-flex justify-content-center">
+                <button class="pl-0" mat-button [matMenuTriggerFor]="menu">{{labelTipoCorso}}</button>
+                <mat-menu #menu="matMenu">
+                    <div *ngFor="let tipo of tipoCorsoList">
+                        <button mat-menu-item (click)="changeTipoCorso(tipo)">{{tipo.descrizione}}</button>
+                    </div>
+                </mat-menu>
+                <button *ngIf="tipoCorso === undefined || tipoCorso === null" mat-button (click)="changeShowSaveTipo()" style="color: #6c757d;">
+                    <mat-icon>playlist_add</mat-icon>
+                </button>
+            </div>
+           
         </div>
-        <div class="col-2 pl-0">
-            <button mat-button (click)="changeShowSaveSubTipo()" style="color: #6c757d;">
-                <mat-icon>playlist_add</mat-icon>
-            </button>
-        </div>
-    </div>
-
-    <div *ngIf="isShowSaveSubTipo" class="row  form-group">
-        <div class="col-lg-8 col-xs-7">
-            <div class="row">
-                <div class="col-8">
-                    <input required id="newSubType" class="form-control d-inline" [(ngModel)]="newSubType.descrizione"
-                        placeholder="inserisci tipologia corso">
-                </div>
-                <div class="col-2 pl-0">
-                    <button class="d-inline" mat-icon-button (click)="salvaSubTipo()" style=" color: #6c757d;">
+    
+        
+        <div *ngIf="isShowSaveTipo" class="row mt-3">
+            <div class="col-12 d-flex justify-content-center">
+                <input required id="newType" class="form-control d-inline w-70" [(ngModel)]="newType.descrizione"
+                    placeholder="inserisci tipologia corso">
+                    <button class="d-inline" mat-button (click)="salvaTipo()" style=" color: #6c757d;">
                         Salva
                     </button>
-                </div>
-                <div class="col-2 pl-0">
-                    <button mat-icon-button (click)="changeShowSaveSubTipo()" style=" color: #6c757d;">
+                    <button mat-button (click)="changeShowSaveTipo()" style=" color: #6c757d;">
                         Annulla
                     </button>
-                </div>
+            </div>
+            
+        </div>
+     
+    
+    
+    
+    
+        <div *ngIf="!isShowSaveSubTipo && tipoCorso !== undefined && tipoCorso !== null" class="row form-group">
+            <div class="col-12 d-flex justify-content-center">
+    
+                <button mat-button [matMenuTriggerFor]="menu">{{labelSubTipoCorso}}</button>
+                <mat-menu #menu="matMenu">
+                    <div *ngFor="let tipo of tipoCorso.sottoTipi">
+                        <button mat-menu-item (click)="changeSubTipoCorso(tipo)">{{tipo.descrizione}}</button>
+                    </div>
+                </mat-menu>
+    
+                <button mat-button (click)="changeShowSaveSubTipo()" style="color: #6c757d;">
+                    <mat-icon>playlist_add</mat-icon>
+                </button>
+            </div>
+        </div>
+    
+        <div *ngIf="isShowSaveSubTipo" class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <input required id="newSubType" class="form-control d-inline w-70" [(ngModel)]="newSubType.descrizione"
+                    placeholder="inserisci tipologia corso">
+                <button class="d-inline" mat-button (click)="salvaSubTipo()" style=" color: #6c757d;">
+                    Salva
+                </button>
+                <button mat-button (click)="changeShowSaveSubTipo()" style=" color: #6c757d;">
+                    Annulla
+                </button>
+            </div>
+            
+        </div>
+     
+             
+    
+        <div class="row mt-4">
+            <div class="col-12 d-flex justify-content-center">
+                <p>Descrizione corso</p>
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+                <app-text-editor [(inputModel)] = "corso.descrizioneCorso" style="width: 90%;"></app-text-editor>
             </div>
         </div>
 
-    </div>
+
+       
+      
+    </div> 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>

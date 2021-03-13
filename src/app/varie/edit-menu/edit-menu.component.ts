@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ConstantsComponent } from 'src/app/constants/ConstantsComponent';
-import { ContentModalCorsoEditComponent } from 'src/app/modals/content-modal-corso-edit/content-modal-corso-edit.component';
+import { ContentModalCorsoComponent } from 'src/app/modals/content-modal-corso/content-modal-corso.component';
 import { ContentModalInfoCorsoComponent } from 'src/app/modals/content-modal-info-corso/content-modal-info-corso.component';
 import { ContentModalParagrafoNewComponent } from 'src/app/modals/content-modal-paragrafo-new/content-modal-paragrafo-new.component';
 import { Corso } from 'src/app/model/Corso';
@@ -106,7 +106,8 @@ export class EditMenuComponent implements OnInit {
 
   edit(){
     if(ConstantsComponent.CORSO === this.typePadre ){
-      this.component = ContentModalCorsoEditComponent;
+      this.cs.corsoSelected = this.obj;
+      this.component = ContentModalCorsoComponent;
       this.cs.corsoSelected = this.obj;
       this.openDialog();
     }
