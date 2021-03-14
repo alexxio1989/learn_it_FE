@@ -143,10 +143,61 @@ export class EditMenuComponent implements OnInit {
               this.fileLearnIt.delete = false;
               this.fileLearnIt.formato = base64.substring(0, base64.indexOf('base64,') + 7) ;
               this.fileLearnIt.base64 = base64.substring(base64.indexOf('base64,') + 7 , base64.length) ;
-              this.fileLearnIt.idPadre = this.idPadre;
-              this.fileLearnIt.typePadre = this.typePadre;
+              this.fileLearnIt.idLezione = this.idPadre;
               this.fs.save(this.fileLearnIt).subscribe(next => {
                 this.getVideo();
+                this.ds.updateResultService(next.status);
+              },error => {
+                this.ds.updateSpinnerVideos(false);
+                this.ds.updateResultService(error.status);
+              })
+            };
+            
+          
+        } else {
+          this.ds.updateResultService("Dimensioni del file superiore a 100 MB");
+        }
+
+    } else {
+      this.ds.updateResultService("Formato del file non supportato");
+    }
+
+  }
+
+
+  addVideoBytes(event){
+
+    const file = event.target.files[0];
+    let newtitolo = this.title.replace(/ /g,"_") + Math.floor(Math.random() * 100);
+    this.fileLearnIt.titolo = newtitolo;
+    let type = file.type;
+    
+   
+
+      if ('video/mp4' === type){ 
+
+        if(file.size < 104857600){
+          
+            const reader = new FileReader();
+            reader.readAsArrayBuffer(file);
+            reader.onload = () => {
+              this.fileLearnIt.typeFile = type;
+              this.fileLearnIt.delete = false;
+
+              this.fileLearnIt.idLezione = this.idPadre;
+              if (reader.result instanceof ArrayBuffer) {
+                let bytes = new Uint8Array(reader.result).subarray(0, reader.result.byteLength);
+                for (var i = 0; i < bytes.byteLength; i++) {
+                  this.fileLearnIt.bytes.push(bytes[i]);
+                }
+                // the rest of your code
+              } else {
+                throw new Error('Unexpected result');
+              }
+              
+              this.fileLearnIt.idLezione = this.idPadre;
+              this.fs.saveJava(this.fileLearnIt).subscribe(next => {
+                this.getVideoJava();
                 this.ds.updateResultService(next.status);
               },error => {
                 this.ds.updateSpinnerVideos(false);
@@ -180,9 +231,27 @@ export class EditMenuComponent implements OnInit {
   }
 
   private getVideo() {
-    this.fileLearnIt.idPadre = this.idPadre;
-    this.fileLearnIt.typePadre = this.typePadre;
+    this.fileLearnIt.idLezione= this.idPadre;
     this.fs.get(this.fileLearnIt).subscribe(next => {
+      if (next.obj !== null && next.obj !== undefined) {
+
+        this.fileLearnIt = next.obj;
+        this.fs.updateSBJ(this.fileLearnIt);
+       
+
+      } else {
+        this.fileLearnIt.base64 = undefined;
+      }
+      this.ds.updateSpinnerVideos(false);
+    }, error => {
+      this.ds.updateSpinnerVideos(false);
+      this.ds.updateResultService(error.status);
+    });
+  }
+
+  private getVideoJava() {
+    this.fileLearnIt.idLezione= this.idPadre;
+    this.fs.getJava(this.fileLearnIt).subscribe(next => {
       if (next.obj !== null && next.obj !== undefined) {
 
         this.fileLearnIt = next.obj;

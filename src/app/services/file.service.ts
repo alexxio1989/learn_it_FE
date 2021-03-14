@@ -38,5 +38,21 @@ export class FileService {
     this.ds.updateSpinnerVideos(true);
     return this.http.post(ServiceCore.baseURl_node+ "/file/deleteFile", obj);
   }
+
+
+  getJava(obj: FileLearnIt): Observable<any>{
+    this.ds.updateSpinnerVideos(true);
+    return this.http.post(ServiceCore.baseURl+ "/file/get", obj );
+  }
+
+  saveJava(obj: FileLearnIt): Observable<any>{
+    this.ds.updateSpinnerVideos(true);
+    return this.http.post(ServiceCore.baseURl + "/file/save", obj);
+  }
+
+  deleteJava(obj: FileLearnIt): Observable<any>{
+    this.ds.updateSpinnerVideos(true);
+    return this.http.post(ServiceCore.baseURl+ "/file/delete", obj);
+  }
   
 }

@@ -2,9 +2,9 @@
 
 export class FileLearnIt{
     id: number;
-	idPadre: number;
+	idLezione: number;
 	titolo: string;
-	typePadre: string;
+	bytes: any[] = [];
 	base64: string;
 	url: string;
 	formato: string;

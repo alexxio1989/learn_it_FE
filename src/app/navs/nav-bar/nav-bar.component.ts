@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { Dominio } from 'src/app/model/Dominio';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
@@ -14,15 +15,16 @@ export class NavBarComponent implements OnInit {
 
   tabName: number = 0;
   showFiller = false;
+  isMobile: boolean;
 
-  constructor(private cs: CorsoServiceService , private ds: DelegateServiceService, private route: Router) {
+  constructor(private cs: CorsoServiceService , private ds: DelegateServiceService, private route: Router,private deviceService: DeviceDetectorService) {
     this.ds.getOBSSideBar().subscribe(next => {
       this.ds.isOpenSideBar = next;
     })
    }
 
   ngOnInit(): void { 
-    
+    this.isMobile = this.deviceService.isMobile();
   }
 
   filterListCorsi(nome: string){

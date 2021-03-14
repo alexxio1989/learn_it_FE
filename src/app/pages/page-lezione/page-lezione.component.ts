@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { ContentModalParagrafoEditComponent } from 'src/app/modals/content-modal-paragrafo-edit/content-modal-paragrafo-edit.component';
-import { FileLearnIt } from 'src/app/model/FileLearnIt';
 import { Lezione } from 'src/app/model/Lezione';
 import { LezioneParagrafo } from 'src/app/model/LezioneParagrafo';
 import { Paragrafo } from 'src/app/model/Paragrafo';
