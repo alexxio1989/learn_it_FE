@@ -3,7 +3,7 @@
 </button>
 <mat-menu #menu="matMenu">
 
-    <input #csvInput hidden="true" type="file" onclick="this.value=null" (change)="addVideo($event)" />
+    <input #csvInput hidden="true" type="file" onclick="this.value=null" (change)="addVideoBytes($event)" />
     <button *ngIf="withVideo && !isLoading && (fileLearnIt.base64 === undefined || fileLearnIt.base64 === null)  && isSamEUser" mat-menu-item color="primary" (click)="csvInput.click()">
         <mat-icon>add</mat-icon>
         <span>Aggiungi video ( Formato MP4 )</span> 

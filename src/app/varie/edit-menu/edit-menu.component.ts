@@ -196,8 +196,8 @@ export class EditMenuComponent implements OnInit {
               }
               
               this.fileLearnIt.idLezione = this.idPadre;
-              this.fs.saveJava(this.fileLearnIt).subscribe(next => {
-                this.getVideoJava();
+              this.fs.save(this.fileLearnIt).subscribe(next => {
+                this.getVideo();
                 this.ds.updateResultService(next.status);
               },error => {
                 this.ds.updateSpinnerVideos(false);
@@ -249,24 +249,6 @@ export class EditMenuComponent implements OnInit {
     });
   }
 
-  private getVideoJava() {
-    this.fileLearnIt.idLezione= this.idPadre;
-    this.fs.getJava(this.fileLearnIt).subscribe(next => {
-      if (next.obj !== null && next.obj !== undefined) {
-
-        this.fileLearnIt = next.obj;
-        this.fs.updateSBJ(this.fileLearnIt);
-       
-
-      } else {
-        this.fileLearnIt.base64 = undefined;
-      }
-      this.ds.updateSpinnerVideos(false);
-    }, error => {
-      this.ds.updateSpinnerVideos(false);
-      this.ds.updateResultService(error.status);
-    });
-  }
 
 
 
