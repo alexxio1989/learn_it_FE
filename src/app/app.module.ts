@@ -98,7 +98,7 @@ const cookieConfig: NgcCookieConsentConfig = {
   },
   type: "info",
   content: {
-    message: "Learn-it fa uso di cookie per migliorare l’esperienza di navigazione degli utenti e per raccogliere informazioni sull’utilizzo del sito stesso.",
+    message: "Il mio codice.com fa uso di cookie per migliorare l’esperienza di navigazione degli utenti e per raccogliere informazioni sull’utilizzo del sito stesso.",
     dismiss: "Acconsento",
     deny: "Decline",
     link: "Maggiori info.",
