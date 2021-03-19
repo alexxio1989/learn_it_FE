@@ -5,10 +5,15 @@
             
             <app-card-utente [utente] = "utente" [isSideBar] ="true" [isCardCorso] ="false" ></app-card-utente>
         </div>
+        <div *ngIf="!isUtenteLogged" class="col-12 text-right pr-1">
+            <button class="pr-0" mat-button (click)="close()">
+                <mat-icon>clear</mat-icon>
+            </button>
+        </div>
         <div *ngIf="!isUtenteLogged" class="col-12 p-3 pb-3 d-flex justify-content-center">
             <button mat-button (click)="openLogin()" style="color: #6c757d;">
                 <mat-icon style="margin-top: -3px;">login</mat-icon>
-                Accedi / Registrati
+                Accedi / Registrati 
             </button>
         </div>
     </div>
