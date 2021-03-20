@@ -1,0 +1,18 @@
+
+
+
+
+
+
+    <ngx-slick-carousel class="carousel" 
+                        #slickModal="slick-carousel" 
+                        [config]="slideConfig" 
+                        (init)="slickInit($event)"
+                        (breakpoint)="breakpoint($event)"
+                        (afterChange)="afterChange($event)"
+                        (beforeChange)="beforeChange($event)">
+        <div ngxSlickItem *ngFor="let user of utenti" class="slide">
+            <app-info-utente [utente] = "user"  [isSlide] ="true"></app-info-utente>
+        </div>
+    </ngx-slick-carousel>
+    

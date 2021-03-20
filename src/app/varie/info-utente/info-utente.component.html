@@ -41,3 +41,41 @@
         <h6>{{utente.attivita}}</h6>
     </div>
 </div>
+
+
+<div *ngIf="isSlide">
+    <div class="row" >
+        <div class="col-12 d-flex justify-content-center">
+           
+        
+                <div [ngStyle]="boxImgUtente()">
+                    <img *ngIf="utente.img !== undefined && utente.img !== null && utente.img !== ''" alt="Web Studio"
+                    class="card-img" src="{{utente.img}}" />
+                    <img *ngIf="utente.img === undefined || utente.img === null || utente.img === ''" alt="Web Studio"
+                    class="card-img" src="../../../assets/images/default.png" />
+                </div>
+         
+        
+            
+        </div>
+    </div>
+    <div class="row" >
+        <div class="col-12 d-flex justify-content-center">
+            <button class="btn btn-lg p-0 " (click)="goToPageUtenteWithID()" >
+                <h6 class="text-primary"> {{utente.nome}} {{utente.cognome}}</h6>
+            </button>
+        </div>
+    </div>
+    <div class="row negativeMarginTop" >
+        <div class="col-12 d-flex justify-content-center">
+            <h6>{{utente.attivita | truncateText}}</h6>
+        </div>
+    </div>
+
+    <div class="row negativeMarginTop p-2" >
+        <div class="col-12 d-flex justify-content-center">
+            <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="utente.mediaCorsi"></ngx-stars>
+            <p class="card-text ml-1" style="margin-top: -3px;"><small class="text-muted">( {{utente.totCorsiPubblicati}} )</small></p>
+        </div>
+    </div>
+</div>

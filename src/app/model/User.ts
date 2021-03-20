@@ -21,5 +21,7 @@ export class User{
     dataNascita: Date;
     recapito: Recapito = new Recapito();
     bank: Bank = new Bank();
+    mediaCorsi: number = 0;
+    totCorsiPubblicati: number = 0;
     
 }

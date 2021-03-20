@@ -74,6 +74,9 @@ import { MatSelectCountryModule } from '@angular-material-extensions/select-coun
 import { CardUtenteComponent } from './cards/card-utente/card-utente.component';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { CustomMatPaginatorIntl } from './varie/custom-mat-paginator-int';
+import { CarouselCodersComponent } from './varie/carousel-coders/carousel-coders.component';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 
 
 
@@ -149,7 +152,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     EditMenuComponent,
     ModalCoreComponent,
     ModalPagamentoComponent,
-    CardUtenteComponent
+    CardUtenteComponent,
+    CarouselCodersComponent,
+    TruncateTextPipe
     
   ],
   imports: [
@@ -190,7 +195,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     NgxEditorModule,
     MatTabsModule,
     MatSelectCountryModule.forRoot('it'),
-    ColorPickerModule
+    ColorPickerModule,
+    SlickCarouselModule
 
   ],
   providers: [

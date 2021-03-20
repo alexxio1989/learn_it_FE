@@ -59,6 +59,11 @@ export class UtenteServiceService {
     return this.http.post(ServiceCore.baseURl + "/soggetto/richiediPws", utente);
   }
 
+  getOBSGetCoders(): Observable<any>{
+    this.ds.updateSpinner(true);
+    return this.http.get(ServiceCore.baseURl + "/soggetto/getall");
+  }
+
   getOBSDelete(utente: User): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
