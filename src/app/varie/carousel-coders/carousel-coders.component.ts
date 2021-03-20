@@ -19,7 +19,7 @@ export class CarouselCodersComponent implements OnInit {
   ngOnInit(): void {
     this.isDevice = this.deviceService.isMobile();
 
-    this.slideConfig = {"slidesToShow": this.isDevice? 3 : 6, "slidesToScroll": this.isDevice? 3 : 6}
+    this.slideConfig = {"slidesToShow": this.isDevice? 2 : 6, "slidesToScroll": this.isDevice? 2 : 6}
     this.us.getOBSGetCoders().subscribe(next => {
       this.utenti =next.list
       this.ds.updateSpinner(false);

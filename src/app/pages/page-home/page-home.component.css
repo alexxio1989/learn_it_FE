@@ -22,3 +22,11 @@ app-card-corso-v1{
 	opacity: 0.9 !important;
 	color: black !important;
 }
+
+.back-color-coders{
+	background-color: rgb(251, 251, 251);
+}
+
+.back-color-coders-header{
+	background-color: rgb(242, 242, 242);
+}
