@@ -26,14 +26,18 @@
     <img *ngIf="corso.image === undefined || corso.image === null || corso.image === ''" alt="Web Studio" class="card-img" src="../../../assets/images/default.png" /> 
   </div>
 
+  
+
   <div class="card-body pb-0 pt-0">
     <div class="d-flex justify-content-center">
       <h4 class="card-title">{{corso.nomeCorso}}</h4>
     </div>
     <!-- <div class="d-flex justify-content-center" [innerHtml] = "corso.subNomeCorso | formatText"></div> -->
     <div class="d-flex justify-content-center">
-      <h5>Prezzo : <b style="opacity: 0.7;">{{corso.prezzo > 0 ? corso.prezzo + '€' : 'Free' }}</b></h5>
+      <h5>{{corso.subNomeCorso}}</h5>
     </div>
+
+
     <div class="d-flex justify-content-center">
       <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="getMediumFeeds"></ngx-stars>
       <p class="card-text ml-1" style="margin-top: -3px;"><small class="text-muted">( {{corso.feeds.length}} )</small></p>
@@ -42,6 +46,9 @@
 
   </div>
 
+  <div class="card-custom-user">
+    <app-info-utente [utente] = "corso.owner"  [isCardCorso] ="true"></app-info-utente>
+  </div>
 
   <div class="card-footer text-right">
     <button *ngIf="showAccedi"  mat-button (click)="openLogin()" style="color: #6c757d;">

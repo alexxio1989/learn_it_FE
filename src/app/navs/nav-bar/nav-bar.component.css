@@ -2,3 +2,7 @@
     margin-top: 7px;
     max-width: 70%;
 }
+.my-navbar{
+    background-color: rgb(244, 244, 244);
+    box-shadow: 0 3px 6px -6px black;
+}

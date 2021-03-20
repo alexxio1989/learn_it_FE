@@ -8,6 +8,16 @@
     border: 0;
     box-shadow: 0 0 2px rgba(10, 10, 10, 0.3);
   }
+
+
+  .card-custom-user{
+    border-radius: 5%;
+    position: absolute;
+    top: 195px;
+    left: 20px;
+    width: 150px;
+    height: 40px;
+  }
   
   
 
