@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { ContentModalParagrafoEditComponent } from 'src/app/modals/content-modal-paragrafo-edit/content-modal-paragrafo-edit.component';
+import { Corso } from 'src/app/model/Corso';
 import { Lezione } from 'src/app/model/Lezione';
 import { LezioneParagrafo } from 'src/app/model/LezioneParagrafo';
 import { Paragrafo } from 'src/app/model/Paragrafo';
@@ -25,6 +26,7 @@ export class PageLezioneComponent implements OnInit, IPageCore {
   toppings = new FormControl();
   edit: boolean;
   lezione: Lezione = new Lezione();
+  corso: Corso = new Corso();
   
   isExternalLink: boolean;
   isDevice: boolean;
@@ -63,6 +65,8 @@ export class PageLezioneComponent implements OnInit, IPageCore {
       let id = params['id'];
       
       if(id !== undefined && id !== null && parseInt(id) > 0){
+
+        this.corso = JSON.parse(localStorage.getItem('CORSO'));
         
         this.ds.getOBSAbilitaNavigazione().subscribe(next => {
           if(next === this.PAGE){

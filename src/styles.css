@@ -75,6 +75,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: white;
 }
 
+.mat-paginator-outer-container{
+  background-color: rgb(242, 242, 242);
+}
+
 
 
 .mat-paginator-page-size {

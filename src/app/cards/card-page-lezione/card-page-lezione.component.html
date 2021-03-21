@@ -1,0 +1,30 @@
+<div class="card card-custom bg-white border-white">
+    <div class="card-custom-img" [ngStyle]="{'background-color': corso.colorCard} ">
+
+    </div>
+    <div class="card-custom-avatar">
+
+        <img *ngIf="corso.image !== undefined && corso.image !== null && corso.image !== ''" alt="Web Studio"
+            class="img-fluid" src="{{corso.image}}" />
+        <img *ngIf="corso.image === undefined || corso.image === null || corso.image === ''" alt="Web Studio"
+            class="img-fluid" src="../../../assets/images/default.png" />
+    </div>
+    <div class="card-body" style="overflow-y: auto">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <h2 class="mt-2" style="font-size: 2rem">{{lezione.title}}</h2>
+                <app-edit-menu [idPadre]="lezione.id" [typePadre]="'L'" [idowner]="lezione.idOwner"
+                    [section]="'Paragrafo'" [title]="lezione.title" [withVideo]="true" [withAdd]="true"
+                    [withElimina]="false" [withModifica]="false" [withInfo]="false"></app-edit-menu>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <h3 class="display-4" style="font-size: 2rem ;opacity: 0.6 !important;">{{lezione.subTitle}}</h3>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
