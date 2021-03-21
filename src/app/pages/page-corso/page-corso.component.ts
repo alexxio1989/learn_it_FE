@@ -79,26 +79,15 @@ export class PageCorsoComponent implements OnInit, IPageCore {
     this.isEmptyLezioni = isEmptyArray(this.corso.lezioni);
   }
 
-  addLezione() {
-    this.lezione = new Lezione;
-    this.lezione.idCorso = this.corso.id;
-    this.lezione.indexLezione = this.corso.lezioni.length + 1;
+
+  retrieveChangeView(change: boolean){
+    this.showFeeds = change;
+  }
+
+  retrieveNewLezione(lezione : Lezione){
+    this.lezione = lezione;
     this.corso.lezioni.push(this.lezione);
   }
-
-  get getMediumFeeds() {
-
-    let count = this.corso.feeds.reduce(function (s, a) {
-      return s + a.feed;
-    }, 0);
-
-    return count / this.corso.feeds.length;
-  }
-
-  changeView() {
-    this.showFeeds = !this.showFeeds;
-  }
-
   
 
 }

@@ -77,6 +77,7 @@ import { CustomMatPaginatorIntl } from './varie/custom-mat-paginator-int';
 import { CarouselCodersComponent } from './varie/carousel-coders/carousel-coders.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { TruncateTextPipe } from './pipes/truncate-text.pipe';
+import { CardPageCorsoComponent } from './cards/card-page-corso/card-page-corso.component';
 
 
 
@@ -154,7 +155,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ModalPagamentoComponent,
     CardUtenteComponent,
     CarouselCodersComponent,
-    TruncateTextPipe
+    TruncateTextPipe,
+    CardPageCorsoComponent
     
   ],
   imports: [
