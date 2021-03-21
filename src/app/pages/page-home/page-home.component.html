@@ -1,4 +1,4 @@
-<div *ngIf="renderPage" class="row">
+<div *ngIf="renderPage" class="row w-100 ml-0">
     <div class="col-12 pb-0 pt-2 d-flex justify-content-center back-color-coders-header pr-0 pl-0">
        
         <h4>I Top Coders</h4>
@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<div *ngIf="listaCorsiFiltered.length > 0 && renderPage" class="row mt-3">
+<div *ngIf="listaCorsiFiltered.length > 0 && renderPage" class="row w-100 ml-0 mt-3">
     <div class="col-12">
         <button mat-icon-button (click)="cleanListaCorsiFiltered()" style=" color: #6c757d;">
             <mat-icon style="margin-top: -3px;">clear</mat-icon>
@@ -20,7 +20,7 @@
 
 <div *ngIf="listaCorsiFiltered.length === 0 && renderPage">
 
-    <div *ngFor="let item of mapCorsi | keyvalue" class="row mt-3">
+    <div *ngFor="let item of mapCorsi | keyvalue" class="row w-100 ml-0  mt-3">
        
             <div class="col-12 pr-0 pl-0">
                 <h4 class="text-muted title-courses">{{item.key}}</h4>   
@@ -44,7 +44,7 @@
 
 </div>
 
-<div *ngIf="listaCorsiFiltered.length > 0 && renderPage" class="row mt-2">
+<div *ngIf="listaCorsiFiltered.length > 0 && renderPage" class="row w-100 ml-0  mt-2">
     <div *ngFor="let corso of listaCorsiFiltered" class="col-md-4 col-sm-6 col-xs-6">
         <app-card-corso [corso]="corso"></app-card-corso>
     </div>

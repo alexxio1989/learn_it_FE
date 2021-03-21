@@ -1,14 +1,16 @@
 
 <div class="container-app">
-    <app-nav-bar [tipoCorsoList]="tipoCorsoList"></app-nav-bar>
+    <app-nav-bar [tipoCorsoList] = "tipoCorsoList"></app-nav-bar>
 
-
+    
     <app-side-bar></app-side-bar>
-
-    <div class="container main pr-0 pl-0">
-
-        <router-outlet></router-outlet>
-
+    
+    <div class="container main ">
+        <div class="row">
+            <div class="col-12 pt-3 pb-5 pl-0 pr-0">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
     </div>
     <app-spinner></app-spinner>
 </div>
