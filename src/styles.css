@@ -23,6 +23,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 70% !important;
 }
 
+.mtn-20{
+  margin-top: -20px;
+}
+.mtn-15{
+  margin-top: -15px;
+}
+.mtn-10{
+  margin-top: -10px;
+}
+
 .card-custom-img {
   height: 100px;
   min-height: 100px;
