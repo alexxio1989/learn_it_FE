@@ -20,15 +20,15 @@
 
 </div>
 
-<div *ngIf="showFeeds && renderPage" class="row w-100 ml-0">
+<div *ngIf="showFeeds && renderPage" class="row w-100 ml-0 mt-3">
 
   <div class="col-12 d-flex  justify-content-center mt-5" *ngIf="corso.feeds.length === 0">
     Nessuna feedback associato al corso
   </div>
-  <div class="col-12 d-flex  mt-5">
-    <div *ngFor="let feed of corso.feeds">
+  <div *ngFor="let feed of corso.feeds" class="col-12 d-flex justify-content-center ">
+    
       <app-card-feedback [feed]="feed"></app-card-feedback>
-    </div>
+  
   </div>
 
 </div>

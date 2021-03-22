@@ -22,6 +22,7 @@ export class InfoUtenteComponent implements OnInit {
   @Input() isRichiesta: boolean;
   @Input() isSlide: boolean;
   @Input() editInfo: boolean;
+  @Input() position: number;
   isDevice: boolean;
   confirmDelete: boolean;
 

@@ -79,6 +79,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 import { CardPageCorsoComponent } from './cards/card-page-corso/card-page-corso.component';
 import { CardPageLezioneComponent } from './cards/card-page-lezione/card-page-lezione.component';
+import { ModalNewFeedbackComponent } from './modal-new-feedback/modal-new-feedback.component';
 
 
 
@@ -158,7 +159,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CarouselCodersComponent,
     TruncateTextPipe,
     CardPageCorsoComponent,
-    CardPageLezioneComponent
+    CardPageLezioneComponent,
+    ModalNewFeedbackComponent
     
   ],
   imports: [

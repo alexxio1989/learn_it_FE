@@ -48,6 +48,36 @@
         </button>
       </div>
 
+      <div *ngIf="!newFeed" class="row d-flex justify-content-center mt-1">
+        <button mat-button (click)="newFeed = true" style="color: #6c757d;">
+          <mat-icon style="margin-top: -3px;">comment</mat-icon>
+          Lascia un Feedback al corso
+        </button>
+      </div>
+
+      <div *ngIf="newFeed" class="row mt-1 ">
+        <div class="col-12 mb-2 d-flex  justify-content-center">
+          <button mat-button (click)="newFeed = false" style="color: #6c757d;">
+            Annulla
+          </button>
+          <button *ngIf= "feed.comment !== undefined && feed.comment !== null && feed.comment !== ''" mat-button (click)="salvaFeed()" style="color: #6c757d;">
+            salva
+          </button>
+        </div>
+
+        <div class="col-12  d-flex  justify-content-center">
+          <mat-form-field style="width: 350px;" class="example-form-field">
+           
+            <textarea style="height: 100px; background-color: #f4f4f4;"  matInput placeholder="Lascia il tuo commento qui" [(ngModel)]="feed.comment"></textarea>
+
+          </mat-form-field>
+        </div>
+        <div class="col-12  d-flex  justify-content-center">
+          <ngx-stars (ratingOutput)="onRatingSet($event)" [readonly]="false" [size]="2" [color]="'#007bff'" [initialStars]="feed.feed"></ngx-stars>
+        </div>
+        
+      </div>
+
 
 
     </div>

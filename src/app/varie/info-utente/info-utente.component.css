@@ -26,3 +26,13 @@ img {
 .negativeMarginTop{
     margin-top: -20px;
 }
+
+.chip-utente{
+    position: absolute;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    left: 140px;
+    top: 80px;
+}

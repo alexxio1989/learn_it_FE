@@ -1,15 +1,36 @@
-<div class="card mb-3" style="max-width: 540px; min-height: 200px;">
+<div class="card mb-3 " >
     <div class="row no-gutters">
-        <div class="col-4">
-            <img class="card-img-top" src="../../assets/images/user.png" class="card-img-top" >
-        </div>
-        <div class="col-8">
-            <div class="card-body">                  
-                <div class="card-text">
-                    <p>{{ feed.comment }}</p>
-                </div>
+      
+        <div class="col-12">
+            <div class="card-body">    
+                <div *ngIf="isSameUser" class="row">
+                    <div class="col-12  d-flex  justify-content-center">
+                        <button  mat-button (click)="elimina()" style="color: #6c757d;">
+                            <mat-icon style="margin-top: -4px;">delete_outline</mat-icon>
+                            Elimina Feedback
+                            
+                        </button>
+                    </div>
+                </div>  
+                <div class="row">
+                    <div class="col-12  d-flex  justify-content-center">
+                        <h4>{{feed.anagrafeCliente}}</h4>
+                    </div>
+                </div>   
+                <div class="row">
+                    <div class="col-12  d-flex  justify-content-center">
+                        <h6>In data : {{feed.dataInserimento | date:'dd / hh / yyyy'}}</h6>
+                    </div>
+                </div>           
+                <div class="row">
+                    <div class="col-12  d-flex  justify-content-center">
+                        <h4>{{feed.comment}}</h4>
+                    </div>
+                </div>     
                 <div class="row ">
-                    <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="feed.feed"></ngx-stars>
+                    <div class="col-12  d-flex  justify-content-center">
+                        <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="feed.feed"></ngx-stars>
+                    </div>
                 </div>
             </div>
         </div>

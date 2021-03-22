@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Lezione } from 'src/app/model/Lezione';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
+import { FeedbackService } from 'src/app/services/feedback.service';
 import { LezioneServiceService } from 'src/app/services/lezione-service.service';
 import { getUserLS, isEmptyArray, isEmptyString, isNotEmptyArray, isSameUser } from 'src/app/utils/Util';
 import { Corso } from '../../model/Corso';
@@ -27,13 +28,17 @@ export class PageCorsoComponent implements OnInit, IPageCore {
 
   renderPage: boolean;
 
-  constructor(private ls: LezioneServiceService , private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService, private ar: ActivatedRoute) {
+  constructor(private fs: FeedbackService,private ls: LezioneServiceService , private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService, private ar: ActivatedRoute) {
     this.ds.getOBSSpinner().subscribe(next => {
       this.renderPage = !next;
     })
 
     this.ls.getOBSUpdateLezioni().subscribe(next => {
       this.corso.lezioni = next;
+    })
+
+    this.fs.getOBS().subscribe(next => {
+      this.corso.feeds = next;
     })
   }
 
