@@ -25,4 +25,6 @@ export class Corso{
     acquirente: User;
     aPagamento: boolean;
     colorCard: string ;
+    totFeeds:number;
+    mediumFeeds:number;
 }

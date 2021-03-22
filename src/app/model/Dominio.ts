@@ -10,4 +10,5 @@ export class Dominio{
     pageSize: number = 3;
     lowValue: number = 0;
     highValue: number = 3;
+    edit:boolean;
 }
