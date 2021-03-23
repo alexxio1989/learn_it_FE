@@ -29,21 +29,8 @@
                         Logout
                     </button>
                 </div>
-                <div *ngIf="isSuperUser || isWriter" class="w-100 p-2 d-flex justify-content-center">
-                    <app-modal-core [visible] = "isSuperUser || isWriter" [descButton] = "'Nuovo Corso'" [icon] ="'add'" [isButton] = "true" [component] = "modalCorsoComponent"></app-modal-core>
-                
-                </div>
-                <div *ngIf="isUser" class="row p-2">
-                    <div class="col-12 d-flex justify-content-center">
-                        <h6>Vuoi creare i tuoi corsi?</h6>
-
-                    </div>
-                    <div class="col-12 d-flex justify-content-center pt-0">
-                        <app-modal-core [descButton] = "'Invia richiesta'" [isButton] = "true" [component] = "modalRichiestaComponent"></app-modal-core>
-              
-
-                    </div>
-                </div>
+             
+    
                 <div *ngIf="isSuperUser"  class="row p-2">
                     <div class="col-12 d-flex justify-content-center ">
                         <button mat-button style="color: #6c757d;" (click) ="gotToPageAdmin()">
