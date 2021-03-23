@@ -33,7 +33,7 @@
                 </mat-tab>
                 <mat-tab label="{{extraUtenteLogged ? 'I Suoi Corsi' : 'I Tuoi Corsi'}}">
                 
-                    <div *ngFor="let corso of utente.propriCorsi" class="row w-100 p-3 mt-3" style="background-color: #f6f6f6; min-width: 100%;">
+                    <div *ngFor="let corso of utente.propriCorsi" class="row w-100 p-3 mt-3 ml-0" style="background-color: #f6f6f6; min-width: 100%;">
                         
                         <div class="col-2 d-flex justify-content-center align-items-center my-auto">
                             
@@ -51,7 +51,7 @@
                                 <h5>{{corso.subNomeCorso}}</h5>
                             </div>
                             <div class="col-12">
-                                <ngx-stars [readonly]="true" [size]="0.8" [color]="'#007bff'" [initialStars]="0"></ngx-stars>
+                                <ngx-stars [readonly]="true" [size]="0.8" [color]="'#007bff'" [initialStars]="corso.mediumFeeds"></ngx-stars>
                             </div>
                         </div>
                         <div class="col-2 text-right pr-0">

@@ -1,17 +1,19 @@
 <div class="navbar navbar-light my-navbar fixed-top" >
-    <a href="" class="navbar-brand " style="font-family: American Typewriter, serif; font-size:15px !important">
-        <img src="../../assets/images/logo.png" style="margin-bottom: 4px; margin-right: 10px;" width="30" height="30" alt="">
-        Il mio codice.com
+    <a  href="" class="navbar-brand  ml-2" style="font-family: American Typewriter, serif; font-size:15px !important">
+        <img src="../../assets/images/logo.png" style="margin-bottom: 4px; margin-right: 10px;" width="40" height="40" alt="">
+        {{isMobile ? '' : 'Il mio codice.com'}}
     </a>
     <form class="form-inline">
-        <button class="btn btn-lg" data-toggle="collapse" (click)="onChangeTab(1)"
+        <app-modal-core *ngIf="isUtenteLogged && isUser" [icon]="'post_add'" [descButton] = "'Nuovo Corso'" [isButton] = "true" [component] = "modalRichiestaComponent"></app-modal-core>
+        <app-modal-core *ngIf="isUtenteLogged && (isWriter || isSuperUser )" [icon]="'post_add'" [descButton] = "'Nuovo Corso'" [isButton] = "true" [component] = "modalCorsoComponent"></app-modal-core>
+        <button mat-button data-toggle="collapse" class="mini-button mr-2" (click)="onChangeTab(1)"
             [attr.data-target]="'#' + 'collapse' + tabName">
-            <i class="fa fa-search" ></i>
+            <mat-icon >zoom_in</mat-icon>
         </button>
-       
-        <button class="btn btn-lg" (click)="openSideBar()">
-            <i class="fa fa-bars" ></i>
+        <button mat-button class="mini-button mr-2" (click)="openSideBar()">
+            <mat-icon >menu_open</mat-icon>
         </button>
+    
 
     </form>
     
@@ -26,6 +28,7 @@
     </div>
        
 </div>
+
 
 
 
