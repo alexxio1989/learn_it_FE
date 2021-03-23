@@ -4,11 +4,11 @@
     </div>
 </div>
 <mat-dialog-content class="mat-typography" class="p-2">
-    <form class="accesso-form">
+
         <mat-tab-group *ngIf="!isRecuperaPassword" (selectedTabChange)="changeTab($event)">
             <mat-tab label="Accedi">
 
-                <div class="row w-100 p-3">
+                <div class="row w-100 p-3 ml-0">
 
                     <div class="col-12 d-flex justify-content-center">
                         <mat-form-field style="width: 235px;">
@@ -47,7 +47,7 @@
             </mat-tab>
             <mat-tab label="Registrati">
 
-                <div class="row w-100 p-3">
+                <div class="row w-100 p-3 ml-0">
                     <div class="col-12 d-flex justify-content-center">
             
                         <div class="box-img-utente shadow">
@@ -60,9 +60,9 @@
                     </div>
                 </div>
 
-                <div class="row w-100 p-3">
+                <div class="row w-100 p-3 mtn-25">
                     <div class="col-12 d-flex justify-content-center">
-                        <button mat-button (click)="fileInput.click()"> 
+                        <button class="ml-3" mat-button (click)="fileInput.click()"> 
                             <mat-icon>add_photo_alternate</mat-icon>
                             <span>Seleziona immagine</span>
                             <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
@@ -75,7 +75,7 @@
 
                 <mat-tab-group >
                     <mat-tab label="Dati di accesso" class="h-100">
-                        <div class="row w-100 p-3">
+                        <div class="row w-100 p-3 ml-0">
                             <div class="col-12 d-flex justify-content-center">
                                 <mat-form-field class="example-full-width" style="width: 235px;">
                                     <mat-label>Email</mat-label>
@@ -118,9 +118,9 @@
                             </div>
                         </div>
                     </mat-tab>
-                    <mat-tab label="Anagrafe" class="h-100">
+                    <mat-tab label="Anagrafica" class="h-100">
 
-                        <div class="row w-100 p-3">
+                        <div class="row w-100 p-3 ml-0">
                             <div class="col-12 d-flex justify-content-center">
                                 <mat-form-field class="example-form-field" style="width: 235px;">
                                     <mat-label>Nome</mat-label>
@@ -188,7 +188,7 @@
             </mat-tab>
         </mat-tab-group>
 
-        <div *ngIf="isRecuperaPassword" class="row w-100 p-3 ml-2" style="width: 350px;">
+        <div *ngIf="isRecuperaPassword" class="row w-100 p-3" style="width: 350px;">
 
             <div class="col-12 d-flex justify-content-center">
                 <mat-form-field style="width: 235px;">
@@ -212,7 +212,7 @@
         </div>
 
 
-    </form>
+   
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button *ngIf="isRecuperaPassword"  (click) = "isRecuperaPassword = !isRecuperaPassword">Annulla</button>

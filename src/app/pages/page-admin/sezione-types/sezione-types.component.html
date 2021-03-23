@@ -1,6 +1,6 @@
 <div *ngIf="!addDominio && !addSubDominio"  class="row mt-3">
     <div class="col-12">
-        <button  (click) = "addDom()" mat-button  style="color: #6c757d;">
+        <button  (click) = "newDomain()" mat-button  style="color: #6c757d;">
             Aggiungi Tipo
         </button>
 
@@ -14,14 +14,14 @@
         <mat-list-item *ngIf="!type.edit">- {{type.descrizione}}</mat-list-item>
 
 
-        <button  mat-button (click)="editDominio(type) " style="color: #6c757d;">
+        <button  mat-button (click)="addDominio = true; newDominio = type " style="color: #6c757d;">
             <h6>Modifica</h6>
         </button>
         <button  mat-button (click)="deleteDominio(type)" style="color: #6c757d;">
-        <h6>Elimina</h6>
+            <h6>Elimina</h6>
         </button>
-        <button  *ngIf="!addDominio" (click) = "addSubDom(type)" mat-button  style="color: #6c757d;">
-        <h6>Aggiungi Sotto Tipo</h6>
+        <button  *ngIf="!addDominio" (click) = "newSubDomain(type)" mat-button  style="color: #6c757d;">
+            <h6>Aggiungi Sotto Tipo</h6>
         </button>
 
 
@@ -29,12 +29,12 @@
         <mat-list style="margin-left:40px;">
             <div *ngFor="let subType of type.sottoTipi">
                 <mat-list-item>- {{ subType.descrizione }}</mat-list-item>
-                <button  mat-button (click)="editSubDom(subType)" style="color: #6c757d;">
+                <button  mat-button (click)="addSubDominio = true ; newSubDominio = subType ; newDominio = type" style="color: #6c757d;">
                     <h6>Modifica</h6>
                   </button>
-                  <button  mat-button (click)="deleteSubDom(subType)" style="color: #6c757d;">
+                <button  mat-button (click)="deleteSubDom(subType)" style="color: #6c757d;">
                     <h6>Elimina</h6>
-                  </button>
+                </button>
             </div>
         </mat-list>
     </ng-container>
@@ -46,11 +46,12 @@
     <div class="col-12">
         
         <mat-form-field class="example-form-field">
+            
             <mat-label>Nome del nuovo tipo corso</mat-label>
             <input matInput type="text" [(ngModel)]="newDominio.descrizione">
            
         </mat-form-field>
-        <button  mat-button  style="color: #6c757d;">
+        <button (click)="saveDom()" mat-button  style="color: #6c757d;">
             <h6>Salva</h6>
         </button>
         <button  mat-button (click) = "addDominio = false"  style="color: #6c757d;">
@@ -59,15 +60,19 @@
     </div>
 </div>
 
-<div *ngIf="addSubDominio" class="row">
-    <div class="col-12">
+<div *ngIf="addSubDominio" class="row mt-3">
+    <div class="col-12 d-flex  justify-content-center mb-3">
+        <mat-label>Tipo padre : {{newDominio.descrizione}}</mat-label>
+
+    </div>
+    <div class="col-12 d-flex  justify-content-center ">
         
         <mat-form-field class="example-form-field">
             <mat-label>Nome del nuovo Sub tipo corso</mat-label>
             <input matInput type="text" [(ngModel)]="newSubDominio.descrizione">
            
         </mat-form-field>
-        <button  mat-button  style="color: #6c757d;">
+        <button (click)="saveSubDom(newDominio)" mat-button  style="color: #6c757d;">
             <h6>Salva</h6>
         </button>
         <button  mat-button (click) = "addSubDominio = false"  style="color: #6c757d;">

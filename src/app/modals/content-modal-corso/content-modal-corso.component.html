@@ -65,27 +65,12 @@
                         <button mat-menu-item (click)="changeTipoCorso(tipo)">{{tipo.descrizione}}</button>
                     </div>
                 </mat-menu>
-                <button *ngIf="tipoCorso === undefined || tipoCorso === null" mat-button (click)="changeShowSaveTipo()" style="color: #6c757d;">
-                    <mat-icon>playlist_add</mat-icon>
-                </button>
+               
             </div>
            
         </div>
     
-        
-        <div *ngIf="isShowSaveTipo" class="row mt-3">
-            <div class="col-12 d-flex justify-content-center">
-                <input required id="newType" class="form-control d-inline w-70" [(ngModel)]="newType.descrizione"
-                    placeholder="inserisci tipologia corso">
-                    <button class="d-inline" mat-button (click)="salvaTipo()" style=" color: #6c757d;">
-                        Salva
-                    </button>
-                    <button mat-button (click)="changeShowSaveTipo()" style=" color: #6c757d;">
-                        Annulla
-                    </button>
-            </div>
-            
-        </div>
+       
      
     
     
@@ -101,25 +86,10 @@
                     </div>
                 </mat-menu>
     
-                <button mat-button (click)="changeShowSaveSubTipo()" style="color: #6c757d;">
-                    <mat-icon>playlist_add</mat-icon>
-                </button>
             </div>
         </div>
     
-        <div *ngIf="isShowSaveSubTipo" class="row">
-            <div class="col-12 d-flex justify-content-center">
-                <input required id="newSubType" class="form-control d-inline w-70" [(ngModel)]="newSubType.descrizione"
-                    placeholder="inserisci tipologia corso">
-                <button class="d-inline" mat-button (click)="salvaSubTipo()" style=" color: #6c757d;">
-                    Salva
-                </button>
-                <button mat-button (click)="changeShowSaveSubTipo()" style=" color: #6c757d;">
-                    Annulla
-                </button>
-            </div>
-            
-        </div>
+       
      
              
     
