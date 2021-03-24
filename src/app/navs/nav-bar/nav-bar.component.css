@@ -14,12 +14,10 @@
 }
 
 .brand-mobile{
-    width: 100px;
-    height: 100px;
+    font-family: American Typewriter, serif; font-size:15px !important;
     position: absolute;
-    top: -30px;
-    left: 0;
+    top: 10px;
+    left: 15;
     z-index: 1100;
-    background-color: rgb(244, 244, 244);
     border-radius: 50%;
 }

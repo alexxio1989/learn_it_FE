@@ -1,8 +1,12 @@
 <div class="navbar navbar-light my-navbar fixed-top" >
-    <a  href="" class="navbar-brand  ml-2" style="font-family: American Typewriter, serif; font-size:15px !important">
+    <div class="navbar-brand  ml-2">
+
+    </div>
+    <a  href="" class="brand-mobile" >
     
-        <img  src="../../assets/images/logo.gif" style="margin-bottom: 4px; margin-right: 10px;" width="155px" height="35px" alt="">
+        <img  src="../../assets/images/logo2.png" style="margin-bottom: 4px; margin-right: 10px;" alt="">
     </a>
+    
     <form class="form-inline">
         <app-modal-core *ngIf="isUtenteLogged && isUser" [icon]="'post_add'" [descButton] = "isMobile ? '':'Nuovo Corso'" [isButton] = "true" [component] = "modalRichiestaComponent"></app-modal-core>
         <app-modal-core *ngIf="isUtenteLogged && (isWriter || isSuperUser )" [icon]="'post_add'" [descButton] = "isMobile ? '':'Nuovo Corso'" [isButton] = "true" [component] = "modalCorsoComponent"></app-modal-core>
