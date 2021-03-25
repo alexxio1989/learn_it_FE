@@ -36,3 +36,7 @@ img {
     left: 140px;
     top: 80px;
 }
+
+.gray-bg{
+    background-color: rgb(242, 242, 242);
+}
