@@ -21,3 +21,16 @@
     z-index: 1100;
     border-radius: 50%;
 }
+
+.logo{
+    margin-top: -3px; 
+    margin-right: 10px;
+    width: 120px;
+    margin-left: 10px;
+}
+
+.logo-sm{
+    margin-top: 2px; 
+    margin-right: 10px;
+    width: 100px;
+}
