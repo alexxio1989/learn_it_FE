@@ -4,7 +4,8 @@
     </div>
     <a  href="" class="brand-mobile" >
     
-        <img  src="../../assets/images/logo2.png" style="margin-bottom: 4px; margin-right: 10px;" alt="">
+        <img *ngIf="!isMobile" src="../../assets/images/logo2.png" style="margin-bottom: 4px; margin-right: 10px;" width="150px" alt="">
+        <img *ngIf="isMobile" src="../../assets/images/logo2-sm.png" style="margin-bottom: 4px; margin-right: 10px;" width="120px" alt="">
     </a>
     
     <form class="form-inline">
