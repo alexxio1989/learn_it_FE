@@ -15,6 +15,8 @@ import {Country} from '@angular-material-extensions/select-country';
 })
 export class ModalAccessoComponent implements OnInit {
 
+  step1 = true;
+
   isLogin: boolean = true;
   isRecuperaPassword: boolean = false;
 
@@ -42,9 +44,21 @@ export class ModalAccessoComponent implements OnInit {
     return  isEmptyString(this.user.email) || isEmptyString(this.user.password);
   }
 
-  get disableSignin(){
-    return isEmptyString(this.user.attivita) || isEmptyString(this.user.nome) || isEmptyString(this.user.cognome) || isEmptyString(this.user.email) || isEmptyString(this.user.password) || isEmptyString(this.confirmPassword) || this.confirmPassword !== this.user.password;
+  get datiAccessoUncompleted(){
+    return isEmptyString(this.user.email) || isEmptyString(this.user.password) || isEmptyString(this.confirmPassword) || this.confirmPassword !== this.user.password
   }
+
+  get datiAnagraficiUncompleted(){
+    return isEmptyString(this.user.nome) || 
+           isEmptyString(this.user.cognome) || 
+           isEmptyString(this.user.password) || 
+           isEmptyString(this.user.attivita) || 
+           isEmptyString(this.user.recapito.citta) || 
+           isEmptyString(this.user.recapito.indirizzo) || 
+           (this.user.recapito.country === undefined || this.user.recapito.country ===  null)
+  }
+
+  
 
   get disableRecuperaPsw(){
     return  isEmptyString(this.user.email); 

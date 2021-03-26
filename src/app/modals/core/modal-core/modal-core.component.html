@@ -1,5 +1,6 @@
-<button *ngIf="isButton && visible" class="{{class}}" mat-button (click)="openDialog()" >
-    <mat-icon  *ngIf="icon !== undefined && icon !== null && icon !== ''">{{icon}}</mat-icon>
-    {{descButton}}
+<button *ngIf="isButton && visible" class="{{class}} " mat-button (click)="openDialog()" >
+  
+    <mdb-icon class="mtn-2 blue-text " *ngIf="icon !== undefined && icon !== null && icon !== ''" fas icon="{{icon}}" size="lg"></mdb-icon>
+    {{ descButton}}
     
 </button>

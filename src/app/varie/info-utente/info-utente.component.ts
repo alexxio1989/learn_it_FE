@@ -58,7 +58,10 @@ export class InfoUtenteComponent implements OnInit {
       'width': this.imgCrop,
       'border-radius': '100%',
       'text-align':'center',
-      'margin-top':'3px'
+      'margin-top':'3px',
+      'border-style': 'solid',
+      'border-color': 'white',
+      'border-width': '1px'
     };
   }
 
@@ -89,3 +92,6 @@ export class InfoUtenteComponent implements OnInit {
   }
 
 }
+
+
+

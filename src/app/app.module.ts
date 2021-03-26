@@ -81,6 +81,7 @@ import { CardPageCorsoComponent } from './cards/card-page-corso/card-page-corso.
 import { CardPageLezioneComponent } from './cards/card-page-lezione/card-page-lezione.component';
 import { ModalNewFeedbackComponent } from './modal-new-feedback/modal-new-feedback.component';
 import { SezioneTypesComponent } from './pages/page-admin/sezione-types/sezione-types.component';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 
 
@@ -204,7 +205,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatTabsModule,
     MatSelectCountryModule.forRoot('it'),
     ColorPickerModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    MDBBootstrapModule.forRoot()
 
   ],
   providers: [

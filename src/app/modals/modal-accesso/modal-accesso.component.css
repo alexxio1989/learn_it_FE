@@ -24,5 +24,11 @@
      mat-select-country{
         width: 235px;
     }
-     
+     a{
+         width: 185px;
+     }
+
+     .max-width{
+         max-width: 450px;
+     }
      

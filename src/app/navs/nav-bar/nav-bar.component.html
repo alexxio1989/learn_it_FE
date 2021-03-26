@@ -9,15 +9,17 @@
     </a>
     
     <form class="form-inline">
-        <app-modal-core *ngIf="isUtenteLogged && isUser" [icon]="'post_add'" [descButton] = "isMobile ? '':'Nuovo Corso'" [isButton] = "true" [component] = "modalRichiestaComponent"></app-modal-core>
-        <app-modal-core *ngIf="isUtenteLogged && (isWriter || isSuperUser )" [icon]="'post_add'" [descButton] = "isMobile ? '':'Nuovo Corso'" [isButton] = "true" [component] = "modalCorsoComponent"></app-modal-core>
+        <app-modal-core *ngIf="isUtenteLogged && isUser" [icon]="'post_add'" [class]="'op-70'"  [descButton] = "isMobile ? '':'Nuovo Corso'" [isButton] = "true" [component] = "modalRichiestaComponent"></app-modal-core>
+        <app-modal-core *ngIf="isUtenteLogged && (isWriter || isSuperUser )" [icon]="'plus'" [descButton] = "isMobile ? '':'Nuovo Corso'" [isButton] = "true" [component] = "modalCorsoComponent"></app-modal-core>
         <button mat-button data-toggle="collapse" class="mini-button mr-2" (click)="onChangeTab(1)"
             [attr.data-target]="'#' + 'collapse' + tabName">
-            <mat-icon >zoom_in</mat-icon>
+            <mdb-icon fas icon="search" size="lg"></mdb-icon>
+            
         </button>
         <button mat-button class="mini-button mr-2" (click)="openSideBar()">
-            <mat-icon >menu_open</mat-icon>
+            <mdb-icon fas icon="bars" size="lg"></mdb-icon>
         </button>
+        
     
 
     </form>

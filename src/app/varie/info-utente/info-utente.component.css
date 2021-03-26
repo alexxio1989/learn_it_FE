@@ -40,3 +40,12 @@ img {
 .gray-bg{
     background-color: rgb(242, 242, 242);
 }
+
+
+
+.chip-utente {
+    width: 150px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: rgb(178, 178, 178);
+  }
