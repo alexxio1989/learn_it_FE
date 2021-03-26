@@ -37,7 +37,10 @@ export class ModalCoreComponent implements OnInit {
   openDialog() {
     this.cs.corsoSelected = undefined;
     this.ds.objSelected = this.objSelected;
-    const dialogRef = this.dialog.open(this.component);
+    const dialogRef = this.dialog.open(this.component, {
+      height: '400px',
+      width: '600px'
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

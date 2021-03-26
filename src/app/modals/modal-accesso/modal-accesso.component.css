@@ -31,4 +31,10 @@
      .max-width{
          max-width: 450px;
      }
+
+     .cdk-overlay-pane {
+        min-width: 95% !important
+      }
+
+     
      
