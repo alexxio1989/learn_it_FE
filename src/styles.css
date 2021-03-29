@@ -234,4 +234,10 @@ h6{
     .cdk-overlay-pane {
         min-width: 97% !important
       }
+  }
+
+
+
+  .mat-dialog-content {
+    max-height: 83vh !important;
 }
