@@ -8,6 +8,8 @@ export class User{
     id: number;
     email: string;
     password: string;
+    confirmPassword: string;
+    datiRegistrazioneUnCompleted: boolean;
     nome: string;
     cognome: string;
     tipo: Dominio = new Dominio();

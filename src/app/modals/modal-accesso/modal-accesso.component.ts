@@ -20,8 +20,6 @@ export class ModalAccessoComponent implements OnInit {
   isLogin: boolean = true;
   isRecuperaPassword: boolean = false;
 
-  confirmPassword: string = '';
-  
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
@@ -44,19 +42,6 @@ export class ModalAccessoComponent implements OnInit {
     return  isEmptyString(this.user.email) || isEmptyString(this.user.password);
   }
 
-  get datiAccessoUncompleted(){
-    return isEmptyString(this.user.email) || isEmptyString(this.user.password) || isEmptyString(this.confirmPassword) || this.confirmPassword !== this.user.password
-  }
-
-  get datiAnagraficiUncompleted(){
-    return isEmptyString(this.user.nome) || 
-           isEmptyString(this.user.cognome) || 
-           isEmptyString(this.user.password) || 
-           isEmptyString(this.user.attivita) || 
-           isEmptyString(this.user.recapito.citta) || 
-           isEmptyString(this.user.recapito.indirizzo) || 
-           (this.user.recapito.country === undefined || this.user.recapito.country ===  null)
-  }
 
   
 
@@ -125,10 +110,7 @@ export class ModalAccessoComponent implements OnInit {
     };
   }
 
-  onCountrySelected(country: Country) {
-    console.log(country);
-    this.user.recapito.country= country;
-  }
+  
 
 
 }
