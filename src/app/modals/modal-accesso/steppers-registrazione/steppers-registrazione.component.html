@@ -8,10 +8,13 @@
             <ng-template matStepLabel>Dati di accesso</ng-template>
             <div class="row ">
                 <div class="col-12 d-flex justify-content-center">
+                    <button mat-button matStepperNext [disabled]="datiAccessoUncompleted">Avanti</button>
+                </div>
+                <div class="col-12 d-flex justify-content-center">
                     <mat-form-field>
                         <mat-label>Email</mat-label>
                         <input type="email" matInput [(ngModel)]="user.email" (change)="changeEvnt()" formControlName="emailCtrl" placeholder="Ex. pat@example.com" name="email">
-                        
+                      
                     </mat-form-field>
                 </div>
                 <div class="col-12 d-flex justify-content-center">
@@ -27,9 +30,7 @@
                         <input matInput type="password" [(ngModel)]="user.confirmPassword" (change)="changeEvnt()" name="cognome2" formControlName="confirmPswCtrl">
                     </mat-form-field>
                 </div>
-                <div class="col-12 d-flex justify-content-center">
-                    <button mat-button matStepperNext [disabled]="datiAccessoUncompleted">Avanti</button>
-                </div>
+               
             </div>
         </form>
     </mat-step> 

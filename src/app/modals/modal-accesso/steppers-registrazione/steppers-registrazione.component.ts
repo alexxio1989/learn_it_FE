@@ -26,7 +26,7 @@ export class SteppersRegistrazioneComponent implements OnInit {
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      emailCtrl: ['', Validators.required],
+      emailCtrl: ['',  [Validators.required, Validators.email]],
       passwordCtrl: ['', Validators.required],
       confirmPswCtrl: ['', Validators.required]
     });
@@ -38,6 +38,9 @@ export class SteppersRegistrazioneComponent implements OnInit {
       indirizzoCtrl: ['', Validators.required],
     });
   }
+
+  get f1() { return this.firstFormGroup.controls; }
+  get f2() { return this.secondFormGroup.controls; }
 
   onCountrySelected(country: Country) {
     this.user.recapito.country= country;

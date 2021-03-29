@@ -228,6 +228,16 @@ h6{
   font-weight: 400 !important;
 }
 
+.mat-dialog-content {
+  
+  background-color: white !important;
+}
+
+.mat-dialog-container {
+  
+  background-color:rgb(244, 244, 244);
+}
+
  
 
   @media all and (max-width: 400px){
@@ -235,7 +245,7 @@ h6{
         min-width: 97% !important
     }
     .mat-dialog-content {
-      max-height: 70vh !important;
+      max-height: 60vh !important;
     }
   }
 

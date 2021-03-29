@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/model/User';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
@@ -20,23 +20,26 @@ export class ModalAccessoComponent implements OnInit {
   isLogin: boolean = true;
   isRecuperaPassword: boolean = false;
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  loginFormGroup: FormGroup;
+  richiediPasswordFormGroup: FormGroup;
 
-  passwordConfermaControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  
 
   user: User = new User();
 
   hide: boolean;
 
-  constructor(private route: Router ,private ds: DelegateServiceService , private us: UtenteServiceService,public dialog: MatDialog) { }
+  constructor(private _formBuilder: FormBuilder,private route: Router ,private ds: DelegateServiceService , private us: UtenteServiceService,public dialog: MatDialog) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loginFormGroup = this._formBuilder.group({
+      emailCtrl: ['',  [Validators.required, Validators.email]],
+      passwordCtrl: ['', Validators.required]
+    });
+    this.richiediPasswordFormGroup = this._formBuilder.group({
+      emailCtrl: ['',  [Validators.required, Validators.email]]
+    });
+  }
 
   get disableLogin(){
     return  isEmptyString(this.user.email) || isEmptyString(this.user.password);
