@@ -29,6 +29,8 @@ export class ModalAccessoComponent implements OnInit {
 
   hide: boolean;
 
+  disableLogin = true;
+
   constructor(private _formBuilder: FormBuilder,private route: Router ,private ds: DelegateServiceService , private us: UtenteServiceService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -41,8 +43,8 @@ export class ModalAccessoComponent implements OnInit {
     });
   }
 
-  get disableLogin(){
-    return  isEmptyString(this.user.email) || isEmptyString(this.user.password);
+  changeValue(){
+    this.disableLogin =  isEmptyString(this.user.email) || isEmptyString(this.user.password);
   }
 
 
