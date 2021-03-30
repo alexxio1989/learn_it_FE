@@ -27,6 +27,8 @@ export class ContentModalCorsoComponent implements OnInit {
   isShowSaveTipo: boolean;
   isShowSaveSubTipo: boolean;
 
+  addDescrizione: boolean;
+
   ngOnInit(): void {
     this.tipoCorsoList = this.cs.tipoCorsoList;
     if(this.cs.corsoSelected !== undefined && this.cs.corsoSelected !== null){

@@ -9,7 +9,7 @@ export class User{
     email: string;
     password: string;
     confirmPassword: string;
-    datiRegistrazioneUnCompleted: boolean;
+    datiRegistrazioneUnCompleted = true;
     nome: string;
     cognome: string;
     tipo: Dominio = new Dominio();

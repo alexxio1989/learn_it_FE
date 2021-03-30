@@ -13,7 +13,7 @@
         <button class="button-add-image" mat-button (click)="fileInput.click()"> 
             <mat-icon>add_a_photo</mat-icon>
             <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
-        </button>
+        </button> 
 
         <button mat-button class="button-color" (click)="inputColor.click()">
             <img alt="Web Studio" class="card-img" style="max-width: 50px; max-height: 50px;" src="../../../assets/images/colors.png" /> 
@@ -24,7 +24,7 @@
                 <mat-slide-toggle *ngIf="enableCorsoAPagamento" [(ngModel)]="corso.aPagamento">Corso a Pagamento</mat-slide-toggle>
             </div> -->
        
-            <div class="col-12 mt-3 d-flex justify-content-center "> 
+            <div *ngIf="!addDescrizione" class="col-12 mt-3 d-flex justify-content-center "> 
                 <mat-form-field class="example-form-field">
                     <mat-label>Nome corso</mat-label>
                     <input matInput type="text" [(ngModel)]="corso.nomeCorso">
@@ -33,7 +33,7 @@
                     </button>
                 </mat-form-field>
             </div>
-            <div class="col-12 d-flex justify-content-center ">
+            <div *ngIf="!addDescrizione" class="col-12 d-flex justify-content-center ">
                 <mat-form-field class="example-form-field">
                     <mat-label>Sotto Nome corso</mat-label>
                     <input matInput type="text" [(ngModel)]="corso.subNomeCorso">
@@ -44,7 +44,7 @@
                 </mat-form-field>
             </div>
      
-        <div class="row mb-2 mt-4" *ngIf="corso.aPagamento">
+        <div class="row mb-2 mt-4" *ngIf="corso.aPagamento && !addDescrizione">
             <div class="col-12 d-flex justify-content-center">
                 <mat-form-field >
                     <mat-label>Prezzo corso</mat-label>
@@ -56,7 +56,7 @@
         </div>
 
 
-        <div *ngIf="!isShowSaveTipo && (corso.id === undefined || corso.id === 0)" class="row  form-group mt-3">
+        <div *ngIf="!isShowSaveTipo && (corso.id === undefined || corso.id === 0) && !addDescrizione" class="row  form-group mt-3">
            
             <div class="col-12  d-flex justify-content-center">
                 <button class="pl-0" mat-button [matMenuTriggerFor]="menu">{{labelTipoCorso}}</button>
@@ -76,7 +76,7 @@
     
     
     
-        <div *ngIf="!isShowSaveSubTipo && tipoCorso !== undefined && tipoCorso !== null" class="row form-group">
+        <div *ngIf="!isShowSaveSubTipo && tipoCorso !== undefined && tipoCorso !== null && !addDescrizione" class="row form-group">
             <div class="col-12 d-flex justify-content-center">
     
                 <button mat-button [matMenuTriggerFor]="menu">{{labelSubTipoCorso}}</button>
@@ -87,13 +87,27 @@
                 </mat-menu>
     
             </div>
+           
+        </div>
+
+        <div *ngIf="!addDescrizione" class="row mb-2">
+            <div class="col-12 d-flex justify-content-center">
+                <button mat-button (click) = "addDescrizione = true">
+                    <h6>Vuoi aggiungere una descrizione al corso ?</h6>
+                </button>
+            </div>
         </div>
     
        
      
              
     
-        <div class="row mt-4">
+        <div *ngIf="addDescrizione" class="row mb-2">
+            <div class="col-12 d-flex justify-content-center">
+                <button mat-button (click) = "addDescrizione = false">
+                    <h6>Annulla</h6>
+                </button>
+            </div>
             <div class="col-12 d-flex justify-content-center">
                 <p>Descrizione corso</p>
             </div>

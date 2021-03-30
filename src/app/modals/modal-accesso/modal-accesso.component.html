@@ -42,35 +42,24 @@
             
             </mat-tab>
             <mat-tab label="Registrati">
-            
-                <div class="row w-100 p-3 ml-0">
-                    <div class="col-12 d-flex justify-content-center">
-            
-                        <div class="box-img-utente shadow">
-                            <img *ngIf="user.img !== undefined && user.img !== null && user.img !== ''" alt="Web Studio"
-                                class="card-img" src="{{user.img}}" />
-                            <img *ngIf="user.img === undefined || user.img === null || user.img === ''" alt="Web Studio"
-                                class="card-img" src="../../../assets/images/default.png" />
-                        </div>
+                <div class="card card-custom bg-white border-white">
+                    <div class="card-custom-img" style="background-color:rgb(244, 244, 244);" >
             
                     </div>
+                    <div class="card-custom-avatar">
+                        <img *ngIf="user.img !== undefined && user.img !== null"  style="max-width: 100px; max-height: 100px;" src="{{user.img}}" alt="Red dot" />
+                        <img *ngIf="user.img === undefined || user.img === null || user.img === ''" alt="Web Studio" class="card-img" src="../../../assets/images/default.png" /> 
+                    </div>   
+            
+                    <button class="button-add-image no-hover-effect" mat-button (click)="fileInput.click()"> 
+                        <mat-icon>add_a_photo</mat-icon>
+                        <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
+                    </button>
+                    <app-steppers-registrazione [(user)] = "user"></app-steppers-registrazione>
                 </div>
-            
-                <div class="row w-100 p-3 mtn-25">
-                    <div class="col-12 d-flex justify-content-center">
-                        <button class="ml-4" mat-button (click)="fileInput.click()">
-                            <mat-icon>add_photo_alternate</mat-icon>
-                            <span>Inserisci una tua foto</span>
-                            <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
-                        </button>
-            
-                    </div>
-            
-            
-                </div>
+                
             
                 
-                <app-steppers-registrazione [(user)] = "user"></app-steppers-registrazione>
             
                 
             

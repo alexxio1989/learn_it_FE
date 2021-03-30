@@ -242,6 +242,11 @@ h6{
   min-width: 270px;
 }
 
+
+.mat-horizontal-stepper-header {
+  height: 50px;
+  
+}
  
 
   @media all and (max-width: 400px){
@@ -255,7 +260,7 @@ h6{
 
 
   @media all and (min-width: 500px){
-   
+    
     .mat-dialog-content {
       max-height: 83vh !important;
     }

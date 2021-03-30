@@ -1,4 +1,4 @@
-<mat-card *ngIf="openSideBar" class="mat-elevation-z10 border-0 side-bar pt-0">
+<mat-card *ngIf="openSideBar" class="mat-elevation-z10 border-0 side-bar pt-0"> 
     <div class="row " style="background-color: #f2f2f2;margin-top: 1px;">
        
         <div *ngIf="isUtenteLogged" class="col-12 p-0">
@@ -12,8 +12,9 @@
         </div>
         <div *ngIf="!isUtenteLogged" class="col-12 p-3 pb-3 d-flex justify-content-center">
             <button mat-button (click)="openLogin()" style="color: #6c757d;">
-                <mat-icon style="margin-top: -3px;">login</mat-icon>
-                Accedi / Registrati 
+               
+                <i class="fas fa-user-check mtn-3 mr-1 fa-lg "></i>
+                Accedi - Registrati 
             </button>
         </div>
     </div>
@@ -46,14 +47,17 @@
     <mat-divider></mat-divider>
 
     <div class="row mt-3">
+        <div class="col-12 pl-4">
+            <h4 class="ml-3">Tutti i corsi:</h4>
+        </div>
         <div class="col-12">
             <mat-accordion class="example-headers-align mt-3" multi>
                 <div *ngFor="let types of tipoCorsoListFilter" class="d-flex flex-column">
-                    <mat-expansion-panel
+                    <mat-expansion-panel class="border-bottom"
                         style="box-shadow: 0px 0px 1px -2px rgba(0, 0, 0, 0.0), 0px 2px 2px 0px rgba(0, 0, 0, 0.0), 0px 1px 0px 0px rgba(0, 0, 0, 0.0);">
                         <mat-expansion-panel-header>
                             <mat-panel-title style="color: #6c757d ; font-weight: 500">
-                                {{types.descrizione}}
+                                <h5 class="mt-3 op-100">{{types.descrizione}}</h5>
                             </mat-panel-title>
                         </mat-expansion-panel-header>
 
