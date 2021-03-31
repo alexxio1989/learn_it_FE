@@ -44,7 +44,7 @@ export class UtenteServiceService {
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
 
-    return this.http.post(ServiceCore.baseURl + "/soggetto/insertLettura", lettura ,{headers});
+    return this.http.post(ServiceCore.baseURl + "/lettura/save", lettura ,{headers});
   }
 
   getOBSUpdateUser(utente: User): Observable<any>{

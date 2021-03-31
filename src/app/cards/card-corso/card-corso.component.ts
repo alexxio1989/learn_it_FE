@@ -142,6 +142,8 @@ export class CardCorsoComponent implements OnInit {
     let lettura = new Lettura();
     lettura.idCorso = corso.id;
     lettura.idUtente = getUserLS().id;
+    lettura.corso = corso;
+    lettura.lettore = getUserLS();
     this.us.getOBSInsertLettura(lettura).subscribe(next=>{
       this.ds.updateSpinner(false);
       this.ds.updateResultService(next.status);
