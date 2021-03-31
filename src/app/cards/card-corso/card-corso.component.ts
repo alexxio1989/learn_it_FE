@@ -147,12 +147,10 @@ export class CardCorsoComponent implements OnInit {
     this.us.getOBSInsertLettura(lettura).subscribe(next=>{
       this.ds.updateSpinner(false);
       this.ds.updateResultService(next.status);
-      localStorage.removeItem('USER');
-      localStorage.setItem('USER',JSON.stringify(next.obj));
-      this.ds.utente = next.obj;
+     
       localStorage.setItem('CORSO' , JSON.stringify(corso));
       this.cs.corsoSelected = corso;
-      this.route.navigate(['/corso']); 
+      this.route.navigate(['/corso'], { queryParams: { id: corso.id } }); 
     },error =>{
       this.ds.updateSpinner(false);
       this.ds.updateResultService(error.status);
