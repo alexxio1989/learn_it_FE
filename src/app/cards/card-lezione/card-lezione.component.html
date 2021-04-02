@@ -1,12 +1,19 @@
 <div class="card mb-3 shadow-sm mt-2 pr-3" >
     <div class="row ml-0">
-        <div class="col-4 bgc-chip justify-content-center">
-            <div class="w-100 d-flex justify-content-center mt-4">
-                <p class="h6 ">Lezione</p>
+        <div class="col-4 vertical-center bgc-chip">
+           
+         
+            <div class="row w-100">
+
+                <div class="col-12 d-flex justify-content-center">
+                    <h4 class="no-margin">Lezione</h4>
+                </div>
+                <div class="col-12 d-flex justify-content-center">
+                    <h2 class="no-margin">{{lezione.indexLezione > 9 ? lezione.indexLezione : '0' + lezione.indexLezione}}</h2>
+                </div>
             </div>
-            <div class="w-100 d-flex justify-content-center mtn-10">
-                <h2>{{lezione.indexLezione > 9 ? lezione.indexLezione : '0' + lezione.indexLezione}}</h2>
-            </div>
+           
+            
         </div>
         <div class="col-8">
             <div class="row  text-dark d-flex justify-content-center">  
@@ -21,7 +28,7 @@
                     <h5 *ngIf="!edit">{{lezione.subTitle}}</h5>   
                 </div>           
             </div>
-            <div class="row pt-0  text-dark d-flex justify-content-center pl-2 mtn-15">
+            <div class="row text-dark d-flex justify-content-center pl-2 mb-2">
                 <div *ngIf="edit && isUtenteLogged" >
                     <button mat-button (click)="save()" class="pl-1 pr-1" style="color: #6c757d;">
                         <h5>Salva</h5>
