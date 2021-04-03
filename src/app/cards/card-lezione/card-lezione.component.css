@@ -11,21 +11,7 @@
 }
 
 
-.mat-typography h6 {
+.no-margin{
     margin: 0px 0 0px !important;
   }
-  .mat-typography h5 {
-    margin: 0px 0 0px !important;
-  }
-  .mat-typography h4 {
-    margin: 0px 0 0px !important;
-  }
-  .mat-typography h3 {
-    margin: 0px 0 0px !important;
-  }
-  .mat-typography h2 {
-    margin: 0px 0 0px !important;
-  }
-  .mat-typography h1 {
-    margin: 0px 0 0px !important;
-  }
+ 

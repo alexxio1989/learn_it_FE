@@ -23,8 +23,6 @@ export class ModalAccessoComponent implements OnInit {
   loginFormGroup: FormGroup;
   richiediPasswordFormGroup: FormGroup;
 
-  
-
   user: User = new User();
 
   hide: boolean;
@@ -41,15 +39,12 @@ export class ModalAccessoComponent implements OnInit {
     this.richiediPasswordFormGroup = this._formBuilder.group({
       emailCtrl: ['',  [Validators.required, Validators.email]]
     });
+    this.loginFormGroup.valueChanges.subscribe((changedObj: any) => {
+        this.disableLogin = !this.loginFormGroup.valid;
+    });
   }
 
-  changeValue(){
-    this.disableLogin =  isEmptyString(this.user.email) || isEmptyString(this.user.password);
-  }
-
-
-  
-
+ 
   get disableRecuperaPsw(){
     return  isEmptyString(this.user.email); 
   }

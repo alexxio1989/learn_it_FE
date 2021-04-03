@@ -37,6 +37,17 @@ export class SteppersRegistrazioneComponent implements OnInit {
       cittaCtrl: ['', Validators.required],
       indirizzoCtrl: ['', Validators.required],
     });
+    this.firstFormGroup.valueChanges.subscribe((changedObj: any) => {
+      this.datiAccessoUncompleted = !this.firstFormGroup.valid;
+      this.user.datiRegistrazioneUnCompleted = this.datiAccessoUncompleted || this.datiAnagraficiUncompleted;  
+      this.userChange.emit(this.user);
+    });
+    this.secondFormGroup.valueChanges.subscribe((changedObj: any) => {
+      this.datiAnagraficiUncompleted = !this.secondFormGroup.valid || (this.user.recapito.country === undefined || this.user.recapito.country === null);
+      this.user.datiRegistrazioneUnCompleted = this.datiAccessoUncompleted || this.datiAnagraficiUncompleted;  
+      this.userChange.emit(this.user);
+      
+    });
   }
 
   get f1() { return this.firstFormGroup.controls; }
@@ -44,30 +55,14 @@ export class SteppersRegistrazioneComponent implements OnInit {
 
   onCountrySelected(country: Country) {
     this.user.recapito.country= country;
-    this.changeStatus();
+    
+    if(this.secondFormGroup.valid){
+      this.datiAnagraficiUncompleted = false;
+    }
     this.user.datiRegistrazioneUnCompleted = this.datiAccessoUncompleted || this.datiAnagraficiUncompleted;  
     this.userChange.emit(this.user);
   }
 
-  changeEvnt(){
-    this.changeStatus();
+ 
 
-    this.user.datiRegistrazioneUnCompleted = this.datiAccessoUncompleted || this.datiAnagraficiUncompleted;                                
-    this.userChange.emit(this.user);
-  }
-
-  private changeStatus() {
-    this.datiAccessoUncompleted = isEmptyString(this.user.email) ||
-      isEmptyString(this.user.password) ||
-      isEmptyString(this.user.confirmPassword) ||
-      this.user.confirmPassword !== this.user.password;
-
-    this.datiAnagraficiUncompleted = isEmptyString(this.user.nome) ||
-      isEmptyString(this.user.cognome) ||
-      isEmptyString(this.user.password) ||
-      isEmptyString(this.user.attivita) ||
-      isEmptyString(this.user.recapito.citta) ||
-      isEmptyString(this.user.recapito.indirizzo) ||
-      (this.user.recapito.country === undefined || this.user.recapito.country === null);
-  }
 }
