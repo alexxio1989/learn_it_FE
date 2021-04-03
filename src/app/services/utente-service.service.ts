@@ -27,17 +27,16 @@ export class UtenteServiceService {
 
   
 
-  getOBSUtenteById(utente: User): Observable<any>{
+  getOBSUserById(utente: User): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
     let params = new HttpParams();
     params = params.append('id', utente.id.toString());
 
     const httpOptions = {
-      headers: headers,
-      params: params
+      headers: headers
     };
-    return this.http.get(ServiceCore.baseURl + "/soggetto/get", httpOptions);
+    return this.http.get(ServiceCore.baseURl + "/soggetto/get?id="+ utente.id.toString(),httpOptions);
   }
 
   getOBSInsertLettura(lettura: Lettura): Observable<any>{

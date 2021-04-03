@@ -39,7 +39,7 @@ export class PageUtenteComponent implements OnInit , IPageCore{
       if(id !== undefined && id !== null && parseInt(id) > 0){
         let utente = new User();
         utente.id = id;
-        this.us.getOBSUtenteById(utente).subscribe(
+        this.us.getOBSUserById(utente).subscribe(
           next=>{
             this.utente = next.obj;
             this.extraUtenteLogged = true;
