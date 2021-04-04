@@ -21,6 +21,7 @@ export class PageUtenteComponent implements OnInit , IPageCore{
   renderPage: boolean;
   renderEditorInfoUser: boolean;
   extraUtenteLogged: boolean;
+  public PAGE = 'UTENTE';
 
   constructor(private ar: ActivatedRoute , 
               private route: Router,
@@ -39,19 +40,13 @@ export class PageUtenteComponent implements OnInit , IPageCore{
       if(id !== undefined && id !== null && parseInt(id) > 0){
         let utente = new User();
         utente.id = id;
-        this.us.getOBSUserById(utente).subscribe(
-          next=>{
-            this.utente = next.obj;
-            this.extraUtenteLogged = true;
-            this.ds.updateResultService("Recupero utente avvenuto con successo")
-            this.ds.updateSpinner(false);
-            this.renderPage = true;
-      
-          },error=>{
-            this.ds.updateResultService("Errore durante il recupero dell'utente")
-            this.ds.updateSpinner(false);
+        this.ds.getOBSAbilitaNavigazione().subscribe(next => {
+          if(next === this.PAGE){
+            this.retrieveUtente(utente);
           }
-        );
+        })
+        this.ds.page = this.PAGE;
+        this.ds.checkUserLogged(this.PAGE);
       } else {
 
         this.utente = getUserLS();
@@ -74,6 +69,23 @@ export class PageUtenteComponent implements OnInit , IPageCore{
 
     });
     
+  }
+
+  private retrieveUtente(utente: User) {
+    this.us.getOBSUserById(utente).subscribe(
+      next => {
+        this.utente = next.obj;
+        this.extraUtenteLogged = true;
+        this.ds.updateResultService("Recupero utente avvenuto con successo");
+        this.ds.updateSpinner(false);
+        this.renderPage = true;
+
+      }, error => {
+        console.log(error.stack);
+        this.ds.updateResultService("Errore durante il recupero dell'utente");
+        this.ds.updateSpinner(false);
+      }
+    );
   }
 
   goToCourse(corso: Corso){ 

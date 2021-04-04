@@ -29,7 +29,8 @@ export class UtenteServiceService {
 
   getOBSUserById(utente: User): Observable<any>{
     this.ds.updateSpinner(true);
-    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
+    const jwt = getJWTTOKEN();
+    const headers = new HttpHeaders().set("JWT_TOKEN",  jwt);
     let params = new HttpParams();
     params = params.append('id', utente.id.toString());
 
