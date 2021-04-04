@@ -48,7 +48,7 @@ export class PageUtenteComponent implements OnInit , IPageCore{
             this.renderPage = true;
       
           },error=>{
-            this.ds.updateResultService("Errore durante la modificata alla visibilità del corso")
+            this.ds.updateResultService("Errore durante il recupero dell'utente")
             this.ds.updateSpinner(false);
           }
         );

@@ -36,6 +36,7 @@ export class UtenteServiceService {
     const httpOptions = {
       headers: headers
     };
+    console.log('CHIAMATA A : ' + ServiceCore.baseURl + "/soggetto/get?id=" + utente.id.toString())
     return this.http.get(ServiceCore.baseURl + "/soggetto/get?id=" + utente.id.toString(),httpOptions);
   }
 
