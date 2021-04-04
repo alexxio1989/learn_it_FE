@@ -36,7 +36,7 @@ export class UtenteServiceService {
     const httpOptions = {
       headers: headers
     };
-    return this.http.get(ServiceCore.baseURl + "/soggetto/get?id="+ utente.id.toString(),httpOptions);
+    return this.http.get(ServiceCore.baseURl + "/soggetto/get?id=" + utente.id.toString(),httpOptions);
   }
 
   getOBSInsertLettura(lettura: Lettura): Observable<any>{
