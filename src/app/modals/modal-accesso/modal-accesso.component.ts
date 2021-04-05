@@ -81,6 +81,7 @@ export class ModalAccessoComponent implements OnInit {
 
   changeTab(event: any){
     this.user = new User();
+    this.disableLogin = true;
     this.isLogin = (event.index === 0);
   }
 

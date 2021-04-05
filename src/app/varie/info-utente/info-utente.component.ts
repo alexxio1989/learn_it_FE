@@ -34,7 +34,7 @@ export class InfoUtenteComponent implements OnInit {
     this.isDevice = this.deviceService.isMobile();
 
     if(this.isCardCorso){
-      this.imgCrop = "35px";
+      this.imgCrop = "40px";
     } else if(this.isSideBar || this.isRichiesta){
       this.imgCrop = "60px";
     } else {
@@ -61,7 +61,7 @@ export class InfoUtenteComponent implements OnInit {
       'margin-top':'3px',
       'border-style': 'solid',
       'border-color': 'white',
-      'border-width': '1px'
+      'border-width': '3px'
     };
   }
 
