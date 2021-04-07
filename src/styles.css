@@ -119,6 +119,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 
+
+
 .center {
   position: absolute;
   top: 50%;
@@ -256,6 +258,13 @@ h6{
     }
     .mat-dialog-content {
       max-height: 60vh !important;
+    }
+    img{
+      max-width: 350px !important;
+    }
+    .CodeMirror-sizer{
+      min-width: 350px !important;
+      max-width: 350px !important;
     }
   }
 

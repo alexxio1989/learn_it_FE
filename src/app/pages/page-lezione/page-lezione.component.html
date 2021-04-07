@@ -8,7 +8,7 @@
    
    
 
-    <div class="row">
+    <div class="row w-100 ml-0">
         <div *ngIf="lezione.listaParagrafi.length > 0" class="col-12 d-flex justify-content-center mt-2">
             <mat-form-field style="width: 300px;">
                 <mat-label>Vai al paragrafo ...</mat-label>
@@ -23,9 +23,9 @@
         </div>
     </div>
 
-    <div class="row mt-2">
+    <div class="row w-100 ml-0 mt-2">
         <div class="col-12">
-            <div class="mb-5 pb-2" *ngFor="let paragrafo of lezione.listaParagrafi">
+            <div class="mb-3 pb-2" *ngFor="let paragrafo of lezione.listaParagrafi">
                 <div class="row col-12 pl-4">
                     <h3 id="{{paragrafo.idComponent}}" class="title-parag">{{paragrafo.titolo}}</h3>
 
@@ -48,6 +48,7 @@
                         </button>
                     </div>
                 </div>
+                
                 <div class="mt-1 mb-3 p-2" [innerHTML]="paragrafo.content"></div>
 
                 <div *ngFor="let code of paragrafo.codes">
@@ -58,12 +59,13 @@
                                 <h4 class="mt-2 ml-2">{{code.title}}</h4>
 
                             </div>
-
+                            
                             <div class="col-12 pl-5 mt-2" [innerHTML]="code.description">
 
                             </div>
 
                         </div>
+                        
                         <ngx-codemirror [(ngModel)]="code.content" [options]="{
                             lineNumbers: true,
                             theme: 'eclipse',
