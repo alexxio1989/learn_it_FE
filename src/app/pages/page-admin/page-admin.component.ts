@@ -13,6 +13,7 @@ import { getUserLS } from 'src/app/utils/Util';
 })
 export class PageAdminComponent implements OnInit {
 
+  public PAGE = 'ADMIN';
   utente: User;
   isSuperUser: boolean;
 
@@ -21,7 +22,7 @@ export class PageAdminComponent implements OnInit {
   constructor(private ds: DelegateServiceService, private route: Router,private rs: RichiestaServiceService) { }
 
   ngOnInit(): void {
-
+    
     this.utente = getUserLS();
     this.isSuperUser = this.utente !== null && this.utente !== undefined && this.utente.tipo.codice === "SU";
 

@@ -4,9 +4,14 @@
 
     
     <app-side-bar></app-side-bar>
+
+  
+    <div *ngIf="isHomePage">
+        <app-intro></app-intro>
+    </div>
     
-    <div class="container main ">
-        <div class="row">
+    <div class="container main" [ngStyle]="main()">
+        <div class="row mt-1">
             <div class="col-12 pb-5 pl-0 pr-0">
                 <router-outlet></router-outlet>
             </div>

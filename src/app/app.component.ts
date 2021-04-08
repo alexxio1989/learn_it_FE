@@ -30,13 +30,19 @@ export class AppComponent  implements OnInit, OnDestroy  {
 
   tipoCorsoList = [];
 
+  isHomePage= true;
+
   constructor(private ds: DelegateServiceService , 
               private _snackBar: MatSnackBar , 
               private cs: CorsoServiceService , 
               private ccService: NgcCookieConsentService, 
               private route: Router,
               private dialog: MatDialog){
-    
+
+    this.ds.getOBSPage().subscribe(next => {
+      this.isHomePage = next === 'HOME';
+    })
+
     this.ds.getOBSSpinner().subscribe(next => {
       this.showSpinner = next;
     })
@@ -122,6 +128,14 @@ export class AppComponent  implements OnInit, OnDestroy  {
     this._snackBar.open(message, '', {
       duration: 2000,
     });
+  }
+
+  main() {
+    return {
+      
+      'margin-top':this.isHomePage ?'30px' : '60px',
+      
+    };
   }
 
 }

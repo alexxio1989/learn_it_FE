@@ -83,6 +83,7 @@ import { ModalNewFeedbackComponent } from './modal-new-feedback/modal-new-feedba
 import { SezioneTypesComponent } from './pages/page-admin/sezione-types/sezione-types.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { SteppersRegistrazioneComponent } from './modals/modal-accesso/steppers-registrazione/steppers-registrazione.component';
+import { IntroComponent } from './varie/intro/intro.component';
 
 
 
@@ -165,7 +166,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CardPageLezioneComponent,
     ModalNewFeedbackComponent,
     SezioneTypesComponent,
-    SteppersRegistrazioneComponent
+    SteppersRegistrazioneComponent,
+    IntroComponent
     
   ],
   imports: [

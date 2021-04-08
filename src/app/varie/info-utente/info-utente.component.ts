@@ -67,11 +67,13 @@ export class InfoUtenteComponent implements OnInit {
 
 
   goToPageUtente(){
+    this.ds.updatePage('UTENTE');
     this.route.navigate(['/utente']);
     this.ds.updateSideBar(false);
   }
 
   goToPageUtenteWithID(){
+    this.ds.updatePage('UTENTE');
     this.route.navigate(['/utente'], { queryParams: { id: this.utente.id } });
     this.ds.updateSideBar(false);
   }

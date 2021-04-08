@@ -145,6 +145,7 @@ export class CardCorsoComponent implements OnInit {
     lettura.corso = corso;
     lettura.lettore = getUserLS();
     this.us.getOBSInsertLettura(lettura).subscribe(next=>{
+      this.ds.updatePage('CORSO');
       this.ds.updateSpinner(false);
       this.ds.updateResultService(next.status);
      
@@ -158,6 +159,7 @@ export class CardCorsoComponent implements OnInit {
   }
 
   continua(corso: Corso){
+    this.ds.updatePage('CORSO');
     localStorage.setItem('CORSO' , JSON.stringify(corso));
     this.cs.corsoSelected = corso;
     this.route.navigate(['/corso'], { queryParams: { id: corso.id } }); 

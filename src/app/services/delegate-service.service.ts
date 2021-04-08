@@ -25,6 +25,7 @@ export class DelegateServiceService {
   private _sbjSideBar = new Subject();
   private _sbjTipiCorso = new Subject();
   private _sbjUser = new Subject();
+  private _sbjPage = new Subject();
 
   constructor() {}
 
@@ -116,6 +117,14 @@ export class DelegateServiceService {
 
   getOBSOpenLogin(): Observable<any> {
     return this._sbjOpenLogin.asObservable();
+  }
+
+  updatePage(page: string) {
+    this._sbjPage.next(page);
+  }
+
+  getOBSPage(): Observable<any> {
+    return this._sbjPage.asObservable();
   }
 
 }

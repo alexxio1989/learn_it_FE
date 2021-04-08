@@ -5,6 +5,39 @@
     
 }
 .main{
-   margin-top: 60px;
+   margin-top: 30px;
    padding-bottom: 50px;
+   z-index: 1029;
 }
+
+.top{
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(163,163,163,1) 100%);
+    width: 50vw;  /*Not necessary, but we do want it this way*/
+    background-size: cover; /* Cover all available space*/
+    padding: 0; /* No padding */
+    margin: 0; /* No margins */
+    height: 200px;
+
+}
+
+
+
+.mt-40{
+    margin-top: 40px;
+}
+.hq37sim {
+    font-size: 2.25rem;
+    text-shadow: 0 0 5px rgb(0 0 0 / 50%), 0 0 10px rgb(0 0 0 / 50%);
+    color: #fff;
+    animation-duration: 3s;
+    animation-name: slide;
+    animation-iteration-count: infinite;
+}
+
+.hq37sim1 {
+    font-size: 2.25rem;
+    text-shadow: 0 0 5px rgb(0 0 0 / 50%), 0 0 10px rgb(0 0 0 / 50%);
+    color: #fff;
+}
+

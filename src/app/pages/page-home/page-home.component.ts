@@ -15,6 +15,7 @@ import { Corso } from '../../model/Corso';
 })
 export class PageHomeComponent implements OnInit , IPageCore {
 
+  public PAGE = 'HOME';
   listaCorsiBase: Array<Corso> = [];
   listaCorsiFiltered: Array<Corso> = [];
   mapCorsi: Map<string, SubDominio>;
@@ -36,6 +37,7 @@ export class PageHomeComponent implements OnInit , IPageCore {
 
 
   ngOnInit(): void {
+    this.ds.updatePage(this.PAGE);
     const isMobile = this.deviceService.isMobile();
     clearJWTTOKEN(this.route);
     localStorage.removeItem('CORSO');
