@@ -6,9 +6,10 @@
     <app-side-bar></app-side-bar>
 
   
-    <div *ngIf="isHomePage">
-        <app-intro></app-intro>
-    </div>
+   
+    <app-intro *ngIf="isHomePage && !showSpinner"></app-intro>
+
+
     
     <div class="container main" [ngStyle]="main()">
         <div class="row mt-1">

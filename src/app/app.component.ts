@@ -26,7 +26,7 @@ export class AppComponent  implements OnInit, OnDestroy  {
   private noCookieLawSubscription: Subscription;
 
   title = 'learnit';
-  showSpinner: false;
+  showSpinner: true;
 
   tipoCorsoList = [];
 
@@ -43,6 +43,7 @@ export class AppComponent  implements OnInit, OnDestroy  {
       this.isHomePage = next === 'HOME';
     })
 
+    this.showSpinner = true;
     this.ds.getOBSSpinner().subscribe(next => {
       this.showSpinner = next;
     })
@@ -133,7 +134,7 @@ export class AppComponent  implements OnInit, OnDestroy  {
   main() {
     return {
       
-      'margin-top':this.isHomePage ?'30px' : '60px',
+      'margin-top':this.isHomePage ?'10px' : '60px',
       
     };
   }
