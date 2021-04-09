@@ -26,7 +26,7 @@ export class CarouselCardsCorsiComponent implements OnInit {
       slidesToShow: this.isDevice? 2 : 4,
       slidesToScroll: 2,
       dots: true,
-      autoplay: true,
+      autoplay: false,
       autoplaySpeed: 2000 
     }
 

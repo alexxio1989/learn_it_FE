@@ -3,6 +3,11 @@
 @import '~codemirror/theme/eclipse';
 @import '~codemirror/addon/fold/foldgutter.css';
 @import '~codemirror/addon/lint/lint.css';
+/* Add application styles & imports to this file! */
+@import url('https://fonts.googleapis.com/css?family=Spectral+SC:700');
+
+@import '~ngx-sharebuttons/themes/material/material-dark-theme';
+@import '~ngx-sharebuttons/themes/modern/modern-light-theme';
 
 
 
@@ -118,6 +123,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: rgb(242, 242, 242);
 }
 
+.card-body{
+  max-height: auto !important;
+}
+
+.share-button{
+  font-size: 18px !important;
+  min-width: 0.125em !important;
+}
 
 
 .mat-paginator-page-size {
@@ -293,4 +306,8 @@ h6{
 .slick-dots li.slick-active button:before {
   font-size: 10px;
   color: #5b5b5b !important;
+}
+
+.sb-wrapper {
+  min-width: 2.125em !important;
 }

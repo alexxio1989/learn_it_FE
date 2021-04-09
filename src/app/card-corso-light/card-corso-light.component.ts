@@ -32,6 +32,8 @@ export class CardCorsoLightComponent implements OnInit {
   
   state = 0;
 
+  url='https://www.ilmiocodice.com/corso?id=';
+
   isShowInfo: boolean;
   isEmptyDescrizione: boolean;
   isCorsoLetto: boolean;
@@ -45,6 +47,8 @@ export class CardCorsoLightComponent implements OnInit {
   showContinua: boolean;
   showAccedi: boolean;
   isDevice: boolean;
+
+  
 
 
   get getMediumFeeds(){
@@ -78,6 +82,8 @@ export class CardCorsoLightComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.url = this.url + this.corso.id;
 
     this.isDevice = this.deviceService.isMobile();
     this.acquisto.acquirente = getUserLS();

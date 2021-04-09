@@ -85,7 +85,9 @@ import { IntroComponent } from './varie/intro/intro.component';
 import { CardCorsoLightComponent } from './card-corso-light/card-corso-light.component';
 import { CarouselCardsCorsiComponent } from './varie/carousel-cards-corsi/carousel-cards-corsi.component';
 import { NgxSlickJsModule } from 'ngx-slickjs';
-
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+import { ShareComponent } from './share/share.component';
 
 
 
@@ -169,7 +171,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SteppersRegistrazioneComponent,
     IntroComponent,
     CardCorsoLightComponent,
-    CarouselCardsCorsiComponent
+    CarouselCardsCorsiComponent,
+    ShareComponent
     
   ],
   imports: [
@@ -219,7 +222,10 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
         slickCss: "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css",
         slickThemeCss: "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
       }
-  })
+  }),ShareButtonsModule.withConfig({
+    debug: true
+  }),
+  ShareIconsModule
 
   ],
   providers: [
