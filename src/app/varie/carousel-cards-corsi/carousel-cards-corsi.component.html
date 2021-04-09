@@ -1,0 +1,11 @@
+<div class="col-12">
+    <h4 >{{title}}</h4>   
+</div>
+
+<div slickContainer #slickController="slick" [slickConfig]="config">
+    <ng-container *ngIf="slickController.initialize">
+    <div slickItem *ngFor="let corso of corsi"  class="p-2">
+        <app-card-corso-light [corso]="corso"></app-card-corso-light>
+    </div>
+    </ng-container>
+</div>

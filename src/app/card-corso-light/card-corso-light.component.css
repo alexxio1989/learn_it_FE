@@ -1,0 +1,76 @@
+
+  
+  
+  
+    .card-custom {
+      overflow: hidden;
+      min-height: auto;
+      border: 0;
+      box-shadow: 0 0 2px rgba(10, 10, 10, 0.3);
+    }
+  
+  
+    .card-custom-user{
+      border-radius: 5%;
+      position: absolute;
+      top: 205px;
+      left: 20px;
+      width: 150px;
+      height: 40px;
+    }
+    
+    .card-custom-avatar-sm img {
+      border-radius: 50%;
+      box-shadow: 0 0 5px rgba(10, 10, 10, 0.3);
+      position: absolute;
+      top: 10px;
+      left: 1rem;
+      width: 50px;
+      height: 50px;
+      background-color: white;
+    }
+
+    .card-custom-img-sm {
+      height: 70px;
+      min-height: 70px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      border-color: inherit; 
+      
+    }
+
+    /* First border-left-width setting is a fallback */
+.card-custom-img-sm::after {
+  position: absolute;
+  content: '';
+  top: 40px;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-top-width: 30px;
+  border-right-width: 0;
+  border-bottom-width: 0;
+  border-left-width: 545px;
+  border-left-width: calc(575px - 5vw);
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: inherit;
+  
+}
+  
+  
+  
+  .card-body {
+      flex: 1 1 auto;
+      min-height: 1px;
+      padding: 1.25rem;
+      max-height: 90px;
+  }
+
+  .star {
+    height: 10px !important;
+    width: 10px !important;
+}

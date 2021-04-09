@@ -1,13 +1,4 @@
-<div *ngIf="renderPage" class="row w-100 ml-0">
-    <div class="col-12 pb-0 pt-2 d-flex justify-content-center back-color-coders-header pr-0 pl-0">
-       
-        <h4 class="op-100">Classifica Programmatori</h4>
-    </div>
-    <div class="col-12 pt-0 back-color-coders pr-0 pl-0">
-   
-        <app-carousel-coders></app-carousel-coders>
-    </div>
-</div>
+
 
 <div *ngIf="listaCorsiFiltered.length > 0 && renderPage" class="row w-100 ml-0 mt-3">
     <div class="col-12">
@@ -22,20 +13,16 @@
 
     <div *ngFor="let item of mapCorsi | keyvalue" class="row w-100 ml-0  mt-3">
        
-            <div class="col-12 pr-0 pl-0">
-                <h4 class="text-muted title-courses">{{item.key}}</h4>   
-                        <mat-paginator style="background: rgba(0,0,0,.03);" [length]="item.value.corsiAssociati !== undefined ? item.value.corsiAssociati.length : 0" [pageSize]="item.value.pageSize" (page)="getPaginatorData($event,item.value)">
-                        </mat-paginator>
-
-            </div>
+            
        
 
        
-            <div class="col-12 d-flex justify-content-center pr-0 pl-0  pt-2 back-color-coders">
-                <div *ngFor="let corso of item.value.corsiAssociati |
+            <div class="col-12 d-flex justify-content-center pr-0 pl-0  pt-3 pb-3 back-color-coders">
+                <app-carousel-cards-corsi [corsi] = "item.value.corsiAssociati" [title] = "item.key"></app-carousel-cards-corsi>
+                <!-- <div *ngFor="let corso of item.value.corsiAssociati |
                 slice: item.value.lowValue : item.value.highValue" class="col-lg-4 col-md-4 col-sm-6 col-xs-6 justify-content-center mb-3 ">
-                    <app-card-corso [corso]="corso"></app-card-corso>
-                </div>
+                    <app-card-corso-light [corso]="corso"></app-card-corso-light>
+                </div> -->
 
             </div>
      

@@ -74,8 +74,6 @@ import { MatSelectCountryModule } from '@angular-material-extensions/select-coun
 import { CardUtenteComponent } from './cards/card-utente/card-utente.component';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { CustomMatPaginatorIntl } from './varie/custom-mat-paginator-int';
-import { CarouselCodersComponent } from './varie/carousel-coders/carousel-coders.component';
-import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 import { CardPageCorsoComponent } from './cards/card-page-corso/card-page-corso.component';
 import { CardPageLezioneComponent } from './cards/card-page-lezione/card-page-lezione.component';
@@ -84,6 +82,9 @@ import { SezioneTypesComponent } from './pages/page-admin/sezione-types/sezione-
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { SteppersRegistrazioneComponent } from './modals/modal-accesso/steppers-registrazione/steppers-registrazione.component';
 import { IntroComponent } from './varie/intro/intro.component';
+import { CardCorsoLightComponent } from './card-corso-light/card-corso-light.component';
+import { CarouselCardsCorsiComponent } from './varie/carousel-cards-corsi/carousel-cards-corsi.component';
+import { NgxSlickJsModule } from 'ngx-slickjs';
 
 
 
@@ -160,14 +161,15 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ModalCoreComponent,
     ModalPagamentoComponent,
     CardUtenteComponent,
-    CarouselCodersComponent,
     TruncateTextPipe,
     CardPageCorsoComponent,
     CardPageLezioneComponent,
     ModalNewFeedbackComponent,
     SezioneTypesComponent,
     SteppersRegistrazioneComponent,
-    IntroComponent
+    IntroComponent,
+    CardCorsoLightComponent,
+    CarouselCardsCorsiComponent
     
   ],
   imports: [
@@ -209,8 +211,15 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatTabsModule,
     MatSelectCountryModule.forRoot('it'),
     ColorPickerModule,
-    SlickCarouselModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    NgxSlickJsModule.forRoot({
+      links: {
+        jquery: "https://code.jquery.com/jquery-3.4.0.min.js",
+        slickJs: "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js",
+        slickCss: "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css",
+        slickThemeCss: "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+      }
+  })
 
   ],
   providers: [

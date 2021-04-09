@@ -171,7 +171,7 @@ button:focus { outline:0 !important; }
 }
 
 .cc-message {
-  font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif !important; 
+  font-family: sf pro display,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol !important; 
   font-size: calc(12px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
   line-height: 1.4;
   font-weight: 400 !important;
@@ -183,28 +183,28 @@ p{
 }
 
 h1{
-  font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif !important; 
+  font-family: sf pro display,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol !important; 
   font-size: calc(25px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
   line-height: 1.4;
   font-weight: 700 !important;
 }
 
 h2{
-  font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif !important; 
+  font-family: sf pro display,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol !important; 
   font-size: calc(20px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
   line-height: 1.4 !important;
   font-weight: 700 !important;
 }
 
 h3{
-  font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif !important; 
+  font-family: sf pro display,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol !important; 
   font-size: calc(16px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
   line-height: 1.4;
   font-weight: 700 !important
 }
 
 h4{
-  font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif !important; 
+  font-family: sf pro display,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol !important; 
   font-size: calc(14px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
   line-height: 1.4;
   font-weight: 600 !important;
@@ -218,7 +218,7 @@ h4{
 }
 
 h5{
-  font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif !important; 
+  font-family: sf pro display,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol !important; 
   font-size: calc(12px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
   line-height: 1.4;
   font-weight: 600 !important;
@@ -226,7 +226,7 @@ h5{
 }
 
 h6{
-  font-family: Amazon Ember,Amazon Arabic Ember,Arial,sans-serif !important; 
+  font-family: sf pro display,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol !important; 
   font-size: calc(10px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
   line-height: 1.4;
   opacity: 0.5;
@@ -277,4 +277,12 @@ h6{
       max-height: 83vh !important;
     }
   } 
+
+  .carousel {
+    height: 100%;
+}
+
+.slick-slider .slick-list {
+  height: 100%;
+}
   
