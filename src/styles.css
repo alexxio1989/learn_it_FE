@@ -9,6 +9,10 @@
 html, body {position: relative;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.no-margin{
+  margin: 0px 0 0px !important;
+}
+
 .op-20{
   opacity: 0.2 !important;
 }
@@ -285,4 +289,8 @@ h6{
 .slick-slider .slick-list {
   height: 100%;
 }
-  
+
+.slick-dots li.slick-active button:before {
+  font-size: 10px;
+  color: #5b5b5b !important;
+}

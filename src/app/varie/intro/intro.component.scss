@@ -1,17 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300,400|Poppins:300,400,800&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-}
 
-body, html {
-   overflow: hidden;
-}
+
 
 .padre {
   width: 100%;
-  height: 32vh;
+  height: 220px;
   background: #232323;
 
   display: flex;
@@ -19,7 +13,7 @@ body, html {
   align-items: center;
 
   .box {
-    width: 250px;
+    width: 300px;
     height: 250px;
     position: relative;
     display: flex;
@@ -32,6 +26,7 @@ body, html {
       display: flex;
       align-items: center;
       height: 50px;
+      top:35px;
 
       .block {
         width: 0%;
@@ -83,7 +78,7 @@ body, html {
       align-items: center;
       height: 30px;
       margin-top: -10px;
-
+      top:35px;
       .block {
         width: 0%;
         height: inherit;
@@ -114,7 +109,7 @@ body, html {
       display: flex;
       align-items: center;
       height: 30px;
-      margin-top: 50px;
+      margin-top: 70px;
       .block {
         width: 0%;
         height: inherit;
@@ -126,8 +121,10 @@ body, html {
       }
       button{
         animation: terFadeIn 4s forwards;
-        animation-delay: 4s;
+        animation-delay: 5.2s;
         opacity: 0;
+        padding-left: 10px;
+        padding-right: 10px;
       }
     }
   }
@@ -248,7 +245,7 @@ body, html {
     opacity: 0;
   }
   100% {
-    opacity: 0.5;
+    opacity: 1;
   }
 }
 
