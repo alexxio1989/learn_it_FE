@@ -12,10 +12,12 @@ export class CardPageLezioneComponent implements OnInit {
   @Input() corso: Corso;
 
   @Input() lezione: Lezione;
+  url='https://www.ilmiocodice.com/corso?id=';
 
   constructor() { }
 
   ngOnInit(): void {
+    this.url = this.url + this.lezione.id;
   }
 
 }

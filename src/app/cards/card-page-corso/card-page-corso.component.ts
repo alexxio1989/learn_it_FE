@@ -19,6 +19,7 @@ export class CardPageCorsoComponent implements OnInit {
   newFeed: boolean;
 
   feed = new Feedback();
+  url='https://www.ilmiocodice.com/corso?id=';
 
   @Output() changeViewEmitter = new EventEmitter<boolean>();
   @Output() newLezioneEmitter = new EventEmitter<Lezione>();
@@ -26,6 +27,7 @@ export class CardPageCorsoComponent implements OnInit {
   constructor(private fs: FeedbackService, private ds: DelegateServiceService) { }
 
   ngOnInit(): void {
+    this.url = this.url + this.corso.id;
     this.feed.idCorso = this.corso.id;
     let utenteLogged = getUserLS();
     if(utenteLogged !== undefined && utenteLogged !== null){

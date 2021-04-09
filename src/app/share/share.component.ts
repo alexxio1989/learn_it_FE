@@ -8,6 +8,10 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ShareComponent implements OnInit {
 
   @Input() url:string;
+  @Input() title:string;
+  @Input() description:string;
+
+  @Input() small:boolean = true;
 
   constructor() { }
 

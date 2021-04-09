@@ -54,6 +54,9 @@
           Lascia un Feedback al corso
         </button>
       </div>
+      <div *ngIf="!newFeed" class="col-12  d-flex  justify-content-center">
+        <app-share [url] = "url" [small] = "false" [title] = "corso.nomeCorso" [description] = "corso.subNomeCorso"></app-share>
+      </div>
 
       <div *ngIf="newFeed" class="row mt-1 ">
         <div class="col-12 mb-2 d-flex  justify-content-center">
@@ -77,6 +80,7 @@
         </div>
         
       </div>
+      
 
 
 

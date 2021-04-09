@@ -84,6 +84,7 @@ export class CardCorsoLightComponent implements OnInit {
   ngOnInit(): void {
 
     this.url = this.url + this.corso.id;
+    
 
     this.isDevice = this.deviceService.isMobile();
     this.acquisto.acquirente = getUserLS();

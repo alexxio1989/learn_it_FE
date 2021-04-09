@@ -36,7 +36,7 @@
       <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="corso.mediumFeeds"></ngx-stars>
       <p class="card-text ml-1" style="margin-top: -3px;"><small class="text-muted">( {{corso.totFeeds}} )</small></p>
     </div>
-    <app-share [url] = "url"></app-share>
+    <app-share [url] = "url" [title] = "corso.nomeCorso" [description] = "corso.subNomeCorso"></app-share>
 
   </div>
 

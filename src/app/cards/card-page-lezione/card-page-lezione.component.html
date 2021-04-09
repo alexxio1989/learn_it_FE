@@ -22,6 +22,9 @@
             <div class="col-12 d-flex justify-content-center">
                 <h3 class="display-4" style="font-size: 2rem ;opacity: 0.6 !important;">{{lezione.subTitle}}</h3>
             </div>
+            <div  class="col-12  d-flex  justify-content-center">
+                <app-share [url] = "url" [title] = "lezione.title" [description] = "lezione.subTitle"></app-share>
+            </div>
         </div>
 
 
