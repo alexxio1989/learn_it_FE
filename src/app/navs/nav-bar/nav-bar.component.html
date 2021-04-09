@@ -9,8 +9,7 @@
     </a>
     
     <form class="form-inline">
-        <app-modal-core *ngIf="isUtenteLogged && isUser" [icon]="'post_add'" [class]="'op-70'"  [descButton] = "isMobile ? '':'Nuovo Corso'" [isButton] = "true" [component] = "modalRichiestaComponent"></app-modal-core>
-        <app-modal-core *ngIf="isUtenteLogged && (isWriter || isSuperUser )" [icon]="'plus'" [descButton] = "isMobile ? '':'Nuovo Corso'" [isButton] = "true" [component] = "modalCorsoComponent"></app-modal-core>
+       
         <button mat-button data-toggle="collapse" class="mini-button mr-2" (click)="onChangeTab(1)"
             [attr.data-target]="'#' + 'collapse' + tabName">
             <mdb-icon fas icon="search" size="lg"></mdb-icon>

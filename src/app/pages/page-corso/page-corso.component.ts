@@ -47,6 +47,7 @@ export class PageCorsoComponent implements OnInit, IPageCore {
   }
 
   ngOnInit(): void {
+    this.ds.updatePage('CORSO');
     this.ar.queryParams.subscribe(params => {
 
       let id = params['id'];

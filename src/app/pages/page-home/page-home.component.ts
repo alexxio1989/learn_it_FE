@@ -97,6 +97,9 @@ export class PageHomeComponent implements OnInit , IPageCore {
         this.mapCorsi = new Map<string, SubDominio>();
       }
     })
+
+    let el = document.getElementById('titleIlMioCodice');
+    el.scrollTop = el.scrollHeight;
   }
 
   get style(): string {

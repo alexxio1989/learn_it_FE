@@ -19,8 +19,7 @@ export class NavBarComponent implements OnInit {
   utente: User;
 
   modalRichiestaComponent = ModalRichiestaComponent;
-  modalCorsoComponent = ContentModalCorsoComponent;
-
+  modalCorsoComponent = ContentModalCorsoComponent; 
   tabName: number = 0;
   showFiller = false;
   isMobile: boolean;

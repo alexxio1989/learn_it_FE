@@ -58,6 +58,7 @@ export class PageLezioneComponent implements OnInit, IPageCore {
   }
 
   ngOnInit(): void {
+    this.ds.updatePage('LEZIONE');
     this.isDevice = this.deviceService.isMobile();
     this.ar.queryParams.subscribe(params => {
       
