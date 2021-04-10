@@ -23,7 +23,7 @@ export class CarouselCardsCorsiComponent implements OnInit {
 
     this.config = {
       infinite: true,
-      slidesToShow: this.isDevice? 2 : 4,
+      slidesToShow: this.isDevice? (this.corsi.length === 1 ? 1.3 : 1.5) : 3.5,
       slidesToScroll: 2,
       dots: true,
       autoplay: false,
