@@ -31,7 +31,7 @@
       .block {
         width: 0%;
         height: inherit;
-        background: #ffb510;
+        background: #ffc400;
         position: absolute;
         animation: mainBlock 2s cubic-bezier(.74, .06, .4, .92) forwards;
         display: flex;
@@ -82,7 +82,7 @@
       .block {
         width: 0%;
         height: inherit;
-        background: #e91e63;
+        background: #00a0e0;
         position: absolute;
         animation: secBlock 2s cubic-bezier(.74, .06, .4, .92) forwards;
         animation-delay: 2s;
@@ -113,7 +113,7 @@
       .block {
         width: 0%;
         height: inherit;
-        background: #ffffff;
+        background: white;
         position: absolute;
         animation: terBlock 2s cubic-bezier(.74, .06, .4, .92) forwards;
         animation-delay: 4s;
@@ -125,6 +125,7 @@
         opacity: 0;
         padding-left: 10px;
         padding-right: 10px;
+        background-color: #00a0e0;
       }
     }
   }
@@ -199,14 +200,14 @@
   0% {
     width: 0px;
     height: 0px;
-    background: #e9d856;
+    background: #ffc400;
     border: 0px solid #ddd;
     opacity: 0;
   }
   50% {
     width: 10px;
     height: 10px;
-    background: #e9d856;
+    background: #ffc400;
     opacity: 1;
     bottom: 45px;
   }
@@ -224,7 +225,7 @@
   100% {
     width: 7px;
     height: 7px;
-    background: #e9d856;
+    background: #ffc400;
     border: 0px solid #222;
     bottom: 13px;
 
