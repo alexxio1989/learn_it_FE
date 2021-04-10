@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit,AfterViewChecked,Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { SubDominio } from 'src/app/model/SubDominio';
@@ -13,7 +13,9 @@ import { Corso } from '../../model/Corso';
   templateUrl: './page-home.component.html',
   styleUrls: ['./page-home.component.css']
 })
-export class PageHomeComponent implements OnInit , IPageCore {
+export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
+
+  @ViewChild('titleIlMioCodice') el:ElementRef;
 
   public PAGE = 'HOME';
   listaCorsiBase: Array<Corso> = [];
@@ -33,7 +35,15 @@ export class PageHomeComponent implements OnInit , IPageCore {
   constructor(private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService,private deviceService: DeviceDetectorService) { 
     
   }
+  ngAfterViewChecked() {        
+    this.scrollToBottom();        
+  } 
 
+  scrollToBottom(): void {
+    try {
+        this.el.nativeElement.scrollTop = this.el.nativeElement.scrollHeight;
+    } catch(err) { }                 
+}
 
 
   ngOnInit(): void {
@@ -98,8 +108,7 @@ export class PageHomeComponent implements OnInit , IPageCore {
       }
     })
 
-    let el = document.getElementById('titleIlMioCodice');
-    el.scrollTop = el.scrollHeight;
+    
   }
 
   get style(): string {
