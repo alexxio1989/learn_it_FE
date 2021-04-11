@@ -21,7 +21,7 @@
 
 
 
-  <div class="card-body pb-0 pt-0 mb-2">
+  <div class="card-body pb-0 pt-0 ">
     <div class="d-flex justify-content-center ">
       <h4 class="card-title op-100">{{corso.nomeCorso}}</h4>
     </div>
@@ -36,13 +36,14 @@
       <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="corso.mediumFeeds"></ngx-stars>
       <p class="card-text ml-1" style="margin-top: -3px;"><small class="text-muted">( {{corso.totFeeds}} )</small></p>
     </div>
+    <div class="d-flex justify-content-center mt-2  mb-2">
+      <app-info-utente [utente]="corso.owner" class="pr-0" [isCardCorso]="true"></app-info-utente>
+    </div>
     <app-share [url] = "url" [title] = "corso.nomeCorso" [description] = "corso.subNomeCorso"></app-share>
 
   </div>
 
-  <div class="d-flex justify-content-center mtn-10 mb-2">
-    <app-info-utente [utente]="corso.owner" class="pr-0" [isCardCorso]="true"></app-info-utente>
-  </div>
+
 
   <div class="card-footer {{isDevice ? 'd-flex justify-content-center':'text-right'}}">
     
