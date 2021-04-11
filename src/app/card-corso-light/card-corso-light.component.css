@@ -23,7 +23,7 @@
       border-radius: 50%;
       box-shadow: 0 0 5px rgba(10, 10, 10, 0.3);
       position: absolute;
-      top: 10px;
+      top: 5px;
       left: 1rem;
       width: 65px;
       height: 65px;
@@ -72,4 +72,9 @@
   .star {
     height: 10px !important;
     width: 10px !important;
+}
+
+
+app-info-utente{
+  align-self: left;
 }

@@ -1,34 +1,22 @@
 
 
-<div *ngIf="isCardCorso ">
-    <div class="row " >
-        <div class="col-12 d-flex justify-content-center">
-            <div class="d-inline-block" >
-        
-                <div [ngStyle]="boxImgUtente()">
-                    <img *ngIf="utente.img !== undefined && utente.img !== null && utente.img !== ''" alt="Web Studio"
-                    class="card-img" src="{{utente.img}}" />
-                    <img *ngIf="utente.img === undefined || utente.img === null || utente.img === ''" alt="Web Studio"
-                    class="card-img" src="../../../assets/images/default.png" />
-                </div>
+<div *ngIf="isCardCorso " class="chip">
+    <img *ngIf="utente.img !== undefined && utente.img !== null && utente.img !== ''" alt="Web Studio" width="96" height="96" src="{{utente.img}}" />
+    <img *ngIf="utente.img === undefined || utente.img === null || utente.img === ''" alt="Web Studio" width="96" height="96" src="../../../assets/images/default.png" />
+    <button class="btn btn-lg p-0 " (click)="goToPageUtenteWithID()" >
+        <div class="row">
+            <div class="col-12 pr-0 pl-0">
+                <h6 class="small-h6 mt-1">Pubblicato da :</h6>
             </div>
-        
-            <div class="d-inline-block marginLeft">
-                <div class="row">
-                    <div class="col-12 pr-0 pl-1 pb-0 positiveMarginTop">
-                        <h6>Pubblicato da :</h6>
-                    </div>
-                    <div class="col-12 pr-0 pl-1 pt-0 negativeMarginTop">
-                        <button class="btn btn-lg p-0 " (click)="goToPageUtenteWithID()" >
-                           <h6 class="text-primary"> {{utente.nome}} {{utente.cognome}}</h6>
-                       </button>
-                    </div>
-                </div>
+            <div class="col-12 pr-0 pl-0">
+                <h6 class="text-primary no-margin"> {{utente.nome}} {{utente.cognome}} </h6>
+                
             </div>
-            
         </div>
-    </div>
- </div>
+    </button>
+</div>
+
+
 
 <div *ngIf="isRichiesta" class="row">
     <div class="col-12 ">
