@@ -34,6 +34,7 @@ export class PageUtenteComponent implements OnInit , IPageCore{
   }
 
   ngOnInit(): void {
+    this.ds.updatePage(this.PAGE);
     this.ar.queryParams.subscribe(params => {
       
       let id = params['id'];
