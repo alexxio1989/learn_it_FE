@@ -18,8 +18,8 @@ export class SteppersRegistrazioneComponent implements OnInit {
   isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  datiAccessoUncompleted: boolean;
-  datiAnagraficiUncompleted: boolean;
+  datiAccessoUncompleted: boolean = true;
+  datiAnagraficiUncompleted: boolean = true;
  
 
   constructor(private _formBuilder: FormBuilder) {}
