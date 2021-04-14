@@ -28,6 +28,8 @@ export class PageCorsoComponent implements OnInit, IPageCore {
 
   renderPage: boolean;
 
+  called = false;
+
   constructor(private fs: FeedbackService,private ls: LezioneServiceService , private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService, private ar: ActivatedRoute) {
     this.ds.getOBSSpinner().subscribe(next => {
       this.renderPage = !next;
@@ -73,16 +75,20 @@ export class PageCorsoComponent implements OnInit, IPageCore {
   }
 
   private retrieveCorso(id: any) {
-    this.cs.getOBSGetCorso(id).subscribe(next => {
-      this.corso = next.obj;
-      this.ds.updateResultService("Recupero corso avvenuto con successo");
-      this.ds.updateSpinner(false);
-      this.renderPage = true;
-    }, error => {
-      this.ds.updateResultService("Recupero corso in errore");
-      this.ds.updateSpinner(false);
-    });
-    this.isEmptyLezioni = isEmptyArray(this.corso.lezioni);
+    if(!this.called){
+
+      this.called = true;
+      this.cs.getOBSGetCorso(id).subscribe(next => {
+        this.corso = next.obj;
+        this.ds.updateResultService("Recupero corso avvenuto con successo");
+        this.ds.updateSpinner(false);
+        this.renderPage = true;
+      }, error => {
+        this.ds.updateResultService("Recupero corso in errore");
+        this.ds.updateSpinner(false);
+      });
+      this.isEmptyLezioni = isEmptyArray(this.corso.lezioni);
+    }
   }
 
 
