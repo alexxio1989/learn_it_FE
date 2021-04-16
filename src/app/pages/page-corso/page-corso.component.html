@@ -9,7 +9,7 @@
 <div *ngIf="!showFeeds && renderPage" class="row w-100 ml-0">
 
   <div class="col-12 d-flex  justify-content-center mt-5" *ngIf="corso.lezioni.length === 0">
-    Nessuna lezione associata al corso
+    Nessuna lezione 
   </div>
 
   <div *ngIf="corso.lezioni.length > 0" class="w-100">
@@ -23,7 +23,7 @@
 <div *ngIf="showFeeds && renderPage" class="row w-100 ml-0 mt-3">
 
   <div class="col-12 d-flex  justify-content-center mt-5" *ngIf="corso.feeds.length === 0">
-    Nessuna feedback associato al corso
+    Nessuna feedback
   </div>
   <div *ngFor="let feed of corso.feeds" class="col-12 d-flex justify-content-center ">
     

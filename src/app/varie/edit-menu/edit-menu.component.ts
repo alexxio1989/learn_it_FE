@@ -42,6 +42,9 @@ export class EditMenuComponent implements OnInit {
   isSamEUser : boolean;
   confirmDelete: boolean;
   corso: Corso;
+  isSU: boolean;
+  isFU: boolean;
+  abilitaVideo:boolean;
 
   component: ComponentType<any>;
 
@@ -67,11 +70,13 @@ export class EditMenuComponent implements OnInit {
     
     if(this.owner !== undefined){
       this.isSamEUser = isSameUser(getUserLS(),this.owner);
+      let utente = getUserLS();
+      this.enableVideo();
 
     } else if(this.idowner !== undefined && this.idowner > 0) {
 
       this.isSamEUser = isSameUserID(getUserLS(),this.idowner);
-      
+      this.enableVideo();
     }
     
     if(this.withVideo){
@@ -80,6 +85,15 @@ export class EditMenuComponent implements OnInit {
 
     if(ConstantsComponent.CORSO === this.typePadre ){
       this.corso = this.obj;
+    }
+  }
+
+  private enableVideo() {
+    let utente = getUserLS();
+    if (this.isSamEUser) {
+      this.isSU = utente !== null && utente !== undefined && utente.tipo.codice === "SU";
+      this.isFU = utente !== null && utente !== undefined && utente.tipo.codice === "FU";
+      this.abilitaVideo = this.isSamEUser && (this.isSU || this.isFU);
     }
   }
 

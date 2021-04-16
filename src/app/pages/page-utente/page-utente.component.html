@@ -6,7 +6,10 @@
     <mat-dialog-content class="mat-typography" class="p-2">
         <form class="accesso-form">
             <mat-tab-group >
-                <mat-tab label="Info." class="h-100">
+                <mat-tab class="h-100">
+                    <ng-template mat-tab-label>
+                        <mat-icon class="material-icons-outlined mr-2"> perm_identity</mat-icon>Info.
+                    </ng-template>
                     <div class="row w-100 h-100">
                         <div *ngIf="!renderEditorInfoUser && !extraUtenteLogged" class="col-12 mt-3">
                             <button mat-button (click)="renderEditorInfoUser = !renderEditorInfoUser">
@@ -31,7 +34,11 @@
                    
     
                 </mat-tab>
-                <mat-tab label="{{extraUtenteLogged ? 'I Suoi Corsi' : 'I Tuoi Corsi'}}">
+                <mat-tab >
+
+                    <ng-template mat-tab-label>
+                        <mat-icon class="mr-2">list</mat-icon> {{extraUtenteLogged ? 'I Suoi Tutorial' : 'I Tuoi Tutorial'}}
+                    </ng-template>
                 
                     <div *ngFor="let corso of utente.propriCorsi" class="row w-100 p-3 mt-3 ml-0" style="background-color: #f6f6f6; min-width: 100%;">
                         
@@ -59,7 +66,7 @@
                             <app-edit-menu 
                             [owner] = "corso.owner"
                             [typePadre] = "'C'" 
-                            [section] = "'Corso'" 
+                            [section] = "'Tutorial'" 
                             [withVideo] = "false"
                             [withAdd] = "false"
                             [obj] = "corso"
@@ -77,51 +84,7 @@
                 
                 
                 </mat-tab>
-                <mat-tab *ngIf="!extraUtenteLogged" label="I Corsi Letti">
-    
-                    <div *ngIf="utente !== undefined && utente !== null && utente.corsiLetti !== undefined && utente.corsiLetti !== null && utente.corsiLetti.length > 0"
-                        class="one-edge-shadow row w-100 p-2">
-                       
-                            <div class="col-12">
-                                <h3 class="text-muted" style="font-weight: 400;">I Corsi che stai leggendo</h3>
-                            </div>
-                        
-                
-                        <mat-list role="list">
-                            <div *ngFor="let corso of utente.corsiLetti" class="swiper-slide">
-                                <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
-                                    <mat-list-item role="listitem" class="mb-3 w-100">
-                                      
-                                            <div class="col-12">
-                                                <h4>{{corso.nomeCorso}}</h4>
-                                            </div>
-                
-                                            <div class="col-12">
-                                                <button mat-button (click)="goToCourse(corso)"
-                                                    style="color: #007bff; margin-top: -5px;">
-                                                    Vai al Corso
-                                                </button>
-                                            </div>
-                                        
-                                    </mat-list-item>
-                                </div>
-                            </div>
-                        </mat-list>
-                    </div>
-                
-                    <div *ngIf="utente !== undefined && utente !== null && (utente.corsiLetti === undefined || utente.corsiLetti === null || utente.corsiLetti.length === 0)"
-                        class="one-edge-shadow row w-100 p-2">
-                        
-                          
-                       
-                            <div class="col-12 d-flex justify-content-center mt-3">
-                                Non stai seguendo alcun corso
-                            </div>
-                       
-                    </div>
-                    
-    
-                </mat-tab>
+            
             </mat-tab-group>
         </form>
     </mat-dialog-content>

@@ -34,7 +34,7 @@ export class ContentModalCorsoComponent implements OnInit {
     if(this.cs.corsoSelected !== undefined && this.cs.corsoSelected !== null){
       this.corso = this.cs.corsoSelected;
     } else {
-      this.corso.colorCard = '#8cb8e0';
+      this.corso.colorCard = '#ffc400';
     }
     let utente = getUserLS();
     this.enableCorsoAPagamento = utente !== undefined && utente !== null && ( 'SU' === utente.tipo.codice || 'WF' === utente.tipo.codice )
@@ -54,11 +54,11 @@ export class ContentModalCorsoComponent implements OnInit {
   }
 
   get labelTipoCorso(){
-    return (this.tipoCorso === undefined || this.tipoCorso.codice === '') ? 'Scegli il tipo di corso' : this.tipoCorso.descrizione;
+    return (this.tipoCorso === undefined || this.tipoCorso.codice === '') ? 'Scegli la tipologia di tutorial' : this.tipoCorso.descrizione;
   }
 
   get labelSubTipoCorso(){
-    return (this.subTipo === undefined || this.subTipo.codice === '') ? 'Scegli il sotto tipo di corso' : this.subTipo.descrizione;
+    return (this.subTipo === undefined || this.subTipo.codice === '') ? 'Scegli il sotto tipo di tutorial' : this.subTipo.descrizione;
   }
 
   salva() {

@@ -51,7 +51,7 @@
       <div *ngIf="!newFeed" class="row d-flex justify-content-center mt-1">
         <button mat-button (click)="newFeed = true" style="color: #6c757d;">
           <mat-icon style="margin-top: -3px;">comment</mat-icon>
-          Lascia un Feedback al corso
+          Lascia un tuo Feedback
         </button>
       </div>
       <div *ngIf="!newFeed" class="col-12  d-flex  justify-content-center">
@@ -88,7 +88,7 @@
     <div class="card-footer">
       <div class="row">
         <div class="col-12 d-flex justify-content-center p3">
-          <h4>Informazioni sul corso</h4>
+          <h3>Informazioni sul tutorial</h3>
         </div>
         <div class="container" [innerHTML]="corso.descrizioneCorso"></div>
       </div>

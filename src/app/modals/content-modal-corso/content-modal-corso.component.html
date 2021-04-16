@@ -26,7 +26,7 @@
        
             <div *ngIf="!addDescrizione" class="col-12 mt-3 d-flex justify-content-center "> 
                 <mat-form-field class="example-form-field">
-                    <mat-label>Nome corso</mat-label>
+                    <mat-label>Nome tutorial</mat-label>
                     <input matInput type="text" [(ngModel)]="corso.nomeCorso">
                     <button mat-button *ngIf="corso.nomeCorso" matSuffix mat-icon-button aria-label="Clear" (click)="corso.nomeCorso=''">
                         <mat-icon>close</mat-icon>
@@ -35,7 +35,7 @@
             </div>
             <div *ngIf="!addDescrizione" class="col-12 d-flex justify-content-center ">
                 <mat-form-field class="example-form-field">
-                    <mat-label>Sotto Nome corso</mat-label>
+                    <mat-label>Breve descrizione del tutorial</mat-label>
                     <input matInput type="text" [(ngModel)]="corso.subNomeCorso">
                     <button mat-button *ngIf="corso.subNomeCorso" matSuffix mat-icon-button aria-label="Clear"
                         (click)="corso.subNomeCorso=''">
@@ -47,7 +47,7 @@
         <div class="row mb-2 mt-4" *ngIf="corso.aPagamento && !addDescrizione">
             <div class="col-12 d-flex justify-content-center">
                 <mat-form-field >
-                    <mat-label>Prezzo corso</mat-label>
+                    <mat-label>Prezzo</mat-label>
                     <input matInput type="number" [(ngModel)]="corso.prezzo" class="example-right-align">
                     <span matPrefix>€&nbsp;</span>
                     <span matSuffix>.00</span>
@@ -93,7 +93,7 @@
         <div *ngIf="!addDescrizione" class="row mb-2">
             <div class="col-12 d-flex justify-content-center">
                 <button mat-button (click) = "addDescrizione = true">
-                    <h6>Vuoi aggiungere una descrizione al corso ?</h6>
+                    <h6>Di che cosa tratta il tuo tutorial ?</h6>
                 </button>
             </div>
         </div>
@@ -109,7 +109,7 @@
                 </button>
             </div>
             <div class="col-12 d-flex justify-content-center">
-                <p>Descrizione corso</p>
+                <p>Spiega di cosa tratta il tutorial</p>
             </div>
             <div class="col-12 d-flex justify-content-center">
                 <app-text-editor [(inputModel)] = "corso.descrizioneCorso" style="width: 90%;"></app-text-editor>
