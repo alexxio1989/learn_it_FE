@@ -32,6 +32,8 @@ export class PageLezioneComponent implements OnInit, IPageCore {
   isDevice: boolean;
   renderPage: boolean;
 
+  called = false;
+
 
 
 
@@ -86,18 +88,21 @@ export class PageLezioneComponent implements OnInit, IPageCore {
     
   }
 
-  private retrieveLezione(id: any) {
-    this.ls.getOBSGetLezione(id).subscribe(next => {
-      this.lezione = next.obj;
-      this.isExternalLink = true;
-      this.ds.updateResultService("Recupero lezione avvenuto con successo");
-      this.ds.updateSpinner(false);
-      this.renderPage = true;
-    }, error => {
-      this.ds.updateSpinner(false);
-      this.ds.updateResultService("Recupero lezione in errore");
-      this.route.navigate(['/']);
-    });
+  private retrieveLezione(id: any) { 
+    if(!this.called){
+      this.called = true;
+      this.ls.getOBSGetLezione(id).subscribe(next => {
+        this.lezione = next.obj;
+        this.isExternalLink = true;
+        this.ds.updateResultService("Recupero lezione avvenuto con successo");
+        this.ds.updateSpinner(false);
+        this.renderPage = true;
+      }, error => {
+        this.ds.updateSpinner(false);
+        this.ds.updateResultService("Recupero lezione in errore");
+        this.route.navigate(['/']);
+      });
+    }
   }
 
 
