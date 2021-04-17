@@ -21,8 +21,8 @@
     </div> 
 
     <div class="d-flex justify-content-center mtn-15">
-      <h5 class="card-text" *ngIf="!isDevice">{{corso.subNomeCorso}}</h5>
-      <h5 class="card-text" *ngIf="isDevice">{{corso.subNomeCorso | truncateText}}</h5>
+      <p class="fw-lighter" *ngIf="!isDevice">{{corso.subNomeCorso}}</p>
+      <p class="fw-lighter" *ngIf="isDevice">{{corso.subNomeCorso}}</p>
     </div>
     
     <div class="d-flex justify-content-center mt-2">
