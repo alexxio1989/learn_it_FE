@@ -1,31 +1,43 @@
 
-.card:hover{
+.card-course:hover{
   transform: scale(1.05);
-  top:15px;
+  top:10px;
   box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 }
 
 
 
+.card-img{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: 0.25rem;
+}
+  .card-course {
+    max-width: 245px;
+    min-width: 245px;
+  }
 
-  .card-custom {
-    overflow: hidden;
-    min-height: 245px;
-    border: 0;
-    box-shadow: 0 0 2px rgba(10, 10, 10, 0.3);
+  .card-box-img{
+    max-height: 120px !important;
+    min-height: 120px !important;
+    
+  }
+
+  img {
+    width:auto;
+    height: 100px; 
   }
 
 
-  .card-custom-user{
-    border-radius: 5%;
-    position: absolute;
-    top: 195px;
-    left: 20px;
-    width: 150px;
-    height: 40px;
+  
+  .card-course .card-body {
+    max-height: 250px;
   }
-  
-  
 
 
 
@@ -35,4 +47,7 @@
     padding: 1.25rem;
 }
 
-  
+.gray-border{
+  border-style: solid;
+  border-width: 3px;
+}

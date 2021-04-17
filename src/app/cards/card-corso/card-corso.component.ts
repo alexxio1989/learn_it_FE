@@ -19,6 +19,7 @@ import {
 import { PagamentiServiceService } from 'src/app/services/pagamenti-service.service';
 import { Acquisto } from 'src/app/model/Acquisto';
 import { ModalPagamentoComponent } from 'src/app/modals/modal-pagamento/modal-pagamento.component';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-card-corso',
@@ -41,6 +42,8 @@ export class CardCorsoComponent implements OnInit {
   
   state = 0;
 
+  url='https://www.ilmiocodice.com/corso?id=';
+
   isShowInfo: boolean;
   isEmptyDescrizione: boolean;
   isCorsoLetto: boolean;
@@ -53,7 +56,9 @@ export class CardCorsoComponent implements OnInit {
   showAcquista: boolean;
   showContinua: boolean;
   showAccedi: boolean;
+  isDevice: boolean;
 
+  
 
 
   get getMediumFeeds(){
@@ -71,7 +76,8 @@ export class CardCorsoComponent implements OnInit {
               private cs: CorsoServiceService ,
               private route: Router,
               private ds: DelegateServiceService,
-              private ps: PagamentiServiceService) {
+              private ps: PagamentiServiceService,
+              private deviceService: DeviceDetectorService) {
 
               this.ds.getOBSUser().subscribe(next => {
                 this.checkLettureUtente();
@@ -87,7 +93,10 @@ export class CardCorsoComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.url = this.url + this.corso.id;
     
+
+    this.isDevice = this.deviceService.isMobile();
     this.acquisto.acquirente = getUserLS();
     this.acquisto.owner = this.corso.owner;
     this.acquisto.causale = "Acquisto corso " + this.corso.nomeCorso;
@@ -182,7 +191,6 @@ export class CardCorsoComponent implements OnInit {
           this.goToCorso(corso);
       }
   }
-
 
 
 }

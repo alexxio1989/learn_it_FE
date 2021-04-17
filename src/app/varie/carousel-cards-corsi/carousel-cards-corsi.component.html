@@ -4,8 +4,8 @@
 
 <div slickContainer #slickController="slick" class="pt-2" [slickConfig]="config">
     <ng-container *ngIf="slickController.initialize">
-    <div slickItem *ngFor="let corso of corsi"  class="p-2">
-        <app-card-corso-light [corso]="corso"></app-card-corso-light>
+    <div slickItem *ngFor="let corso of corsi"  class="p-2 pb-3 d-flex justify-content-center">
+        <app-card-corso [corso]="corso"></app-card-corso>
     </div>
     </ng-container>
 </div>
