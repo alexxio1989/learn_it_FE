@@ -1,12 +1,14 @@
 
 .card-course:hover{
-  transform: scale(1.05);
-  top:10px;
+  transform: scale(1.03);
+  top:5px;
   box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 }
 
 
-
+.bgc-body{
+  background-color: rgb(252, 252, 252);
+}
 .card-img{
   position: relative;
   display: flex;
@@ -17,10 +19,7 @@
   background-clip: border-box;
   border-radius: 0.25rem;
 }
-  .card-course {
-    max-width: 245px;
-    min-width: 245px;
-  }
+
 
   .card-box-img{
     max-height: 120px !important;
