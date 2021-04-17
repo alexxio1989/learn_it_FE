@@ -12,11 +12,12 @@
     Nessuna lezione 
   </div>
 
-  <div *ngIf="corso.lezioni.length > 0" class="w-100">
+  <div *ngIf="corso.lezioni.length > 0 && !showFeeds" class="w-100 padding-list mt-3">
     <div *ngFor="let lezione of corso.lezioni" class="col-12 w-100  d-flex  justify-content-center">
       <app-card-lezione [lezione]="lezione" [corso]="corso" [lezioni]="corso.lezioni"></app-card-lezione>
     </div>
   </div>
+
 
 </div>
 

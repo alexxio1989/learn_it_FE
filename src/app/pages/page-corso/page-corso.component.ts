@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Lezione } from 'src/app/model/Lezione';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
@@ -15,7 +15,7 @@ import { IPageCore } from '../IPageCore';
   styleUrls: ['./page-corso.component.css']
 })
 export class PageCorsoComponent implements OnInit, IPageCore {
-
+ 
   public PAGE = 'CORSO';
 
   corso: Corso = new Corso();
@@ -99,6 +99,7 @@ export class PageCorsoComponent implements OnInit, IPageCore {
   retrieveNewLezione(lezione : Lezione){
     this.lezione = lezione;
     this.corso.lezioni.push(this.lezione);
+    window.scrollTo(0,document.body.scrollHeight );
   }
   
 

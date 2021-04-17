@@ -22,3 +22,7 @@ app-card-lezione{
 app-card-feedback{
   width: 100%;
 }
+
+.padding-list{
+  padding-bottom: 150px
+}

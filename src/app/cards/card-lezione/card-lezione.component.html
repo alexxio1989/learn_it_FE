@@ -1,6 +1,6 @@
 <div class="card mb-3 shadow-sm mt-2 pr-3" >
     <div class="row ml-0">
-        <div class="col-4 vertical-center bgc-chip">
+        <div class="col-3 vertical-center bgc-chip">
            
          
             <div class="col-12 w-100">
@@ -15,14 +15,14 @@
            
             
         </div>
-        <div class="col-8">
+        <div class="col-9">
             <div class="row  text-dark d-flex justify-content-center">  
                 <div class="col-12 pt-4 d-flex justify-content-center">
                         <input *ngIf="edit" type="text" class="form-control input-sm" [(ngModel)]="title" placeholder="titolo lezione">
                     
-                        <h4  *ngIf="!edit">{{lezione.title}}</h4>   
+                        <h3 class="no-margin"  *ngIf="!edit">{{lezione.title}}</h3>   
                 </div> 
-                <div class="col-12 d-flex justify-content-center pt-0 pb-0">
+                <div class="col-12 d-flex justify-content-center pt-1 pb-0">
                     <input *ngIf="edit" type="text" class="form-control input-sm mb-2 mt-2" [(ngModel)]="subTitle" placeholder="Sotto titolo lezione">
                 
                     <h5 *ngIf="!edit">{{lezione.subTitle}}</h5>   
@@ -46,7 +46,7 @@
                 </div>
                 <div *ngIf="!edit">
                     <button mat-button (click)="goToLezione()" class="pl-1 pr-1" style="color: #6c757d;">
-                        <h5 class="text-primary">Inizia</h5>
+                        <h5 class="text-primary">Leggi</h5>
                     </button> 
                 </div>
             </div>

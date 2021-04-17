@@ -49,6 +49,7 @@ export class PageLezioneComponent implements OnInit, IPageCore {
 
     this.ps.getOBSADDParagrafi().subscribe(next => {
       this.lezione.listaParagrafi = next;
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
     })
 
 
