@@ -89,6 +89,7 @@ import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { ShareComponent } from './share/share.component';
 import { InfoCorsoPipe } from './pipes/info-corso.pipe';
+import { FormatTimePipe } from './pipes/FormatTimePipe';
 
 
 
@@ -174,7 +175,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     CardCorsoLightComponent,
     CarouselCardsCorsiComponent,
     ShareComponent,
-    InfoCorsoPipe
+    InfoCorsoPipe,
+    FormatTimePipe
     
   ],
   imports: [

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { Slick } from 'ngx-slickjs';
+import { Subscription, timer } from 'rxjs';
 import { Corso } from 'src/app/model/Corso';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 
@@ -17,10 +18,28 @@ export class CarouselCardsCorsiComponent implements OnInit {
   config: Slick.Config;
 
   corsoSeleted: Corso;
+
+  countDown:Subscription;
+  counter = 4000;
+  tick = 1000;
  
   constructor(private ds: DelegateServiceService,private deviceService: DeviceDetectorService) { }
 
   ngOnInit(): void {
+
+    //this.countDown = timer(0, this.tick).subscribe(() => --this.counter)
+
+    this.ds.getOBSCorsoSelected().subscribe(next => {
+      var result = this.corsi.find(obj => {
+        return obj.id === next.id
+      })
+      if(result !== undefined && result !== null){
+        this.corsoSeleted = next;
+      } else {
+        this.corsoSeleted = undefined;
+      }
+    })
+
     this.isDevice = this.deviceService.isMobile();
 
     this.config = {
@@ -60,8 +79,5 @@ export class CarouselCardsCorsiComponent implements OnInit {
     console.log('beforeChange');
   }
 
-  retrieveDescCorso(corso: Corso){
-    this.corsoSeleted = corso;
-  }
 
 }

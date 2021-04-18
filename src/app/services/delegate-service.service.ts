@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { Corso } from '../model/Corso';
 import { Dominio } from '../model/Dominio';
 import { User } from '../model/User';
 import { getUserLS } from '../utils/Util';
@@ -26,6 +27,7 @@ export class DelegateServiceService {
   private _sbjTipiCorso = new Subject();
   private _sbjUser = new Subject();
   private _sbjPage = new Subject();
+  private _sbjCorsoSelected = new Subject();
 
   constructor() {}
 
@@ -40,6 +42,13 @@ export class DelegateServiceService {
   }
 
 
+  updateCorsoSelected (corso: Corso) {
+    this._sbjCorsoSelected.next(corso);
+  }
+
+  getOBSCorsoSelected (): Observable<any> {
+    return this._sbjCorsoSelected.asObservable();
+  }
 
   updateTipiCorso(tipi: Dominio[]) {
     this._sbjTipiCorso.next(tipi);

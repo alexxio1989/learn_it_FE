@@ -57,7 +57,7 @@ export class CardCorsoComponent implements OnInit {
   showContinua: boolean;
   showAccedi: boolean;
   isDevice: boolean;
-  @Output() emitSelectedCorso = new EventEmitter<Corso>();
+  
 
   
 
@@ -193,8 +193,8 @@ export class CardCorsoComponent implements OnInit {
       }
   }
 
-  emitDescription(){
-    this.emitSelectedCorso.emit(this.corso);
+  emitCourse(){
+    this.ds.updateCorsoSelected(this.corso);
   }
 
   

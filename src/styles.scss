@@ -198,6 +198,14 @@ button:focus { outline:0 !important; }
 p{
   font-family: SFProText-Regular, Helvetica, Arial, sans-serif !important; 
 }
+ul {
+  list-style: none !important;
+  margin-left: 0;}
+p {
+  margin: 0 0 6px !important;
+  font-family: SFProText-Regular, Helvetica, Arial, sans-serif !important; 
+  font-size: calc(9px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
+}
 
 h1{
   font-family: sf pro display,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol !important; 
