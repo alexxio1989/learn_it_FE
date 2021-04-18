@@ -5,6 +5,28 @@
     
 }
 
+
+
 .ptop{
     padding-top: 0.8rem !important;
+}
+
+.desc-corso{
+    transition: transform 1s ease-out;
+    height: auto;
+    transform: scaleY(1);
+    transform-origin: top;
+    animation-duration: 3s;
+    animation-name: slidein;
+    background-color: rgb(247, 247, 247);
+    max-width: 500px;
+    border-radius: 5%;
+    
+}
+
+
+@keyframes slidein {
+    0% { opacity: 0; }
+    25%,75%  { opacity: 100%; }
+    100% { opacity: 100%;}
 }

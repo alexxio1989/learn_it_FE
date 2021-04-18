@@ -88,6 +88,7 @@ import { NgxSlickJsModule } from 'ngx-slickjs';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { ShareComponent } from './share/share.component';
+import { InfoCorsoPipe } from './pipes/info-corso.pipe';
 
 
 
@@ -172,7 +173,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     IntroComponent,
     CardCorsoLightComponent,
     CarouselCardsCorsiComponent,
-    ShareComponent
+    ShareComponent,
+    InfoCorsoPipe
     
   ],
   imports: [

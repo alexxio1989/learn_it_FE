@@ -15,6 +15,8 @@ export class CarouselCardsCorsiComponent implements OnInit {
   @Input() title: string;
   isDevice: boolean;
   config: Slick.Config;
+
+  corsoSeleted: Corso;
  
   constructor(private ds: DelegateServiceService,private deviceService: DeviceDetectorService) { }
 
@@ -56,6 +58,10 @@ export class CarouselCardsCorsiComponent implements OnInit {
   
   beforeChange(e) {
     console.log('beforeChange');
+  }
+
+  retrieveDescCorso(corso: Corso){
+    this.corsoSeleted = corso;
   }
 
 }

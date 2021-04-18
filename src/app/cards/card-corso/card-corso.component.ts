@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Corso } from 'src/app/model/Corso';
@@ -57,6 +57,7 @@ export class CardCorsoComponent implements OnInit {
   showContinua: boolean;
   showAccedi: boolean;
   isDevice: boolean;
+  @Output() emitSelectedCorso = new EventEmitter<Corso>();
 
   
 
@@ -191,6 +192,12 @@ export class CardCorsoComponent implements OnInit {
           this.goToCorso(corso);
       }
   }
+
+  emitDescription(){
+    this.emitSelectedCorso.emit(this.corso);
+  }
+
+  
 
 
 }
