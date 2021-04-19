@@ -44,11 +44,12 @@ export class CarouselCardsCorsiComponent implements OnInit {
 
     this.config = {
       infinite: true,
-      slidesToShow: this.isDevice? (this.corsi.length === 1 ? 1.2 : 1.5) : 3.5, 
+      slidesToShow: this.isDevice? 1 : 3, 
       slidesToScroll: 1,
       dots: true,
       autoplay: false,
-      autoplaySpeed: 2000 
+      autoplaySpeed: 2000 ,
+      arrows: true,
     }
 
   }
@@ -78,6 +79,11 @@ export class CarouselCardsCorsiComponent implements OnInit {
   beforeChange(e) {
     console.log('beforeChange');
   }
+
+  emitCourse(corso: Corso){
+    this.ds.updateCorsoSelected(corso);
+  }
+
 
 
 }

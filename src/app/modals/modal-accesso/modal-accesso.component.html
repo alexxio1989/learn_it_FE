@@ -1,7 +1,7 @@
 
 <mat-dialog-content class="mat-typography" class="p-2">
 
-        <mat-tab-group *ngIf="!isRecuperaPassword" (selectedTabChange)="changeTab($event)">
+        <mat-tab-group *ngIf="!isRecuperaPassword" (selectedTabChange)="changeTab($event)" mat-stretch-tabs>
             <mat-tab label="Accedi">
                
                 <form [formGroup]="loginFormGroup">

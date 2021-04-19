@@ -45,6 +45,7 @@ export class EditMenuComponent implements OnInit {
   isSU: boolean;
   isFU: boolean;
   abilitaVideo:boolean;
+  isLogged: boolean;
 
   component: ComponentType<any>;
 
@@ -54,6 +55,7 @@ export class EditMenuComponent implements OnInit {
               private route: Router,
               private cs: CorsoServiceService ) { 
                 this.ds.getOBSUser().subscribe(next => {
+                  this.isLogged = getUserLS() !== undefined && getUserLS() !== null;
                   this.user = next;
                   if(this.owner !== undefined){
                     this.isSamEUser = isSameUser(next,this.owner);
@@ -67,7 +69,7 @@ export class EditMenuComponent implements OnInit {
               }
 
   ngOnInit(): void {
-    
+    this.isLogged = getUserLS() !== undefined && getUserLS() !== null;
     if(this.owner !== undefined){
       this.isSamEUser = isSameUser(getUserLS(),this.owner);
       let utente = getUserLS();

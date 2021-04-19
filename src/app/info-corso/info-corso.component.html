@@ -1,0 +1,31 @@
+<div class="desc-corso rounded-top rounded-bottom p-2 ">
+    <div class="card-header d-flex justify-content-center">
+        <h4>Informazioni su  {{corso.nomeCorso}}</h4>
+    </div>
+
+    <div class="card-body bgc-body pl-1 pr-1 pb-1 d-flex justify-content-center bg-white p-2">
+
+        <div *ngIf="corso.descrizioneCorso !== undefined && corso.descrizioneCorso !== null && corso.descrizioneCorso !== ''"  [innerHtml] = "corso.descrizioneCorso"></div>
+        <div *ngIf="corso.descrizioneCorso === undefined || corso.descrizioneCorso === null || corso.descrizioneCorso === ''"  >
+            <p>Nessuna informazione sul tutorial in questione</p>
+        </div>
+
+    </div>
+    
+    <div class="card-footer d-flex rounded-bottom ">
+    
+        <button *ngIf="showAccedi" mat-button (click)="openLogin()" style="color: #6c757d;">
+            Accedi
+        </button>
+        <button *ngIf="showContinua" mat-button (click)="next(corso)" style="color: #6c757d;">
+            {{isCorsoLetto ? 'Continua' : 'Inizia'}}
+        </button>
+        <app-modal-core [visible]="showAcquista" [descButton]="'Acquista'" [objSelected]="acquisto" [isButton]="true"
+            [component]="modalPagamentoComponent"></app-modal-core>
+       
+        <app-edit-menu class="ml-auto" [owner]="corso.owner" [typePadre]="'C'" [section]="'Tutorial'"
+            [withVideo]="false" [withAdd]="false" [obj]="corso" [withElimina]="true" [withModifica]="true">
+        </app-edit-menu>
+       
+    </div>
+</div>

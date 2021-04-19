@@ -2,27 +2,18 @@
     <h4 class="op-100 no-margin ml-3">{{title}}</h4>   
 </div>
 
-<div *ngIf="corsoSeleted !== undefined && corsoSeleted !== null && corsoSeleted.descrizioneCorso !== undefined" class="row mt-2">
+<div *ngIf="corsoSeleted !== undefined && corsoSeleted !== null && corsoSeleted.descrizioneCorso !== undefined" class="row mt-2 pc1">
   
     <div class="col-12 d-flex justify-content-center">
-        <div class="desc-corso rounded-top rounded-bottom p-2 ">
-            <div class="col-12 d-flex justify-content-center mb-2">
-                <h4>Informazioni su  {{corsoSeleted.nomeCorso}}</h4>
-
-            </div>
-            <div *ngIf="corsoSeleted.descrizioneCorso !== undefined && corsoSeleted.descrizioneCorso !== null && corsoSeleted.descrizioneCorso !== ''" class="col-12 d-flex justify-content-center bg-white p-2 rounded-top rounded-bottom" [innerHtml] = "corsoSeleted.descrizioneCorso"></div>
-            <div *ngIf="corsoSeleted.descrizioneCorso === undefined || corsoSeleted.descrizioneCorso === null || corsoSeleted.descrizioneCorso === ''"   class="col-12 d-flex justify-content-center bg-white p-2 rounded-top rounded-bottom" >
-                <p>Nessuna informazione sul tutorial in questione</p>
-            </div>
-        </div>
+       <app-info-corso [corso] = "corsoSeleted" ></app-info-corso>
     </div>
 </div>
 
 
-<div slickContainer #slickController="slick" class="pt-2" [slickConfig]="config">
+<div slickContainer #slickController="slick" class="pt-2 my-carousele" [slickConfig]="config">
     <ng-container *ngIf="slickController.initialize">
-    <div slickItem *ngFor="let corso of corsi"  class="p-2 pb-3 d-flex justify-content-center">
-        <app-card-corso [corso]="corso"></app-card-corso>
+    <div slickItem *ngFor="let corso of corsi"  class="p-2  pb-3 d-flex justify-content-center">
+        <app-card-corso (click) = "emitCourse(corso)" [corso]="corso"></app-card-corso>
     </div>
     </ng-container>
 </div>

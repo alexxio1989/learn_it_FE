@@ -1,14 +1,14 @@
 
 
 
-<div (mouseover)="emitCourse()" class="card-course" style="{{isDevice ? 'max-width: 245px; min-width: 245px;':'max-width: 275px; min-width: 275px;'}}">
+<div class="card-course" style="{{isDevice ? 'max-width: 245px; min-width: 245px;':'max-width: 275px; min-width: 275px;'}}">
   
   <div class="card">
     <div class="col-12 gray-border card-box-img d-flex justify-content-center p-0" [ngStyle]="{'border-color': corso.colorCard} ">
       <img *ngIf="corso.image !== undefined && corso.image !== null && corso.image !== ''" alt="Card image cap"
-       src="{{corso.image}}" />
+       src="{{corso.image}}" class="align-self-center"/>
       <img *ngIf="corso.image === undefined || corso.image === null || corso.image === ''" alt="Card image cap"
-         src="../../../assets/images/default.png" />
+         src="../../../assets/images/default.png" class="align-self-center"/>
 
     </div>
   </div>
@@ -34,15 +34,5 @@
     </div>
     <app-share [url] = "url" [title] = "corso.nomeCorso" [description] = "corso.subNomeCorso"></app-share>
   </div>
-  <div class="card-footer {{isDevice ? 'd-flex justify-content-center':'text-right'}}">
-    
-    <button *ngIf="showAccedi" mat-button  (click)="openLogin()" style="color: #6c757d;">
-      Accedi
-    </button>
-    <button *ngIf="showContinua" mat-button  (click)="next(corso)" style="color: #6c757d;">
-      {{isCorsoLetto ? 'Continua' : 'Inizia'}}
-    </button>
-    <app-modal-core [visible]="showAcquista" [descButton]="'Acquista'" [objSelected]="acquisto" [isButton]="true"
-      [component]="modalPagamentoComponent"></app-modal-core>
-  </div>
+  
 </div>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Corso } from 'src/app/model/Corso';
@@ -10,34 +10,20 @@ import { getUserLS, isNotEmptyArray, isNotNullObj, isSameUser } from 'src/app/ut
 import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { Lettura } from 'src/app/model/Lettura';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
- 
-import { StripeService, StripeCardComponent } from 'ngx-stripe';
-import {
-  StripeCardElementOptions,
-  StripeElementsOptions 
-} from '@stripe/stripe-js';
+
 import { PagamentiServiceService } from 'src/app/services/pagamenti-service.service';
 import { Acquisto } from 'src/app/model/Acquisto';
 import { ModalPagamentoComponent } from 'src/app/modals/modal-pagamento/modal-pagamento.component';
 import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
-  selector: 'app-card-corso',
-  templateUrl: './card-corso.component.html',
-  styleUrls: ['./card-corso.component.css'],
-  animations: [
-    trigger('scroll', [
-      state('on', style({left: '-100px'})),
-      transition('* => *', [
-        style({right: '-100px'}),
-        animate(10000, style({right: '100%'}))
-      ])
-    ])
-  ]
+  selector: 'app-info-corso',
+  templateUrl: './info-corso.component.html',
+  styleUrls: ['./info-corso.component.css']
 })
-export class CardCorsoComponent implements OnInit {
+export class InfoCorsoComponent implements OnInit {
 
-
+  
   @Input() corso: Corso;
   
   state = 0;
@@ -191,6 +177,10 @@ export class CardCorsoComponent implements OnInit {
       } else {
           this.goToCorso(corso);
       }
+  }
+
+  emitCourse(){
+    this.ds.updateCorsoSelected(this.corso);
   }
 
 }

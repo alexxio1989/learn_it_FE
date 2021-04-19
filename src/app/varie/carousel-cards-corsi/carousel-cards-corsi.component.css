@@ -18,3 +18,14 @@
     
 }
 
+.pc1{
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.my-carousele .slick-list{
+    padding:0 9% 0 0 !important; 
+  }
+
+
+
