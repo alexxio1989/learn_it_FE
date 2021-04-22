@@ -334,6 +334,11 @@ h6{
 .slick-slide {
 
   outline: 0 !important;
+  height: auto !important;
+}
+
+.slick-slider .slick-list {
+  height: auto !important;
 }
 
 .fa-user-check{
@@ -347,4 +352,10 @@ h6{
   background-color: rgb(241, 241, 241);
   color: black;
   font-weight: 700;
+}
+
+.popover-body{
+ 
+  padding: 0px !important;
+  width: auto !important;
 }

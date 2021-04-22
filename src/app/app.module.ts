@@ -29,11 +29,7 @@ import { SideBarComponent } from './navs/side-bar/side-bar.component';
 import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { SwiperModule } from 'ngx-swiper-wrapper';
-import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
-import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { CarouselComponent } from './carousel/carousel.component';
 import { SpinnerComponent } from './varie/spinner/spinner.component';
 import {MatDialogModule} from '@angular/material/dialog'
 import {MatInputModule} from '@angular/material/input';
@@ -82,7 +78,7 @@ import { SezioneTypesComponent } from './pages/page-admin/sezione-types/sezione-
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { SteppersRegistrazioneComponent } from './modals/modal-accesso/steppers-registrazione/steppers-registrazione.component';
 import { IntroComponent } from './varie/intro/intro.component';
-import { CardCorsoLightComponent } from './card-corso-light/card-corso-light.component';
+import { CardCorsoLightComponent } from './cards/card-corso-light/card-corso-light.component';
 import { CarouselCardsCorsiComponent } from './varie/carousel-cards-corsi/carousel-cards-corsi.component';
 import { NgxSlickJsModule } from 'ngx-slickjs';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
@@ -125,14 +121,6 @@ const cookieConfig: NgcCookieConsentConfig = {
   }
 }
 
-const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
-  observer: true,
-  direction: 'horizontal',
-  threshold: 50,
-  spaceBetween: 5,
-  slidesPerView: 1,
-  centeredSlides: true
-};
 
 @NgModule({
   declarations: [
@@ -148,7 +136,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SideBarComponent,
     ContentModalParagrafoEditComponent,
     SpinnerComponent,
-    CarouselComponent,
     ContentModalCorsoComponent,
     ContentModalParagrafoNewComponent,
     ContentModalParagrafoEditComponent,
@@ -200,7 +187,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatPaginatorModule,
     MatDividerModule,
     MatExpansionModule,
-    SwiperModule,
     BrowserModule,
     FlexLayoutModule,
     MatDialogModule,
@@ -240,10 +226,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ParagrafoServiceService,
     DelegateServiceService,
     PagamentiServiceService,
-    {
-      provide: SWIPER_CONFIG,
-      useValue: DEFAULT_SWIPER_CONFIG
-    },
+   
     {
       provide: MatPaginatorIntl, 
       useClass: CustomMatPaginatorIntl

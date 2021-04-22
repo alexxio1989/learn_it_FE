@@ -44,12 +44,12 @@ export class CarouselCardsCorsiComponent implements OnInit {
 
     this.config = {
       infinite: true,
-      slidesToShow: this.isDevice? 1 : 3, 
+      slidesToShow: this.isDevice? this.corsi.length === 1 ? 1 : 2 : 3, 
       slidesToScroll: 1,
       dots: true,
       autoplay: false,
       autoplaySpeed: 2000 ,
-      arrows: true,
+      arrows: true
     }
 
   }
@@ -81,6 +81,7 @@ export class CarouselCardsCorsiComponent implements OnInit {
   }
 
   emitCourse(corso: Corso){
+
     this.ds.updateCorsoSelected(corso);
   }
 

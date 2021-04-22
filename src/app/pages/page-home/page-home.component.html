@@ -11,20 +11,20 @@
 
 <div *ngIf="listaCorsiFiltered.length === 0 && renderPage">
 
-    <div *ngFor="let item of mapCorsi | keyvalue" class="row w-100 ml-0  mt-1">
+    <div *ngFor="let item of mapCorsi | keyvalue" class="row justify-content-center w-100 ml-0  mt-1 back-color-coders">
        
             
        
 
        
-            <div class="col-12 d-flex justify-content-center back-color-coders">
+           
                 <app-carousel-cards-corsi [corsi] = "item.value.corsiAssociati" [title] = "item.key"></app-carousel-cards-corsi>
-                <!-- <div *ngFor="let corso of item.value.corsiAssociati |
-                slice: item.value.lowValue : item.value.highValue" class="col-lg-4 col-md-4 col-sm-6 col-xs-6 justify-content-center mb-3 ">
-                    <app-card-corso-light [corso]="corso"></app-card-corso-light>
-                </div> -->
+        <!-- <div *ngFor="let corso of item.value.corsiAssociati | slice: item.value.lowValue : item.value.highValue" 
+                class="col-6 col-sm-3 col-md-3  justify-content-center mb-3 pr-1 pl-1">
+            <app-card-corso [corso]="corso"></app-card-corso>
+        </div>  -->
 
-            </div>
+          
      
        
     </div>

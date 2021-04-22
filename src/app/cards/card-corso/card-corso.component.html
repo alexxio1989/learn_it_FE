@@ -1,38 +1,60 @@
 
 
 
-<div class="card-course" style="{{isDevice ? 'max-width: 245px; min-width: 245px;':'max-width: 275px; min-width: 275px;'}}">
-  
-  <div class="card">
-    <div class="col-12 gray-border card-box-img d-flex justify-content-center p-0" [ngStyle]="{'border-color': corso.colorCard} ">
-      <img *ngIf="corso.image !== undefined && corso.image !== null && corso.image !== ''" alt="Card image cap"
-       src="{{corso.image}}" class="align-self-center"/>
-      <img *ngIf="corso.image === undefined || corso.image === null || corso.image === ''" alt="Card image cap"
-         src="../../../assets/images/default.png" class="align-self-center"/>
-
-    </div>
-  </div>
 
 
-  <div class="card-body bgc-body pl-1 pr-1 pb-1">
 
-    <div class="d-flex justify-content-center mtn-10">
-      <h3 class="card-title">{{corso.nomeCorso}}</h3>
-    </div> 
-
-    <div class="d-flex justify-content-center mtn-15">
-      <p class="fw-lighter" *ngIf="!isDevice">{{corso.subNomeCorso}}</p>
-      <p class="fw-lighter" *ngIf="isDevice">{{corso.subNomeCorso}}</p>
-    </div>
+        		<!-- Card Flip -->
+            <div class="card-flip">
+              <div class="flip">
+                <div class="front">
     
-    <div class="d-flex justify-content-center mt-2">
-      <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="corso.mediumFeeds"></ngx-stars>
-      <p class="card-text ml-1" style="margin-top: -3px;"><small class="text-muted">( {{corso.totFeeds}} )</small></p>
-    </div>
-    <div class="d-flex justify-content-center mt-2  mb-2">
-      <app-info-utente [utente]="corso.owner" class="pr-0" [isCardCorso]="true"></app-info-utente>
-    </div>
-    <app-share [url] = "url" [title] = "corso.nomeCorso" [description] = "corso.subNomeCorso"></app-share>
-  </div>
+    
+                  <!-- front content -->
+                  <div class="card-course" >
   
-</div>
+                    <div class="card">
+                      <div class="col-12 gray-border card-box-img d-flex justify-content-center p-0" [ngStyle]="{'border-color': corso.colorCard} ">
+                        <img *ngIf="corso.image !== undefined && corso.image !== null && corso.image !== ''" alt="Card image cap"
+                         src="{{corso.image}}" class="align-self-center"/>
+                        <img *ngIf="corso.image === undefined || corso.image === null || corso.image === ''" alt="Card image cap"
+                           src="../../../assets/images/default.png" class="align-self-center"/>
+                  
+                      </div>
+                    </div>
+                  
+                  
+                    <div class="card-body bgc-body pl-1 pr-1 pb-1">
+                  
+                      <div class="d-flex justify-content-center mtn-10">
+                        <h3 class="card-title">{{corso.nomeCorso}}</h3>
+                      </div> 
+                  
+                      <div class="d-flex justify-content-center mtn-15">
+                        <p class="fw-lighter" *ngIf="!isDevice">{{corso.subNomeCorso}}</p>
+                        <p class="fw-lighter" *ngIf="isDevice">{{corso.subNomeCorso}}</p>
+                      </div>
+                      
+                      <div class="d-flex justify-content-center mt-2">
+                        <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="corso.mediumFeeds"></ngx-stars>
+                        <p class="card-text ml-1" style="margin-top: -3px;"><small class="text-muted">( {{corso.totFeeds}} )</small></p>
+                      </div>
+                      <div class="d-flex justify-content-center mt-2  mb-2">
+                        <app-info-utente [utente]="corso.owner" class="pr-0" [isCardCorso]="true"></app-info-utente>
+                      </div>
+                      <app-share [url] = "url" [title] = "corso.nomeCorso" [description] = "corso.subNomeCorso"></app-share>
+                    </div>
+                    
+                  </div>
+
+
+                </div>
+                <div class="back">
+                  <!-- back content -->
+                  <div class="card">
+                    <app-info-corso [corso] ="corso"></app-info-corso>
+                  </div>
+                </div>
+              </div>
+            </div>
+                <!-- End Card Flip -->

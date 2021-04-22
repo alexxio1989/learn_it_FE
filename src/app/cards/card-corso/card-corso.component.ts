@@ -24,7 +24,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 @Component({
   selector: 'app-card-corso',
   templateUrl: './card-corso.component.html',
-  styleUrls: ['./card-corso.component.css'],
+  styleUrls: ['./card-corso.component.scss'],
   animations: [
     trigger('scroll', [
       state('on', style({left: '-100px'})),
@@ -191,6 +191,11 @@ export class CardCorsoComponent implements OnInit {
       } else {
           this.goToCorso(corso);
       }
+  }
+
+  cardBoxImg = {
+    'max-height': '100px !important',
+    'min-height': '100px !important'
   }
 
 }

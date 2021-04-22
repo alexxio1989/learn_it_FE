@@ -7,16 +7,15 @@
 
   
     
-        <app-intro *ngIf="isHomePage && !showSpinner"></app-intro>
+    <app-intro *ngIf="isHomePage && !showSpinner"></app-intro>
     
 
     
-    <div class="container main" [ngStyle]="main()">
-        <div class="row mt-1">
-            <div class="col-12 pb-5 pl-0 pr-0">
-                <router-outlet></router-outlet>
-            </div>
-        </div>
+    <div class="container main pl-1 pr-1" [ngStyle]="main()">
+       
+        <router-outlet></router-outlet>
+       
     </div>
+    
     <app-spinner></app-spinner>
 </div>

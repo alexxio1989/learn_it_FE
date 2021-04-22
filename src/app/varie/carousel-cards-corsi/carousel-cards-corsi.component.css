@@ -7,8 +7,8 @@
 
 
 
-.ptop{
-    padding-top: 0.8rem !important;
+.ptop-over{
+    padding-top: 250px !important;
 }
 
 .desc-corso{
@@ -26,6 +26,23 @@
 .my-carousele .slick-list{
     padding:0 9% 0 0 !important; 
   }
+
+  @media all and (min-width: 500px){
+    
+    app-card-corso{
+        width: 80% !important;
+    
+    }
+  } 
+
+  @media all and (max-width: 400px){
+    app-card-corso{
+        width: 100% !important;
+    
+    }
+  }
+
+
 
 
 

@@ -2,18 +2,15 @@
     <h4 class="op-100 no-margin ml-3">{{title}}</h4>   
 </div>
 
-<div *ngIf="corsoSeleted !== undefined && corsoSeleted !== null && corsoSeleted.descrizioneCorso !== undefined" class="row mt-2 pc1">
-  
-    <div class="col-12 d-flex justify-content-center">
-       <app-info-corso [corso] = "corsoSeleted" ></app-info-corso>
-    </div>
-</div>
 
 
 <div slickContainer #slickController="slick" class="pt-2 my-carousele" [slickConfig]="config">
     <ng-container *ngIf="slickController.initialize">
-    <div slickItem *ngFor="let corso of corsi"  class="p-2  pb-3 d-flex justify-content-center">
-        <app-card-corso (click) = "emitCourse(corso)" [corso]="corso"></app-card-corso>
+    <div slickItem *ngFor="let corso of corsi">
+        <div class="p-2  pb-4 d-flex justify-content-center">
+            <app-card-corso  (click) = "emitCourse(corso)" [corso]="corso"></app-card-corso>
+
+        </div>
     </div>
     </ng-container>
 </div>

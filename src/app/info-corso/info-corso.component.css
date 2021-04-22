@@ -1,7 +1,11 @@
 .desc-corso{
    
     background-color: rgb(247, 247, 247);
-    min-width: 400px;
-    max-width: 400px;
     
+    
+}
+
+.desc{
+    overflow: scroll;
+    max-height: 200px;
 }
