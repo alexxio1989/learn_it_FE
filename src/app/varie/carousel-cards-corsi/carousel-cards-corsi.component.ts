@@ -34,6 +34,7 @@ export class CarouselCardsCorsiComponent implements OnInit {
         return obj.id === next.id
       })
       if(result !== undefined && result !== null){
+        
         this.corsoSeleted = next;
       } else {
         this.corsoSeleted = undefined;
@@ -44,12 +45,14 @@ export class CarouselCardsCorsiComponent implements OnInit {
 
     this.config = {
       infinite: true,
-      slidesToShow: this.isDevice? this.corsi.length === 1 ? 1 : 2 : 3, 
+      slidesToShow: this.isDevice? 1: 3, 
       slidesToScroll: 1,
       dots: true,
       autoplay: false,
       autoplaySpeed: 2000 ,
-      arrows: true
+      arrows: true,
+      centerMode: true,
+      focusOnSelect: true
     }
 
   }
