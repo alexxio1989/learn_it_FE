@@ -15,8 +15,8 @@
 
 
   .card-box-img{
-    max-height: 120px !important;
-    min-height: 120px !important;
+    max-height: 140px !important;
+    min-height: 140px !important;
     background-color: #fff;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
@@ -43,6 +43,8 @@
     transform-style: preserve-3d;
 }
 
+
+
 .card-box {
     backface-visibility: hidden;
     height: 100%;
@@ -52,7 +54,10 @@
     
     user-select: none;
     cursor: pointer;
+
+    
 }
+
 
 .front {
     
