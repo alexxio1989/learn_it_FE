@@ -5,7 +5,18 @@
     
 }
 
+.info-body{
+    min-height: 265px;
+}
+
 .desc{
-    overflow: scroll;
-    max-height: 200px;
+   min-height: 315px;
+    height: auto;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+}
+
+.footer-card-corso{
+    background-color: rgb(236, 236, 236);
+    height: 50px;
 }

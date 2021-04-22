@@ -1,16 +1,16 @@
-<div class=" rounded-top rounded-bottom p-0 ">
+<div class="desc rounded-top rounded-bottom p-0 ">
 
 
-    <div class="card-body bgc-body pl-1 pr-1 pb-0 d-flex justify-content-center bg-white ">
+    <div class="info-body pl-1 pr-1 pb-0 d-flex justify-content-center bg-white ">
 
-        <div *ngIf="corso.descrizioneCorso !== undefined && corso.descrizioneCorso !== null && corso.descrizioneCorso !== ''" [innerHtml] = "corso.descrizioneCorso"></div>
+        <div *ngIf="corso.descrizioneCorso !== undefined && corso.descrizioneCorso !== null && corso.descrizioneCorso !== ''" class="desc-html" [innerHtml] = "corso.descrizioneCorso"></div>
         <div *ngIf="corso.descrizioneCorso === undefined || corso.descrizioneCorso === null || corso.descrizioneCorso === ''"  >
             <p>Nessuna informazione sul tutorial in questione</p>
         </div>
 
     </div>
     
-    <div class="card-footer d-flex rounded-bottom pt-1 pb-1">
+    <div class="footer-card-corso d-flex rounded-bottom pt-1 pb-1">
     
         <button *ngIf="showAccedi" mat-button (click)="openLogin()" style="color: #6c757d;">
             Accedi
