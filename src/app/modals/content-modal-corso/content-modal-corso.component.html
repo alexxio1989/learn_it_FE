@@ -5,8 +5,8 @@
         <div class="card-custom-img" [ngStyle]="{'background-color': corso.colorCard}" >
             
         </div>
-        <div class="card-custom-avatar">
-            <img *ngIf="corso.image !== undefined && corso.image !== null"  style="max-width: 100px; max-height: 100px;" src="{{corso.image}}" alt="Red dot" />
+        <div class="card-custom-corso">
+            <img *ngIf="corso.image !== undefined && corso.image !== null"  src="{{corso.image}}" alt="Red dot" />
             <img *ngIf="corso.image === undefined || corso.image === null || corso.image === ''" alt="Web Studio" class="card-img" src="../../../assets/images/default.png" /> 
         </div>   
 
@@ -15,7 +15,7 @@
             <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
         </button> 
 
-        <canvas #myCanvas style="visibility: hidden;"></canvas>
+        <canvas #myCanvas style="visibility: hidden; max-height: 2px;"></canvas>
 
         <button mat-button class="button-color" (click)="inputColor.click()">
             <img alt="Web Studio" class="card-img" style="max-width: 50px; max-height: 50px;" src="../../../assets/images/colors.png" /> 
@@ -114,7 +114,7 @@
                 <p>Spiega di cosa tratta il tutorial</p>
             </div>
             <div class="col-12 d-flex justify-content-center">
-                {{corso.descrizioneCorso}}
+                
                 <app-text-editor [(inputModel)] = "corso.descrizioneCorso" style="width: 90%;"></app-text-editor>
             </div>
         </div>

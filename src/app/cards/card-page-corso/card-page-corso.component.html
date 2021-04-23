@@ -3,7 +3,7 @@
     <div class="card-custom-img" [ngStyle]="{'background-color': corso.colorCard} ">
 
     </div>
-    <div class="card-custom-avatar">
+    <div class="card-custom-corso"> 
 
       <img *ngIf="corso.image !== undefined && corso.image !== null && corso.image !== ''" alt="Web Studio"
         class="img-fluid" src="{{corso.image}}" />
@@ -13,13 +13,13 @@
     <div class="card-body" style="overflow-y: auto">
       <div class="row">
         <div class="col-12 d-flex justify-content-center">
-          <h2><b>{{corso.nomeCorso}}</b></h2>
+          <h2>{{corso.nomeCorso}}</h2>
         </div>
       </div>
       <div *ngIf="corso.subNomeCorso !== undefined && corso.subNomeCorso !== null && corso.subNomeCorso !==  ''"
         class="row mtn-10">
         <div class="col-12 d-flex justify-content-center">
-          <h4><b>{{corso.subNomeCorso}}</b></h4>
+          <h4 class="fw-normal">{{corso.subNomeCorso}}</h4>
         </div>
       </div>
 

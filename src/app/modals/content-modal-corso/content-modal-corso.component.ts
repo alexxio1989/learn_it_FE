@@ -157,7 +157,7 @@ export class ContentModalCorsoComponent implements OnInit {
             ctx.drawImage(img, 0, 0);
         
             
-            var MAX_HEIGHT = 120;
+            var MAX_HEIGHT = 140;
             var width = img.width;
             var height = img.height;
         

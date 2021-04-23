@@ -45,6 +45,7 @@ export class CardCorsoComponent implements OnInit {
   
   state = 0;
   flipped = false;
+  front = false;
   url='https://www.ilmiocodice.com/corso?id=';
 
   isShowInfo: boolean;
@@ -66,6 +67,7 @@ export class CardCorsoComponent implements OnInit {
 
   playGame(card) {
     card.isFlipped = !card.isFlipped;
+    setTimeout(()=>{ this.front = card.isFlipped }, 300)
   }
 
 
@@ -205,8 +207,5 @@ export class CardCorsoComponent implements OnInit {
     'min-height': '100px !important'
   }
 
-  flipIt() {
-    this.flipped = !this.flipped;
-  }
-
+  
 }

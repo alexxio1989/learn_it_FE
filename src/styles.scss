@@ -119,6 +119,42 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: white;
 }
 
+@media all and (min-width: 500px){
+    
+  .card-custom-corso img {
+
+    border: 1px solid rgba(0, 0, 0, 0.125);
+     
+    border-radius: 0.25rem;
+    box-shadow: 0 0 5px rgba(10, 10, 10, 0.3);
+    position: absolute;
+    top: 20px;
+    left: 1.25rem;
+    width: 150px;
+    height: 80px;
+    background-color: white;
+  }
+} 
+
+@media all and (max-width: 400px){
+    
+  .card-custom-corso img {
+
+    border: 1px solid rgba(0, 0, 0, 0.125);
+     
+    border-radius: 0.25rem;
+    box-shadow: 0 0 5px rgba(10, 10, 10, 0.3);
+    position: absolute;
+    top: 30px;
+    left: 1.25rem;
+    width: 110px;
+    height: 60px;
+    background-color: white;
+  }
+} 
+
+
+
 .mat-paginator-outer-container{
   background-color: rgb(242, 242, 242);
 }

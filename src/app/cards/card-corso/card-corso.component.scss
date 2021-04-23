@@ -15,21 +15,25 @@
 
 
   .card-box-img{
-    max-height: 120px !important;
-    min-height: 120px !important;
+    max-height: 130px !important;
+    min-height: 130px !important;
     background-color: #fff;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
     padding: 3px;
     
   }
 
   img {
     width:auto;
-    height: 100px; 
+    height: 124px;
   }
 
+  .bgc-gray-footer{
+    background-color:#efefef;
+  }
 
 
   .card-wrapper {
