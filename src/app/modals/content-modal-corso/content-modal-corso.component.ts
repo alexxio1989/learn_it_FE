@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Corso } from 'src/app/model/Corso';
 import { Dominio } from 'src/app/model/Dominio';
 import { SubDominio } from 'src/app/model/SubDominio';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
-import { isEmptyString,getUserLS } from 'src/app/utils/Util';
+import { isEmptyString,getUserLS, readFile } from 'src/app/utils/Util';
 
 @Component({
   selector: 'app-content-modal-corso',
@@ -14,6 +14,8 @@ import { isEmptyString,getUserLS } from 'src/app/utils/Util';
 })
 export class ContentModalCorsoComponent implements OnInit {
 
+  @ViewChild('myCanvas')
+  myCanvas: ElementRef<HTMLCanvasElement>;
   corso = new Corso();
 
   tipoCorso: Dominio;
@@ -143,14 +145,42 @@ export class ContentModalCorsoComponent implements OnInit {
     document.getElementById("fileInput").click();
   }
 
-  fileChange(event){
+  fileChange(event:any){
     const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      this.corso.image = reader.result as string;
-      console.log(this.corso.image);
-    };
+    readFile(file).then(img => {
+     
+      var ctx = this.myCanvas.nativeElement.getContext("2d");
+          if(ctx !== null){
+
+            
+            
+            ctx.drawImage(img, 0, 0);
+        
+            
+            var MAX_HEIGHT = 120;
+            var width = img.width;
+            var height = img.height;
+        
+           
+              if (height > MAX_HEIGHT) {
+                width *= MAX_HEIGHT / height;
+                height = MAX_HEIGHT;
+              }
+           
+            this.myCanvas.nativeElement.width = width;
+            this.myCanvas.nativeElement.height = height;
+        
+            ctx.drawImage(img, 0, 0, width, height);
+        
+            const canvas = this.myCanvas.nativeElement;
+            console.log("WIDTH : " + canvas.width);
+            console.log("HEIGHT : " + canvas.height);
+            var dataurl = canvas.toDataURL("image/png");
+            this.corso.image = dataurl;
+            console.log(dataurl);
+          }
+    });
+
   }
 
 }

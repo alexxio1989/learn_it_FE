@@ -96,3 +96,20 @@ export function clearJWTTOKEN(route: Router) {
         }
     }
 }
+
+export function readFile(file:any){
+    return new Promise<HTMLImageElement>((resolve, reject) => {
+
+      const reader = new FileReader();
+      var img = document.createElement("img");
+      reader.onload = function(e) {
+        if(img !== null && e !== null && e.target !== null){
+          
+          img.src = e.target.result as string
+          resolve(img)
+        }
+      
+      }
+      reader.readAsDataURL(file);
+    });
+  }

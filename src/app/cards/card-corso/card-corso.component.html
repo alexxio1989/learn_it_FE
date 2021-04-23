@@ -1,13 +1,14 @@
 
 <div class="card-corso" (click)="playGame(card)" [@flipCard]="card.isFlipped">
   <div class="card-box front w-100">
-    <div class="card-box-img " style="background-image: url({{corso.image}});background-size: cover">
-      
+    <div class="card-box-img d-flex justify-content-center">
+      <img *ngIf="corso.image !== undefined && corso.image !== null && corso.image !== ''" alt="Card image cap"
+        src="{{corso.image}}" class="align-self-center" />
       <img *ngIf="corso.image === undefined || corso.image === null || corso.image === ''" alt="Card image cap"
         src="../../../assets/images/default.png" class="align-self-center" />
 
     </div>
-    <div class=" bgc-body pl-1 pr-1 pb-1">
+    <div class="bgc-gray pl-1 pr-1 pb-1">
 
       <div class="d-flex justify-content-center">
         <h3>{{corso.nomeCorso}}</h3>
