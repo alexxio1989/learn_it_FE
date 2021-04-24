@@ -87,6 +87,8 @@ import { ShareComponent } from './share/share.component';
 import { InfoCorsoPipe } from './pipes/info-corso.pipe';
 import { FormatTimePipe } from './pipes/FormatTimePipe';
 import { InfoCorsoComponent } from './info-corso/info-corso.component';
+import { CropperComponent } from './varie/cropper/cropper.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 
 
@@ -165,7 +167,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     ShareComponent,
     InfoCorsoPipe,
     FormatTimePipe,
-    InfoCorsoComponent
+    InfoCorsoComponent,
+    CropperComponent
     
   ],
   imports: [
@@ -217,7 +220,8 @@ const cookieConfig: NgcCookieConsentConfig = {
   }),ShareButtonsModule.withConfig({
     debug: true
   }),
-  ShareIconsModule
+  ShareIconsModule,
+  ImageCropperModule
 
   ],
   providers: [

@@ -27,20 +27,10 @@
     padding:0 9% 0 0 !important; 
   }
 
-  @media all and (min-width: 500px){
-    
-    app-card-corso{
-        width: 85% !important;
-    
-    }
-  } 
+  app-card-corso{
+    width: 100% !important;
 
-  @media all and (max-width: 400px){
-    app-card-corso{
-        width: 100% !important;
-    
-    }
-  }
+}
 
 
 

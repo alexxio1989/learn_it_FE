@@ -8,14 +8,11 @@
         <div class="card-custom-corso">
             <img *ngIf="corso.image !== undefined && corso.image !== null"  src="{{corso.image}}" alt="Red dot" />
             <img *ngIf="corso.image === undefined || corso.image === null || corso.image === ''" alt="Web Studio" class="card-img" src="../../../assets/images/default.png" /> 
-        </div>   
+        </div> 
+        
+        <app-cropper (base65) = "retrieveImg($event)"></app-cropper>
 
-        <button class="button-add-image" mat-button (click)="fileInput.click()"> 
-            <mat-icon>add_a_photo</mat-icon>
-            <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
-        </button> 
-
-        <canvas #myCanvas style="visibility: hidden; max-height: 2px;"></canvas>
+        
 
         <button mat-button class="button-color" (click)="inputColor.click()">
             <img alt="Web Studio" class="card-img" style="max-width: 50px; max-height: 50px;" src="../../../assets/images/colors.png" /> 

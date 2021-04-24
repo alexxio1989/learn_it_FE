@@ -14,8 +14,7 @@ import { isEmptyString,getUserLS, readFile } from 'src/app/utils/Util';
 })
 export class ContentModalCorsoComponent implements OnInit {
 
-  @ViewChild('myCanvas')
-  myCanvas: ElementRef<HTMLCanvasElement>;
+ 
   corso = new Corso();
 
   tipoCorso: Dominio;
@@ -145,41 +144,8 @@ export class ContentModalCorsoComponent implements OnInit {
     document.getElementById("fileInput").click();
   }
 
-  fileChange(event:any){
-    const file = event.target.files[0];
-    readFile(file).then(img => {
-     
-      var ctx = this.myCanvas.nativeElement.getContext("2d");
-          if(ctx !== null){
-
-            
-            
-            ctx.drawImage(img, 0, 0);
-        
-            
-            var MAX_HEIGHT = 140;
-            var width = img.width;
-            var height = img.height;
-        
-           
-              if (height > MAX_HEIGHT) {
-                width *= MAX_HEIGHT / height;
-                height = MAX_HEIGHT;
-              }
-           
-            this.myCanvas.nativeElement.width = width;
-            this.myCanvas.nativeElement.height = height;
-        
-            ctx.drawImage(img, 0, 0, width, height);
-        
-            const canvas = this.myCanvas.nativeElement;
-            console.log("WIDTH : " + canvas.width);
-            console.log("HEIGHT : " + canvas.height);
-            var dataurl = canvas.toDataURL("image/png");
-            this.corso.image = dataurl;
-            console.log(dataurl);
-          }
-    });
+  retrieveImg(base64:string){
+    this.corso.image = base64;
 
   }
 

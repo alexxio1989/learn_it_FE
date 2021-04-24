@@ -27,8 +27,9 @@
   }
 
   img {
-    width:auto;
+    width: 270px;
     height: 124px;
+    object-fit: contain;
   }
 
   .bgc-gray-footer{
@@ -46,6 +47,7 @@
     height: 315px;
     width: auto;
     transform-style: preserve-3d;
+    max-width: 260px !important;
 }
 
 
