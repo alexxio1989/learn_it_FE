@@ -111,6 +111,11 @@ export class ModalAccessoComponent implements OnInit {
     };
   }
 
+  retrieveImg(base64:string){
+    this.user.img = base64;
+
+  }
+
   
 
 

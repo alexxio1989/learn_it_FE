@@ -54,4 +54,9 @@ export class ModalEditUtenteComponent implements OnInit {
 
   }
 
+  retrieveImg(base64:string){
+    this.user.img = base64;
+
+  }
+
 }

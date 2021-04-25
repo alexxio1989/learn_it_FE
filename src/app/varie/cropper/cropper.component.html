@@ -8,7 +8,7 @@
     style="max-width: 500px;"
         [imageChangedEvent]="imageChangedEvent"
         [maintainAspectRatio]="true"
-        [aspectRatio]="2"
+        [aspectRatio]="ratio"
         format="png"
         (imageCropped)="imageCropped($event)"
         (imageLoaded)="imageLoaded($event)"

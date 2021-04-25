@@ -1,4 +1,4 @@
-import { Component, OnInit, Output , EventEmitter} from '@angular/core';
+import { Component, OnInit, Output , EventEmitter, Input} from '@angular/core';
 
 
 @Component({
@@ -8,11 +8,14 @@ import { Component, OnInit, Output , EventEmitter} from '@angular/core';
 })
 export class CropperComponent{
 
+  @Input() ratio : number;
   @Output() base65 = new EventEmitter<string>();
   
   imageChangedEvent: any = '';
 
-  constructor() { }
+  constructor() {
+      this.ratio = 2;
+  }
 
   fileChangeEvent(event: any): void {
       this.imageChangedEvent = event;

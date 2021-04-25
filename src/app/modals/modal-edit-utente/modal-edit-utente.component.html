@@ -15,11 +15,7 @@
     <form >
         <div class="row w-100 p-3">
             <div class="col-12 d-flex justify-content-center">
-                <button mat-button (click)="fileInput.click()"> 
-                    <mat-icon>add_photo_alternate</mat-icon>
-                    <span>Seleziona immagine</span>
-                    <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
-                </button>
+                <app-cropper [ratio] = "1" (base65) = "retrieveImg($event)"></app-cropper>
     
             </div>
         </div>

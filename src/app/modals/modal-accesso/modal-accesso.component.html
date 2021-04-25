@@ -48,10 +48,12 @@
                         <img *ngIf="user.img === undefined || user.img === null || user.img === ''" alt="Web Studio" class="card-img" src="../../../assets/images/default.png" /> 
                     </div>   
             
-                    <button class="button-add-image no-hover-effect" mat-button (click)="fileInput.click()"> 
-                        <mat-icon>add_a_photo</mat-icon>
-                        <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
-                    </button>
+                    <div class="row w-100 p-3">
+                        <div class="col-12 d-flex justify-content-center">
+                            <app-cropper [ratio] = "1" (base65) = "retrieveImg($event)"></app-cropper>
+                
+                        </div>
+                    </div>
                     <app-steppers-registrazione [(user)] = "user"></app-steppers-registrazione>
                 </div>
                 
