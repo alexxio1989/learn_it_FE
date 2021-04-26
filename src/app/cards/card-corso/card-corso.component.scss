@@ -63,7 +63,9 @@
     width: auto;
     transform-style: preserve-3d;
     max-width: 260px !important;
+    clip-path: polygon(0 0, calc(100% - var(--cs)) 0, 100% var(--cs), 100% 100%, 0 100%);
 }
+
 
 
 
@@ -88,4 +90,18 @@
 .back {
     
     transform: rotateY(180deg);
+}
+
+
+
+
+.folded_corner{
+  position:relative;
+ 
+  padding-top:40px;
+  
+  background: linear-gradient(to left bottom, transparent 50%, rgba(98, 98, 98, 0.4) 0) no-repeat 100% 0 / 2em 2em,
+    linear-gradient(-135deg, transparent 1.5em, rgb(255, 255, 255) 0);
+  
+  
 }

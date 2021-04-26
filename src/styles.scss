@@ -195,7 +195,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     
   .card-custom-corso img {
 
-    border: 1px solid rgba(0, 0, 0, 0.125);
+    border: 2px solid rgba(255, 255, 255, 0.125);
      
     border-radius: 0.25rem;
     box-shadow: 0 0 5px rgba(10, 10, 10, 0.3);
@@ -203,7 +203,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     top: 20px;
     left: 1.25rem;
     width: 150px;
-    height: 80px;
+    height: 75px;
     background-color: white;
   }
 } 
@@ -212,14 +212,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     
   .card-custom-corso img {
 
-    border: 1px solid rgba(0, 0, 0, 0.125);
+    border: 2px solid rgba(255, 255, 255, 0.125);
      
     border-radius: 0.25rem;
     box-shadow: 0 0 5px rgba(10, 10, 10, 0.3);
     position: absolute;
-    top: 30px;
+    top: 20px;
     left: 1.25rem;
-    width: 110px;
+    width: 120px;
     height: 60px;
     background-color: white;
   }
@@ -309,10 +309,15 @@ p{
 ul {
   list-style: none !important;
   margin-left: 0;}
+
+.desc p{
+    font-size: calc(11px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
+}
+
 p {
   margin: 0 0 6px !important;
   font-family: SFProText-Regular, Helvetica, Arial, sans-serif !important; 
-  font-size: calc(9px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
+  font-size: calc(9px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) ;
 }
 
 h1{
