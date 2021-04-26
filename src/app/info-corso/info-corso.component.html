@@ -4,7 +4,7 @@
         <h4 class="mt-2">Informazioni sul tutorial</h4>
     </div>  
     <div class="info-body pl-1 pr-1 pb-0 d-flex justify-content-center bg-white ">
-        <marquee *ngIf="corso.descrizioneCorso !== undefined && corso.descrizioneCorso !== null && corso.descrizioneCorso !== ''" behavior="scroll" scrollamount="3" direction="up" style="height:200px;" [innerHtml] = "corso.descrizioneCorso"></marquee>
+        <marquee *ngIf="corso.descrizioneCorso !== undefined && corso.descrizioneCorso !== null && corso.descrizioneCorso !== ''" behavior="scroll" scrollamount="2" direction="up" style="height:200px;" [innerHtml] = "corso.descrizioneCorso"></marquee>
 
         <div *ngIf="corso.descrizioneCorso === undefined || corso.descrizioneCorso === null || corso.descrizioneCorso === ''"  >
             <p>Nessuna informazione sul tutorial in questione</p>

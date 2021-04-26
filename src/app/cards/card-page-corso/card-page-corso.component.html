@@ -1,6 +1,6 @@
 
 <div class="card card-custom bg-white border-white">
-    <div class="card-custom-img text-right" [ngStyle]="{'background-color': corso.colorCard} ">
+    <div class="card-custom-img-corso text-right" [ngStyle]="{'background-color': corso.colorCard} ">
       <div>
         <h6 class="mr-3 mt-2">Condividi il tutorial</h6>
        
@@ -29,7 +29,7 @@
             <h2>{{corso.nomeCorso}}</h2>
           </div>
           <div class="d-inline " class="mtn-6" >
-            <app-edit-menu  [typePadre]="'C'" [obj]="corso" [idowner]="corso.owner.id" [withAddFeed] = "true" [withAddLezione]="true"></app-edit-menu>
+            <app-edit-menu [show] = "true"  [typePadre]="'C'" [obj]="corso" [idowner]="corso.owner.id" [withAddFeed] = "true" [withAddLezione]="true"></app-edit-menu>
           </div>
          
 
@@ -39,7 +39,7 @@
       <div *ngIf="corso.subNomeCorso !== undefined && corso.subNomeCorso !== null && corso.subNomeCorso !==  ''"
         class="row mtn-10">
         <div class="col-12 ">
-          <h4 class="fw-normal">{{corso.subNomeCorso}}</h4>
+          <h4 class="fw-light">{{corso.subNomeCorso}}</h4>
         </div>
       </div>
 
@@ -90,7 +90,7 @@
     <div *ngIf="!showFeeds" class="card-footer">
       <div class="row">
         <div class="col-12 d-flex justify-content-center p3">
-          <h3>Informazioni sul tutorial</h3>
+          <h4>Informazioni sul tutorial</h4>
         </div>
         <div class="container" [innerHTML]="corso.descrizioneCorso"></div>
       </div>

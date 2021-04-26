@@ -1,4 +1,4 @@
-<button mat-icon-button *ngIf="isSamEUser && isLogged" [matMenuTriggerFor]="menu" style="margin-top: 2px;" class="ml-3" aria-label="Example icon-button with a menu">
+<button mat-icon-button *ngIf="(show && isLogged) || (isSamEUser && isLogged)" [matMenuTriggerFor]="menu" style="margin-top: 2px;" class="ml-3" aria-label="Example icon-button with a menu">
     <mat-icon>more_vert</mat-icon>
 </button>
 <mat-menu #menu="matMenu">

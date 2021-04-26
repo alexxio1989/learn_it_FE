@@ -41,6 +41,7 @@ export class EditMenuComponent implements OnInit {
   @Input() section: string;
   @Input() typePadre: string;
   @Input() title: string;
+  @Input() show: boolean;
   isLoading: boolean;
   isSamEUser : boolean;
   confirmDelete: boolean;

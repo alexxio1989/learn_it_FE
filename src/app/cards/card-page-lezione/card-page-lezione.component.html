@@ -1,6 +1,14 @@
 <div class="card card-custom bg-white border-white">
-    <div class="card-custom-img" [ngStyle]="{'background-color': corso.colorCard} ">
-
+    <div class="card-custom-img-corso text-right" [ngStyle]="{'background-color': corso.colorCard} ">
+          <div>
+            <h6 class="mr-3 mt-2">Condividi la lezione</h6>
+          </div>
+    
+          <div class="mtn-15">
+            
+            <app-share [url] = "url" [title] = "lezione.title" [description] = "lezione.subTitle"></app-share>
+    
+          </div>
     </div>
     <div class="card-custom-corso">
 
@@ -22,9 +30,7 @@
             <div class="col-12 d-flex justify-content-center">
                 <h3 class="display-4" style="font-size: 2rem ;opacity: 0.6 !important;">{{lezione.subTitle}}</h3>
             </div>
-            <div  class="col-12  d-flex  justify-content-center">
-                <app-share [url] = "url" [title] = "lezione.title" [description] = "lezione.subTitle"></app-share>
-            </div>
+           
         </div>
 
 
