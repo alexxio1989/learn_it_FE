@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Corso } from '../model/Corso';
 import { Dominio } from '../model/Dominio';
+import { Lezione } from '../model/Lezione';
 import { User } from '../model/User';
 import { getUserLS } from '../utils/Util';
 
@@ -28,6 +29,10 @@ export class DelegateServiceService {
   private _sbjUser = new Subject();
   private _sbjPage = new Subject();
   private _sbjCorsoSelected = new Subject();
+
+  private _sbjNewLezione= new Subject();
+
+  private _sbjNewFeed= new Subject();
 
   constructor() {}
 
@@ -134,6 +139,24 @@ export class DelegateServiceService {
 
   getOBSPage(): Observable<any> {
     return this._sbjPage.asObservable();
+  }
+
+  newLezione(lezione: Lezione){
+    this._sbjNewLezione.next(lezione);
+  }
+
+
+  getOBSNewLezione(): Observable<any> {
+    return this._sbjNewLezione.asObservable();
+  }
+
+  newFeed(value: boolean){
+    this._sbjNewFeed.next(value);
+  }
+
+
+  getOBSNewFeed(): Observable<any> {
+    return this._sbjNewFeed.asObservable();
   }
 
 }

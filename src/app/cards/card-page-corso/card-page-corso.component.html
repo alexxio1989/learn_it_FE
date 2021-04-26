@@ -1,7 +1,17 @@
 
 <div class="card card-custom bg-white border-white">
-    <div class="card-custom-img" [ngStyle]="{'background-color': corso.colorCard} ">
+    <div class="card-custom-img text-right" [ngStyle]="{'background-color': corso.colorCard} ">
+      <div>
+        <h6 class="mr-3 mt-2">Condividi il tutorial</h6>
+       
 
+      </div>
+
+      <div class="mtn-15">
+        
+        <app-share [onLeft] = "true" [url] = "url" [small] = "false" [title] = "corso.nomeCorso" [description] = "corso.subNomeCorso"></app-share>
+
+      </div>
     </div>
     <div class="card-custom-corso"> 
 
@@ -10,38 +20,33 @@
       <img *ngIf="corso.image === undefined || corso.image === null || corso.image === ''" alt="Web Studio"
         class="img-fluid" src="../../../assets/images/default.png" />
     </div>
+
     <div class="card-body" style="overflow-y: auto">
       <div class="row">
-        <div class="col-12 d-flex justify-content-center">
-          <h2>{{corso.nomeCorso}}</h2>
+        <div class="col-12 d-flex">
+
+          <div class="d-inline" >
+            <h2>{{corso.nomeCorso}}</h2>
+          </div>
+          <div class="d-inline " class="mtn-6" >
+            <app-edit-menu  [typePadre]="'C'" [obj]="corso" [idowner]="corso.owner.id" [withAddFeed] = "true" [withAddLezione]="true"></app-edit-menu>
+          </div>
+         
+
+          
         </div>
       </div>
       <div *ngIf="corso.subNomeCorso !== undefined && corso.subNomeCorso !== null && corso.subNomeCorso !==  ''"
         class="row mtn-10">
-        <div class="col-12 d-flex justify-content-center">
+        <div class="col-12 ">
           <h4 class="fw-normal">{{corso.subNomeCorso}}</h4>
         </div>
       </div>
 
-      <div *ngIf="!showFeeds && !newFeed" class="row d-flex justify-content-center mt-2">
-        <div class="d-inline">
-          <ngx-stars style="z-index: 9;" [readonly]="true" [size]="1" [color]="'#007bff'"
-            [initialStars]="getMediumFeeds"></ngx-stars>
-        </div>
-        <div class="d-inline" style="margin-top: -2px; margin-left: 4px;">
-
-          <button (click)="changeView()" class="button-link">({{corso.feeds.length}})</button>
-        </div>
-      </div>
-
-      <div *ngIf="!newFeed" class="row d-flex justify-content-center mt-1">
-        <button mat-button (click)="newFeed = true" style="color: #6c757d;">
-          <mat-icon style="margin-top: -3px;">comment</mat-icon>
-          Lascia un tuo Feedback
-        </button>
-      </div>
-      <div *ngIf="!newFeed" class="col-12  d-flex  justify-content-center">
-        <app-share [url] = "url" [small] = "false" [title] = "corso.nomeCorso" [description] = "corso.subNomeCorso"></app-share>
+   
+     
+      <div *ngIf="!newFeed" class="col-12">
+        
       </div>
 
       <div *ngIf="showFeeds" class="row d-flex justify-content-center">
@@ -51,12 +56,7 @@
       </div>
 
 
-      <div *ngIf="isUtenteLogged && !newFeed" class="row d-flex justify-content-center mt-1">
-        <button mat-button (click)="addLezione()" style="color: #6c757d;">
-          <mat-icon style="margin-top: -3px;">add</mat-icon>
-          Nuovo Step
-        </button>
-      </div>
+     
 
       
 

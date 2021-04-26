@@ -8,6 +8,7 @@ import { ContentModalInfoCorsoComponent } from 'src/app/modals/content-modal-inf
 import { ContentModalParagrafoNewComponent } from 'src/app/modals/content-modal-paragrafo-new/content-modal-paragrafo-new.component';
 import { Corso } from 'src/app/model/Corso';
 import { FileLearnIt } from 'src/app/model/FileLearnIt';
+import { Lezione } from 'src/app/model/Lezione';
 import { User } from 'src/app/model/User';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
@@ -33,6 +34,8 @@ export class EditMenuComponent implements OnInit {
   @Input() withInfo: boolean;
   @Input() withGoTo: boolean;
   @Input() withDisable: boolean;
+  @Input() withAddLezione: boolean;
+  @Input() withAddFeed: boolean;
   @Input() obj: any;
   @Input() idPadre: number;
   @Input() section: string;
@@ -301,6 +304,20 @@ export class EditMenuComponent implements OnInit {
     } else if(ConstantsComponent.LEZIONE === this.typePadre ){
 
     }
+  }
+
+  addLezione() {
+    let lezione = new Lezione();
+    lezione.idCorso = this.corso.id;
+    lezione.indexLezione = this.corso.lezioni.length + 1;
+    this.ds.newLezione(lezione);
+    //this.corso.lezioni.push(this.lezione);
+  }
+
+  addFeed() {
+    
+    this.ds.newFeed(true);
+    //this.corso.lezioni.push(this.lezione);
   }
 
 }

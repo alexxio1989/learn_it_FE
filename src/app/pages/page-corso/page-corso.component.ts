@@ -35,6 +35,12 @@ export class PageCorsoComponent implements OnInit, IPageCore {
       this.renderPage = !next;
     })
 
+    this.ds.getOBSNewLezione().subscribe(next => {
+      this.lezione = next;
+      this.corso.lezioni.push(this.lezione);
+      window.scrollTo(0,document.body.scrollHeight );
+    })
+
     this.ls.getOBSUpdateLezioni().subscribe(next => {
       this.corso.lezioni = next;
     })
@@ -96,11 +102,7 @@ export class PageCorsoComponent implements OnInit, IPageCore {
     this.showFeeds = change;
   }
 
-  retrieveNewLezione(lezione : Lezione){
-    this.lezione = lezione;
-    this.corso.lezioni.push(this.lezione);
-    window.scrollTo(0,document.body.scrollHeight );
-  }
+
   
 
 }

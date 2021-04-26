@@ -1,5 +1,5 @@
 
-<div class="card-corso" (click)="playGame(card)" [@flipCard]="card.isFlipped">
+<div class="card-corso " (click)="playGame(card)" [@flipCard]="card.isFlipped">
   <div class="card-box front w-100">
     <div class="card-box-img d-flex justify-content-center">
       <img *ngIf="corso.image !== undefined && corso.image !== null && corso.image !== ''" alt="Card image cap"

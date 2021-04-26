@@ -66,6 +66,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin-top: -10px !important;
 }
 
+.mtn-7{
+  margin-top: -7px !important;
+}
+
+.mtn-6{
+  margin-top: -6px !important;
+}
+
 .mtn-5{
   margin-top: -5px !important;
 }
@@ -395,6 +403,12 @@ h6{
   font-weight: 700;
 }
 
+.mat-tab-label {
+  
+  padding: 0px 5px !important;
+  
+}
+
 .popover-body{
  
   padding: 0px !important;
@@ -414,4 +428,10 @@ h6{
   padding-left: 0px !important;
 
 }
+
+marquee ul{
+  padding: 5px
+}
+
+
 

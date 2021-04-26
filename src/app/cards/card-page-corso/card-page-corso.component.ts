@@ -22,7 +22,7 @@ export class CardPageCorsoComponent implements OnInit {
   url='https://www.ilmiocodice.com/corso?id=';
 
   @Output() changeViewEmitter = new EventEmitter<boolean>();
-  @Output() newLezioneEmitter = new EventEmitter<Lezione>();
+
 
   constructor(private fs: FeedbackService, private ds: DelegateServiceService) { }
 
@@ -37,6 +37,10 @@ export class CardPageCorsoComponent implements OnInit {
       this.feed.emailUtenteFeed = utenteLogged.email;
       this.feed.titoloCorso = this.corso.nomeCorso;
     }
+
+    this.ds.getOBSNewFeed().subscribe(next => {
+      this.newFeed = next;
+    })
   }
 
   salvaFeed(){
@@ -54,13 +58,7 @@ export class CardPageCorsoComponent implements OnInit {
     this.feed.feed = Math.round(e);
   }
 
-  addLezione() {
-    let lezione = new Lezione();
-    lezione.idCorso = this.corso.id;
-    lezione.indexLezione = this.corso.lezioni.length + 1;
-    this.newLezioneEmitter.emit(lezione);
-    //this.corso.lezioni.push(this.lezione);
-  }
+
 
   get isUtenteLogged(): boolean {
     return isSameUser(getUserLS(), this.corso.owner);

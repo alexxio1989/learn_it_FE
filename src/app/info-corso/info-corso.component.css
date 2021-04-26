@@ -5,8 +5,14 @@
     
 }
 
+.header-card-corso{
+    background-color: rgb(236, 236, 236);
+    height: 40px;
+    box-shadow: 0 2px 2px -2px gray;
+}
+
 .info-body{
-    min-height: 265px;
+    min-height: 225px;
 }
 
 .desc{

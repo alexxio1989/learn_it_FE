@@ -13,6 +13,8 @@ export class ShareComponent implements OnInit {
 
   @Input() small:boolean = true;
 
+  @Input() onLeft:boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {

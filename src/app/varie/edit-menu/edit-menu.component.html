@@ -41,6 +41,16 @@
       <span>Elimina</span>
     </button>
 
+    <button *ngIf="withAddLezione  && isSamEUser " mat-menu-item (click)="addLezione()">
+        <mat-icon>add</mat-icon>
+        <span>Aggiungi Step</span>
+      </button>
+
+      <button *ngIf="withAddFeed  && isLogged " mat-menu-item (click)="addFeed()">
+        <mat-icon>group</mat-icon>
+        <span>Lascia un tuo feedback</span>
+      </button>
+
     <div *ngIf="confirmDelete" class="col-12 p-3">
                
         Confermi ?
