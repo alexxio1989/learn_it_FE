@@ -2,7 +2,7 @@
 
 <mat-dialog-content class="mat-typography pl-0 pr-0">
     <div class="card card-custom bg-white border-white">
-        <div class="card-custom-img" [ngStyle]="{'background-color': corso.colorCard}" >
+        <div class="modal-custom-img-corso " [ngStyle]="{'background-color': '#dddddd'}" >
             
         </div>
         <div class="card-custom-corso">
@@ -14,10 +14,7 @@
 
         
 
-        <button mat-button class="button-color" (click)="inputColor.click()">
-            <img alt="Web Studio" class="card-img" style="max-width: 50px; max-height: 50px;" src="../../../assets/images/colors.png" /> 
-            <input class="input-color" #inputColor [value]="corso.colorCard" [(colorPicker)]="corso.colorCard"/>
-        </button>
+      
 
             <!-- <div class="col-12 mt-3 mb-3 d-flex justify-content-center">
                 <mat-slide-toggle *ngIf="enableCorsoAPagamento" [(ngModel)]="corso.aPagamento">Corso a Pagamento</mat-slide-toggle>

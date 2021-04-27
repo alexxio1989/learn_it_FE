@@ -1,7 +1,16 @@
 
 <div class="row mt-4 mb-2">
   <div class="col-12 d-flex justify-content-center">
-        <input type="file" (change)="fileChangeEvent($event)" />
+
+    <button mat-button (click)="fileInput.click()">
+      <mat-icon class="mr-1">photo_camera
+      </mat-icon>
+      <span>Scegli un'immagine</span>
+      <input #fileInput type="file" (change)="fileChangeEvent($event)" style="display:none;" />
+    </button>
+
+
+     
   </div>
   <div *ngIf="imageChangedEvent !== ''" class="col-12 d-flex justify-content-center pl-5 pr-5">
     <image-cropper

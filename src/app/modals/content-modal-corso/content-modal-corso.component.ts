@@ -35,7 +35,7 @@ export class ContentModalCorsoComponent implements OnInit {
     if(this.cs.corsoSelected !== undefined && this.cs.corsoSelected !== null){
       this.corso = this.cs.corsoSelected;
     } else {
-      this.corso.colorCard = '#ffc400';
+      this.corso.colorCard = '##dddddd';
     }
     let utente = getUserLS();
     this.enableCorsoAPagamento = utente !== undefined && utente !== null && ( 'SU' === utente.tipo.codice || 'WF' === utente.tipo.codice )

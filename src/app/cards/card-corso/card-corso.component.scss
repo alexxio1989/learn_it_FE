@@ -34,6 +34,15 @@
       height: 124px;
       object-fit: contain;
     }
+    .card-corso {
+      border-radius: 8px;
+      position: relative;
+      height: 315px;
+      width: 260px;
+      transform-style: preserve-3d;
+      max-width: 260px !important;
+      clip-path: polygon(0 0, calc(100% - var(--cs)) 0, 100% var(--cs), 100% 100%, 0 100%);
+    }
   } 
 
   @media all and (max-width: 400px){
@@ -42,6 +51,16 @@
       width: 270px;
       height: 120px;
       object-fit: contain;
+    }
+
+    .card-corso {
+      border-radius: 8px;
+      position: relative;
+      height: 315px;
+      width: 250px;
+      transform-style: preserve-3d;
+      max-width: 260px !important;
+      clip-path: polygon(0 0, calc(100% - var(--cs)) 0, 100% var(--cs), 100% 100%, 0 100%);
     }
   } 
 
@@ -56,15 +75,7 @@
     perspective: 800px;
 }
 
-.card-corso {
-    border-radius: 8px;
-    position: relative;
-    height: 315px;
-    width: auto;
-    transform-style: preserve-3d;
-    max-width: 260px !important;
-    clip-path: polygon(0 0, calc(100% - var(--cs)) 0, 100% var(--cs), 100% 100%, 0 100%);
-}
+
 
 
 
