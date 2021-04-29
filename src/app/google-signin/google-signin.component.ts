@@ -40,7 +40,7 @@ export class GoogleSigninComponent implements OnInit {
   }
 
   logOut(): void {
-    this.socialAuthService.signOut();
+    this.socialAuthService.signOut(); 
   }
 
 }

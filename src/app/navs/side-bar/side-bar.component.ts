@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { SocialAuthService } from 'angularx-social-login';
 import { ContentModalCorsoComponent } from 'src/app/modals/content-modal-corso/content-modal-corso.component';
 import { ModalRichiestaComponent } from 'src/app/modals/modal-richiesta/modal-richiesta.component';
 import { Corso } from 'src/app/model/Corso';
@@ -34,7 +35,7 @@ export class SideBarComponent implements OnInit {
   modalRichiestaComponent = ModalRichiestaComponent;
   modalCorsoComponent = ContentModalCorsoComponent
 
-  constructor(private ds: DelegateServiceService, private route: Router, private cs: CorsoServiceService) {
+  constructor(private ds: DelegateServiceService, private route: Router, private cs: CorsoServiceService,private socialAuthService: SocialAuthService) {
     this.ds.getOBSSideBar().subscribe(next => {
       this.openSideBar = next
     })
@@ -106,7 +107,7 @@ export class SideBarComponent implements OnInit {
   }
 
   logout(){
-    
+    this.socialAuthService.signOut(); 
     localStorage.removeItem('JWT_TOKEN')
     localStorage.removeItem('COOKIE_CONSENT')
     this.ds.updateUser(null);
