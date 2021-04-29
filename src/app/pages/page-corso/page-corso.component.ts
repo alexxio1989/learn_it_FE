@@ -28,6 +28,8 @@ export class PageCorsoComponent implements OnInit, IPageCore {
 
   renderPage: boolean;
 
+  newFeed: boolean;
+
   called = false;
 
   constructor(private fs: FeedbackService,private ls: LezioneServiceService , private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService, private ar: ActivatedRoute) {
@@ -47,6 +49,10 @@ export class PageCorsoComponent implements OnInit, IPageCore {
 
     this.fs.getOBS().subscribe(next => {
       this.corso.feeds = next;
+    })
+
+    this.ds.getOBSNewFeed().subscribe(next => {
+      this.newFeed = next;
     })
   }
 

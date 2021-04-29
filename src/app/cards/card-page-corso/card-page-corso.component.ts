@@ -78,4 +78,8 @@ export class CardPageCorsoComponent implements OnInit {
     this.changeViewEmitter.emit(this.showFeeds);
   }
 
+  chiudiFeeds(){
+    this.ds.newFeed(false);
+  }
+
 }
