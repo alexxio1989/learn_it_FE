@@ -173,7 +173,7 @@ export class CardCorsoComponent implements OnInit {
       this.route.navigate(['/corso'], { queryParams: { id: corso.id } }); 
     },error =>{
       this.ds.updateSpinner(false);
-      this.ds.updateResultService(error.status);
+      this.ds.updateResultService(error.error.status);
     })
   }
 

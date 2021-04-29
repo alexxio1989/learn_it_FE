@@ -116,7 +116,7 @@ export class PageUtenteComponent implements OnInit , IPageCore{
       this.ds.updateResultService(next.status);
     },error => {
       this.ds.updateSpinner(false);
-      this.ds.updateResultService("Errore durante l'aggiornamento utente");
+      this.ds.updateResultService(error.error.status);
     })
 
   }

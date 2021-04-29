@@ -87,7 +87,7 @@ export class ModalAccessoComponent implements OnInit {
       this.ds.updateSpinner(false);
       this.ds.updateAbilitaNavigazione(this.ds.page);
     },error => {
-      this.ds.updateResultService("Errore durante la login");
+      this.ds.updateResultService(error.error.status);
       this.ds.updateSpinner(false);
     });
 }
@@ -107,7 +107,7 @@ accediGoogle(user: User) {
     this.dialog.closeAll();
     window.location.reload();
   },error => {
-    this.ds.updateResultService("Errore durante la login");
+    this.ds.updateResultService(error.error.status);
     this.ds.updateSpinner(false);
   });
 }
@@ -124,7 +124,7 @@ accediGoogle(user: User) {
       this.ds.updateSpinner(false);
       this.ds.updateOpenLogin(true);
     },error => {
-      this.ds.updateResultService("Errore durante la registrazione");
+      this.ds.updateResultService(error.error.status);
       this.ds.updateSpinner(false);
     });
  
