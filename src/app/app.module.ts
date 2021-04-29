@@ -89,6 +89,8 @@ import { FormatTimePipe } from './pipes/FormatTimePipe';
 import { InfoCorsoComponent } from './info-corso/info-corso.component';
 import { CropperComponent } from './varie/cropper/cropper.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { GoogleSigninComponent } from './google-signin/google-signin.component';
+import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 
 
 
@@ -168,7 +170,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     InfoCorsoPipe,
     FormatTimePipe,
     InfoCorsoComponent,
-    CropperComponent
+    CropperComponent,
+    GoogleSigninComponent
     
   ],
   imports: [
@@ -209,6 +212,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     MatTabsModule,
     MatSelectCountryModule.forRoot('it'),
     ColorPickerModule,
+    SocialLoginModule,
     MDBBootstrapModule.forRoot(),
     NgxSlickJsModule.forRoot({
       links: {
@@ -234,7 +238,21 @@ const cookieConfig: NgcCookieConsentConfig = {
     {
       provide: MatPaginatorIntl, 
       useClass: CustomMatPaginatorIntl
-    }
+    },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '421178567994-tkmjp0fcfbriaprddo4adt5kbvjad51r.apps.googleusercontent.com'
+            )
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }  
   ],
   bootstrap: [AppComponent]
 })

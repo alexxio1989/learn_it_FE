@@ -84,7 +84,8 @@ export class CorsoServiceService {
 
   getOBSInsertCorso(corso: Corso): Observable<any>{
     this.ds.updateSpinner(true);
-    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
+    const token = getJWTTOKEN();
+    const headers = new HttpHeaders().set("JWT_TOKEN",  token);
     return this.http.post(ServiceCore.baseURl + "/corso/save", corso , {headers});
   }
 

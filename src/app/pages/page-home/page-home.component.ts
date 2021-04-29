@@ -34,6 +34,8 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
 
 
 
+
+
   constructor(private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService,private deviceService: DeviceDetectorService) { 
     
   }

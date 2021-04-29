@@ -7,6 +7,7 @@ import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { isEmptyString } from 'src/app/utils/Util';
 import { Router } from '@angular/router';
 import {Country} from '@angular-material-extensions/select-country'; 
+import { SocialAuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-modal-accesso',
@@ -25,13 +26,34 @@ export class ModalAccessoComponent implements OnInit {
 
   user: User = new User();
 
+  utente: User = new User();
+
   hide: boolean;
 
   disableLogin = true;
 
-  constructor(private _formBuilder: FormBuilder,private route: Router ,private ds: DelegateServiceService , private us: UtenteServiceService,public dialog: MatDialog) { }
+  constructor(private socialAuthService: SocialAuthService,private _formBuilder: FormBuilder,private route: Router ,private ds: DelegateServiceService , private us: UtenteServiceService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
+
+    this.ds.getOBSUserGoogle().subscribe(utenteGoogle => {
+      this.utente = utenteGoogle;
+      this.us.getOBSCount(this.utente).subscribe(next => {
+        console.log(JSON.stringify(this.utente))
+        if(next > 0){
+          this.accediGoogle(this.utente);
+          
+        } else {
+          this.registrati(this.utente);
+        }
+      },error => {
+        
+      })
+    })
+
+   
+
+
     this.loginFormGroup = this._formBuilder.group({
       emailCtrl: ['',  [Validators.required, Validators.email]],
       passwordCtrl: ['', Validators.required]
@@ -50,25 +72,54 @@ export class ModalAccessoComponent implements OnInit {
   }
  
   login() {
-      this.us.getOBSLogin(this.user).subscribe(next =>{
-        this.ds.updateResultService("Login avvenuto con successo");
-        localStorage.setItem('JWT_TOKEN',next.headers.get('JWT_TOKEN'));
-        let dateString = new Date().toLocaleString('it-IT') 
-        localStorage.setItem('JWT_TIME',dateString);
-        this.ds.utente = next.body.obj;
-        this.ds.updateUser(next.body.obj); 
-        this.ds.updateSideBar(false);
-        this.ds.updateSpinner(false);
-        this.ds.updateAbilitaNavigazione(this.ds.page);
-      },error => {
-        this.ds.updateResultService("Errore durante la login");
-        this.ds.updateSpinner(false);
-      });
+      this.accedi(this.user);
   }
+
+  accedi(user: User) {
+    this.us.getOBSLogin(user).subscribe(next =>{
+      this.ds.updateResultService("Login avvenuto con successo");
+      localStorage.setItem('JWT_TOKEN',next.headers.get('JWT_TOKEN'));
+      let dateString = new Date().toLocaleString('it-IT') 
+      localStorage.setItem('JWT_TIME',dateString);
+      this.ds.utente = next.body.obj;
+      this.ds.updateUser(next.body.obj); 
+      this.ds.updateSideBar(false);
+      this.ds.updateSpinner(false);
+      this.ds.updateAbilitaNavigazione(this.ds.page);
+    },error => {
+      this.ds.updateResultService("Errore durante la login");
+      this.ds.updateSpinner(false);
+    });
+}
+
+accediGoogle(user: User) {
+  this.us.getOBSLogin(user).subscribe(next =>{
+    this.ds.updateResultService("Login avvenuto con successo");
+    console.log(next.headers.get('JWT_TOKEN'))
+    localStorage.setItem('JWT_TOKEN',next.headers.get('JWT_TOKEN'));
+    let dateString = new Date().toLocaleString('it-IT') 
+    localStorage.setItem('JWT_TIME',dateString);
+    this.ds.utente = next.body.obj;
+    this.ds.updateUser(next.body.obj); 
+    this.ds.updateSideBar(false);
+    this.ds.updateSpinner(false);
+    this.ds.updateAbilitaNavigazione(this.ds.page);
+    this.dialog.closeAll();
+    window.location.reload();
+  },error => {
+    this.ds.updateResultService("Errore durante la login");
+    this.ds.updateSpinner(false);
+  });
+}
 
 
   save() {
-    this.us.getOBSSignIn(this.user).subscribe(next =>{
+    this.registrati(this.user);
+ 
+  }
+
+  registrati(user: User) {
+    this.us.getOBSSignIn(user).subscribe(next =>{
       this.ds.updateResultService("Registrazione avvenuta con successo"); 
       this.ds.updateSpinner(false);
       this.ds.updateOpenLogin(true);

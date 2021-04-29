@@ -1,6 +1,7 @@
 import { Country } from '@angular-material-extensions/select-country';
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Recapito } from 'src/app/model/Recapito';
 import { User } from 'src/app/model/User';
 import { isEmptyString } from 'src/app/utils/Util';
 
@@ -54,6 +55,7 @@ export class SteppersRegistrazioneComponent implements OnInit {
   get f2() { return this.secondFormGroup.controls; }
 
   onCountrySelected(country: Country) {
+    this.user.recapito = new Recapito();
     this.user.recapito.country= country;
     
     if(this.secondFormGroup.valid){

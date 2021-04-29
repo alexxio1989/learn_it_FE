@@ -25,6 +25,11 @@ export class UtenteServiceService {
     return this.http.post(ServiceCore.baseURl + "/soggetto/save", utente);
   }
 
+  getOBSCount(utente: User): Observable<any>{
+    //this.ds.updateSpinner(true);
+    return this.http.post(ServiceCore.baseURl + "/soggetto/count", utente);
+  }
+
   
 
   getOBSUserById(utente: User): Observable<any>{

@@ -1,6 +1,12 @@
 
 <mat-dialog-content class="mat-typography" class="p-2">
 
+    <div class="row w-100 ml-0 mb-4 mt-4">
+        <div class="col-12 d-flex justify-content-center">
+            <app-google-signin></app-google-signin>
+
+        </div>
+    </div>
         <mat-tab-group *ngIf="!isRecuperaPassword" (selectedTabChange)="changeTab($event)" mat-stretch-tabs>
             <mat-tab label="Accedi">
                

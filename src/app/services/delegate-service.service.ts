@@ -34,6 +34,8 @@ export class DelegateServiceService {
 
   private _sbjNewFeed= new Subject();
 
+  private _sbjUserGoogle= new Subject();
+
   constructor() {}
 
   checkUserLogged(page: string): boolean{
@@ -44,6 +46,14 @@ export class DelegateServiceService {
       this.updateOpenLogin(true)
       return false;
     }
+  }
+
+  updateUserGoogle (utente: User) {
+    this._sbjUserGoogle.next(utente);
+  }
+
+  getOBSUserGoogle (): Observable<any> {
+    return this._sbjUserGoogle.asObservable();
   }
 
 

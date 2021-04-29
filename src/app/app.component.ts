@@ -24,6 +24,7 @@ export class AppComponent  implements OnInit, OnDestroy  {
   private statusChangeSubscription: Subscription;
   private revokeChoiceSubscription: Subscription;
   private noCookieLawSubscription: Subscription;
+  
 
   title = 'learnit';
   showSpinner: true;
