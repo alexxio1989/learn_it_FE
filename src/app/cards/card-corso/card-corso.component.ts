@@ -65,9 +65,8 @@ export class CardCorsoComponent implements OnInit {
   card = { isFlipped: false };
   
 
-  playGame(card) {
-    card.isFlipped = !card.isFlipped;
-    setTimeout(()=>{ this.front = card.isFlipped }, 300)
+  playGame(card, corso: Corso) {
+    this.ds.updateCorsoSelected(corso);
   }
 
 
@@ -88,6 +87,16 @@ export class CardCorsoComponent implements OnInit {
               private ds: DelegateServiceService,
               private ps: PagamentiServiceService,
               private deviceService: DeviceDetectorService) {
+
+                this.ds.getOBSCorsoSelected().subscribe(next => {
+                  if(next.id === this.corso.id){
+                    this.card.isFlipped = !this.card.isFlipped;
+                    setTimeout(()=>{ this.front = this.card.isFlipped }, 300)
+                  }else {
+                    this.card.isFlipped = false;
+                    setTimeout(()=>{ this.front = this.card.isFlipped }, 300)
+                  }
+                })
 
               this.ds.getOBSUser().subscribe(next => {
                 this.checkLettureUtente();
