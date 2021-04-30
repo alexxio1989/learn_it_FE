@@ -39,7 +39,7 @@
       <div *ngIf="corso.subNomeCorso !== undefined && corso.subNomeCorso !== null && corso.subNomeCorso !==  ''"
         class="row mtn-10">
         <div class="col-12 ">
-          <h4 class="fw-light">{{corso.subNomeCorso}}</h4>
+          <h5 class="fw-light">{{corso.subNomeCorso}}</h5>
         </div>
       </div>
 
@@ -60,40 +60,44 @@
 
       
 
-      <div *ngIf="newFeed" class="row mt-1 ">
+      <div *ngIf="newFeed" class="row mt-2 card">
 
-        <div class="col-12  d-flex  justify-content-center">
-          <ngx-stars (ratingOutput)="onRatingSet($event)" [readonly]="false" [size]="2" [color]="'#007bff'" [initialStars]="feed.feed"></ngx-stars>
+        <div class="col-12 text-right pr-1">
+          <button class="pr-0" mat-button (click)="chiudiFeeds()">
+              <mat-icon>clear</mat-icon>
+          </button>
+        </div>
+
+        <div class="col-12  d-flex pt-3 pb-3 justify-content-center">
+          <ngx-stars (ratingOutput)="onRatingSet($event)" [readonly]="false" [size]="2" [color]="'#ffc400'" [initialStars]="feed.feed"></ngx-stars>
         </div>
         
 
         <div class="col-12  d-flex  justify-content-center mt-2">
 
      
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" class="size-comment">
             <mat-label>Il tuo commento</mat-label>
             <textarea [(ngModel)]="feed.comment" matInput></textarea>
-            
+            <div class="text-right mt-3 bg-white">
+              <button [disabled] = "feed.comment === undefined || feed.comment === null || feed.comment === ''" mat-button (click)="salvaFeed()" style="color: #6c757d;">
+                salva
+              </button>
+
+            </div>
           </mat-form-field>
           
        
         </div>
 
-        <div class="col-12 mb-2 d-flex  justify-content-center">
-          <button mat-button (click)="chiudiFeeds()" style="color: #6c757d;">
-            Annulla
-          </button>
+        <div class="col-12 mb-2 d-flex mb-5 justify-content-center">
+         
           <button *ngIf= "feed.comment !== undefined && feed.comment !== null && feed.comment !== ''" mat-button (click)="salvaFeed()" style="color: #6c757d;">
             salva
           </button>
         </div>
 
-       
-
-          <div class="col-12 d-flex  justify-content-center mt-5" *ngIf="corso.feeds.length === 0">
-            Nessuna feedback
-          </div>
-          <div *ngFor="let feed of corso.feeds" class="col-12 d-flex justify-content-center ">
+          <div *ngFor="let feed of corso.feeds" class="col-12 d-flex justify-content-center pl-1 pr-1">
             
               <app-card-feedback [feed]="feed"></app-card-feedback>
           
