@@ -1,7 +1,11 @@
 
 
 
-<div class="card-corso card bgc-gray " (click)="playGame(card , corso)" [@flipCard]="card.isFlipped">
+
+
+
+
+<div *ngIf="!front" class="card-corso card bgc-gray " (click)="playGame(card , corso)" [@flipCard]="card.isFlipped">
   <div class="card-box front w-100">
     <div class="card-box-img ">
       <img *ngIf="corso.image !== undefined && corso.image !== null && corso.image !== ''" alt="Card image cap"
@@ -20,11 +24,11 @@
       <h5 class="card-title mt-1">{{corso.nomeCorso}}</h5>
       <p class="card-text mtn-15">{{corso.subNomeCorso}}</p>
       <div class="mtn-10 mln-2">
-        <app-info-utente *ngIf="!front" [utente]="corso.owner"  [isCardCorso]="true"></app-info-utente>
+        <app-info-utente  [utente]="corso.owner"  [isCardCorso]="true"></app-info-utente>
 
       </div>
 
-      <div *ngIf="!front" class=" mln-3 d-flex justify-content-center mt-1">
+      <div class=" mln-3 d-flex justify-content-center mt-1">
         <ngx-stars [readonly]="true" [size]="1" [color]="'#ffc400'" [initialStars]="corso.mediumFeeds"></ngx-stars>
         <p class="card-text ml-1" style="margin-top: -3px !important;"><small class="text-muted">( {{corso.totFeeds}} )</small></p>
       </div>
@@ -39,7 +43,10 @@
 
     </div>
   </div>
-  <div class="card-box back w-100">
-    <app-info-corso [corso]="corso"></app-info-corso>
-  </div>
+  
+</div> 
+
+<div *ngIf="front" class="card-corso card bgc-gray back " (click)="playGame(card , corso)" [@flipCard]="card.isFlipped">
+  
+  <app-info-corso [corso]="corso"></app-info-corso>
 </div> 

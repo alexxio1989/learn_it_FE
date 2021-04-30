@@ -33,8 +33,8 @@ import { DeviceDetectorService } from 'ngx-device-detector';
       state('false', style({
         transform: 'rotateY(0)'
       })),
-      transition('true => false', animate('800ms ease-out')),
-      transition('false => true', animate('800ms ease-out'))
+      transition('true => false', animate('1000ms ease-out')),
+      transition('false => true', animate('1000ms ease-out'))
     ])
   ]
 })
@@ -91,10 +91,10 @@ export class CardCorsoLightComponent implements OnInit {
               this.ds.getOBSCorsoSelected().subscribe(next => {
                 if(next.id === this.corso.id){
                   this.card.isFlipped = !this.card.isFlipped;
-                  setTimeout(()=>{ this.front = this.card.isFlipped }, 300)
+                  setTimeout(()=>{ this.front = this.card.isFlipped }, 400)
                 }else {
                   this.card.isFlipped = false;
-                  setTimeout(()=>{ this.front = this.card.isFlipped }, 300)
+                  setTimeout(()=>{ this.front = this.card.isFlipped }, 400)
                 }
               })
               this.ds.getOBSUser().subscribe(next => {

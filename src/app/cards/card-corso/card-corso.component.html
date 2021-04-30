@@ -1,4 +1,4 @@
-
+{{card.isFlipped}}
 <div class="card-corso card" (click)="playGame(card, corso)" [@flipCard]="card.isFlipped">
   <div class="card-box front w-100">
     <div class="card-box-img d-flex justify-content-center">
@@ -8,7 +8,7 @@
         src="../../../assets/images/default.png" class="align-self-center" />
 
     </div>
-    <div class="bgc-gray pl-1 pr-1 pb-1">
+    <div *ngIf="!front" class="bgc-gray pl-1 pr-1 pb-1">
 
       <div class="d-flex justify-content-center">
         <h3 class="mt-2">{{corso.nomeCorso}}</h3>
@@ -17,7 +17,7 @@
         <p class="fw-lighter mtn-5">{{corso.subNomeCorso}}</p>
       </div>
 
-      <div *ngIf="!front" class="d-flex justify-content-center mt-1">
+      <div  class="d-flex justify-content-center mt-1">
         <ngx-stars [readonly]="true" [size]="1" [color]="'#ffc400'" [initialStars]="corso.mediumFeeds"></ngx-stars>
         <p class="card-text ml-1" style="margin-top: -3px !important;"><small class="text-muted">( {{corso.totFeeds}} )</small></p>
       </div>
@@ -35,6 +35,9 @@
     </div>
   </div>
   <div class="card-box back w-100">
-    <app-info-corso [corso]="corso"></app-info-corso>
+    <div class="header-card-corso pl-1 pr-1 d-flex justify-content-center bg-white position-relative">
+      <h4 class="mt-2">Informazioni sul tutorial</h4>
+    </div> 
+    <marquee *ngIf="corso.descrizioneCorso !== undefined && corso.descrizioneCorso !== null && corso.descrizioneCorso !== ''" behavior="scroll" scrollamount="2" direction="up"  [innerHtml] = "corso.descrizioneCorso"></marquee>
   </div>
 </div>
