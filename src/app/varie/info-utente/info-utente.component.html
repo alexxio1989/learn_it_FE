@@ -1,6 +1,6 @@
 
 
-<div *ngIf="isCardCorso " class="chip">
+<div *ngIf="isCardCorso && !isDevice " class="chip">
     <img *ngIf="utente.img !== undefined && utente.img !== null && utente.img !== ''" alt="Web Studio" width="96" height="96" src="{{utente.img}}" />
     <img *ngIf="utente.img === undefined || utente.img === null || utente.img === ''" alt="Web Studio" width="96" height="96" src="../../../assets/images/default.png" />
     <button class="btn btn-lg p-0 " (click)="goToPageUtenteWithID()" >
@@ -13,6 +13,13 @@
                 
             </div>
         </div>
+    </button>
+</div>
+
+<div *ngIf="isCardCorso && isDevice " >
+   
+    <button class="btn btn-lg p-0 " (click)="goToPageUtenteWithID()" >
+        <h6 class="text-primary no-margin"> {{utente.nome}} {{utente.cognome}} </h6>
     </button>
 </div>
 

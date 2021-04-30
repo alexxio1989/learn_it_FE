@@ -11,18 +11,37 @@
     box-shadow: 0 2px 2px -2px gray;
 }
 
-.info-body{
-    min-height: 225px;
-}
 
-.desc{
-   min-height: 315px;
-    height: auto;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
-}
 
 .footer-card-corso{
     background-color: rgb(236, 236, 236);
     height: 50px;
 }
+
+  @media all and (min-width: 500px){
+    .info-body{
+        min-height: 225px;
+    }
+    
+    .desc{ 
+       min-height: 315px;
+        height: auto;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: 0.25rem;
+    }
+    
+  } 
+
+  @media all and (max-width: 400px){
+    
+    .info-body{
+        min-height: 86px;
+    }
+    
+    .desc{ 
+      
+        height: auto;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: 0.25rem;
+    }
+  } 

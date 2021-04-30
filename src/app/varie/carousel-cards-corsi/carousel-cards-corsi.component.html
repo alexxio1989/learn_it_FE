@@ -3,10 +3,21 @@
 </div>
 
 
-<div slickContainer #slickController="slick" class="pt-2 my-carousele" [slickConfig]="config">
+<div *ngIf="!isDevice" slickContainer #slickController="slick" class="pt-2 my-carousele" [slickConfig]="config">
     <ng-container *ngIf="slickController.initialize">
         <div slickItem *ngFor="let corso of corsi" class="p-2  pb-4 d-flex justify-content-center">
-                <app-card-corso [corso]="corso"></app-card-corso>
+                <app-card-corso [corso]="corso"></app-card-corso> 
+               
+        </div> 
+    </ng-container>
+</div>
+
+<div *ngIf="isDevice" slickContainer #slickController="slick" class="pt-2 my-carousele" [slickConfig]="configSlides">
+    <ng-container *ngIf="slickController.initialize">
+     
+
+        <div slickItem *ngFor="let slide of slides"  class="p-2  pb-4 d-flex justify-content-center">
+            <app-slide [corsi] = "slide.corsi"></app-slide>
         </div>
     </ng-container>
 </div>

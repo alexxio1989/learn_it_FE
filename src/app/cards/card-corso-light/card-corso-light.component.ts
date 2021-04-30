@@ -24,14 +24,27 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 @Component({
   selector: 'app-card-corso-light',
   templateUrl: './card-corso-light.component.html',
-  styleUrls: ['./card-corso-light.component.css']
+  styleUrls: ['./card-corso-light.component.scss'],
+  animations: [
+    trigger('flipCard', [
+      state('true', style({
+        transform: 'rotateY(180deg)'
+      })),
+      state('false', style({
+        transform: 'rotateY(0)'
+      })),
+      transition('true => false', animate('800ms ease-out')),
+      transition('false => true', animate('800ms ease-out'))
+    ])
+  ]
 })
 export class CardCorsoLightComponent implements OnInit {
 
   @Input() corso: Corso;
   
   state = 0;
-
+  flipped = false;
+  front = false;
   url='https://www.ilmiocodice.com/corso?id=';
 
   isShowInfo: boolean;
@@ -48,7 +61,13 @@ export class CardCorsoLightComponent implements OnInit {
   showAccedi: boolean;
   isDevice: boolean;
 
+  card = { isFlipped: false };
   
+
+  playGame(card) {
+    card.isFlipped = !card.isFlipped;
+    setTimeout(()=>{ this.front = card.isFlipped }, 300)
+  }
 
 
   get getMediumFeeds(){
@@ -180,6 +199,11 @@ export class CardCorsoLightComponent implements OnInit {
       } else {
           this.goToCorso(corso);
       }
+  }
+
+  cardBoxImg = {
+    'max-height': '100px !important',
+    'min-height': '100px !important'
   }
 
 }

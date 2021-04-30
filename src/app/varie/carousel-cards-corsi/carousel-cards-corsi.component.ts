@@ -3,6 +3,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 import { Slick } from 'ngx-slickjs';
 import { Subscription, timer } from 'rxjs';
 import { Corso } from 'src/app/model/Corso';
+import { Slide } from 'src/app/model/Slide';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 
 @Component({
@@ -14,8 +15,12 @@ export class CarouselCardsCorsiComponent implements OnInit {
 
   @Input() corsi: Corso[] = [];
   @Input() title: string;
+
+  slides: Slide[] = [];
   isDevice: boolean;
   config: Slick.Config;
+
+  configSlides: Slick.Config;
 
   corsoSeleted: Corso;
 
@@ -26,6 +31,10 @@ export class CarouselCardsCorsiComponent implements OnInit {
   constructor(private ds: DelegateServiceService,private deviceService: DeviceDetectorService) { }
 
   ngOnInit(): void {
+
+    if(this.corsi.length > 0){
+      this.slides = this.getSlides(this.corsi , 2);
+    }
 
     //this.countDown = timer(0, this.tick).subscribe(() => --this.counter)
 
@@ -45,7 +54,19 @@ export class CarouselCardsCorsiComponent implements OnInit {
 
     this.config = {
       infinite: true,
-      slidesToShow: this.isDevice? 1: this.corsi.length > 1 || this.corsi.length < 3 ?  this.corsi.length  : 3, 
+      slidesToShow: this.corsi.length > 1 || this.corsi.length < 3 ?  this.corsi.length  : 3, 
+      slidesToScroll: 1,
+      dots: true,
+      autoplay: false,
+      autoplaySpeed: 2000 ,
+      arrows: true,
+      centerMode: true,
+      focusOnSelect: true
+    }
+
+    this.configSlides = {
+      infinite: true,
+      slidesToShow: 1, 
       slidesToScroll: 1,
       dots: true,
       autoplay: false,
@@ -86,6 +107,31 @@ export class CarouselCardsCorsiComponent implements OnInit {
   emitCourse(corso: Corso){
 
     this.ds.updateCorsoSelected(corso);
+  }
+
+  getSlides(corsi: Corso[], chunkCount): Slide[]{
+    let slides = [];
+    var chunks = [],  i, j;
+    for (i = 0, j = corsi.length; i<j; i+= chunkCount) {
+
+        chunks.push(corsi.slice(i, i + chunkCount)); 
+    }
+
+    if(chunks.length > 0){
+      chunks.forEach(next => {
+        let slide = new Slide();
+
+        next.forEach(c => {
+         
+          slide.corsi.push(c)
+          
+         });
+
+       
+       slides.push(slide);
+      });
+    }
+    return slides;
   }
 
 

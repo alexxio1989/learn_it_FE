@@ -1,61 +1,45 @@
 
 
-<!-- This card needs Bootstrap 4 Beta to work. -->
-<!-- Don't forget to copy small-card.css file too! -->
 
-<div class="card card-custom bg-white border-white">
-  <div class="{{isDevice ? 'card-custom-img-sm' : 'card-custom-img'}}" [ngStyle]="{'background-color': corso.colorCard} ">
-    <div class="col-12 text-right pr-1">
-      <app-edit-menu [owner]="corso.owner" [typePadre]="'C'" [section]="'Tutorial'" [withVideo]="false" [withAdd]="false"
-        [obj]="corso" [withElimina]="true" [withModifica]="true" [withInfo]="true">
-      </app-edit-menu>
+<div class="card-corso card bgc-gray " (click)="playGame(card)" [@flipCard]="card.isFlipped">
+  <div class="card-box front w-100">
+    <div class="card-box-img ">
+      <img *ngIf="corso.image !== undefined && corso.image !== null && corso.image !== ''" alt="Card image cap"
+        src="{{corso.image}}"  />
+      <img *ngIf="corso.image === undefined || corso.image === null || corso.image === ''" alt="Card image cap"
+        src="../../../assets/images/default.png"  />
+
+    </div>
+    <div class="w-100">
+      <hr/>
+    </div>
+    <div class="pr-2 pl-2 pb-0">
+      
+      
+     
+      <h5 class="card-title mt-1">{{corso.nomeCorso}}</h5>
+      <p class="card-text mtn-15">{{corso.subNomeCorso}}</p>
+      <div class="mtn-10 mln-2">
+        <app-info-utente *ngIf="!front" [utente]="corso.owner"  [isCardCorso]="true"></app-info-utente>
+
+      </div>
+
+      <div *ngIf="!front" class=" mln-3 d-flex justify-content-center mt-1">
+        <ngx-stars [readonly]="true" [size]="1" [color]="'#ffc400'" [initialStars]="corso.mediumFeeds"></ngx-stars>
+        <p class="card-text ml-1" style="margin-top: -3px !important;"><small class="text-muted">( {{corso.totFeeds}} )</small></p>
+      </div>
+      
+
+      <!-- <div class="w-100 bgc-gray-footer">
+        <app-share *ngIf="!front" [url]="url" [title]="corso.nomeCorso" [description]="corso.subNomeCorso">
+        </app-share>
+
+      </div> -->
+
+
     </div>
   </div>
-
-  <div class="{{isDevice ? 'card-custom-avatar-sm' : 'card-custom-avatar'}}">
-    <img *ngIf="corso.image !== undefined && corso.image !== null && corso.image !== ''" alt="Web Studio"
-      class="card-img" src="{{corso.image}}" />
-    <img *ngIf="corso.image === undefined || corso.image === null || corso.image === ''" alt="Web Studio"
-      class="card-img" src="../../../assets/images/default.png" />
+  <div class="card-box back w-100">
+    <app-info-corso [corso]="corso"></app-info-corso>
   </div>
-
-
-
-  <div class="card-body pb-0 pt-0 ">
-    <div class="d-flex justify-content-center ">
-      <h4 class="card-title op-100">{{corso.nomeCorso}}</h4>
-    </div>
-    <!-- <div class="d-flex justify-content-center" [innerHtml] = "corso.subNomeCorso | formatText"></div> -->
-    <div class="d-flex justify-content-center mtn-10">
-      <h6 *ngIf="!isDevice">{{corso.subNomeCorso}}</h6>
-      <h6 *ngIf="isDevice">{{corso.subNomeCorso | truncateText}}</h6>
-    </div>
-
-
-    <div class="d-flex justify-content-center mtn-5">
-      <ngx-stars [readonly]="true" [size]="1" [color]="'#007bff'" [initialStars]="corso.mediumFeeds"></ngx-stars>
-      <p class="card-text ml-1" style="margin-top: -3px;"><small class="text-muted">( {{corso.totFeeds}} )</small></p>
-    </div>
-    <div class="d-flex justify-content-center mt-2  mb-2">
-      <app-info-utente [utente]="corso.owner" class="pr-0" [isCardCorso]="true"></app-info-utente>
-    </div>
-    <app-share [url] = "url" [title] = "corso.nomeCorso" [description] = "corso.subNomeCorso"></app-share>
-
-  </div>
-
-
-
-  <div class="card-footer {{isDevice ? 'd-flex justify-content-center':'text-right'}}">
-    
-    <button *ngIf="showAccedi" mat-button  (click)="openLogin()" style="color: #6c757d;">
-      Accedi
-    </button>
-    <button *ngIf="showContinua" mat-button  (click)="next(corso)" style="color: #6c757d;">
-      {{isCorsoLetto ? 'Continua' : 'Inizia'}}
-    </button>
-    <app-modal-core [visible]="showAcquista" [descButton]="'Acquista'" [objSelected]="acquisto" [isButton]="true"
-      [component]="modalPagamentoComponent"></app-modal-core>
-  </div>
-
-
-</div>
+</div> 
