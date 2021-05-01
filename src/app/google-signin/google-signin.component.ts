@@ -16,6 +16,7 @@ export class GoogleSigninComponent implements OnInit {
 
   constructor(private socialAuthService: SocialAuthService,private ds: DelegateServiceService) { 
     
+    
     this.socialAuthService.authState.subscribe((user) => {
      
       this.utente.email = user.email;

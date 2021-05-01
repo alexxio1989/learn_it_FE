@@ -32,23 +32,29 @@ export class ModalAccessoComponent implements OnInit {
 
   disableLogin = true;
 
+  emailGoogle = '';
+
   constructor(private socialAuthService: SocialAuthService,private _formBuilder: FormBuilder,private route: Router ,private ds: DelegateServiceService , private us: UtenteServiceService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
     this.ds.getOBSUserGoogle().subscribe(utenteGoogle => {
       this.utente = utenteGoogle;
-      this.us.getOBSCount(this.utente).subscribe(next => {
-        console.log(JSON.stringify(this.utente))
-        if(next > 0){
-          this.accediGoogle(this.utente);
+      console.log("Accesso con google + this.utente.email")
+      if(this.emailGoogle === '' || this.emailGoogle !== this.utente.email){
+        this.emailGoogle = this.utente.email;
+        this.us.getOBSCount(this.utente).subscribe(next => {
+          console.log(JSON.stringify(this.utente))
+          if(next > 0){
+            this.accediGoogle(this.utente);
+            
+          } else {
+            this.registrati(this.utente);
+          }
+        },error => {
           
-        } else {
-          this.registrati(this.utente);
-        }
-      },error => {
-        
-      })
+        })
+      }
     })
 
    
@@ -123,6 +129,7 @@ accediGoogle(user: User) {
       this.ds.updateResultService("Registrazione avvenuta con successo"); 
       this.ds.updateSpinner(false);
       this.ds.updateOpenLogin(true);
+      this.accediGoogle(this.utente);
     },error => {
       this.ds.updateResultService(error.error.status);
       this.ds.updateSpinner(false);
