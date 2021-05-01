@@ -5,7 +5,7 @@
 
 <div *ngIf="!isDevice" slickContainer #slickController="slick" class="pt-2 my-carousele" [slickConfig]="config">
     <ng-container *ngIf="slickController.initialize">
-        <div slickItem *ngFor="let corso of corsi" class="p-2  pb-4 d-flex justify-content-center">
+        <div slickItem *ngFor="let corso of corsi" class="p-2  pb-1 d-flex justify-content-center">
                 <app-card-corso [corso]="corso"></app-card-corso> 
                
         </div> 
