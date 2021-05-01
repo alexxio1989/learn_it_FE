@@ -49,7 +49,7 @@ export class ModalAccessoComponent implements OnInit {
             this.accediGoogle(this.utente);
             
           } else {
-            this.registrati(this.utente);
+            this.registratiGoogle(this.utente);
           }
         },error => {
           
@@ -124,12 +124,23 @@ accediGoogle(user: User) {
  
   }
 
+  registratiGoogle(user: User) {
+    this.us.getOBSSignIn(user).subscribe(next =>{
+      this.ds.updateResultService("Registrazione avvenuta con successo"); 
+      
+      this.accediGoogle(this.utente);
+    },error => {
+      this.ds.updateResultService(error.error.status);
+      this.ds.updateSpinner(false);
+    });
+ 
+  }
+
   registrati(user: User) {
     this.us.getOBSSignIn(user).subscribe(next =>{
       this.ds.updateResultService("Registrazione avvenuta con successo"); 
       this.ds.updateSpinner(false);
       this.ds.updateOpenLogin(true);
-      this.accediGoogle(this.utente);
     },error => {
       this.ds.updateResultService(error.error.status);
       this.ds.updateSpinner(false);
