@@ -42,7 +42,7 @@
     <div class="card-body desc-corso pl-1 pr-1 pb-0 d-flex justify-content-center bg-white ">
       <marquee
         *ngIf="corso.descrizioneCorso !== undefined && corso.descrizioneCorso !== null && corso.descrizioneCorso !== ''"
-        behavior="scroll" scrollamount="2" direction="up" [innerHtml]="corso.descrizioneCorso"></marquee>
+        behavior="scroll" style="max-height: 120px;" scrollamount="2" direction="up" [innerHtml]="corso.descrizioneCorso"></marquee>
 
       <div
         *ngIf="corso.descrizioneCorso === undefined || corso.descrizioneCorso === null || corso.descrizioneCorso === ''">

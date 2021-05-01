@@ -1,15 +1,15 @@
 
 
 <div *ngIf="isCardCorso && !isDevice " class="chip">
-    <img *ngIf="utente.img !== undefined && utente.img !== null && utente.img !== ''" alt="Web Studio" width="96" height="96" src="{{utente.img}}" />
-    <img *ngIf="utente.img === undefined || utente.img === null || utente.img === ''" alt="Web Studio" width="96" height="96" src="../../../assets/images/default.png" />
+    <img *ngIf="utente.img !== undefined && utente.img !== null && utente.img !== ''" alt="Web Studio" width="90" height="90" src="{{utente.img}}" />
+    <img *ngIf="utente.img === undefined || utente.img === null || utente.img === ''" alt="Web Studio" width="90" height="90" src="../../../assets/images/default.png" />
     <button class="btn btn-lg p-0 " (click)="goToPageUtenteWithID()" >
         <div class="row">
             <div class="col-12 pr-0 pl-0">
                 <h6 class="small-h6 mt-1">Pubblicato da :</h6>
             </div>
             <div class="col-12 pr-0 pl-0">
-                <h6 class="text-primary no-margin"> {{utente.nome}} {{utente.cognome}} </h6>
+                <h6 class="text-primary no-margin small2-h6"> {{utente.nome}} {{utente.cognome}} </h6>
                 
             </div>
         </div>
