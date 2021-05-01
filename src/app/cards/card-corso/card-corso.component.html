@@ -9,22 +9,21 @@
         src="../../../assets/images/default.png" class="align-self-center" />
 
     </div>
-    <div  class="card-body pt-0 pb-1 bgc-gray no-gutter">
+    <div  class="card-body pl-body pr-body pt-1 pb-1 bgc-gray no-gutter body-front">
 
-      <div class="d-flex justify-content-center">
-        <h3 class="mt-2">{{corso.nomeCorso}}</h3>
+      <div class="row no-gutter mb-3">
+        <div class="col-12 ">
+          <h5 class="card-title mt-1">{{corso.nomeCorso}}</h5>
+          <p class="card-text mtn-15">{{corso.subNomeCorso}}</p>
+        </div>
       </div>
 
-      <div class="d-flex justify-content-center mtn-15">
-        <p class="fw-lighter mtn-5">{{corso.subNomeCorso}}</p>
-      </div>
-
-      <div  class="d-flex justify-content-center mt-1">
+      <div  class="d-flex justify-content-center mb-1">
         <ngx-stars [readonly]="true" [size]="1" [color]="'#ffc400'" [initialStars]="corso.mediumFeeds"></ngx-stars>
         <p class="card-text ml-1" style="margin-top: -3px !important;"><small class="text-muted">( {{corso.totFeeds}} )</small></p>
       </div>
 
-      <div  class="d-flex justify-content-center mt-2  mb-2">
+      <div  class="d-flex justify-content-center  mb-3">
         <app-info-utente [utente]="corso.owner" class="pr-0" [isCardCorso]="true"></app-info-utente>
       </div>
 
@@ -37,7 +36,7 @@
 
 
   <div *ngIf="isFlipped">
-    <div class="card-header d-flex justify-content-center">
+    <div class="card-header pt-1 pb-1 d-flex justify-content-center">
       <h4 class="mt-2">Informazioni sul tutorial</h4>
     </div>
     <div class="card-body desc-corso pl-1 pr-1 pb-0 d-flex justify-content-center bg-white ">
@@ -51,7 +50,7 @@
       </div>
 
     </div>
-    <div class="card-footer d-flex pt-1 pb-1">
+    <div class="card-footer pr-1 pl-1 d-flex pt-1 pb-1">
 
       <button *ngIf="showAccedi" mat-button (click)="openLogin()" style="color: #6c757d;">
         Accedi

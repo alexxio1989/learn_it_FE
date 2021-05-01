@@ -1,12 +1,26 @@
 .card{
-  width: 260px;
-  min-height: 320px;
+  width: 220px;
+  min-height: 270px;
+}
+
+.body-front{
+  min-height: 145px;
+}
+
+.pl-body{
+  padding-left: 0.5rem !important;
 }
 
 
+.pr-body{
+  padding-right: 0.5rem !important;
+}
+
+
+
 .card-box-img {
-  max-height: 130px !important;
-  min-height: 130px !important;
+  max-height: 75px !important;
+  min-height: 75px !important;
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
@@ -16,13 +30,12 @@
 }
 
 img {
-  width: 270px;
-  height: 124px;
+  width: 214px;
+  height: 70px;
   object-fit: contain;
 }
 
 .desc-corso {
   background-color: rgb(247, 247, 247);
-  min-height: 211px;
-  max-height: 211px;
+  min-height: 169px;
 }
