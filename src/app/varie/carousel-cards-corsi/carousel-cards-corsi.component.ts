@@ -73,7 +73,8 @@ export class CarouselCardsCorsiComponent implements OnInit {
       autoplaySpeed: 2000 ,
       arrows: true,
       centerMode: true,
-      focusOnSelect: true
+      focusOnSelect: true,
+      variableWidth: true
     }
 
   }

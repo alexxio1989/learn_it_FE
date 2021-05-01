@@ -178,6 +178,40 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     border-left-color: inherit;
     
   }
+  .cdk-overlay-pane {
+    min-width: 97% !important
+}
+.mat-dialog-content {
+  max-height: 60vh !important;
+}
+img{
+  max-width: 350px !important;
+}
+.CodeMirror-sizer{
+  min-width: 350px !important;
+  max-width: 350px !important;
+}
+.slick-slide {
+
+  outline: 0 !important;
+  height: auto !important;
+  
+  
+}
+
+.card-custom-corso img {
+
+  border: 2px solid rgba(255, 255, 255, 0.125);
+   
+  border-radius: 0.25rem;
+  box-shadow: 0 0 5px rgba(10, 10, 10, 0.3);
+  position: absolute;
+  top: 20px;
+  left: 1.25rem;
+  width: 120px;
+  height: 60px;
+  background-color: white;
+}
 }
 
 .card-custom-avatar img {
@@ -208,22 +242,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
 } 
 
-@media all and (max-width: 400px){
-    
-  .card-custom-corso img {
-
-    border: 2px solid rgba(255, 255, 255, 0.125);
-     
-    border-radius: 0.25rem;
-    box-shadow: 0 0 5px rgba(10, 10, 10, 0.3);
-    position: absolute;
-    top: 20px;
-    left: 1.25rem;
-    width: 120px;
-    height: 60px;
-    background-color: white;
-  }
-} 
+ 
 
 
 
@@ -396,21 +415,7 @@ h6{
 }
  
 
-  @media all and (max-width: 400px){
-    .cdk-overlay-pane {
-        min-width: 97% !important
-    }
-    .mat-dialog-content {
-      max-height: 60vh !important;
-    }
-    img{
-      max-width: 350px !important;
-    }
-    .CodeMirror-sizer{
-      min-width: 350px !important;
-      max-width: 350px !important;
-    }
-  }
+
 
 
   @media all and (min-width: 500px){
@@ -448,12 +453,8 @@ h6{
 }
 
 
-.slick-slide {
 
-  outline: 0 !important;
-  height: auto !important;
-  
-}
+
 
 .slick-slider .slick-list {
   height: auto !important;

@@ -91,7 +91,6 @@ import { CropperComponent } from './varie/cropper/cropper.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { GoogleSigninComponent } from './google-signin/google-signin.component';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
-import { SlideComponent } from './varie/carousel-cards-corsi/slide/slide.component';
 
 
 
@@ -172,8 +171,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     FormatTimePipe,
     InfoCorsoComponent,
     CropperComponent,
-    GoogleSigninComponent,
-    SlideComponent
+    GoogleSigninComponent
     
   ],
   imports: [

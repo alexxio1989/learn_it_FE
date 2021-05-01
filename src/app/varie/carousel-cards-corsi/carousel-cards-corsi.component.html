@@ -16,8 +16,13 @@
     <ng-container *ngIf="slickController.initialize">
      
 
-        <div slickItem *ngFor="let slide of slides"  class="p-2  pb-4 d-flex justify-content-center">
-            <app-slide [corsi] = "slide.corsi"></app-slide>
+        <div slickItem *ngFor="let slide of slides" class="pb-0 d-flex justify-content-center">
+           
+            <div style="width: 340px;" class="row">
+                <div *ngFor="let corso of slide.corsi"  class="col-12 pl-0 pr-0 mb-3">
+                    <app-card-corso-light [corso]="corso"></app-card-corso-light> 
+                </div>
+            </div>
         </div>
     </ng-container>
 </div>

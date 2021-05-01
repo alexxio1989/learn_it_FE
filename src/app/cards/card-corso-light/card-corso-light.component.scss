@@ -1,110 +1,18 @@
-
-.mln-3{
-  margin-left: -3px;
-}
-.mln-2{
-  margin-left: -2px;
-}
-.mln-1{
-  margin-left: -1px;
-}
-
-.card-corso {
-  border-radius: 8px;
-  position: relative;
-  height: 180px;
-  width: 250px;
-  transform-style: preserve-3d;
-  max-width: 260px !important;
-  clip-path: polygon(0 0, calc(100% - var(--cs)) 0, 100% var(--cs), 100% 100%, 0 100%);
-}
-
-.card-box {
-  backface-visibility: hidden;
-  height: 100%;
-  position: absolute;
-  border-radius: 8px;
-  
-  user-select: none;
-  cursor: pointer;
-}
-
-.card-box-img{
-  padding: 10px;
-  
+.card{
+  width: 300px;
+  min-height: auto;
 }
 
 
-.shadow-small {
-  box-shadow: 0 0.4rem 1rem rgb(0 0 0 / 10%) !important;
+img {
+  border-radius: 5%;
+  width: 120px;
+  height: 60px;
+  object-fit: contain;
 }
 
-
-.card-img{
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border-radius: 0.25rem;
-}
-
-
-
-
-
-  
-    
-    img {
-      border-radius: 5%;
-      width: 120px;
-      height: 60px;
-      object-fit: contain;
-    }
-
-    
-
-
-
-
-  .bgc-gray-footer{
-    background-color:#efefef;
-  }
-
-
-  .card-wrapper {
-    perspective: 800px;
-}
-
-
-
-
-
-
-
-
-
-.front {
-    
-}
-
-.back {
-    
-    transform: rotateY(0deg) !important;
-}
-
-
-
-
-.folded_corner{
-  position:relative;
- 
-  padding-top:40px;
-  
-  background: linear-gradient(to left bottom, transparent 50%, rgba(98, 98, 98, 0.4) 0) no-repeat 100% 0 / 2em 2em,
-    linear-gradient(-135deg, transparent 1.5em, rgb(255, 255, 255) 0);
-  
-  
+.desc-corso {
+  background-color: rgb(247, 247, 247);
+  min-height: 100px;
+  max-height: 100px;
 }

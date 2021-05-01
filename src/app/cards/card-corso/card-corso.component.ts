@@ -1,6 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
-import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Corso } from 'src/app/model/Corso';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
@@ -9,46 +8,29 @@ import { getUserLS, isNotEmptyArray, isNotNullObj, isSameUser } from 'src/app/ut
 
 import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { Lettura } from 'src/app/model/Lettura';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
  
-import { StripeService, StripeCardComponent } from 'ngx-stripe';
-import {
-  StripeCardElementOptions,
-  StripeElementsOptions 
-} from '@stripe/stripe-js';
+
 import { PagamentiServiceService } from 'src/app/services/pagamenti-service.service';
 import { Acquisto } from 'src/app/model/Acquisto';
 import { ModalPagamentoComponent } from 'src/app/modals/modal-pagamento/modal-pagamento.component';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { ICard } from '../ICard';
 
 @Component({
   selector: 'app-card-corso',
   templateUrl: './card-corso.component.html',
-  styleUrls: ['./card-corso.component.scss'],
-  animations: [
-    trigger('flipCard', [
-      state('true', style({
-        transform: 'rotateY(180deg)'
-      })),
-      state('false', style({
-        transform: 'rotateY(0)'
-      })),
-      transition('true => false', animate('800ms ease-out')),
-      transition('false => true', animate('800ms ease-out'))
-    ])
-  ]
+  styleUrls: ['./card-corso.component.scss']
 })
-export class CardCorsoComponent implements OnInit {
+export class CardCorsoComponent implements OnInit,ICard {
 
+  isFlipped: boolean;
 
   @Input() corso: Corso;
   
-  state = 0;
-  flipped = false;
-  front = false;
   url='https://www.ilmiocodice.com/corso?id=';
 
-  isShowInfo: boolean;
+  
   isEmptyDescrizione: boolean;
   isCorsoLetto: boolean;
   isCorsoDaPagare: boolean;
@@ -62,23 +44,7 @@ export class CardCorsoComponent implements OnInit {
   showAccedi: boolean;
   isDevice: boolean;
 
-  card = { isFlipped: false };
   
-
-  playGame(card, corso: Corso) {
-    this.ds.updateCorsoSelected(corso);
-  }
-
-
-  get getMediumFeeds(){
-    
-    let count = this.corso.feeds.reduce(function (s, a) {
-      return s + a.feed;
-    }, 0);
-
-    return count / this.corso.feeds.length;
-  }
-
 
   constructor(private fb: FormBuilder,
               private us: UtenteServiceService ,
@@ -87,16 +53,6 @@ export class CardCorsoComponent implements OnInit {
               private ds: DelegateServiceService,
               private ps: PagamentiServiceService,
               private deviceService: DeviceDetectorService) {
-
-                this.ds.getOBSCorsoSelected().subscribe(next => {
-                  if(next.id === this.corso.id){
-                    this.card.isFlipped = !this.card.isFlipped;
-                    setTimeout(()=>{ this.front = this.card.isFlipped }, 300)
-                  }else {
-                    this.card.isFlipped = false;
-                    setTimeout(()=>{ this.front = this.card.isFlipped }, 300)
-                  }
-                })
 
               this.ds.getOBSUser().subscribe(next => {
                 this.checkLettureUtente();
@@ -109,6 +65,7 @@ export class CardCorsoComponent implements OnInit {
               })
 
   }
+  
 
   ngOnInit(): void {
 
@@ -132,6 +89,7 @@ export class CardCorsoComponent implements OnInit {
     }
 
   }
+
 
   private setFlags() {
     if (this.user !== undefined && this.user !== null) {
@@ -162,9 +120,6 @@ export class CardCorsoComponent implements OnInit {
   }
 
 
-  scrollDone() {
-    this.state++;
-  }
 
   goToCorso(corso: Corso){
     let lettura = new Lettura();
@@ -193,11 +148,6 @@ export class CardCorsoComponent implements OnInit {
     this.route.navigate(['/corso'], { queryParams: { id: corso.id } }); 
   }
 
-
-  showInfo(){
-    this.isShowInfo = !this.isShowInfo;
-  }
-
   openLogin() {
       this.ds.updateOpenLogin(true);
   }
@@ -211,10 +161,7 @@ export class CardCorsoComponent implements OnInit {
       }
   }
 
-  cardBoxImg = {
-    'max-height': '100px !important',
-    'min-height': '100px !important'
-  }
+ 
 
   
 }
