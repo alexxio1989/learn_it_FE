@@ -23,21 +23,22 @@
             <div *ngIf="!addDescrizione" class="col-12 mt-3 d-flex justify-content-center "> 
                 <mat-form-field class="example-form-field">
                     <mat-label>Nome tutorial</mat-label>
-                    <input matInput type="text" [(ngModel)]="corso.nomeCorso">
+                    <input matInput [maxLength]="50" type="text" [(ngModel)]="corso.nomeCorso">
                     <button mat-button *ngIf="corso.nomeCorso" matSuffix mat-icon-button aria-label="Clear" (click)="corso.nomeCorso=''">
                         <mat-icon>close</mat-icon>
                     </button>
+                   <h6>({{corso.nomeCorso.length}} / 50)</h6> 
                 </mat-form-field>
             </div>
             <div *ngIf="!addDescrizione" class="col-12 d-flex justify-content-center ">
-                <mat-form-field class="example-form-field">
+
+                <mat-form-field appearance="fill" class="size-comment">
                     <mat-label>Breve descrizione del tutorial</mat-label>
-                    <input matInput type="text" [(ngModel)]="corso.subNomeCorso">
-                    <button mat-button *ngIf="corso.subNomeCorso" matSuffix mat-icon-button aria-label="Clear"
-                        (click)="corso.subNomeCorso=''">
-                        <mat-icon>close</mat-icon>
-                    </button>
+                    <textarea [maxLength]="100" [(ngModel)]="corso.subNomeCorso" matInput></textarea>
+                    
+                    <h6>({{corso.nomeCorso.length}} / 100)</h6>
                 </mat-form-field>
+
             </div>
      
         <div class="row mb-2 mt-4" *ngIf="corso.aPagamento && !addDescrizione">
