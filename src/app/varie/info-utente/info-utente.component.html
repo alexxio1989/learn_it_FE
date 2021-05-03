@@ -6,7 +6,7 @@
     <button class="btn btn-lg p-0 " (click)="goToPageUtenteWithID()" >
         <div class="row">
             <div class="col-12 pr-0 pl-0">
-                <h6 class="small-h6 mt-1">Pubblicato da :</h6>
+                <h6 class="small2-h6 mt-1">Pubblicato da :</h6>
             </div>
             <div class="col-12 pr-0 pl-0">
                 <h6 class="text-primary no-margin small2-h6"> {{utente.nome}} {{utente.cognome}} </h6>
@@ -16,10 +16,10 @@
     </button>
 </div>
 
-<div *ngIf="isCardCorso" >
-   
+<div *ngIf="isCardCorso" class="d-flex">
+   <h6 class="small2-h6">Pubblicato da :</h6>
     <button class="btn btn-lg p-0 " (click)="goToPageUtenteWithID()" >
-        <h6 class="text-primary no-margin"> {{utente.nome}} {{utente.cognome}} </h6>
+        <h6 class="text-primary no-margin ml-1 mtn-11 small2-h6"> {{utente.nome}} {{utente.cognome}} </h6>
     </button>
 </div>
 

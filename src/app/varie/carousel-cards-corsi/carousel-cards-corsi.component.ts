@@ -34,8 +34,11 @@ export class CarouselCardsCorsiComponent implements OnInit {
 
   ngOnInit(): void {
 
+
+    this.isDevice = this.deviceService.isMobile();
+
     if(this.corsi.length > 0){
-      this.slides = this.getSlides(this.corsi , 2);
+      this.slides = this.getSlides(this.corsi , this.isDevice && this.corsi.length > 2 ? 2 : 1);
     }
 
     //this.countDown = timer(0, this.tick).subscribe(() => --this.counter)
@@ -52,25 +55,14 @@ export class CarouselCardsCorsiComponent implements OnInit {
       }
     })
 
-    this.isDevice = this.deviceService.isMobile();
 
     this.isDevice ? this.widthSlide = 370 : this.widthSlide = 400
 
-    this.config = {
-      infinite: true,
-      slidesToShow: this.corsi.length > 1 || this.corsi.length < 4 ?  this.corsi.length  : 4, 
-      slidesToScroll: 1,
-      dots: true,
-      autoplay: false,
-      autoplaySpeed: 2000 ,
-      arrows: true,
-      centerMode: true,
-      focusOnSelect: true
-    }
+
 
     this.configSlides = {
       infinite: true,
-      slidesToShow: this.isDevice? 1 : 3, 
+      slidesToShow: this.isDevice? 1 : 2, 
       slidesToScroll: 1,
       dots: true,
       autoplay: false,

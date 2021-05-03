@@ -91,3 +91,7 @@ img {
 .small2-h6{
     font: 400 calc(14px * 0.67)/12px Roboto, "Helvetica Neue", sans-serif !important;
 }
+
+.mtn-11{
+    margin-top: -11px !important;
+}
