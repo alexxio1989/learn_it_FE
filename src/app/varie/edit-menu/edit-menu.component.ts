@@ -273,7 +273,10 @@ export class EditMenuComponent implements OnInit {
 
 
   openDialog() {
-    const dialogRef = this.dialog.open(this.component);
+    const dialogRef = this.dialog.open(this.component, {
+       
+      width: '600px'
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

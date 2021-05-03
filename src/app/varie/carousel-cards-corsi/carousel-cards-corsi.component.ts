@@ -27,6 +27,8 @@ export class CarouselCardsCorsiComponent implements OnInit {
   countDown:Subscription;
   counter = 4000;
   tick = 1000;
+
+  widthSlide: number;
  
   constructor(private ds: DelegateServiceService,private deviceService: DeviceDetectorService) { }
 
@@ -52,6 +54,8 @@ export class CarouselCardsCorsiComponent implements OnInit {
 
     this.isDevice = this.deviceService.isMobile();
 
+    this.isDevice ? this.widthSlide = 370 : this.widthSlide = 400
+
     this.config = {
       infinite: true,
       slidesToShow: this.corsi.length > 1 || this.corsi.length < 4 ?  this.corsi.length  : 4, 
@@ -66,7 +70,7 @@ export class CarouselCardsCorsiComponent implements OnInit {
 
     this.configSlides = {
       infinite: true,
-      slidesToShow: 1, 
+      slidesToShow: this.isDevice? 1 : 3, 
       slidesToScroll: 1,
       dots: true,
       autoplay: false,

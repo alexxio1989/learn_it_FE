@@ -3,7 +3,7 @@
 </div>
 
 
-<div *ngIf="!isDevice" slickContainer #slickController="slick" class="pt-2 my-carousele" [slickConfig]="config">
+<div *ngIf="false" slickContainer #slickController="slick" class="pt-2 my-carousele" [slickConfig]="config">
     <ng-container *ngIf="slickController.initialize">
         <div slickItem *ngFor="let corso of corsi" class="p-2  pb-1 d-flex justify-content-center">
                 <app-card-corso [corso]="corso"></app-card-corso> 
@@ -12,7 +12,7 @@
     </ng-container>
 </div>
 
-<div *ngIf="isDevice && slides.length > 1">
+<div *ngIf="slides.length > 1">
 
     <div slickContainer #slickController="slick" class="pt-2 my-carousele" [slickConfig]="configSlides">
         <ng-container *ngIf="slickController.initialize">
@@ -20,9 +20,9 @@
     
             <div slickItem *ngFor="let slide of slides"  class="pb-0 d-flex justify-content-center">
                
-                <div [ngStyle] = "{'width' : '340px' }"  class="row">
-                    <div *ngFor="let corso of slide.corsi" class="col-12 p-0 pt-3" >
-                        <app-card-corso-light [corso]="corso"></app-card-corso-light> 
+                <div [ngStyle] = "{'width' : widthSlide + 'px' }"  class="row">
+                    <div *ngFor="let corso of slide.corsi" class="col-12  pt-3" >
+                        <app-card-corso-light [width] = "widthSlide - 50" [corso]="corso"></app-card-corso-light> 
                     </div>
                 </div>
             </div>
@@ -30,8 +30,8 @@
     </div>
 </div>
 
-<div *ngIf="isDevice && slides.length === 1">
+<div *ngIf=" slides.length === 1">
     <div *ngFor="let corso of slides[0].corsi" class="col-12 d-flex justify-content-center pt-2">
-        <app-card-corso-light [corso]="corso"></app-card-corso-light> 
+        <app-card-corso-light [width] = "350"  [corso]="corso"></app-card-corso-light> 
     </div>
 </div>

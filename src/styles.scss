@@ -117,6 +117,25 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 @media all and (min-width: 500px){
+
+  .card-custom-corso img {
+
+    border: 2px solid rgba(255, 255, 255, 0.125);
+     
+    border-radius: 0.25rem;
+    box-shadow: 0 0 5px rgba(10, 10, 10, 0.3);
+    position: absolute;
+    top: 10px;
+    left: 1.25rem;
+    width: 100px;
+    height: 100px;
+    background-color: white;
+  }
+  
+  .mat-dialog-content {
+    max-height: 83vh !important;
+  }
+
   .card-custom-img-corso {
     height: 150px;
     min-height: 100px;
@@ -208,8 +227,8 @@ img{
   position: absolute;
   top: 20px;
   left: 1.25rem;
-  width: 120px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
   background-color: white;
 }
 }
@@ -225,22 +244,7 @@ img{
   background-color: white;
 }
 
-@media all and (min-width: 500px){
-    
-  .card-custom-corso img {
 
-    border: 2px solid rgba(255, 255, 255, 0.125);
-     
-    border-radius: 0.25rem;
-    box-shadow: 0 0 5px rgba(10, 10, 10, 0.3);
-    position: absolute;
-    top: 40px;
-    left: 1.25rem;
-    width: 150px;
-    height: 50x;
-    background-color: white;
-  }
-} 
 
  
 
@@ -418,12 +422,6 @@ h6{
 
 
 
-  @media all and (min-width: 500px){
-    
-    .mat-dialog-content {
-      max-height: 83vh !important;
-    }
-  } 
 
   .carousel {
     height: 100%;

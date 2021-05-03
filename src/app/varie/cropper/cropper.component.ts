@@ -14,7 +14,7 @@ export class CropperComponent{
   imageChangedEvent: any = '';
 
   constructor() {
-      this.ratio = 3;
+      this.ratio = 1;
   }
 
   fileChangeEvent(event: any): void {

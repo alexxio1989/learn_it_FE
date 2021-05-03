@@ -61,6 +61,8 @@ export class CardCorsoLightComponent implements OnInit,ICard{
   showAccedi: boolean;
   isDevice: boolean;
 
+  @Input() width: number;
+
   
 
   constructor(private fb: FormBuilder,
