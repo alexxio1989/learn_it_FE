@@ -44,7 +44,8 @@ export class ModalRichiestaComponent implements OnInit {
       cittaCtrl: ['', Validators.required],
       indirizzoCtrl: ['', Validators.required],
       phoneCtrl: ['', Validators.required],
-      dataCtrl: ['', Validators.required]
+      dataCtrl: ['', Validators.required],
+      zipCtrl: ['', Validators.required]
     });
 
     this.ibanReactive = new FormControl(
@@ -70,7 +71,7 @@ export class ModalRichiestaComponent implements OnInit {
 
   salva(){
     this.rs.getIPAddress().subscribe((res:any)=>{  
-      this.utente.ip = res.ip;  
+      this.utente.ip = res.ip;   
       this.richiesta.utente = this.utente;
       console.log(JSON.stringify(this.richiesta))
       this.rs.getOBSSave(this.richiesta).subscribe(next => {

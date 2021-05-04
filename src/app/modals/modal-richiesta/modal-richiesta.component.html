@@ -89,6 +89,16 @@
                     </mat-form-field>
                 </div>
                 <div class="col-12 col-md-6 d-flex justify-content-center">
+                    <mat-form-field class="example-form-field mt-3">
+                        <mat-label>Codice Postale</mat-label>
+                        <input matInput type="text"   [(ngModel)]="utente.recapito.zip" name="zip" formControlName="zipCtrl">
+                        <button mat-button *ngIf="utente.recapito.zip" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="utente.recapito.zip = ''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 d-flex justify-content-center">
                     <mat-form-field appearance="fill" class="example-form-field mt-1">
                         <mat-label>Data di nascita</mat-label>
                         <input matInput [(ngModel)]="utente.dataNascita" [matDatepicker]="datepicker" formControlName="dataCtrl">

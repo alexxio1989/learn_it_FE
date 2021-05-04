@@ -46,15 +46,19 @@ export class PageAdminComponent implements OnInit {
 
   editRichiesta(richiesta: Richiesta , esito: boolean){
     richiesta.approvato = esito;
-    this.rs.getOBSUpdate(richiesta).subscribe(next => {
-      
-      this.ds.updateResultService("Richiesta modificata correttamente")
-      this.ds.updateSpinner(false);
-      this.getRichieste();
-    },error => {
-      this.ds.updateResultService("Modifica richiesta in errore")
-      this.ds.updateSpinner(false);
-    })
+
+    this.rs.getIPAddress().subscribe((res:any)=>{  
+      richiesta.utente.ip = res.ip;  
+      this.rs.getOBSUpdate(richiesta).subscribe(next => {
+        
+        this.ds.updateResultService("Richiesta modificata correttamente")
+        this.ds.updateSpinner(false);
+        this.getRichieste();
+      },error => {
+        this.ds.updateResultService("Modifica richiesta in errore")
+        this.ds.updateSpinner(false);
+      })
+    });
   }
 
 }
