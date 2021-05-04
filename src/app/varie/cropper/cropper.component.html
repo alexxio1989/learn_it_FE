@@ -5,7 +5,7 @@
     <button mat-button (click)="fileInput.click()">
       <mat-icon class="mr-1">photo_camera
       </mat-icon>
-      <span>Scegli un'immagine</span>
+      <span>{{label}}</span>
       <input #fileInput type="file" (change)="fileChangeEvent($event)" style="display:none;" />
     </button>
 
@@ -18,7 +18,7 @@
         [imageChangedEvent]="imageChangedEvent"
         [maintainAspectRatio]="true"
         [aspectRatio]="ratio"
-        format="png"
+        format="type"
         (imageCropped)="imageCropped($event)"
         (imageLoaded)="imageLoaded($event)"
         (cropperReady)="cropperReady()"

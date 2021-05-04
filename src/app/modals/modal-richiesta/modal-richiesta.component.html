@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-12" >
-        <h4>Modulo Richiesta</h4>
+        <h4 class="mt-3">Modulo Richiesta</h4>
         
     </div>
 </div>
@@ -14,9 +14,199 @@
         </div>
 
     </form>
+
+    <mat-accordion class="mt-2">
+        <mat-expansion-panel class="mt-2">
+         <mat-expansion-panel-header>
+              <mat-panel-title>
+                  <h5 class="mt-3">Dati anagrafici</h5>
+              </mat-panel-title>
+              <mat-panel-description>
+                  <h5 [ngStyle] = "{'color' : datiAnagraficiCompleted ? 'green' : 'red'}" class="mt-3">{{datiAnagraficiCompleted ? 'Completi' : 'Incompleti'}}</h5>
+               
+                  <mat-icon [ngStyle] = "{'color' : datiAnagraficiCompleted ? 'green' : 'red'}" class="share-button mt-3 ml-1">{{datiAnagraficiCompleted ? 'done' : 'priority_high'}}</mat-icon>
+              </mat-panel-description>
+         </mat-expansion-panel-header>
+         <form [formGroup]="datiAnagraficiFormGroup">
+            <div class="row">
+                
+                <div class="col-12 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <mat-label>Nome</mat-label>
+                        <input matInput type="text"   [(ngModel)]="utente.nome" name="nome" formControlName="nomeCtrl">
+                        <button mat-button *ngIf="utente.nome" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="utente.nome=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <mat-label>Cognome</mat-label>
+                        <input matInput type="text"   [(ngModel)]="utente.cognome" name="cognome" formControlName="cognometrl">
+                        <button mat-button *ngIf="utente.cognome" matSuffix mat-icon-button aria-label="Clear" (click)="utente.cognome=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <mat-label>Professione</mat-label>
+                        <input matInput type="text"   [(ngModel)]="utente.attivita" name="attivita" formControlName="attivitaCtrl">
+                        <button mat-button *ngIf="utente.attivita" matSuffix mat-icon-button aria-label="Clear" (click)="utente.attivita=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <mat-label>Citta</mat-label>
+                        <input matInput type="text"   [(ngModel)]="utente.recapito.citta" name="citta" formControlName="cittaCtrl">
+                        <button mat-button *ngIf="utente.recapito.citta" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="utente.recapito.citta=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <mat-label>Indirizzo</mat-label>
+                        <input matInput type="text"   [(ngModel)]="utente.recapito.indirizzo" name="indirizzo" formControlName="indirizzoCtrl">
+                        <button mat-button *ngIf="utente.recapito.indirizzo" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="utente.recapito.indirizzo=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 d-flex justify-content-center">
+                    <mat-form-field>
+                        <mat-label>Telefono</mat-label>
+                        <input matInput type="text"   [(ngModel)]="utente.phone" name="phone" formControlName="phoneCtrl">
+                        <button mat-button *ngIf="utente.phone" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="utente.phone = ''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <div class="col-12 col-md-6 d-flex justify-content-center">
+                    <mat-form-field appearance="fill" class="example-form-field mt-1">
+                        <mat-label>Data di nascita</mat-label>
+                        <input matInput [(ngModel)]="utente.dataNascita" [matDatepicker]="datepicker" formControlName="dataCtrl">
+                        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                        <mat-datepicker #datepicker>
+                          
+                        </mat-datepicker>
+                    </mat-form-field>
+                </div>
+                
+                <div class="col-12 col-md-6 d-flex justify-content-center">
+                   
+                        <mat-select-country appearance="outline" label="Paese" (onCountrySelected)="onCountrySelected($event)">
+                        </mat-select-country> 
+                   
+                </div>
+            </div>
+        </form>
+       
+       </mat-expansion-panel>
+
+       <mat-expansion-panel class="mt-2">
+        <mat-expansion-panel-header class="right-aligned-header">
+             <mat-panel-title>
+                 <h5 class="mt-3">Dati Bancari</h5>
+             </mat-panel-title>
+             <mat-panel-description>
+                 <h5 class="mt-3" [ngStyle] = "{'color' : datiBancariCompleted ? 'green' : 'red'}">{{datiBancariCompleted ? 'Completi' : 'Incompleti'}}</h5>
+              
+                 <mat-icon [ngStyle] = "{'color' : datiBancariCompleted ? 'green' : 'red'}" class="share-button mt-3 ml-1">{{datiBancariCompleted ? 'done' : 'priority_high'}}</mat-icon>
+             </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <form [formGroup]="datiBancariFormGroup" autocomplete="off" novalidate>
+            <div class="row">
+                <div class="col-12 col-md-12 d-flex justify-content-center">
+              
+                    <div *ngIf="ibanReactive.invalid && (ibanReactive.dirty || ibanReactive.touched)" class="alert alert-danger w-75">
+                
+                        <div *ngIf="ibanReactive.errors.required">
+                            IBAN is required.
+                        </div>
+                        <div *ngIf="ibanReactive.errors.iban">
+                            IBAN is invalid
+                        </div>
+                
+                    </div>
+                    <div *ngIf="ibanReactive.valid && (ibanReactive.dirty || ibanReactive.touched)" class="alert alert-success w-75">
+                        IBAN is valid.
+                    </div>
+                </div>
+                <div class="col-12 col-md-12 d-flex justify-content-center">
+                    <mat-form-field>
+                        <mat-label>IBAN</mat-label>
+                        <input matInput type="text" [ngModel]="utente.bank.iban " 
+                        (ngModelChange)="utente.bank.iban=$event" name="iban" formControlName="ibanReactive" required>
+                        <button mat-button *ngIf="utente.bank.iban" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="utente.bank.iban = ''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                
+                
+    
+    
+                <div class="col-12 col-md-12 d-flex justify-content-center p-2">
+                   
+                    <mat-select-country appearance="outline" label="Paese della banca" (onCountrySelected)="onCountryBankSelected($event)">
+                    </mat-select-country> 
+               
+                </div>
+
+            </div>
+        </form>
+
+
+       
+      
+      </mat-expansion-panel>
+
+      <mat-expansion-panel class="mt-2">
+        <mat-expansion-panel-header class="right-aligned-header">
+             <mat-panel-title>
+                 <h5 class="mt-3">Documenti necessari</h5>
+             </mat-panel-title>
+             <mat-panel-description>
+                 <h5 [ngStyle] = "{'color' : documentiNecessariCompleted ? 'green' : 'red'}" class="mt-3">{{documentiNecessariCompleted ? 'Completi' : 'Incompleti'}}</h5>
+              
+                 <mat-icon [ngStyle] = "{'color' : documentiNecessariCompleted ? 'green' : 'red'}"  class="share-button mt-3 ml-1">{{documentiNecessariCompleted ? 'done' : 'priority_high'}}</mat-icon>
+             </mat-panel-description>
+        </mat-expansion-panel-header>
+
+    
+        <div class="row w-100 p-3">
+            <div class="col-12 d-flex justify-content-center">
+                <app-cropper [ratio] = "1.6" [label] = "'Carica documento frontale'" [type] = "'jpg'" (base65) = "retrieveFront($event)"></app-cropper>
+    
+            </div>
+        </div>
+
+      
+        <div class="row w-100 p-3">
+            <div class="col-12 d-flex justify-content-center">
+                <app-cropper [ratio] = "1.6" [label] = "'Carica documento posteriore'" [type] = "'jpg'" (base65) = "retrieveBack($event)"></app-cropper>
+    
+            </div>
+        </div>
+        
+      
+      </mat-expansion-panel>
+      
+      </mat-accordion>
+
+
 </mat-dialog-content>
 <mat-dialog-actions align="end">
    
     <button mat-button mat-dialog-close >Chiudi</button>
-    <button mat-button mat-dialog-close (click) = "salva()" [disabled] = "richiesta.motivazione === undefined || richiesta.motivazione === null || richiesta.motivazione ===''">Salva</button>
+    <button mat-button mat-dialog-close (click) = "salva()" [disabled] = "!datiAnagraficiCompleted || !datiBancariCompleted || !documentiNecessariCompleted">Salva</button>
 </mat-dialog-actions>

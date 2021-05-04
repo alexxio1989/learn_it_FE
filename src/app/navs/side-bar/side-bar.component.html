@@ -2,7 +2,7 @@
     <div class="row " style="background-color: #f2f2f2;margin-top: 1px;">
        
         <div *ngIf="isUtenteLogged" class="col-12 p-0">
-            
+           
             <app-card-utente [utente] = "utente" [isSideBar] ="true" [isCardCorso] ="false" ></app-card-utente>
         </div>
         <div *ngIf="!isUtenteLogged" class="col-12 text-right pr-1">

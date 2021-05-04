@@ -27,6 +27,6 @@ export class PagamentiServiceService {
   getOBSPay(acquisto: Acquisto): Observable<any>{
     this.ds.updateSpinner(true);
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/router/pay",acquisto ,{headers});
+    return this.http.post(ServiceCore.baseURl + "/acquisto/save",acquisto ,{headers});
   }
 }

@@ -1,7 +1,9 @@
+import { Country } from '@angular-material-extensions/select-country';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { Recapito } from 'src/app/model/Recapito';
 import { User } from 'src/app/model/User';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { UtenteServiceService } from 'src/app/services/utente-service.service';
@@ -57,6 +59,11 @@ export class ModalEditUtenteComponent implements OnInit {
   retrieveImg(base64:string){
     this.user.img = base64;
 
+  }
+
+  onCountrySelected(country: Country) {
+    this.user.recapito = new Recapito();
+    this.user.recapito.country= country;
   }
 
 }

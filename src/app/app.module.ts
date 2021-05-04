@@ -42,7 +42,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { PageUtenteComponent } from './pages/page-utente/page-utente.component';
 import {MatCardModule} from '@angular/material/card';
-import {MatRippleModule} from '@angular/material/core';
+import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import { NgxStripeModule } from 'ngx-stripe';
 import { PagamentiServiceService } from './services/pagamenti-service.service';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
@@ -91,7 +91,9 @@ import { CropperComponent } from './varie/cropper/cropper.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { GoogleSigninComponent } from './google-signin/google-signin.component';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { AngularIbanModule } from 'angular-iban';
+import { IbanPipe } from './pipes/iban.pipe';
 
 
 const cookieConfig: NgcCookieConsentConfig = {
@@ -171,7 +173,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     FormatTimePipe,
     InfoCorsoComponent,
     CropperComponent,
-    GoogleSigninComponent
+    GoogleSigninComponent,
+    IbanPipe
     
   ],
   imports: [
@@ -212,6 +215,9 @@ const cookieConfig: NgcCookieConsentConfig = {
     MatTabsModule,
     MatSelectCountryModule.forRoot('it'),
     ColorPickerModule,
+    AngularIbanModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     SocialLoginModule,
     MDBBootstrapModule.forRoot(),
     NgxSlickJsModule.forRoot({

@@ -25,5 +25,6 @@ export class User{
     bank: Bank = new Bank();
     mediaCorsi: number = 0;
     totCorsiPubblicati: number = 0;
+    ip: string;
     
 }

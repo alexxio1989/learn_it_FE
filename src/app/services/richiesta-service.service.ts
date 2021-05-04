@@ -30,4 +30,9 @@ export class RichiestaServiceService {
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
     return this.http.get(ServiceCore.baseURl + "/richiesta/getall", {headers});
   }
+
+  public getIPAddress()  
+  {  
+    return this.http.get("http://api.ipify.org/?format=json");  
+  }
 }

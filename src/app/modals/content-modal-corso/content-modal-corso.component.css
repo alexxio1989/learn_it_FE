@@ -9,7 +9,7 @@
 .NgxEditor__Wrapper{
     border: 1px solid rgba(0,0,0,.4);
     border-radius: 4px;
-    min-height: 200px !important;
+    min-height: 150px !important;
     height: auto;
 }
 

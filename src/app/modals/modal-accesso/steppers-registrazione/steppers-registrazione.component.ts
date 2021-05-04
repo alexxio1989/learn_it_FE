@@ -20,7 +20,7 @@ export class SteppersRegistrazioneComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   datiAccessoUncompleted: boolean = true;
-  datiAnagraficiUncompleted: boolean = true;
+  datiAnagraficiUncompleted: boolean = true; 
  
 
   constructor(private _formBuilder: FormBuilder) {}

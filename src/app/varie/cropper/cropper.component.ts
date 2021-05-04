@@ -8,6 +8,8 @@ import { Component, OnInit, Output , EventEmitter, Input} from '@angular/core';
 })
 export class CropperComponent{
 
+  @Input() label : string = 'Carica immagine';
+  @Input() type : string = 'png';
   @Input() ratio : number;
   @Output() base65 = new EventEmitter<string>();
   
