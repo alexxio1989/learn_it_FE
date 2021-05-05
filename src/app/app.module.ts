@@ -42,7 +42,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { PageUtenteComponent } from './pages/page-utente/page-utente.component';
 import {MatCardModule} from '@angular/material/card';
-import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
+import {MatNativeDateModule, MatRippleModule, MAT_DATE_LOCALE} from '@angular/material/core';
 import { NgxStripeModule } from 'ngx-stripe';
 import { PagamentiServiceService } from './services/pagamenti-service.service';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
@@ -240,6 +240,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     ParagrafoServiceService,
     DelegateServiceService,
     PagamentiServiceService,
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
    
     {
       provide: MatPaginatorIntl, 
