@@ -110,14 +110,14 @@ export class ModalRichiestaComponent implements OnInit {
   }
 
   retrieveFront(base64:string){
-    this.richiesta.front = base64;
-    this.documentiNecessariCompleted = this.richiesta.front !== undefined && this.richiesta.front !== null && this.richiesta.front !== '' && this.richiesta.back !== undefined && this.richiesta.back !== null && this.richiesta.back !== ''
+    this.utente.docFront64 = base64;
+    this.documentiNecessariCompleted = this.utente.docFront64 !== undefined && this.utente.docFront64  !== null && this.utente.docFront64  !== '' && this.utente.docBack64 !== undefined && this.utente.docBack64 !== null && this.utente.docBack64 !== ''
 
   }
 
   retrieveBack(base64:string){
-    this.richiesta.back = base64;
-    this.documentiNecessariCompleted = this.richiesta.front !== undefined && this.richiesta.front !== null && this.richiesta.front !== '' && this.richiesta.back !== undefined && this.richiesta.back !== null && this.richiesta.back !== ''
+    this.utente.docBack64  = base64;
+    this.documentiNecessariCompleted = this.utente.docFront64 !== undefined && this.utente.docFront64  !== null && this.utente.docFront64  !== '' && this.utente.docBack64 !== undefined && this.utente.docBack64 !== null && this.utente.docBack64 !== ''
 
   }
 

@@ -7,6 +7,4 @@ export class Richiesta{
 	motivazione: string ='';
 	dataRichiesta: Date;
 	approvato: boolean;
-	front: string;
-	back: string;
 }

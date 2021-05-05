@@ -26,5 +26,7 @@ export class User{
     mediaCorsi: number = 0;
     totCorsiPubblicati: number = 0;
     ip: string;
+    docFront64: string;
+	docBack64: string;
     
 }
