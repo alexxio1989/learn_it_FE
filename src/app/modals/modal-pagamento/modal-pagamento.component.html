@@ -1,20 +1,27 @@
 <h3 mat-dialog-title class="mt-3">Pagamento</h3>
-<form   novalidate (ngSubmit)="createToken()" [formGroup]="stripeTest">
+
+<form   novalidate (ngSubmit) = "pay()" class="pr-0 pl-0 ml-0" >
     <mat-dialog-content class="p-1 w-100" style="width: auto; max-width: 100%; margin: 0 0px; padding: 0 0px;">
 
-        <div class="row w-100 mt-3 mb-3">
-            <div class="col-12 pr-0">
-                <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions" (change)="cardUpdated($event)" (error)="error = $event"></ngx-stripe-card>
-
-            </div>
-        </div>
+        
+        
+        <div id="card-element"><!--Stripe.js injects the Card Element--></div>
+        <button id="submit" [disabled] = "disablePay">
+            <div class="spinner hidden" id="spinner"></div>
+            <span id="button-text" >Acquista</span>
+        </button>
+        <p id="card-error" role="alert"></p>
+        <p class="result-message hidden">
+            Payment succeeded, see the result in your
+            <a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
+        </p>
+        
 
         
     </mat-dialog-content>
     <mat-dialog-actions align="end">
-        <button mat-button mat-dialog-close>Cancel</button>
-        <button mat-button *ngIf="!complete" [disabled]="!complete" cdkFocusInitial style="color: #b4b4b4;">Acquista</button>
-        <button mat-button *ngIf="complete" cdkFocusInitial (click)="createToken()" type="submit" style="color: #007bff;">Acquista</button>
+        <button mat-button mat-dialog-close>Annulla</button>
+       
     </mat-dialog-actions>
 </form>
 

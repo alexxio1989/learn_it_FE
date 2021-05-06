@@ -33,6 +33,7 @@ export class RichiestaServiceService {
 
   public getIPAddress()  
   {  
+    this.ds.updateSpinner(true);
     return this.http.get("http://api.ipify.org/?format=json");  
   }
 }

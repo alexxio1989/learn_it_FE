@@ -29,4 +29,10 @@ export class PagamentiServiceService {
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
     return this.http.post(ServiceCore.baseURl + "/acquisto/save",acquisto ,{headers});
   }
+
+  getOBSPayIntent(acquisto: Acquisto): Observable<any>{
+   
+    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
+    return this.http.post(ServiceCore.baseURl + "/acquisto/getStripePaymentIntent",acquisto ,{headers});
+  }
 }
