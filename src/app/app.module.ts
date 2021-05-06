@@ -94,6 +94,7 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { AngularIbanModule } from 'angular-iban';
 import { IbanPipe } from './pipes/iban.pipe';
+import { FormUtenteComponent } from './form-utente/form-utente.component';
 
 
 const cookieConfig: NgcCookieConsentConfig = {
@@ -174,7 +175,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     InfoCorsoComponent,
     CropperComponent,
     GoogleSigninComponent,
-    IbanPipe
+    IbanPipe,
+    FormUtenteComponent
     
   ],
   imports: [
