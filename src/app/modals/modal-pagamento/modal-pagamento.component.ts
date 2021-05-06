@@ -1,8 +1,10 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { StripeCardElementOptions, StripeElement, StripeElementsOptions } from '@stripe/stripe-js';
 import { StripeCardComponent, StripeService } from 'ngx-stripe';
+import { from } from 'rxjs';
 import { Acquisto } from 'src/app/model/Acquisto';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { PagamentiServiceService } from 'src/app/services/pagamenti-service.service';
@@ -39,7 +41,8 @@ export class ModalPagamentoComponent implements OnInit {
   constructor(private stripeService: StripeService,
               private ps: PagamentiServiceService,
               private ds: DelegateServiceService,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.acquisto = this.ds.objSelected;
@@ -90,21 +93,39 @@ export class ModalPagamentoComponent implements OnInit {
   }
 
   pay(){
-    
-   
-    this.stripe
-    .confirmCardPayment(this.clientSecret, {
-      payment_method: {
-        card: this.card
-      }
-    }).then(function(result) {
-      if (result.error) {
+    this.ds.updateSpinner(true);
+    const observable = from(this.stripe
+      .confirmCardPayment(this.clientSecret, {
+        payment_method: {
+          card: this.card
+        }
+      })).subscribe(next => {
+        if(next.error){
+          this.ds.updateSpinner(false);
+        } else {
+
+          this.ds.objSelected = this.acquisto.corso;
+          
+          this.ps.updateAcquisto("");
+          this.ds.updateSpinner(false);
+          this.dialog.closeAll();
+        }
+      });
+
+
+    // this.stripe
+    // .confirmCardPayment(this.clientSecret, {
+    //   payment_method: {
+    //     card: this.card
+    //   }
+    // }).then(function(result) {
+    //   if (result.error) {
        
         
-      } else {
+    //   } else {
         
-      }
-    });
+    //   }
+    // });
    }
 
   cardUpdated(result) {

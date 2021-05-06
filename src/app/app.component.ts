@@ -6,9 +6,12 @@ import { Dominio } from './model/Dominio';
 import { Subscription } from 'rxjs';
 import { NgcCookieConsentService, NgcInitializeEvent, NgcNoCookieLawEvent, NgcStatusChangeEvent } from 'ngx-cookieconsent';
 import { Router } from '@angular/router';
-import { clearJWTTOKEN } from './utils/Util';
+import { clearJWTTOKEN, getUserLS } from './utils/Util';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalAccessoComponent } from './modals/modal-accesso/modal-accesso.component';
+import { Lettura } from './model/Lettura';
+import { PagamentiServiceService } from './services/pagamenti-service.service';
+import { UtenteServiceService } from './services/utente-service.service';
 
 @Component({
   selector: 'app-root',
@@ -38,6 +41,8 @@ export class AppComponent  implements OnInit, OnDestroy  {
               private cs: CorsoServiceService , 
               private ccService: NgcCookieConsentService, 
               private route: Router,
+              private us: UtenteServiceService,
+              private ps: PagamentiServiceService,
               private dialog: MatDialog){
 
     this.ds.getOBSPage().subscribe(next => {
@@ -65,6 +70,12 @@ export class AppComponent  implements OnInit, OnDestroy  {
     this.ds.getOBSTipiCorso().subscribe(next => {
       this.tipoCorsoList = next;
       this.cs.tipoCorsoList = next;
+    })
+
+    this.ps.getOBSAcquisto().subscribe(next => {
+      
+        this.goToCorso();
+     
     })
     
   }
@@ -105,6 +116,31 @@ export class AppComponent  implements OnInit, OnDestroy  {
       if(localStorage.getItem("COOKIE_CONSENT") !== undefined && localStorage.getItem("COOKIE_CONSENT") !== null){
         this.ccService.fadeOut();
       } 
+  }
+
+  goToCorso(){
+    let corso = this.ds.objSelected;
+    if(corso){
+      this.ds.paing = true;
+      let lettura = new Lettura();
+      lettura.idCorso = corso.id;
+      lettura.idUtente = getUserLS().id;
+      lettura.corso = corso;
+      lettura.lettore = getUserLS();
+      this.us.getOBSInsertLettura(lettura).subscribe(next=>{
+        this.ds.updatePage('CORSO');
+        this.ds.updateSpinner(false);
+        this.ds.updateResultService(next.status);
+       
+        localStorage.setItem('CORSO' , JSON.stringify(corso));
+        this.cs.corsoSelected = corso;
+        this.route.navigate(['/corso'], { queryParams: { id: corso.id } }); 
+      },error =>{
+        this.ds.updateSpinner(false);
+        this.ds.updateResultService(error.error.status);
+      })
+
+    }
   }
 
 

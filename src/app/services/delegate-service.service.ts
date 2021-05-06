@@ -19,6 +19,10 @@ export class DelegateServiceService {
 
   page: string;
 
+  paing = false;
+
+
+
   private _sbjAbilitaNavigazione= new Subject();
   private _sbjOpenLogin = new Subject();
   private _sbjSpinner = new Subject();

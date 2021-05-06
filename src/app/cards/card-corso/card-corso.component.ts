@@ -58,11 +58,7 @@ export class CardCorsoComponent implements OnInit,ICard {
                 this.checkLettureUtente();
               })
 
-              this.ps.getOBSAcquisto().subscribe(next => {
-                if("CORSO" === next){
-                  this.goToCorso(this.corso);
-                }
-              })
+             
 
   }
   
@@ -78,6 +74,7 @@ export class CardCorsoComponent implements OnInit,ICard {
     this.acquisto.causale = "Acquisto corso " + this.corso.nomeCorso;
     this.acquisto.total = this.corso.prezzo;
     this.acquisto.type = "CORSO"
+    this.acquisto.corso = this.corso;
     this.checkLettureUtente();
 
     if(this.corso.descrizioneCorso === undefined || 
@@ -121,25 +118,7 @@ export class CardCorsoComponent implements OnInit,ICard {
 
 
 
-  goToCorso(corso: Corso){
-    let lettura = new Lettura();
-    lettura.idCorso = corso.id;
-    lettura.idUtente = getUserLS().id;
-    lettura.corso = corso;
-    lettura.lettore = getUserLS();
-    this.us.getOBSInsertLettura(lettura).subscribe(next=>{
-      this.ds.updatePage('CORSO');
-      this.ds.updateSpinner(false);
-      this.ds.updateResultService(next.status);
-     
-      localStorage.setItem('CORSO' , JSON.stringify(corso));
-      this.cs.corsoSelected = corso;
-      this.route.navigate(['/corso'], { queryParams: { id: corso.id } }); 
-    },error =>{
-      this.ds.updateSpinner(false);
-      this.ds.updateResultService(error.error.status);
-    })
-  }
+ 
 
   continua(corso: Corso){
     this.ds.updatePage('CORSO');
@@ -157,7 +136,9 @@ export class CardCorsoComponent implements OnInit,ICard {
       if(this.isCorsoLetto){
         this.continua(corso);
       } else {
-          this.goToCorso(corso);
+        this.ds.objSelected = this.corso;
+          
+        this.ps.updateAcquisto("");
       }
   }
 
