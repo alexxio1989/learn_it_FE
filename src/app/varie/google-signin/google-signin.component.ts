@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
-import { User } from '../model/User';
-import { DelegateServiceService } from '../services/delegate-service.service';
+import { User } from '../../model/User';
+import { DelegateServiceService } from '../../services/delegate-service.service';
 
 @Component({
   selector: 'app-google-signin',

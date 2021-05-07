@@ -8,6 +8,7 @@ export class User{
     id: number;
     email: string;
     password: string;
+    confermaPassword: string;
     confirmPassword: string;
     datiRegistrazioneUnCompleted = true;
     nome: string;
@@ -28,5 +29,12 @@ export class User{
     ip: string;
     docFront64: string;
 	docBack64: string;
+
+    datiAccessoCompleted = false;
+    datiAnagraficiCompleted = false;
+    datiBancariCompleted = false;
+    documentiNecessariCompleted = false;
+
+    isSigningGoogle = false;
     
 }

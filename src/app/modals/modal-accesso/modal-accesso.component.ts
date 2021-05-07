@@ -40,8 +40,10 @@ export class ModalAccessoComponent implements OnInit {
 
     this.ds.getOBSUserGoogle().subscribe(utenteGoogle => {
       this.utente = utenteGoogle;
+      
       console.log("Accesso con google + this.utente.email")
-      if(this.emailGoogle === '' || this.emailGoogle !== this.utente.email){
+      if(this.emailGoogle === '' || this.emailGoogle !== this.utente.email && !this.utente.isSigningGoogle){
+        this.utente.isSigningGoogle = true;
         this.emailGoogle = this.utente.email;
         this.us.getOBSCount(this.utente).subscribe(next => {
           console.log(JSON.stringify(this.utente))
@@ -111,7 +113,6 @@ accediGoogle(user: User) {
     this.ds.updateSpinner(false);
     this.ds.updateAbilitaNavigazione(this.ds.page);
     this.dialog.closeAll();
-    window.location.reload();
   },error => {
     this.ds.updateResultService(error.error.status);
     this.ds.updateSpinner(false);

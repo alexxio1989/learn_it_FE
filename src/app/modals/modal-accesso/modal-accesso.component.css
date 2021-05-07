@@ -45,3 +45,8 @@
       .mat-button.mat-button-focus-overlay {
         background-color: transparent !important;
       }
+
+
+      app-form-utente{
+        max-width: 600px;
+      }

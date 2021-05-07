@@ -25,9 +25,8 @@ export class ModalPagamentoComponent implements OnInit {
   complete = false;
 
 
-  stripe = Stripe(environment.STRIPE_PUBLIC_TOKEN, {
-    stripeAccount: this.ds.objSelected.owner.idStripe
-  }); ;
+  stripe = this.ds.objSelected.owner.idStripe !== undefined && this.ds.objSelected.owner.idStripe !== null && this.ds.objSelected.owner.idStripe !== '' ?
+   Stripe(environment.STRIPE_PUBLIC_TOKEN, {stripeAccount: this.ds.objSelected.owner.idStripe}) : Stripe(environment.STRIPE_PUBLIC_TOKEN);
 
 
   card : stripe.elements.Element;
@@ -47,9 +46,10 @@ export class ModalPagamentoComponent implements OnInit {
   ngOnInit(): void {
     this.acquisto = this.ds.objSelected;
 
+    this.ds.objSelected.owner.idStripe !== undefined && this.ds.objSelected.owner.idStripe !== null && this.ds.objSelected.owner.idStripe !== '' ? 
     this.stripe = Stripe(environment.STRIPE_PUBLIC_TOKEN, {
       stripeAccount: this.acquisto.owner.idStripe
-    });
+    }) : this.stripe = Stripe(environment.STRIPE_PUBLIC_TOKEN);
 
     this.ps.getOBSPayIntent(this.acquisto).subscribe(next => {
       var elements = this.stripe.elements();

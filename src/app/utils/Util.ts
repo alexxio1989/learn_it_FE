@@ -91,6 +91,7 @@ export function clearJWTTOKEN(route: Router) {
 
             localStorage.removeItem('JWT_TIME');
             localStorage.removeItem('USER');
+            localStorage.removeItem('TYPES');
             localStorage.removeItem('JWT_TOKEN')
             route.navigate(['/']);
         }

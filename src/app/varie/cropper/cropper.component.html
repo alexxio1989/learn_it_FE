@@ -1,8 +1,8 @@
 
-<div class="row mt-4 mb-2">
+<div class="row ml-0 mt-4 mb-2">
   <div class="col-12 d-flex justify-content-center">
 
-    <button mat-button (click)="fileInput.click()">
+    <button mat-button class="btn-sm" (click)="fileInput.click()">
       <mat-icon class="mr-1">photo_camera
       </mat-icon>
       <span>{{label}}</span>
@@ -12,18 +12,27 @@
 
      
   </div>
-  <div *ngIf="imageChangedEvent !== ''" class="col-12 d-flex justify-content-center pl-5 pr-5">
-    <image-cropper
-    style="max-width: 500px;"
-        [imageChangedEvent]="imageChangedEvent"
-        [maintainAspectRatio]="true"
-        [aspectRatio]="ratio"
-        format="type"
-        (imageCropped)="imageCropped($event)"
-        (imageLoaded)="imageLoaded($event)"
-        (cropperReady)="cropperReady()"
-        (loadImageFailed)="loadImageFailed()"
-    ></image-cropper>
 
+  <div class="col-12 d-flex justify-content-center">
+    <img style="max-width: 400px;" *ngIf="base65Input !== undefined && base65Input !== null && base65Input !== '' && !changeing" alt="Card image cap"
+          [src]=" base65Input"  />
+  
+          
+  </div>
+        
+        
+        <!-- data:image/png; -->
+        <div *ngIf="imageChangedEvent !== ''" class="col-12 d-flex justify-content-center pl-5 pr-5">
+          <image-cropper
+          style="max-width: 500px;"
+              [imageChangedEvent]="imageChangedEvent"
+              [maintainAspectRatio]="true"
+              [aspectRatio]="ratio"
+              format="type"
+              (imageCropped)="imageCropped($event)"
+              (imageLoaded)="imageLoaded($event)"
+              (cropperReady)="cropperReady()"
+              (loadImageFailed)="loadImageFailed()"
+          ></image-cropper>
   </div>
 </div>

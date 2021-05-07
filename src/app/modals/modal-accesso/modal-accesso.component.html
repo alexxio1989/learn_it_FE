@@ -60,7 +60,7 @@
                 
                         </div>
                     </div>
-                    <app-steppers-registrazione [(user)] = "user"></app-steppers-registrazione>
+                    <app-form-utente [(utente)]="utente" [showDatiBancari] = "false" [showDocumentiNecessari] = "false"></app-form-utente>
                 </div>
                 
             
@@ -101,7 +101,7 @@
     <button mat-button *ngIf="isLogin && !isRecuperaPassword" [mat-dialog-close]="true" cdkFocusInitial (click)="login()"
     [disabled]="disableLogin">Accedi</button>
     <button mat-button *ngIf="!isLogin && !isRecuperaPassword" [mat-dialog-close]="false" cdkFocusInitial (click)="save()"
-    [disabled]="user.datiRegistrazioneUnCompleted">Registrati</button>
+    [disabled] = "!utente.datiAnagraficiCompleted || !utente.datiAccessoCompleted">Registrati</button>
     <button mat-button *ngIf="isRecuperaPassword" [mat-dialog-close]="false" (click)="recuperaPws()"
     [disabled]="disableRecuperaPsw">Invia Richiesta</button>
 </mat-dialog-actions>

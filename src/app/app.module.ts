@@ -10,7 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxStarsModule } from 'ngx-stars';
 import { CardFeedbackComponent } from './cards/card-feedback/card-feedback.component';
 import { CardLezioneComponent } from './cards/card-lezione/card-lezione.component';
-import { CardCorsoComponent } from './cards/card-corso/card-corso.component';
 import { PageCorsoComponent } from './pages/page-corso/page-corso.component';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { PageLezioneComponent } from './pages/page-lezione/page-lezione.component';
@@ -73,28 +72,25 @@ import { CustomMatPaginatorIntl } from './varie/custom-mat-paginator-int';
 import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 import { CardPageCorsoComponent } from './cards/card-page-corso/card-page-corso.component';
 import { CardPageLezioneComponent } from './cards/card-page-lezione/card-page-lezione.component';
-import { ModalNewFeedbackComponent } from './modal-new-feedback/modal-new-feedback.component';
 import { SezioneTypesComponent } from './pages/page-admin/sezione-types/sezione-types.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { SteppersRegistrazioneComponent } from './modals/modal-accesso/steppers-registrazione/steppers-registrazione.component';
 import { IntroComponent } from './varie/intro/intro.component';
 import { CardCorsoLightComponent } from './cards/card-corso-light/card-corso-light.component';
 import { CarouselCardsCorsiComponent } from './varie/carousel-cards-corsi/carousel-cards-corsi.component';
 import { NgxSlickJsModule } from 'ngx-slickjs';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
-import { ShareComponent } from './share/share.component';
+import { ShareComponent } from './varie/share/share.component';
 import { InfoCorsoPipe } from './pipes/info-corso.pipe';
 import { FormatTimePipe } from './pipes/FormatTimePipe';
-import { InfoCorsoComponent } from './info-corso/info-corso.component';
 import { CropperComponent } from './varie/cropper/cropper.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
-import { GoogleSigninComponent } from './google-signin/google-signin.component';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { AngularIbanModule } from 'angular-iban';
 import { IbanPipe } from './pipes/iban.pipe';
-import { FormUtenteComponent } from './form-utente/form-utente.component';
+import { FormUtenteComponent } from './forms/form-utente/form-utente.component';
+import { GoogleSigninComponent } from './varie/google-signin/google-signin.component';
 
 
 const cookieConfig: NgcCookieConsentConfig = {
@@ -133,7 +129,6 @@ const cookieConfig: NgcCookieConsentConfig = {
   declarations: [
     AppComponent,
     ImageCorsoComponent,
-    CardCorsoComponent,
     NavBarComponent,
     CardFeedbackComponent,
     CardLezioneComponent,
@@ -163,16 +158,13 @@ const cookieConfig: NgcCookieConsentConfig = {
     TruncateTextPipe,
     CardPageCorsoComponent,
     CardPageLezioneComponent,
-    ModalNewFeedbackComponent,
     SezioneTypesComponent,
-    SteppersRegistrazioneComponent,
     IntroComponent,
     CardCorsoLightComponent,
     CarouselCardsCorsiComponent,
     ShareComponent,
     InfoCorsoPipe,
     FormatTimePipe,
-    InfoCorsoComponent,
     CropperComponent,
     GoogleSigninComponent,
     IbanPipe,
