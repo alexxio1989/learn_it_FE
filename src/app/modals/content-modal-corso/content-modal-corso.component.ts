@@ -38,7 +38,7 @@ export class ContentModalCorsoComponent implements OnInit {
       this.corso.colorCard = '##dddddd';
     }
     let utente = getUserLS();
-    this.enableCorsoAPagamento = utente !== undefined && utente !== null && ( 'SU' === utente.tipo.codice || 'W' === utente.tipo.codice )
+    this.enableCorsoAPagamento = utente !== undefined && utente !== null && ( 'SU' === utente.tipo.codice || ('W' === utente.tipo.codice && !utente.enablePayments.error && !utente.accountStripeStatus.error))
   }
 
   closeResult = '';

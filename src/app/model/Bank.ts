@@ -8,5 +8,7 @@ export class Bank{
 	currency: string = '';
 	country: Country;
 	iban: string = '';
+	idStripe: string = '';
+	changed = false;
 	
 }

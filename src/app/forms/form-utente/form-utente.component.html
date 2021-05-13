@@ -1,3 +1,4 @@
+
 <mat-accordion class="mt-2">
 
     <mat-expansion-panel *ngIf="showDatiAccesso" class="mt-2">
@@ -167,6 +168,7 @@
 
     <form [formGroup]="datiBancariFormGroup" autocomplete="off" novalidate>
         <div class="row">
+         
             <div class="col-12 col-md-12 d-flex justify-content-center">
           
                 <div *ngIf="ibanReactive.invalid && (ibanReactive.dirty || ibanReactive.touched)" class="alert alert-danger w-75">
@@ -187,12 +189,26 @@
                 <mat-form-field>
                     <mat-label>IBAN</mat-label>
                     <input matInput type="text" [ngModel]="utente.bank.iban " 
-                    (ngModelChange)="utente.bank.iban=$event" name="iban" formControlName="ibanReactive" required>
+                    (ngModelChange)="changeIban($event)" name="iban" formControlName="ibanReactive" required>
                     <button mat-button *ngIf="utente.bank.iban" matSuffix mat-icon-button aria-label="Clear"
                         (click)="utente.bank.iban = ''">
                         <mat-icon>close</mat-icon>
                     </button>
                 </mat-form-field>
+            </div>
+
+            <div class="col-12  d-flex justify-content-center mt-2 mb-2">
+                <button class="pl-0" mat-button (menuOpened)="expandedMenuCurrency = !expandedMenuCurrency" (menuClosed)="expandedMenuCurrency = !expandedMenuCurrency"  [matMenuTriggerFor]="menucurrency">
+                    {{utente.bank.currency !== undefined && utente.bank.currency !== null && utente.bank.currency !== '' ? 'Valuta selezionata : ' + utente.bank.currency : 'Seleziona valuta conto bancario' }}
+                    
+                </button>
+                <mat-icon class="mt-2"> {{expandedMenuCurrency ? 'chevron_right':'expand_more'}}</mat-icon>
+                <mat-menu style="max-height: 200px;" #menucurrency="matMenu">
+                    <div *ngFor="let currency of currencyList">
+                        <button mat-menu-item (click)="changeCurrency(currency)">{{currency.symbol}} - {{currency.name}}</button>
+                    </div>
+                </mat-menu>
+               
             </div>
             
             

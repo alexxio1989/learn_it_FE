@@ -10,3 +10,9 @@
   display: flex;
   justify-content: flex-end;
 }
+
+
+.cdk-overlay-pane {
+  
+  max-height: 100px !important;
+}

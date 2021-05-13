@@ -135,6 +135,11 @@ export class SideBarComponent implements OnInit {
     this.route.navigate(['/admin']);
     this.ds.updateSideBar(false);
   }
+
+  gotToPageTest(){
+    this.route.navigate(['/test']);
+    this.ds.updateSideBar(false);
+  }
   
   close(){
     this.ds.updateSideBar(false);

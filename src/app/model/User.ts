@@ -2,6 +2,7 @@ import { Bank } from './Bank';
 import { Corso } from './Corso';
 import { Dominio } from './Dominio';
 import { Recapito } from './Recapito';
+import { StripeStatus } from './StripeStatus';
 
 export class User{
 
@@ -36,5 +37,8 @@ export class User{
     documentiNecessariCompleted = false;
 
     isSigningGoogle = false;
+
+    accountStripeStatus = new StripeStatus();
+	enablePayments= new StripeStatus();
     
 }

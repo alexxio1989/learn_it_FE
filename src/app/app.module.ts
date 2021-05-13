@@ -91,6 +91,9 @@ import { AngularIbanModule } from 'angular-iban';
 import { IbanPipe } from './pipes/iban.pipe';
 import { FormUtenteComponent } from './forms/form-utente/form-utente.component';
 import { GoogleSigninComponent } from './varie/google-signin/google-signin.component';
+import { PageTestComponent } from './pages/page-test/page-test.component';
+import { InfoProfileComponent } from './info-profile/info-profile.component';
+
 
 
 const cookieConfig: NgcCookieConsentConfig = {
@@ -168,7 +171,9 @@ const cookieConfig: NgcCookieConsentConfig = {
     CropperComponent,
     GoogleSigninComponent,
     IbanPipe,
-    FormUtenteComponent
+    FormUtenteComponent,
+    PageTestComponent,
+    InfoProfileComponent
     
   ],
   imports: [

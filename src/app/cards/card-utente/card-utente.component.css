@@ -13,5 +13,5 @@
     flex: 1 1 auto;
     min-height: 1px;
     padding: 1.25rem;
-    max-height: 100px;
+    padding-bottom: 0px;
 }

@@ -1,0 +1,39 @@
+<div *ngIf="'W' === utente.tipo.codice" class="row">
+    <div class="col-12 d-flex">
+
+        <h5>Stato account : </h5>
+        
+        <h5 class="ml-2" [ngStyle] =  "{'color':utente.accountStripeStatus.color}">{{ utente.accountStripeStatus.status}}</h5>
+    </div>
+    <div class="col-12 d-flex">
+     
+        <h5 [ngStyle] =  "{'color': utente.enablePayments.error ? 'red' : 'blue'}" matTooltip="Info about the action">{{utente.enablePayments.error ? 'Pagamenti disabilitati' : 'Pagamenti abilitati'}}</h5>
+    </div>
+    <div *ngIf="utente.enablePayments.error" class="col-12 d-flex" >
+        <h5 class="ml-3 no-margin">Informazioni mancanti / problemi riscontrati : </h5>
+        
+    </div>
+    <div class="col-12 d-flex" *ngFor="let reason of utente.enablePayments.reason">
+        <h6 class="ml-3 no-margin">*{{reason}}</h6>
+        
+    </div>
+</div>
+<div *ngIf="'U' === utente.tipo.codice" class="row">
+    <div class="col-12">
+        <h5>Utente Base </h5>
+    </div>
+</div>
+
+<div *ngIf="'SU' === utente.tipo.codice" class="row">
+    <div class="col-12">
+        <h5>Super User</h5>
+    </div>
+</div>
+
+<div *ngIf="'R' === utente.tipo.codice" class="row">
+    <div class="col-12">
+        <h5>La tua richiesta è in fase di verifica </h5>
+    </div>
+</div>
+
+

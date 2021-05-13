@@ -19,6 +19,7 @@
     <div class="card-body" style="overflow-y: auto">
       <h4 class="card-title">{{utente.nome}} {{utente.cognome}}</h4>
       <h6 class="card-text">{{utente.attivita}}</h6>
+      <app-info-profile *ngIf="editInfo || isSideBar" [utente] = "utente"></app-info-profile>
     </div>
     <div class="card-footer" style="background: inherit; border-color: inherit;">
         <div class="row" *ngIf="!isSideBar" class="pl-1" style="margin-top: -5px;">
@@ -49,7 +50,7 @@
         </div>
         <div class="row" *ngIf="isSideBar"  style="margin-top: -5px;">
             <div class="col-12 p-0">
-                <button class="btn btn-lg" (click)="goToPageUtente()" style="margin-top: -15px;">
+                <button class="btn btn-lg" (click)="goToPageUtente()" style="margin-top: -15px; margin-left: -2px;">
                     <h5 class="text-primary"> Profilo</h5>
                 </button>
             </div>

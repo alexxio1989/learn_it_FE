@@ -40,6 +40,15 @@
                         </button>
                     </div>
                 </div>
+
+                <div *ngIf="isSuperUser"  class="row p-2">
+                    <div class="col-12 d-flex justify-content-center ">
+                        <button mat-button style="color: #6c757d;" (click) ="gotToPageTest()">
+                            <mat-icon >settings</mat-icon>
+                            Pagina Test
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
