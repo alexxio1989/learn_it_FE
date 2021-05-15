@@ -9,6 +9,8 @@ import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { IPageCore } from '../IPageCore';
 import { ModalEditUtenteComponent } from 'src/app/modals/modal-edit-utente/modal-edit-utente.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Resoconto } from 'src/app/model/Resoconto';
+import { StripeService } from '../../services/stripe.service';
 
 @Component({
   selector: 'app-page-utente',
@@ -17,17 +19,26 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class PageUtenteComponent implements OnInit , IPageCore{
 
+  activeTab = 0;
+
   utente: User;
   renderPage: boolean;
   renderEditorInfoUser: boolean;
   extraUtenteLogged: boolean;
   public PAGE = 'UTENTE';
 
+  resoconto: Resoconto = new Resoconto();
+
+  saldoTotale = 0;
+  bonificiFuturi = 0;
+  InTransito = 0;
+
   constructor(private ar: ActivatedRoute , 
               private route: Router,
               private cs: CorsoServiceService,
               private ds: DelegateServiceService,
-              private us: UtenteServiceService) {
+              private us: UtenteServiceService,
+              private ss: StripeService) {
     this.ds.getOBSSpinner().subscribe(next => {
       this.renderPage = !next;
     })
@@ -119,6 +130,41 @@ export class PageUtenteComponent implements OnInit , IPageCore{
       this.ds.updateResultService(error.error.status);
     })
 
+  }
+
+  getResoconto(){
+    this.ss.getResoconto(this.utente).subscribe(next => {
+      this.activeTab = 2;
+      this.resoconto = next;
+      this.resoconto.loaded = true;
+      let disponibili = 0;
+      
+      if(this.resoconto.available){
+        disponibili = this.resoconto.available.reduce(function(prev, cur) {
+          return prev + cur.amount;
+        }, 0);
+
+      }
+      if(this.resoconto.pending){
+        this.bonificiFuturi = this.resoconto.pending.reduce(function(prev, cur) {
+          return prev + cur.amount;
+        }, 0);
+
+      }
+
+      if(this.resoconto.connectReserved){
+        this.InTransito = this.resoconto.connectReserved.reduce(function(prev, cur) {
+          return prev + cur.amount;
+        }, 0);
+
+      }
+
+      this.saldoTotale = disponibili + this.bonificiFuturi;
+
+      this.ds.updateSpinner(false);
+    },error => {
+      this.ds.updateSpinner(false);
+    })
   }
 
 }

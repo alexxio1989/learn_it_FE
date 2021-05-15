@@ -5,8 +5,8 @@
 
     <mat-dialog-content class="mat-typography" class="p-2">
         <form class="accesso-form">
-            <mat-tab-group mat-stretch-tabs>
-                <mat-tab class="h-100">
+            <mat-tab-group [selectedIndex]="activeTab" mat-stretch-tabs>
+                <mat-tab class="h-100" class="h-100">
                     <ng-template mat-tab-label>
                         <mat-icon class="material-icons-outlined mr-2"> perm_identity</mat-icon>Info.
                     </ng-template>
@@ -81,6 +81,109 @@
                     </div>
                           
                    
+                
+                
+                </mat-tab>
+
+                <mat-tab *ngIf="!extraUtenteLogged && 'W' === utente.tipo.codice" >
+
+                    <ng-template mat-tab-label>
+                        <mat-icon class="mr-2">account_balance</mat-icon> Saldo e movimenti
+                    </ng-template>
+
+
+                    <div class="row w-100 ">
+                        <div class="col-12 d-flex justify-content-center mt-5 mb-5">
+                            <button (click)="getResoconto()" mat-button >
+                                <h5 class="no-margin">{{resoconto.loaded? 'Aggiorna Dati':'Visualizza dati'}}</h5>
+                            </button>
+    
+                            
+                        </div>
+
+                    </div>
+                
+                   
+                    <div *ngIf="resoconto.loaded" class="row w-100 pl-0 pr-0">
+                        <div class="col-12">
+
+                            <div class="col-12 ">
+                                <h3>Saldo</h3>
+                            </div>
+                            <div class="col-12 ">
+                                <hr/>
+                            </div>
+                            <div class="row ">
+                               <div class="col-3">
+                                   <div class="col-12">
+                                       <h5>Saldo Totale</h5>
+                                   </div>
+                                   <div class="col-12 d-flex ">
+                                       {{saldoTotale > 0 ? saldoTotale / 100 : saldoTotale}} {{utente.bank.currency}}
+                                   </div>
+                               </div>
+                               <div class="col-3">
+                                <div class="col-12">
+                                    <h5>Bonifici futuri</h5>
+                                </div>
+                                <div class="col-12 d-flex ">
+                                    {{bonificiFuturi > 0 ? bonificiFuturi / 100 : bonificiFuturi}} {{utente.bank.currency}}
+                                </div>
+                               </div>
+                               <div class="col-3">
+                                <div class="col-12">
+                                    <h5>In transito verso la banca</h5>
+                                </div>
+                                <div class="col-12 d-flex ">
+                                    {{InTransito > 0 ? InTransito / 100 : InTransito}} {{utente.bank.currency}}
+                                </div>
+                               </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-12 mt-5">
+                            <div class="col-12 ">
+                                <h3>Pagamenti</h3>
+                            </div>
+                            <div class="col-12 ">
+                                <hr/>
+                            </div>
+
+                            <div *ngFor="let payment of resoconto.listPagamenti" class="row p-3 pl-0 pr-0">
+                                <div class="col-4">
+                                    <div class="col-12">
+                                        <h5>Importo</h5>
+                                    </div>
+                                    <div class="col-12 d-flex ">
+                                        {{payment.amount > 0 ? payment.amount / 100 : 0}} {{utente.bank.currency}}
+                                        <h6 class="ml-3" [ngStyle] =  "{'color':payment.status.color}">{{payment.status.status}}</h6>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                 <div class="col-12">
+                                    <h5>Descrizione</h5>
+                                 </div>
+                                 <div class="col-12 d-flex ">
+                                     {{payment.description}}
+                                 </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="col-12">
+                                       <h5>Commissione</h5>
+                                    </div>
+                                    <div class="col-12 d-flex ">
+                                        {{payment.applicationFeeAmount > 0 ? payment.applicationFeeAmount / 100 : 0}} {{utente.bank.currency}}
+                                        
+                                    </div>
+                                   </div>
+                                <div class="col-12 ">
+                                    <hr/>
+                                </div>
+                              
+                             </div>
+                        </div>
+                    </div>
                 
                 
                 </mat-tab>
