@@ -37,7 +37,7 @@
                 <mat-tab >
 
                     <ng-template mat-tab-label>
-                        <mat-icon class="mr-2">list</mat-icon> {{extraUtenteLogged ? 'I Suoi Tutorial' : 'I Tuoi Tutorial'}}
+                        <mat-icon class="mr-2">list</mat-icon> I Tutorial
                     </ng-template>
                 
                     <div *ngFor="let corso of utente.propriCorsi" class="row w-100 p-3 mt-3 ml-0" style="background-color: #f6f6f6; min-width: 100%;">
@@ -92,7 +92,7 @@
                     </ng-template>
 
 
-                    <div class="row w-100 ">
+                    <div class="row w-100 ml-0">
                         <div class="col-12 d-flex justify-content-center mt-5 mb-5">
                             <button (click)="getResoconto()" mat-button >
                                 <h5 class="no-margin">{{resoconto.loaded? 'Aggiorna Dati':'Visualizza dati'}}</h5>
@@ -104,7 +104,7 @@
                     </div>
                 
                    
-                    <div *ngIf="resoconto.loaded" class="row w-100 pl-0 pr-0">
+                    <div *ngIf="resoconto.loaded" class="row w-100 ml-0 pl-0 pr-0">
                         <div class="col-12">
 
                             <div class="col-12 ">

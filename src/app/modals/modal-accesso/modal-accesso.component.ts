@@ -121,7 +121,7 @@ accediGoogle(user: User) {
 
 
   save() {
-    this.registrati(this.user);
+    this.registrati(this.utente);
  
   }
 
@@ -151,6 +151,7 @@ accediGoogle(user: User) {
 
   changeTab(event: any){
     this.user = new User();
+    this.utente =  new User();
     this.disableLogin = true;
     this.isLogin = (event.index === 0);
   }
