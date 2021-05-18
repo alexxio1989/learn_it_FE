@@ -42,6 +42,10 @@ export class PageUtenteComponent implements OnInit , IPageCore{
     this.ds.getOBSSpinner().subscribe(next => {
       this.renderPage = !next;
     })
+
+    this.ds.getOBSUser().subscribe(next => {
+      this.utente = next;
+    })
   }
 
   ngOnInit(): void {

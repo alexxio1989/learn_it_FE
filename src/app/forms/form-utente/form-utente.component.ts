@@ -87,10 +87,26 @@ export class FormUtenteComponent implements OnInit {
   @Input() showDatiBancari = true;
   @Input() showDocumentiNecessari = true;
 
+  showDoc0: boolean;
+  showDoc1: boolean;
+
+  codeDocumentoPersonale = "individual.verification.document";
+  codeDocumentoExtraPersonale = "individual.verification.additional_document"
+
 
   constructor( private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
+    
+
+    if(this.utente.idStripe !== undefined && this.utente.idStripe !== null && this.utente.idStripe !== '' ){
+        this.showDoc0 = this.utente.enablePayments.docNeeded
+        this.showDoc1 = this.utente.enablePayments.extraDocNeeded     
+    } else {
+      this.showDoc0 = true;
+      this.showDoc1 = true;
+    }
 
     if(this.utente.bank.idStripe !== undefined && this.utente.bank.idStripe !== null && this.utente.bank.idStripe !== ''){
       this.oldIban = this.utente.bank.iban;
@@ -127,6 +143,7 @@ export class FormUtenteComponent implements OnInit {
     });
 
     this.datiAccessoFormGroup.valueChanges.subscribe((changedObj: any) => {
+      
       this.utente.datiAccessoCompleted =  this.datiAccessoFormGroup.valid ;
       
     });
@@ -193,6 +210,18 @@ export class FormUtenteComponent implements OnInit {
 
   retrieveBack(base64:string){
     this.utente.docBack64  = base64;
+    this.utente.documentiNecessariCompleted = this.utente.docFront64 !== undefined && this.utente.docFront64  !== null && this.utente.docFront64  !== '' && this.utente.docBack64 !== undefined && this.utente.docBack64 !== null && this.utente.docBack64 !== ''
+
+  }
+
+  retrieveFront1(base64:string){
+    this.utente.doc1Front64 = base64;
+    this.utente.documentiNecessariCompleted = this.utente.docFront64 !== undefined && this.utente.docFront64  !== null && this.utente.docFront64  !== '' && this.utente.docBack64 !== undefined && this.utente.docBack64 !== null && this.utente.docBack64 !== ''
+
+  }
+
+  retrieveBack1(base64:string){
+    this.utente.doc1Back64  = base64;
     this.utente.documentiNecessariCompleted = this.utente.docFront64 !== undefined && this.utente.docFront64  !== null && this.utente.docFront64  !== '' && this.utente.docBack64 !== undefined && this.utente.docBack64 !== null && this.utente.docBack64 !== ''
 
   }

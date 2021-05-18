@@ -2,19 +2,31 @@
     <div class="col-12 d-flex">
 
         <h5>Stato account : </h5>
-        
-        <h5 class="ml-2" [ngStyle] =  "{'color':utente.accountStripeStatus.color}">{{ utente.accountStripeStatus.status}}</h5>
+       
+        <h5 class="ml-2" [ngStyle] =  "{'color':utente.accountStripeStatus.color}">{{ utente.accountStripeStatus.status}}</h5> 
+        <button (click) = "update()" *ngIf="'Verificato' !== utente.accountStripeStatus.status" style="margin-top: -9px; color: #afafaf;" class=" pr-0 pl-0" mat-button >
+            <mat-icon>refresh</mat-icon>
+        </button>
     </div>
     <div class="col-12 d-flex">
      
         <h5 [ngStyle] =  "{'color': utente.enablePayments.error ? 'red' : 'blue'}" matTooltip="Info about the action">{{utente.enablePayments.error ? 'Pagamenti disabilitati' : 'Pagamenti abilitati'}}</h5>
     </div>
     <div *ngIf="utente.enablePayments.error" class="col-12 d-flex" >
-        <h5 class="ml-3 no-margin">Informazioni mancanti / problemi riscontrati : </h5>
+        <h5 class="ml-3 no-margin">Informazioni mancanti : </h5>
         
     </div>
-    <div class="col-12 d-flex" *ngFor="let reason of utente.enablePayments.reason">
-        <h6 class="ml-3 no-margin">*{{reason}}</h6>
+    <div class="col-12 d-flex" *ngFor="let reason of utente.enablePayments.missings">
+        <h6 class="ml-3 no-margin">*{{reason.descrizione}}</h6>
+        
+    </div>
+
+    <div *ngIf="utente.enablePayments.errors != undefined && utente.enablePayments.errors != null && utente.enablePayments.errors.length > 0" class="col-12 d-flex" >
+        <h5 class="ml-3 no-margin">Errori riscontrati : </h5>
+        
+    </div>
+    <div class="col-12 d-flex" *ngFor="let error of utente.enablePayments.errors">
+        <h6 class="ml-3 no-margin">*{{error.reasons}}</h6>
         
     </div>
 </div>

@@ -6,7 +6,9 @@
   }
   
 
-
+.button-aggiorna{
+  min-width: 38px !important;
+}
 
 
 .card-body {

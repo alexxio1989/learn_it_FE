@@ -1,5 +1,5 @@
 <div *ngIf="!renderPage"></div> 
-<div *ngIf="renderPage">
+<div  class="w-100" *ngIf="renderPage">
     <app-card-utente [utente] = "utente" [isSideBar] ="false" [isCardCorso] ="false" [editInfo]="!extraUtenteLogged"></app-card-utente>
 
 
@@ -88,7 +88,7 @@
                 <mat-tab *ngIf="!extraUtenteLogged && 'W' === utente.tipo.codice" >
 
                     <ng-template mat-tab-label>
-                        <mat-icon class="mr-2">account_balance</mat-icon> Saldo e movimenti
+                        <mat-icon class="mr-2">account_balance</mat-icon> Saldo 
                     </ng-template>
 
 

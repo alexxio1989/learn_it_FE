@@ -22,7 +22,7 @@ export class CropperComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      if(this.base65Input !== undefined && this.base65Input !== undefined && this.base65Input !== ''){
+      if(this.base65Input !== undefined && this.base65Input !== null && this.base65Input !== ''){
         this.base65Input = 'data:image/png;base64,' + this.base65Input;
 
       }

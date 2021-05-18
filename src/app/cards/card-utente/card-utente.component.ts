@@ -25,7 +25,13 @@ export class CardUtenteComponent implements OnInit {
 
   imgCrop = "150px";
 
-  constructor(private route: Router,private ds: DelegateServiceService,private us: UtenteServiceService,private deviceService: DeviceDetectorService) { }
+  constructor(private route: Router,private ds: DelegateServiceService,private us: UtenteServiceService,private deviceService: DeviceDetectorService) {
+    this.ds.getOBSUser().subscribe(next => {
+      this.utente = next;
+      
+    })
+
+  }
 
   ngOnInit(): void {
     this.isDevice = this.deviceService.isMobile();
