@@ -114,25 +114,25 @@
                                 <hr/>
                             </div>
                             <div class="row ">
-                               <div class="col-3">
+                               <div class="col-12 col-md-3 col-lg-3 mt-3">
                                    <div class="col-12">
-                                       <h5>Saldo Totale</h5>
+                                       <h5 class="no-margin">Saldo Totale</h5>
                                    </div>
                                    <div class="col-12 d-flex ">
                                        {{saldoTotale > 0 ? saldoTotale / 100 : saldoTotale}} {{utente.bank.currency}}
                                    </div>
                                </div>
-                               <div class="col-3">
+                               <div class="col-12 col-md-3 col-lg-3 mt-3">
                                 <div class="col-12">
-                                    <h5>Bonifici futuri</h5>
+                                    <h5 class="no-margin">Bonifici futuri</h5>
                                 </div>
                                 <div class="col-12 d-flex ">
                                     {{bonificiFuturi > 0 ? bonificiFuturi / 100 : bonificiFuturi}} {{utente.bank.currency}}
                                 </div>
                                </div>
-                               <div class="col-3">
+                               <div class="col-12 col-md-3 col-lg-3 mt-3">
                                 <div class="col-12">
-                                    <h5>In transito verso la banca</h5>
+                                    <h5 class="no-margin">In transito verso la banca</h5>
                                 </div>
                                 <div class="col-12 d-flex ">
                                     {{InTransito > 0 ? InTransito / 100 : InTransito}} {{utente.bank.currency}}
@@ -146,40 +146,38 @@
                             <div class="col-12 ">
                                 <h3>Pagamenti</h3>
                             </div>
-                            <div class="col-12 ">
+                            <div class="col-12 mb-2">
                                 <hr/>
                             </div>
 
-                            <div *ngFor="let payment of resoconto.listPagamenti" class="row p-3 pl-0 pr-0">
-                                <div class="col-4">
+                            <div *ngFor="let payment of resoconto.listPagamenti" class="row p-3 mb-2 bgc-gray">
+                                <div class=" col-12 col-md-4 col-lg-4 mt-2">
                                     <div class="col-12">
-                                        <h5>Importo</h5>
+                                        <h5 class="no-margin">Importo</h5>
                                     </div>
                                     <div class="col-12 d-flex ">
                                         {{payment.amount > 0 ? payment.amount / 100 : 0}} {{utente.bank.currency}}
                                         <h6 class="ml-3" [ngStyle] =  "{'color':payment.status.color}">{{payment.status.status}}</h6>
                                     </div>
                                 </div>
-                                <div class="col-5">
+                                <div class="col-12 col-md-5 col-lg-5 mt-2">
                                  <div class="col-12">
-                                    <h5>Descrizione</h5>
+                                    <h5 class="no-margin">Descrizione</h5>
                                  </div>
                                  <div class="col-12 d-flex ">
                                      {{payment.description}}
                                  </div>
                                 </div>
-                                <div class="col-2">
+                                <div class="col-12 col-md-2 col-lg-2 mt-2">
                                     <div class="col-12">
-                                       <h5>Commissione</h5>
+                                       <h5 class="no-margin">Commissione</h5>
                                     </div>
                                     <div class="col-12 d-flex ">
                                         {{payment.applicationFeeAmount > 0 ? payment.applicationFeeAmount / 100 : 0}} {{utente.bank.currency}}
                                         
                                     </div>
                                    </div>
-                                <div class="col-12 ">
-                                    <hr/>
-                                </div>
+                                
                               
                              </div>
                         </div>

@@ -252,12 +252,17 @@ img{
   width: 150px;
   height: 150px;
   background-color: white;
+  border-width: 2px;
+  border-color: rgb(210, 210, 210);
+  border-style: solid;
 }
 
 .card-type-sm img {
   border-radius: 50%;
   box-shadow: 0 0 2px rgba(10, 10, 10, 0.3);
-  
+  border-width: 2px;
+  border-color: rgb(210, 210, 210);
+  border-style: solid;
   width: 90px;
   height: 90px;
   background-color: white;
@@ -399,9 +404,9 @@ h4{
 
 h5{
   font-family: sf pro display,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol !important; 
-  font-size: calc(12px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
+  font-size: calc(11px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
   line-height: 1.4;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   opacity: 0.6 !important;
 }
 
@@ -424,7 +429,7 @@ h6{
 }
 
 .bgc-gray{
-  background-color:#f9f9f9;
+  background-color:#f6f6f6;
 }
 
 .mat-expansion-panel-header:not([aria-disabled=true]) {
