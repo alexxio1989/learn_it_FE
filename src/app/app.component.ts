@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { DelegateServiceService } from './services/delegate-service.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { CorsoServiceService } from './services/corso-service.service';
@@ -12,13 +12,14 @@ import { ModalAccessoComponent } from './modals/modal-accesso/modal-accesso.comp
 import { Lettura } from './model/Lettura';
 import { PagamentiServiceService } from './services/pagamenti-service.service';
 import { UtenteServiceService } from './services/utente-service.service';
+import { ModalPagamentoComponent } from './modals/modal-pagamento/modal-pagamento.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent  implements OnInit, OnDestroy  {
+export class AppComponent  implements OnInit, OnDestroy,AfterViewInit  {
 
   //keep refs to subscriptions to be able to unsubscribe later
   private popupOpenSubscription: Subscription;
@@ -45,9 +46,7 @@ export class AppComponent  implements OnInit, OnDestroy  {
               private ps: PagamentiServiceService,
               private dialog: MatDialog){
 
-    this.ds.getOBSPage().subscribe(next => {
-      this.isHomePage = next === 'HOME';
-    })
+   
 
     this.showSpinner = true;
     this.ds.getOBSSpinner().subscribe(next => {
@@ -59,6 +58,10 @@ export class AppComponent  implements OnInit, OnDestroy  {
 
     this.ds.getOBSOpenLogin().subscribe(next => {
       this.openLogin();
+    })
+
+    this.ds.getOBSOpenAcquista().subscribe(next => {
+      this.openAcquisto();
     })
 
 
@@ -115,6 +118,14 @@ export class AppComponent  implements OnInit, OnDestroy  {
       } 
   }
 
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.ds.getOBSPage().subscribe(next => {
+        this.isHomePage = next === 'HOME';
+      })
+    });
+  } 
+
   goToCorso(){
     let corso = this.ds.objSelected;
     if(corso){
@@ -159,8 +170,19 @@ export class AppComponent  implements OnInit, OnDestroy  {
     });
   }
 
+  openAcquisto() {
+    const dialogRef = this.dialog.open(ModalPagamentoComponent, {
+     
+      width: '600px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
   openSnackBar(message: string) {
-    this._snackBar.open(message, '', {
+    this._snackBar.open(message, '', { 
       duration: 2000,
     });
   }

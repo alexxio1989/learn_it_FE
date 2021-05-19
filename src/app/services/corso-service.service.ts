@@ -105,6 +105,20 @@ export class CorsoServiceService {
     return this.http.get(ServiceCore.baseURl + "/corso/get" , httpOptions);
   }
 
+  getCorso(id: number): Observable<any>{
+    
+    let token = getJWTTOKEN();
+    const headers = new HttpHeaders().set("JWT_TOKEN",  token!== null ? token : '');
+    let params = new HttpParams();
+    params = params.append('id', id.toString());
+
+    const httpOptions = {
+      headers: headers,
+      params: params
+    };
+    return this.http.get(ServiceCore.baseURl + "/corso/get" , httpOptions);
+  }
+
   getOBSGetAllUtente(utente: User): Observable<any>{
     this.ds.updateSpinner(true);
     let token = getJWTTOKEN();

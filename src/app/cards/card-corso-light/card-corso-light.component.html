@@ -50,7 +50,7 @@
       <button *ngIf="showContinua" mat-button (click)="next(corso)" style="color: #6c757d;">
         {{isCorsoLetto ? 'Continua' : 'Inizia'}}
       </button>
-      <app-modal-core [visible]="showAcquista" [descButton]="'Acquista'" [objSelected]="acquisto" [isButton]="true"
+      <app-modal-core [visible]="showAcquista" [descButton]="'Acquista'" [objSelected]="corso" [isButton]="true"
         [component]="modalPagamentoComponent"></app-modal-core>
 
       <app-edit-menu class="ml-auto" [owner]="corso.owner" [typePadre]="'C'" [section]="'Tutorial'" [withVideo]="false"

@@ -21,10 +21,13 @@ export class DelegateServiceService {
 
   paing = false;
 
+  idCorsoSelected: number;
+  idLezioneSelected: number;
 
 
   private _sbjAbilitaNavigazione= new Subject();
   private _sbjOpenLogin = new Subject();
+  private _sbjOpenAcquista= new Subject();
   private _sbjSpinner = new Subject();
   private _sbjVideo = new Subject();
   private _sbjResultService = new Subject();
@@ -44,10 +47,11 @@ export class DelegateServiceService {
 
   checkUserLogged(page: string): boolean{
     if(getUserLS()){
+      //this.updateOpenAcquista(true) 
       this.updateAbilitaNavigazione(page);
       return true;
     } else {
-      this.updateOpenLogin(true)
+      this.updateOpenLogin(true) 
       return false;
     }
   }
@@ -146,6 +150,14 @@ export class DelegateServiceService {
 
   getOBSOpenLogin(): Observable<any> {
     return this._sbjOpenLogin.asObservable();
+  }
+
+  updateOpenAcquista(update: boolean) {
+    this._sbjOpenAcquista.next(update);
+  }
+
+  getOBSOpenAcquista(): Observable<any> {
+    return this._sbjOpenAcquista.asObservable();
   }
 
   updatePage(page: string) {

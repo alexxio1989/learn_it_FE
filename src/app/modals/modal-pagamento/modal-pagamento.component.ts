@@ -6,6 +6,7 @@ import { StripeCardElementOptions, StripeElement, StripeElementsOptions } from '
 import { StripeCardComponent, StripeService } from 'ngx-stripe';
 import { from } from 'rxjs';
 import { Acquisto } from 'src/app/model/Acquisto';
+import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { PagamentiServiceService } from 'src/app/services/pagamenti-service.service';
 import { getUserLS } from 'src/app/utils/Util';
@@ -25,7 +26,7 @@ export class ModalPagamentoComponent implements OnInit {
   complete = false;
 
 
-  stripe = this.ds.objSelected.owner.idStripe !== undefined && this.ds.objSelected.owner.idStripe !== null && this.ds.objSelected.owner.idStripe !== '' ?
+  stripe = this.ds.objSelected && this.ds.objSelected.owner.idStripe !== undefined && this.ds.objSelected.owner.idStripe !== null && this.ds.objSelected.owner.idStripe !== '' ?
    Stripe(environment.STRIPE_PUBLIC_TOKEN, {stripeAccount: this.ds.objSelected.owner.idStripe}) : Stripe(environment.STRIPE_PUBLIC_TOKEN);
 
 
@@ -34,26 +35,63 @@ export class ModalPagamentoComponent implements OnInit {
   disablePay = true;
 
   clientSecret : string;
+
+  loading:boolean;
   
 
 
   constructor(private stripeService: StripeService,
               private ps: PagamentiServiceService,
               private ds: DelegateServiceService,
+              private cs: CorsoServiceService,
               private fb: FormBuilder,
               public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.acquisto = this.ds.objSelected;
+    
+    this.acquisto.acquirente = getUserLS();
+    this.loading = true;
 
-    this.ds.objSelected.owner.idStripe !== undefined && this.ds.objSelected.owner.idStripe !== null && this.ds.objSelected.owner.idStripe !== '' ? 
-    this.stripe = Stripe(environment.STRIPE_PUBLIC_TOKEN, {
-      stripeAccount: this.acquisto.owner.idStripe
-    }) : this.stripe = Stripe(environment.STRIPE_PUBLIC_TOKEN);
+    if(this.ds.objSelected === undefined || this.ds.objSelected === null || this.ds.objSelected.owner === undefined || this.ds.objSelected.owner === null && this.ds.idCorsoSelected ){
+      console.log("Ricerco corso con id : " + this.ds.idCorsoSelected )
+      this.cs.getCorso(this.ds.idCorsoSelected ).subscribe(next => {
+        this.ds.objSelected = next.obj;
+        
+        this.preparaAcquisto();
+      }, error => {
+        this.ds.updateResultService("Recupero corso in errore");
+        
+      });
+    } else {
 
+      this.preparaAcquisto();
+
+    }
+
+    
+  }
+
+  private preparaAcquisto() {
+   
+    
+    this.acquisto.causale = "Acquisto tutorial " + this.ds.objSelected.nomeCorso + " , Acquirente : " + this.acquisto.acquirente.nome + this.acquisto.acquirente.cognome;
+   
+    this.acquisto.corso = this.ds.objSelected;
+    this.acquisto.owner = this.ds.objSelected.owner;
+    console.log(JSON.stringify(this.ds.objSelected))
+    console.log("PREZZO" + this.ds.objSelected.owner)
+    this.acquisto.total = this.ds.objSelected.prezzo
+    this.ds.objSelected.owner.idStripe !== undefined && this.ds.objSelected.owner.idStripe !== null && this.ds.objSelected.owner.idStripe !== '' ?
+      this.stripe = Stripe(environment.STRIPE_PUBLIC_TOKEN, {
+        stripeAccount: this.acquisto.owner.idStripe
+      }) : this.stripe = Stripe(environment.STRIPE_PUBLIC_TOKEN);
+
+     
     this.ps.getOBSPayIntent(this.acquisto).subscribe(next => {
       var elements = this.stripe.elements();
-      this.ds.updateSpinner(false);
+
+      this.loading = false;
+      
       this.clientSecret = next.clientSecret;
       var style = {
         base: {
@@ -77,19 +115,18 @@ export class ModalPagamentoComponent implements OnInit {
 
 
       this.card.addEventListener('change', event => {
-        this.card
+        this.card;
         if (event && event.error) {
           this.disablePay = true;
-        } else if(event && event.complete) {
+        } else if (event && event.complete) {
           this.disablePay = false;
         }
       });
-       
 
-    },error=>{
-      this.ds.updateSpinner(false);
-    })
-    
+
+    }, error => {
+     
+    });
   }
 
   pay(){

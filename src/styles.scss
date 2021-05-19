@@ -252,17 +252,12 @@ img{
   width: 150px;
   height: 150px;
   background-color: white;
-  border-width: 2px;
-  border-color: rgb(210, 210, 210);
-  border-style: solid;
 }
 
 .card-type-sm img {
   border-radius: 50%;
   box-shadow: 0 0 2px rgba(10, 10, 10, 0.3);
-  border-width: 2px;
-  border-color: rgb(210, 210, 210);
-  border-style: solid;
+  
   width: 90px;
   height: 90px;
   background-color: white;
@@ -430,6 +425,10 @@ h6{
 
 .bgc-gray{
   background-color:#f6f6f6;
+}
+
+.bgc-blue{
+  background-color: #00a0e0 !important;
 }
 
 .mat-expansion-panel-header:not([aria-disabled=true]) {
