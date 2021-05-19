@@ -29,8 +29,8 @@
 
 
 
-<div *ngIf="addDominio" class="row">
-    <div class="col-12">
+<div *ngIf="addDominio" class="row mt-4">
+    <div class="col-12 d-flex justify-content-center">
         
         <mat-form-field class="example-form-field">
             
@@ -38,9 +38,23 @@
             <input matInput type="text" [(ngModel)]="newDominio.descrizione">
            
         </mat-form-field>
-        {{newDominio.img}}
-        <app-cropper [base65Input] = "newDominio.img" (base65) = "retrieveImg($event)"></app-cropper>
-        <textarea [(ngModel)]="newDominio.text" matInput></textarea>
+       
+       
+       
+    </div>
+    <div class="col-12 d-flex justify-content-center mt-2">
+        <app-cropper  (base65) = "retrieveImg($event)"></app-cropper>
+    </div>
+    <div class="col-12 d-flex justify-content-center mt-2">
+
+        <mat-form-field appearance="fill" class="size-comment">
+            <mat-label>Testo del tipo corso</mat-label>
+            <textarea [(ngModel)]="newDominio.text" matInput></textarea>
+           
+        </mat-form-field>
+       
+    </div>
+    <div class="col-12 d-flex justify-content-center mt-2">
         <button (click)="saveDom()" mat-button  style="color: #6c757d;">
             <h6>Salva</h6>
         </button>
