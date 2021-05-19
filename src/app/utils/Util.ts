@@ -1,6 +1,8 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { Corso } from '../model/Corso';
+import { Dominio } from '../model/Dominio';
 import { User } from '../model/User';
 
 // OBJECTS
@@ -113,4 +115,25 @@ export function readFile(file:any){
       }
       reader.readAsDataURL(file);
     });
-  }
+}
+
+export function getMapCorsi(corsi: Corso[]): Map<string, Dominio>{
+    let mapCorsi = new Map<string, Dominio>();
+    if(corsi !== undefined && corsi !== null){
+        corsi.forEach(value => {
+    
+          var newArray = corsi.filter(function (el) {
+            return el.tipo.codice === value.tipo.codice
+          });
+    
+          let type = new Dominio();
+         
+          const retrieveType = newArray[0].tipo;
+          type.codice = retrieveType.codice;
+          type.descrizione = retrieveType.descrizione;
+          type.corsiAssociati = newArray;
+          mapCorsi.set(value.tipo.descrizione, type);
+        });
+    }
+    return mapCorsi;
+}

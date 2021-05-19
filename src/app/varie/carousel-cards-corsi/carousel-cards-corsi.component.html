@@ -1,16 +1,28 @@
-<div class="col-12 title ptop border-bottom">
+<div *ngIf="isDevice" class="col-12 title ptop border-bottom">
     <h5 class="op-100 no-margin ml-3">{{title}}</h5>   
 </div>
 
-<div class="row" *ngIf="!isDevice ">
-    <div *ngFor="let corso of corsi" class="col-4 d-flex justify-content-center pt-3 pb-3">
-        <app-card-corso-light [width]="350" [corso]="corso"></app-card-corso-light>
+
+<div *ngIf="isDevice" class="row ml-0 mt-3">
+    <div class="col-8 pr-1 d-flex justify-content-center">
+        <h6 class="align-self-center">{{corsi[0].tipo.text}}</h6>
+       
+
+    </div>
+    <div class="col-4 pl-0 d-flex justify-content-center">
+        <div *ngIf="corsi[0].tipo.img !== undefined && corsi[0].tipo.img !== null && corsi[0].tipo.img !== ''" class="card-type-sm">
+  
+          <img  alt="Web Studio" class="img-fluid" src="{{corsi[0].tipo.img}}" />
+             
+        </div>
+
     </div>
 </div>
 
+
 <div *ngIf="isDevice">
 
-    <div slickContainer #slickController="slick" class="pt-2 my-carousele" [slickConfig]="configSlides">
+    <div slickContainer #slickController="slick" class=" my-carousele" [slickConfig]="configSlides">
         <ng-container *ngIf="slickController.initialize">
          
     
@@ -25,5 +37,45 @@
         </ng-container>
     </div>
 </div>
+
+
+
+
+
+<mat-accordion *ngIf="!isDevice">
+    <mat-expansion-panel class="mat-elevation-z1" [expanded]="true">
+        <mat-expansion-panel-header class="bgc-gray header-accordion">
+            <mat-panel-title>
+                <h4>{{title}}</h4>
+                
+            </mat-panel-title>
+           
+          </mat-expansion-panel-header>
+
+          <div class="row mt-3">
+              <div class="col-9 d-flex justify-content-center">
+                  <h5 class="align-self-center">{{corsi[0].tipo.text}}</h5>
+                 
+
+              </div>
+              <div class="col-3 d-flex justify-content-center">
+                  <div *ngIf="corsi[0].tipo.img !== undefined && corsi[0].tipo.img !== null && corsi[0].tipo.img !== ''" class="card-type">
+            
+                    <img  alt="Web Studio" class="img-fluid" src="{{corsi[0].tipo.img}}" />
+                       
+                  </div>
+
+              </div>
+          </div>
+
+          
+          <div class="row" *ngIf="!isDevice ">
+              <div *ngFor="let corso of corsi" class="col-4 d-flex justify-content-center pt-3 pb-3">
+                  <app-card-corso-light [width]="350" [corso]="corso"></app-card-corso-light>
+              </div>
+          </div>
+        
+    </mat-expansion-panel>
+</mat-accordion>
 
 

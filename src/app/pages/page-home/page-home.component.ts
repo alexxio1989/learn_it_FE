@@ -1,11 +1,11 @@
 import { AfterContentInit,AfterViewChecked,Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { SubDominio } from 'src/app/model/SubDominio';
+import { Dominio } from 'src/app/model/Dominio';
 import { IPageCore } from 'src/app/pages/IPageCore';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
-import { clearJWTTOKEN, getUserLS } from 'src/app/utils/Util';
+import { clearJWTTOKEN, getMapCorsi, getUserLS } from 'src/app/utils/Util';
 import { Corso } from '../../model/Corso';
 
 
@@ -22,7 +22,7 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
   public PAGE = 'HOME';
   listaCorsiBase: Array<Corso> = [];
   listaCorsiFiltered: Array<Corso> = [];
-  mapCorsi: Map<string, SubDominio>;
+  mapCorsi: Map<string, Dominio>;
   viewList: boolean;
   text: string = '';
 
@@ -63,20 +63,7 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
       this.cs.updateCorsi(next.list);
 
       if (next.list.length > 0) {
-        this.mapCorsi = new Map<string, SubDominio>();
-        next.list.forEach(value => {
-          var newArray = next.list.filter(function (el) {
-            return el.tipoPadre.codice === value.tipoPadre.codice
-          });
-          let subtype = new SubDominio();
-          if(isMobile){
-            subtype.pageSize = 1;
-            subtype.highValue = 1;
-          }
-          subtype.corsiAssociati = newArray;
-          this.mapCorsi.set(value.tipoPadre.descrizione, subtype);
-        });
-
+        this.mapCorsi =  getMapCorsi(next.list);
       }
       this.renderPage = true;
 
@@ -93,22 +80,9 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
       this.listaCorsiBase = next;
       this.listaCorsiFiltered = [];
       if (next.length > 0) {
-        this.mapCorsi = new Map<string, SubDominio>();
-        next.forEach(value => {
-          var newArray = next.filter(function (el) {
-            return el.tipoPadre.codice === value.tipoPadre.codice
-          });
-          let subtype = new SubDominio();
-          if(isMobile){
-            subtype.pageSize = 1;
-            subtype.highValue = 1;
-          }
-          subtype.corsiAssociati = newArray;
-          this.mapCorsi.set(value.tipoPadre.descrizione, subtype);
-        });
-
+        this.mapCorsi =  getMapCorsi(next);
       } else {
-        this.mapCorsi = new Map<string, SubDominio>();
+        this.mapCorsi = new Map<string, Dominio>();
       }
     })
 
@@ -127,17 +101,5 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
     this.viewList = !this.viewList;
   }
 
-  getPaginatorData(event, sudType: SubDominio) {
-    console.log(event);
-    if (event.pageIndex === sudType.pageIndex + 1) {
-      sudType.lowValue = sudType.lowValue + sudType.pageSize;
-      sudType.highValue = sudType.highValue + sudType.pageSize;
-    }
-    else if (event.pageIndex === sudType.pageIndex - 1) {
-      sudType.lowValue = sudType.lowValue - sudType.pageSize;
-      sudType.highValue = sudType.highValue - sudType.pageSize;
-    }
-    sudType.pageIndex = event.pageIndex;
-  }
 
 }

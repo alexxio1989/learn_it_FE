@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Corso } from '../model/Corso';
 import { Dominio } from '../model/Dominio';
-import { SubDominio } from '../model/SubDominio';
 import { User } from '../model/User';
 import { getJWTTOKEN } from '../utils/Util';
 import { ServiceCore } from './core/ServiceCore';
@@ -67,20 +66,6 @@ export class CorsoServiceService {
     return this.http.post(ServiceCore.baseURl + "/type/update" , dominio , {headers});
   }
 
-  getOBSInsertSubTypes(dominio: SubDominio): Observable<any>{
-    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/type/insertSubType" , dominio , {headers});
-  }
-
-  getOBSDeleteSubTypes(dominio: SubDominio): Observable<any>{
-    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/type/deleteSubType" , dominio , {headers});
-  }
-
-  getOBSUpdateSubTypes(dominio: SubDominio): Observable<any>{
-    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
-    return this.http.post(ServiceCore.baseURl + "/type/updateSubType" , dominio , {headers});
-  }
 
   getOBSInsertCorso(corso: Corso): Observable<any>{
     this.ds.updateSpinner(true);

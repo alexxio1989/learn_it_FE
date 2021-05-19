@@ -55,28 +55,15 @@
 
     <mat-divider></mat-divider>
 
-    <div class="row mt-3">
-        <div class="col-12 pl-4">
+    <div class="row ">
+        <div class="col-12 pl-4 pt-2 bgc-gray">
             <h4 class="ml-3">Tutti i Tutorial:</h4>
         </div>
-        <div class="col-12">
-            <mat-accordion class="example-headers-align mt-3" multi>
-                <div *ngFor="let types of tipoCorsoListFilter" class="d-flex flex-column">
-                    <mat-expansion-panel class="border-bottom"
-                        style="box-shadow: 0px 0px 1px -2px rgba(0, 0, 0, 0.0), 0px 2px 2px 0px rgba(0, 0, 0, 0.0), 0px 1px 0px 0px rgba(0, 0, 0, 0.0);">
-                        <mat-expansion-panel-header>
-                            <mat-panel-title style="color: #6c757d ; font-weight: 500">
-                                <h5 class="mt-3 op-100">{{types.descrizione}}</h5>
-                            </mat-panel-title>
-                        </mat-expansion-panel-header>
-
-                        <div *ngFor="let subtype of types.sottoTipi" class="d-flex flex-column">
-                            <button style=" color: #6c757d;" mat-button
-                                (click)="filterListCorsi(subtype)">{{subtype.descrizione}}</button>
-                        </div>
-                    </mat-expansion-panel>
-                </div>
-            </mat-accordion>
+        <div class="col-12 mt-2">
+            <div *ngFor="let type of tipoCorsoListFilter" class="ml-5">
+                <button style=" color: #6c757d;" mat-button
+                    (click)="filterListCorsi(type)">{{type.descrizione}}</button>
+            </div>
 
         </div>
     </div>

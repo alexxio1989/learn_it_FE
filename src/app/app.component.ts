@@ -62,18 +62,7 @@ export class AppComponent  implements OnInit, OnDestroy  {
     })
 
 
-    if(localStorage.getItem('TYPES') !== undefined && localStorage.getItem('TYPES') !== null){
-      this.tipoCorsoList = JSON.parse(localStorage.getItem('TYPES'));
-    } else {
-
-      this.cs.getOBSTypes().subscribe(next => {
-        this.tipoCorsoList = next.list;
-  
-        localStorage.setItem('TYPES' , JSON.stringify(this.tipoCorsoList));
-        this.cs.tipoCorsoList = next.list;
-        this.ds.updateTipiCorso(next.list);
-      })
-    }
+   
 
     this.ds.getOBSTipiCorso().subscribe(next => {
       this.tipoCorsoList = next;

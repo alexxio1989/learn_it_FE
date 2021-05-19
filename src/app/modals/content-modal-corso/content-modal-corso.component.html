@@ -10,7 +10,7 @@
             <img *ngIf="corso.image === undefined || corso.image === null || corso.image === ''" alt="Web Studio" class="card-img" src="../../../assets/images/default.png" /> 
         </div> 
         
-        <app-cropper (base65) = "retrieveImg($event)"></app-cropper>
+        <app-cropper (base65) = "retrieveImg($event)"></app-cropper> 
 
         
 
@@ -53,7 +53,7 @@
         </div>
 
 
-        <div *ngIf="!isShowSaveTipo && (corso.id === undefined || corso.id === 0) && !addDescrizione" class="row  form-group mt-3">
+        <div *ngIf="!isShowSaveTipo && !addDescrizione" class="row  form-group mt-3">
            
             <div class="col-12  d-flex justify-content-center">
                 <button class="pl-0" mat-button [matMenuTriggerFor]="menu">{{labelTipoCorso}}</button>
@@ -70,22 +70,6 @@
        
      
     
-    
-    
-    
-        <div *ngIf="!isShowSaveSubTipo && tipoCorso !== undefined && tipoCorso !== null && !addDescrizione" class="row form-group">
-            <div class="col-12 d-flex justify-content-center">
-    
-                <button mat-button [matMenuTriggerFor]="menu">{{labelSubTipoCorso}}</button>
-                <mat-menu #menu="matMenu">
-                    <div *ngFor="let tipo of tipoCorso.sottoTipi">
-                        <button mat-menu-item (click)="changeSubTipoCorso(tipo)">{{tipo.descrizione}}</button>
-                    </div>
-                </mat-menu>
-    
-            </div>
-           
-        </div>
 
         <div *ngIf="!addDescrizione" class="row mb-2">
             <div class="col-12 d-flex justify-content-center">

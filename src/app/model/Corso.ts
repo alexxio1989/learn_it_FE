@@ -4,7 +4,6 @@ import { Dominio } from './Dominio';
 import { Feedback } from './Feedback';
 import { Lettura } from './Lettura';
 import { Lezione } from './Lezione';
-import { SubDominio } from './SubDominio';
 import { User } from './User';
 
 export class Corso{
@@ -16,8 +15,7 @@ export class Corso{
     nomeCorso: string = '';
     subNomeCorso: string = '';
     descrizioneCorso: string = '';
-    tipo: SubDominio = new SubDominio();
-    tipoPadre: Dominio= new Dominio();
+    tipo: Dominio = new Dominio();
     enable: boolean;
     prezzo: number;
     listLetture: Lettura[];

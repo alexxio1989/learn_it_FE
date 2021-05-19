@@ -6,12 +6,10 @@ import { ContentModalCorsoComponent } from 'src/app/modals/content-modal-corso/c
 import { ModalRichiestaComponent } from 'src/app/modals/modal-richiesta/modal-richiesta.component';
 import { Corso } from 'src/app/model/Corso';
 import { Dominio } from 'src/app/model/Dominio';
-import { SubDominio } from 'src/app/model/SubDominio';
 import { User } from 'src/app/model/User';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
-import { UtenteServiceService } from 'src/app/services/utente-service.service';
-import { getUserLS , isNotEmptyArray } from 'src/app/utils/Util';
+import { getMapCorsi, getUserLS , isNotEmptyArray } from 'src/app/utils/Util';
 
 @Component({
   selector: 'app-side-bar',
@@ -70,41 +68,12 @@ export class SideBarComponent implements OnInit {
   }
 
   buildListTypes(){
-    this.listaCorsi.forEach(corso => {
-
-      let tipoPadre = corso.tipoPadre;
-
-      if(isNotEmptyArray(this.tipoCorsoListFilter)){
-
-       const tipoPadrefound = this.tipoCorsoListFilter.some(el => el.codice === corso.tipoPadre.codice);
-
-       if(!tipoPadrefound){        
-        this.tipoCorsoListFilter.push(this.newDominio(corso));
-       } else {
-        this.tipoCorsoListFilter.forEach(tipo => {
-          if(tipo.codice === corso.tipoPadre.codice){
-            const tipofound = tipo.sottoTipi.some(el => el.codice === corso.tipo.codice);
-            if(!tipofound){
-              tipo.sottoTipi.push(corso.tipo)
-            }
-          }
-        })
-       }
-
-      } else {       
-        this.tipoCorsoListFilter.push(this.newDominio(corso));
-      }
-
-     });
+    let mapCorsi = getMapCorsi(this.listaCorsi);
+    mapCorsi.forEach((value: Dominio, key: string) => {
+      this.tipoCorsoListFilter.push(value);
+    });
   }
 
-  newDominio(corso: Corso): Dominio{
-    let newTipoPadre = new Dominio;
-    newTipoPadre.codice = corso.tipoPadre.codice
-    newTipoPadre.descrizione = corso.tipoPadre.descrizione;
-    newTipoPadre.sottoTipi.push(corso.tipo)
-    return newTipoPadre;
-  }
 
   logout(){
     this.socialAuthService.signOut(); 
@@ -117,7 +86,7 @@ export class SideBarComponent implements OnInit {
     window.location.reload();
   }
 
-  filterListCorsi(dominio: SubDominio){
+  filterListCorsi(dominio: Dominio){
     var newArray = this.listaCorsi.filter(function (el) {
       return el.tipo.codice === dominio.codice ;
     });

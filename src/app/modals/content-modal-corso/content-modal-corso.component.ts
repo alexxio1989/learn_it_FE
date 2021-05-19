@@ -2,7 +2,6 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { Corso } from 'src/app/model/Corso';
 import { Dominio } from 'src/app/model/Dominio';
-import { SubDominio } from 'src/app/model/SubDominio';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { isEmptyString,getUserLS, readFile } from 'src/app/utils/Util';
@@ -18,12 +17,10 @@ export class ContentModalCorsoComponent implements OnInit {
   corso = new Corso();
 
   tipoCorso: Dominio;
-  subTipo: SubDominio;
   tipoCorsoList = []
   enableCorsoAPagamento: boolean;
 
   newType: Dominio = new Dominio();
-  newSubType: SubDominio = new SubDominio();
 
   isShowSaveTipo: boolean;
   isShowSaveSubTipo: boolean;
@@ -32,8 +29,24 @@ export class ContentModalCorsoComponent implements OnInit {
 
   ngOnInit(): void {
     this.tipoCorsoList = this.cs.tipoCorsoList;
+    if(this.tipoCorsoList === undefined || this.tipoCorsoList === null || this.tipoCorsoList.length === 0){
+
+      if(localStorage.getItem('TYPES') !== undefined && localStorage.getItem('TYPES') !== null){
+        this.tipoCorsoList = JSON.parse(localStorage.getItem('TYPES'));
+      } else {
+  
+        this.cs.getOBSTypes().subscribe(next => {
+          this.tipoCorsoList = next.list;
+    
+          localStorage.setItem('TYPES' , JSON.stringify(this.tipoCorsoList));
+          this.cs.tipoCorsoList = next.list;
+          this.ds.updateTipiCorso(next.list);
+        })
+      }
+    }
     if(this.cs.corsoSelected !== undefined && this.cs.corsoSelected !== null){
       this.corso = this.cs.corsoSelected;
+      this.tipoCorso = this.corso.tipo;
     } else {
       this.corso.colorCard = '##dddddd';
     }
@@ -51,22 +64,19 @@ export class ContentModalCorsoComponent implements OnInit {
 
 
   get disableSave(){
-    return this.corso.id === undefined || this.corso.id === 0 ? isEmptyString(this.corso.nomeCorso)  || (this.subTipo === undefined || this.subTipo.codice === '') : isEmptyString(this.corso.nomeCorso);
+    return this.corso.id === undefined || this.corso.id === 0 ? isEmptyString(this.corso.nomeCorso) : isEmptyString(this.corso.nomeCorso);
   }
 
   get labelTipoCorso(){
     return (this.tipoCorso === undefined || this.tipoCorso.codice === '') ? 'Scegli la tipologia di tutorial' : this.tipoCorso.descrizione;
   }
 
-  get labelSubTipoCorso(){
-    return (this.subTipo === undefined || this.subTipo.codice === '') ? 'Scegli il sotto tipo di tutorial' : this.subTipo.descrizione;
-  }
 
   salva() {
 
     if(this.corso.id === undefined || this.corso.id === 0 ){
 
-      this.corso.tipo = this.subTipo;
+      this.corso.tipo = this.tipoCorso;
       this.corso.owner = JSON.parse(localStorage.getItem('USER'));
       this.cs.getOBSInsertCorso(this.corso).subscribe(next => {
         this.ds.updateSpinner(false);
@@ -93,13 +103,11 @@ export class ContentModalCorsoComponent implements OnInit {
   }
 
   changeTipoCorso(obj: Dominio) {
-    this.subTipo = undefined;
+    this.corso.tipo = obj;
     this.tipoCorso = obj;
   }
 
-  changeSubTipoCorso(obj: SubDominio) {
-    this.subTipo = obj;
-  }
+ 
 
   changeShowSaveTipo() {
     this.isShowSaveTipo = !this.isShowSaveTipo;
@@ -107,37 +115,6 @@ export class ContentModalCorsoComponent implements OnInit {
 
   changeShowSaveSubTipo() {
     this.isShowSaveSubTipo = !this.isShowSaveSubTipo;
-  }
-
-  salvaTipo(){
-    console.log(this.newType.descrizione);
-    this.ds.updateSpinner(true);
-    this.cs.getOBSInsertTypes(this.newType).subscribe(next => {
-      this.tipoCorsoList = next.list;
-      this.ds.updateResultService(next.status);
-      this.ds.updateSpinner(false);
-      this.ds.updateTipiCorso(next.list);
-      this.changeShowSaveTipo();
-    },error =>{
-      this.ds.updateResultService("Inserimento tipo in errore");
-      this.ds.updateSpinner(false);
-    })
-  }
-
-  salvaSubTipo(){
-    console.log(this.newSubType.descrizione);
-    this.newSubType.idPadre = this.tipoCorso.id;
-    this.ds.updateSpinner(true);
-    this.cs.getOBSInsertSubTypes(this.newSubType).subscribe(next => {
-      this.tipoCorsoList = next.list;
-      this.ds.updateResultService(next.status);
-      this.ds.updateSpinner(false);
-      this.ds.updateTipiCorso(next.list);
-      this.changeShowSaveSubTipo();
-    },error =>{
-      this.ds.updateResultService("Inserimento sotto tipo in errore");
-      this.ds.updateSpinner(false);
-    })
   }
 
   openInput(){ 
