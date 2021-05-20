@@ -45,6 +45,11 @@ export function isNotEmptyArray(value: any[]): boolean {
 
 // VARIE
 
+export function getCorsoLS(): Corso{
+    let value = localStorage.getItem('CORSO');
+    return isNotNullObj(value) && value !== 'undefined' ? JSON.parse(value) : null;
+}
+
 export function getUserLS(): User {
     let value = localStorage.getItem('USER');
     return isNotNullObj(value) && value !== 'undefined' ? JSON.parse(value) : null;

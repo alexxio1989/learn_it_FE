@@ -9,6 +9,7 @@ import { Dominio } from 'src/app/model/Dominio';
 import { User } from 'src/app/model/User';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
+import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { getMapCorsi, getUserLS , isNotEmptyArray } from 'src/app/utils/Util';
 
 @Component({
@@ -33,18 +34,17 @@ export class SideBarComponent implements OnInit {
   modalRichiestaComponent = ModalRichiestaComponent;
   modalCorsoComponent = ContentModalCorsoComponent
 
-  constructor(private ds: DelegateServiceService, private route: Router, private cs: CorsoServiceService,private socialAuthService: SocialAuthService) {
+  constructor(private ds: DelegateServiceService,private us: UtenteServiceService, private route: Router, private cs: CorsoServiceService,private socialAuthService: SocialAuthService) {
     this.ds.getOBSSideBar().subscribe(next => {
       this.openSideBar = next
     })
-
-    this.cs.getOBSUpdateCorsi().subscribe(next => {
+    this.cs._sbjUpdateCorsi.asObservable().subscribe(next => {
       this.listaCorsi = next;
       this.tipoCorsoListFilter = [];
       this.buildListTypes();
     })
 
-    this.ds.getOBSUser().subscribe(next => {
+    this.us.getOBSUser().subscribe(next => {
       this.utente = next;
       this.setRoles();
     })
@@ -77,9 +77,10 @@ export class SideBarComponent implements OnInit {
 
   logout(){
     this.socialAuthService.signOut(); 
+    localStorage.removeItem('CORSO')
     localStorage.removeItem('JWT_TOKEN')
     localStorage.removeItem('COOKIE_CONSENT')
-    this.ds.updateUser(null);
+    this.us.updateUser(null);
     this.route.navigate(['/']);
     this.ds.updateSideBar(false);
 
@@ -90,7 +91,7 @@ export class SideBarComponent implements OnInit {
     var newArray = this.listaCorsi.filter(function (el) {
       return el.tipo.codice === dominio.codice ;
     });
-    this.cs.filterCorsi(newArray);
+    this.cs._sbjFilterCorsi.next(newArray);
     this.openSideBar = false;
     this.route.navigate(['/']);
   }
@@ -115,7 +116,7 @@ export class SideBarComponent implements OnInit {
   }
 
   openLogin(){
-    this.ds.updateOpenLogin(true);
+    this.ds._sbjOpenLogin.next(true);
   }
 
 }

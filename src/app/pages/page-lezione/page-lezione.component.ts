@@ -71,13 +71,13 @@ export class PageLezioneComponent implements OnInit, IPageCore {
 
         this.corso = JSON.parse(localStorage.getItem('CORSO'));
         
-        this.ds.getOBSAbilitaNavigazione().subscribe(next => {
+        this.ds._sbjAbilitaNavigazione.asObservable().subscribe(next => {
           if(next === this.PAGE){
             this.retrieveLezione(id);
           }
         })
         this.ds.page = this.PAGE;
-        this.ds.checkUserLogged(this.PAGE);
+        this.ds.checkUserLogged(getUserLS(),this.PAGE , this.corso.id );
 
       } else {
         this.route.navigate(['/']);

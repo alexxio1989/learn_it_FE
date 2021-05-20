@@ -22,7 +22,7 @@ export class SezioneTypesComponent implements OnInit {
     this.cs.getOBSTypes().subscribe(next => {
       this.tipoCorsoList = next.list;
       this.cs.tipoCorsoList = next.list;
-      this.ds.updateTipiCorso(next.list);
+      this.cs._sbjTipiCorso.next(next.list);
     })
   }
 
@@ -41,7 +41,7 @@ export class SezioneTypesComponent implements OnInit {
         this.tipoCorsoList = next.list;
         this.ds.updateResultService(next.status);
         this.ds.updateSpinner(false);
-        this.ds.updateTipiCorso(next.list);
+        this.cs._sbjTipiCorso.next(next.list);
         this.addDominio = false;
       },error =>{
         this.ds.updateResultService("Inserimento tipo in errore");
@@ -55,7 +55,7 @@ export class SezioneTypesComponent implements OnInit {
         this.tipoCorsoList = next.list;
         this.ds.updateResultService(next.status);
         this.ds.updateSpinner(false);
-        this.ds.updateTipiCorso(next.list);
+        this.cs._sbjTipiCorso.next(next.list);
         this.addDominio = false;
       },error =>{
         this.ds.updateResultService("Update tipo in errore");
@@ -71,7 +71,7 @@ export class SezioneTypesComponent implements OnInit {
       this.tipoCorsoList = next.list;
       this.ds.updateResultService(next.status);
       this.ds.updateSpinner(false);
-      this.ds.updateTipiCorso(next.list);
+      this.cs._sbjTipiCorso.next(next.list);
     },error =>{
       this.ds.updateResultService("Eliminazione tipo in errore");
       this.ds.updateSpinner(false);

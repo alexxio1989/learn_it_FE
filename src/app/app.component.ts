@@ -56,18 +56,18 @@ export class AppComponent  implements OnInit, OnDestroy,AfterViewInit  {
       this.openSnackBar(next);
     })
 
-    this.ds.getOBSOpenLogin().subscribe(next => {
+    this.ds._sbjOpenLogin.asObservable().subscribe(next => {
       this.openLogin();
     })
 
-    this.ds.getOBSOpenAcquista().subscribe(next => {
+    this.ds._sbjOpenAcquista.asObservable().subscribe(next => {
       this.openAcquisto();
     })
 
 
    
 
-    this.ds.getOBSTipiCorso().subscribe(next => {
+    this.cs._sbjTipiCorso.asObservable().subscribe(next => {
       this.tipoCorsoList = next;
       this.cs.tipoCorsoList = next;
     })

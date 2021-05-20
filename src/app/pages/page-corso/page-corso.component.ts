@@ -5,7 +5,7 @@ import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { FeedbackService } from 'src/app/services/feedback.service';
 import { LezioneServiceService } from 'src/app/services/lezione-service.service';
-import { getUserLS, isEmptyArray, isEmptyString, isNotEmptyArray, isSameUser } from 'src/app/utils/Util';
+import { getCorsoLS, getUserLS, isEmptyArray, isEmptyString, isNotEmptyArray, isSameUser } from 'src/app/utils/Util';
 import { Corso } from '../../model/Corso';
 import { IPageCore } from '../IPageCore';
 
@@ -37,7 +37,7 @@ export class PageCorsoComponent implements OnInit, IPageCore {
       this.renderPage = !next;
     })
 
-    this.ds.getOBSNewLezione().subscribe(next => {
+    this.ls._sbjNewLezione.asObservable().subscribe(next => {
       this.lezione = next;
       this.corso.lezioni.push(this.lezione);
       window.scrollTo(0,document.body.scrollHeight );
@@ -51,7 +51,7 @@ export class PageCorsoComponent implements OnInit, IPageCore {
       this.corso.feeds = next;
     })
 
-    this.ds.getOBSNewFeed().subscribe(next => {
+    this.fs._sbjNewFeed.asObservable().subscribe(next => {
       this.newFeed = next;
     })
   }
@@ -62,19 +62,21 @@ export class PageCorsoComponent implements OnInit, IPageCore {
 
   ngOnInit(): void {
     this.ds.updatePage('CORSO');
+    
+    
     this.ar.queryParams.subscribe(params => {
 
       let id = params['id'];
 
       if (id !== undefined && id !== null && parseInt(id) > 0) {
-        this.ds.getOBSAbilitaNavigazione().subscribe(next => {
+        this.ds._sbjAbilitaNavigazione.asObservable().subscribe(next => {
           if(next === this.PAGE){
             this.retrieveCorso(id);
           }
         })
+        this.ds.idObjSelected = id;
         this.ds.page = this.PAGE;
-        this.ds.idCorsoSelected = id;
-        this.ds.checkUserLogged(this.PAGE);
+        this.ds.checkUserLogged(getUserLS(),this.PAGE, id );
 
       } else {
         this.route.navigate(['/']);

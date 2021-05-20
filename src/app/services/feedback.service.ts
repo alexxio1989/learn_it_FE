@@ -11,6 +11,8 @@ import { DelegateServiceService } from './delegate-service.service';
 })
 export class FeedbackService {
 
+  public _sbjNewFeed= new Subject<boolean>();
+
   feedSelected : Feedback;
 
   constructor(private http: HttpClient , private ds: DelegateServiceService) { }

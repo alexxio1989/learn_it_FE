@@ -12,7 +12,10 @@ import { Lezione } from 'src/app/model/Lezione';
 import { User } from 'src/app/model/User';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
+import { FeedbackService } from 'src/app/services/feedback.service';
 import { FileService } from 'src/app/services/file.service';
+import { LezioneServiceService } from 'src/app/services/lezione-service.service';
+import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { isSameUser , getUserLS , isSameUserID} from 'src/app/utils/Util';
 
 
@@ -55,10 +58,13 @@ export class EditMenuComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
               private fs: FileService,
+              private feeds: FeedbackService,
+              private ls: LezioneServiceService,
               private ds: DelegateServiceService,
+              private us: UtenteServiceService,
               private route: Router,
               private cs: CorsoServiceService ) { 
-                this.ds.getOBSUser().subscribe(next => {
+                this.us.getOBSUser().subscribe(next => {
                   this.isLogged = getUserLS() !== undefined && getUserLS() !== null;
                   this.user = next;
                   if(this.owner !== undefined){
@@ -116,7 +122,7 @@ export class EditMenuComponent implements OnInit {
       this.cs.getOBSDeleteCorso(this.obj).subscribe(next => {
         this.ds.updateSpinner(false);
         this.ds.updateResultService(next.status);
-        this.cs.updateCorsi(next.list);
+        this.cs._sbjUpdateCorsi.next(next.list);
       },error => {
         this.ds.updateSpinner(false);
         this.ds.updateResultService(error.status); 
@@ -168,7 +174,7 @@ export class EditMenuComponent implements OnInit {
                 this.getVideo();
                 this.ds.updateResultService(next.status);
               },error => {
-                this.ds.updateSpinnerVideos(false);
+                this.fs.updateSpinnerVideos(false);
                 this.ds.updateResultService(error.status);
               })
             };
@@ -220,7 +226,7 @@ export class EditMenuComponent implements OnInit {
                 this.getVideo();
                 this.ds.updateResultService(next.status);
               },error => {
-                this.ds.updateSpinnerVideos(false);
+                this.fs.updateSpinnerVideos(false);
                 this.ds.updateResultService(error.status);
               })
             };
@@ -262,9 +268,9 @@ export class EditMenuComponent implements OnInit {
       } else {
         this.fileLearnIt.base64 = undefined;
       }
-      this.ds.updateSpinnerVideos(false);
+      this.fs.updateSpinnerVideos(false);
     }, error => {
-      this.ds.updateSpinnerVideos(false);
+      this.fs.updateSpinnerVideos(false);
       this.ds.updateResultService(error.status);
     });
   }
@@ -314,13 +320,12 @@ export class EditMenuComponent implements OnInit {
     let lezione = new Lezione();
     lezione.idCorso = this.corso.id;
     lezione.indexLezione = this.corso.lezioni.length + 1;
-    this.ds.newLezione(lezione);
-    //this.corso.lezioni.push(this.lezione);
+    this.ls._sbjNewLezione.next(lezione);
   }
 
   addFeed() {
     
-    this.ds.newFeed(true);
+    this.feeds._sbjNewFeed.next(true);
     //this.corso.lezioni.push(this.lezione);
   }
 

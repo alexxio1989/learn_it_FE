@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Lettura } from '../model/Lettura';
 import { User } from '../model/User';
 import { getJWTTOKEN } from '../utils/Util';
@@ -13,7 +13,22 @@ import { DelegateServiceService } from './delegate-service.service';
 })
 export class UtenteServiceService {
 
+  private _sbjUser = new Subject();
+
+  private _sbjUserGoogle= new Subject();
+
   constructor(private http: HttpClient , private ds: DelegateServiceService) { }
+
+  updateUser(utente: User) {
+    if(utente === undefined || utente === null){
+      localStorage.removeItem('USER');
+      localStorage.removeItem('TYPES');
+    } else {
+      localStorage.removeItem('USER');
+      localStorage.setItem('USER',JSON.stringify(utente));
+    }
+    this._sbjUser.next(utente);
+  }
 
   getOBSLogin(utente: User): Observable<any>{ 
     this.ds.updateSpinner(true);
@@ -75,5 +90,21 @@ export class UtenteServiceService {
     const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
     this.ds.updateSpinner(true);
     return this.http.post(ServiceCore.baseURl + "/soggetto/delete", utente,{headers});
+  }
+
+  getOBSUser(): Observable<any> {
+    return this._sbjUser.asObservable();
+  }
+
+  updateCheckUserLogged(value: boolean) {
+    this._sbjUser.next(value);
+  }
+
+  updateUserGoogle (utente: User) {
+    this._sbjUserGoogle.next(utente);
+  }
+
+  getOBSUserGoogle (): Observable<any> {
+    return this._sbjUserGoogle.asObservable();
   }
 }

@@ -40,7 +40,7 @@ export class ContentModalCorsoComponent implements OnInit {
     
           localStorage.setItem('TYPES' , JSON.stringify(this.tipoCorsoList));
           this.cs.tipoCorsoList = next.list;
-          this.ds.updateTipiCorso(next.list);
+          this.cs._sbjTipiCorso.next(next.list);
         })
       }
     }
@@ -57,7 +57,7 @@ export class ContentModalCorsoComponent implements OnInit {
   closeResult = '';
 
   constructor(private modalService: NgbModal , private cs: CorsoServiceService , private ds: DelegateServiceService) {
-    this.ds.getOBSTipiCorso().subscribe(next => {
+    this.cs._sbjTipiCorso.asObservable().subscribe(next => {
       this.tipoCorsoList = next;
     })
   }
@@ -81,7 +81,8 @@ export class ContentModalCorsoComponent implements OnInit {
       this.cs.getOBSInsertCorso(this.corso).subscribe(next => {
         this.ds.updateSpinner(false);
         this.ds.updateResultService("Corso salvato correttamente");
-        this.cs.updateCorsi(next.list);
+        this.cs._sbjUpdateCorsi.next(next.list);
+        
         this.ds.updateSideBar(false);
       },error => {
         this.ds.updateSpinner(false);
@@ -91,7 +92,7 @@ export class ContentModalCorsoComponent implements OnInit {
       this.cs.getOBSUpdateCorso(this.corso).subscribe(next => {
         this.ds.updateSpinner(false);
         this.ds.updateResultService("Corso modificato correttamente");
-        this.cs.updateCorsi(next.list);
+        this.cs._sbjUpdateCorsi.next(next.list);
         this.ds.updateSideBar(false);
       },error => {
         this.ds.updateSpinner(false);

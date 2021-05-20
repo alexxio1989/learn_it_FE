@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/model/User';
 import { DelegateServiceService } from '../services/delegate-service.service';
 import { StripeService } from '../services/stripe.service';
+import { UtenteServiceService } from '../services/utente-service.service';
 
 @Component({
   selector: 'app-info-profile',
@@ -12,7 +13,7 @@ export class InfoProfileComponent implements OnInit {
 
   @Input() utente : User;
 
-  constructor(private ss: StripeService,private ds: DelegateServiceService) { }
+  constructor(private ss: StripeService,private ds: DelegateServiceService,private us: UtenteServiceService) { }
 
   ngOnInit(): void {
   }
@@ -22,7 +23,7 @@ export class InfoProfileComponent implements OnInit {
       console.log(JSON.stringify(next.accountStripeStatus))
       this.utente.accountStripeStatus = next.accountStripeStatus;
       this.utente.enablePayments = next.enablePayments;
-      this.ds.updateUser(this.utente);
+      this.us.updateUser(this.utente);
       this.ds.updateSpinner(false);
     },error=>{
       this.ds.updateSpinner(false);

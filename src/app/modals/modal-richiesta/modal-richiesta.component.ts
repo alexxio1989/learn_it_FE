@@ -7,6 +7,7 @@ import { Richiesta } from 'src/app/model/Richiesta';
 import { User } from 'src/app/model/User';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { RichiestaServiceService } from 'src/app/services/richiesta-service.service';
+import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { getUserLS } from 'src/app/utils/Util';
 
 @Component({
@@ -24,7 +25,7 @@ export class ModalRichiestaComponent implements OnInit {
 
 
 
-  constructor(private rs: RichiestaServiceService,private ds: DelegateServiceService, private _formBuilder: FormBuilder) { }
+  constructor(private rs: RichiestaServiceService,private ds: DelegateServiceService, private _formBuilder: FormBuilder,private us: UtenteServiceService) { }
 
   ngOnInit(): void {
     this.utente = getUserLS();
@@ -42,7 +43,7 @@ export class ModalRichiestaComponent implements OnInit {
       this.rs.getOBSSave(this.richiesta).subscribe(next => {
         let utente = next.obj.utente;
         localStorage.removeItem('USER');
-        this.ds.updateUser(utente); 
+        this.us.updateUser(utente); 
         this.ds.updateResultService("Richiesta salvata correttamente")
         this.ds.updateSpinner(false);
       },error => {

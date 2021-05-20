@@ -44,14 +44,11 @@
     </div>
     <div class="card-footer d-flex pt-0 pb-0">
 
-      <button *ngIf="showAccedi" mat-button (click)="openLogin()" style="color: #6c757d;">
-        Accedi
+     
+      <button  mat-button (click)="continua(corso)" style="color: #6c757d;">
+        {{labelButton}}
       </button>
-      <button *ngIf="showContinua" mat-button (click)="next(corso)" style="color: #6c757d;">
-        {{isCorsoLetto ? 'Continua' : 'Inizia'}}
-      </button>
-      <app-modal-core [visible]="showAcquista" [descButton]="'Acquista'" [objSelected]="corso" [isButton]="true"
-        [component]="modalPagamentoComponent"></app-modal-core>
+      
 
       <app-edit-menu class="ml-auto" [owner]="corso.owner" [typePadre]="'C'" [section]="'Tutorial'" [withVideo]="false"
         [withAdd]="false" [obj]="corso" [withElimina]="true" [withModifica]="true">

@@ -12,6 +12,8 @@ export class FileService {
 
   fileLearnIt = new FileLearnIt();
 
+  private _sbjVideo = new Subject();
+
   private _sbj = new Subject();
 
   updateSBJ(video: FileLearnIt) {
@@ -25,34 +27,42 @@ export class FileService {
   constructor(private http: HttpClient, private ds: DelegateServiceService) { } 
 
   get(obj: FileLearnIt): Observable<any>{
-    this.ds.updateSpinnerVideos(true);
+    this.updateSpinnerVideos(true);
     return this.http.post(ServiceCore.baseURl_node+ "/file/getFile", obj );
   }
 
   save(obj: FileLearnIt): Observable<any>{
-    this.ds.updateSpinnerVideos(true);
+    this.updateSpinnerVideos(true);
     return this.http.post(ServiceCore.baseURl_node+ "/file/saveFile", obj);
   }
 
   delete(obj: FileLearnIt): Observable<any>{
-    this.ds.updateSpinnerVideos(true);
+    this.updateSpinnerVideos(true);
     return this.http.post(ServiceCore.baseURl_node+ "/file/deleteFile", obj);
   }
 
 
   getJava(obj: FileLearnIt): Observable<any>{
-    this.ds.updateSpinnerVideos(true);
+    this.updateSpinnerVideos(true);
     return this.http.post(ServiceCore.baseURl+ "/file/get", obj );
   }
 
   saveJava(obj: FileLearnIt): Observable<any>{
-    this.ds.updateSpinnerVideos(true);
+    this.updateSpinnerVideos(true);
     return this.http.post(ServiceCore.baseURl + "/file/save", obj);
   }
 
   deleteJava(obj: FileLearnIt): Observable<any>{
-    this.ds.updateSpinnerVideos(true);
+    this.updateSpinnerVideos(true);
     return this.http.post(ServiceCore.baseURl+ "/file/delete", obj);
+  }
+
+  updateSpinnerVideos(update: boolean) {
+    this._sbjVideo.next(update);
+  }
+
+  getOBSSpinnerVideo(): Observable<any> {
+    return this._sbjVideo.asObservable();
   }
   
 }

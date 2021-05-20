@@ -7,6 +7,7 @@ import { Dominio } from 'src/app/model/Dominio';
 import { User } from 'src/app/model/User';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
+import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { getUserLS } from 'src/app/utils/Util';
 @Component({
   selector: 'app-nav-bar',
@@ -29,11 +30,11 @@ export class NavBarComponent implements OnInit {
   isRichiedente: boolean;
   isWriter: boolean;
 
-  constructor(private cs: CorsoServiceService , private ds: DelegateServiceService, private route: Router,private deviceService: DeviceDetectorService) {
+  constructor(private cs: CorsoServiceService ,private us: UtenteServiceService, private ds: DelegateServiceService, private route: Router,private deviceService: DeviceDetectorService) {
     this.ds.getOBSSideBar().subscribe(next => {
       this.ds.isOpenSideBar = next;
     })
-    this.ds.getOBSUser().subscribe(next => {
+    this.us.getOBSUser().subscribe(next => {
       this.utente = next;
       this.setRoles();
     })
@@ -56,8 +57,7 @@ export class NavBarComponent implements OnInit {
   filterListCorsi(nome: string){
     if(this.cs.listaCorsi.length > 0 && (nome.length > 2 || nome.length === 0)){
       var newArray = this.cs.listaCorsi.filter((data) => data.nomeCorso.toLowerCase().includes(nome.toLowerCase()));
-      
-      this.cs.filterCorsi(newArray);
+      this.cs._sbjFilterCorsi.next(newArray);
       this.route.navigate(['/']);
     }
   }

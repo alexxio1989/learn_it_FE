@@ -26,7 +26,7 @@ export class CardUtenteComponent implements OnInit {
   imgCrop = "150px";
 
   constructor(private route: Router,private ds: DelegateServiceService,private us: UtenteServiceService,private deviceService: DeviceDetectorService) {
-    this.ds.getOBSUser().subscribe(next => {
+    this.us.getOBSUser().subscribe(next => {
       this.utente = next;
       
     })
@@ -83,7 +83,7 @@ export class CardUtenteComponent implements OnInit {
     this.us.getOBSDelete(this.utente).subscribe(next => {
       localStorage.removeItem('JWT_TOKEN')
       localStorage.removeItem('COOKIE_CONSENT')
-      this.ds.updateUser(null);
+      this.us.updateUser(null);
       this.route.navigate(['/']);
       this.ds.updateSpinner(false);
       this.ds.updateResultService(next.status);

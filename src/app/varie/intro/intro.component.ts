@@ -5,6 +5,7 @@ import { User } from 'src/app/model/User';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { getUserLS } from 'src/app/utils/Util';
+import { UtenteServiceService } from 'src/app/services/utente-service.service';
 
 @Component({
   selector: 'app-intro',
@@ -23,8 +24,8 @@ export class IntroComponent implements OnInit {
   modalCorsoComponent = ContentModalCorsoComponent; 
   component: any;
 
-  constructor(private ds: DelegateServiceService,public dialog: MatDialog) {
-    this.ds.getOBSUser().subscribe(next => {
+  constructor(private ds: DelegateServiceService,private us: UtenteServiceService, public dialog: MatDialog) {
+    this.us.getOBSUser().subscribe(next => {
       this.utente = next;
       this.setRoles();
     })
@@ -46,7 +47,7 @@ export class IntroComponent implements OnInit {
     this.setRoles();
     this.component = undefined;
     if(!this.isUtenteLogged){
-      this.ds.updateOpenLogin(true);
+      this.ds._sbjOpenLogin.next(true);
     } else if(this.isUser){
       this.component = this.modalRichiestaComponent;
     } else {

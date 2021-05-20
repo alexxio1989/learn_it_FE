@@ -6,11 +6,13 @@ import { StripeCardElementOptions, StripeElement, StripeElementsOptions } from '
 import { StripeCardComponent, StripeService } from 'ngx-stripe';
 import { from } from 'rxjs';
 import { Acquisto } from 'src/app/model/Acquisto';
+import { User } from 'src/app/model/User';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { PagamentiServiceService } from 'src/app/services/pagamenti-service.service';
 import { getUserLS } from 'src/app/utils/Util';
 import { environment } from 'src/environments/environment';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-modal-pagamento',
@@ -37,6 +39,8 @@ export class ModalPagamentoComponent implements OnInit {
   clientSecret : string;
 
   loading:boolean;
+
+  nomeCorso: string;
   
 
 
@@ -51,22 +55,8 @@ export class ModalPagamentoComponent implements OnInit {
     
     this.acquisto.acquirente = getUserLS();
     this.loading = true;
+    this.preparaAcquisto();
 
-    if(this.ds.objSelected === undefined || this.ds.objSelected === null || this.ds.objSelected.owner === undefined || this.ds.objSelected.owner === null && this.ds.idCorsoSelected ){
-      console.log("Ricerco corso con id : " + this.ds.idCorsoSelected )
-      this.cs.getCorso(this.ds.idCorsoSelected ).subscribe(next => {
-        this.ds.objSelected = next.obj;
-        
-        this.preparaAcquisto();
-      }, error => {
-        this.ds.updateResultService("Recupero corso in errore");
-        
-      });
-    } else {
-
-      this.preparaAcquisto();
-
-    }
 
     
   }
@@ -74,14 +64,12 @@ export class ModalPagamentoComponent implements OnInit {
   private preparaAcquisto() {
    
     
-    this.acquisto.causale = "Acquisto tutorial " + this.ds.objSelected.nomeCorso + " , Acquirente : " + this.acquisto.acquirente.nome + this.acquisto.acquirente.cognome;
-   
-    this.acquisto.corso = this.ds.objSelected;
-    this.acquisto.owner = this.ds.objSelected.owner;
-    console.log(JSON.stringify(this.ds.objSelected))
-    console.log("PREZZO" + this.ds.objSelected.owner)
-    this.acquisto.total = this.ds.objSelected.prezzo
-    this.ds.objSelected.owner.idStripe !== undefined && this.ds.objSelected.owner.idStripe !== null && this.ds.objSelected.owner.idStripe !== '' ?
+    this.acquisto.causale = "Acquisto tutorial " + this.ds.infoCorsoSelected.nomeCorso + " , Acquirente : " + this.acquisto.acquirente.nome + this.acquisto.acquirente.cognome;
+    this.nomeCorso = this.ds.infoCorsoSelected.nomeCorso
+    this.acquisto.owner = new User();
+    this.acquisto.owner.idStripe = this.ds.infoCorsoSelected.idStripe;
+    this.acquisto.total = this.ds.infoCorsoSelected.prezzoCorso;
+    this.ds.infoCorsoSelected.idStripe !== undefined && this.ds.infoCorsoSelected.idStripe !== null && this.ds.infoCorsoSelected.idStripe !== '' ?
       this.stripe = Stripe(environment.STRIPE_PUBLIC_TOKEN, {
         stripeAccount: this.acquisto.owner.idStripe
       }) : this.stripe = Stripe(environment.STRIPE_PUBLIC_TOKEN);

@@ -24,7 +24,7 @@ export class VideoPlayerComponent implements OnInit {
 
 
   constructor(private deviceService: DeviceDetectorService, private fs: FileService,private ds: DelegateServiceService, private ls: LezioneServiceService) { 
-    this.ds.getOBSSpinnerVideo().subscribe(next=>{
+    this.fs.getOBSSpinnerVideo().subscribe(next=>{
       this.isLoading = next;
     })
    

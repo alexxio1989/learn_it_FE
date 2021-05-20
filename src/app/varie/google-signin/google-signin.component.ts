@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
+import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { User } from '../../model/User';
 import { DelegateServiceService } from '../../services/delegate-service.service';
 
@@ -14,7 +15,7 @@ export class GoogleSigninComponent implements OnInit {
 
   utente: User = new User();
 
-  constructor(private socialAuthService: SocialAuthService,private ds: DelegateServiceService) { 
+  constructor(private socialAuthService: SocialAuthService,private ds: DelegateServiceService, private us: UtenteServiceService) { 
     
     
     this.socialAuthService.authState.subscribe((user) => {
@@ -24,7 +25,7 @@ export class GoogleSigninComponent implements OnInit {
       this.utente.cognome = user.lastName;
       this.utente.password =  user.id;
       this.utente.attivita = '';
-      this.ds.updateUserGoogle(this.utente);
+      this.us.updateUserGoogle(this.utente);
       },error => {
         
       })

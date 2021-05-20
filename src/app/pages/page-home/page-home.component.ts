@@ -60,7 +60,7 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
       this.ds.updateSpinner(false);
       this.listaCorsiBase = next.list;
       this.cs.listaCorsi = next.list;
-      this.cs.updateCorsi(next.list);
+      this.cs._sbjUpdateCorsi.next(next.list);
 
       if (next.list.length > 0) {
         this.mapCorsi =  getMapCorsi(next.list);
@@ -72,11 +72,11 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
       this.ds.updateResultService(error.status)
     })
 
-    this.cs.getOBSCorsiFiltered().subscribe(next => {
+    this.cs._sbjFilterCorsi.asObservable().subscribe(next => {
       this.listaCorsiFiltered = next;
     })
 
-    this.cs.getOBSUpdateCorsi().subscribe(next => {
+    this.cs._sbjUpdateCorsi.asObservable().subscribe(next => {
       this.listaCorsiBase = next;
       this.listaCorsiFiltered = [];
       if (next.length > 0) {

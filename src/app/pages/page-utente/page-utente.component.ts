@@ -43,7 +43,7 @@ export class PageUtenteComponent implements OnInit , IPageCore{
       this.renderPage = !next;
     })
 
-    this.ds.getOBSUser().subscribe(next => {
+    this.us.getOBSUser().subscribe(next => {
       this.utente = next;
     })
   }
@@ -56,13 +56,13 @@ export class PageUtenteComponent implements OnInit , IPageCore{
       if(id !== undefined && id !== null && parseInt(id) > 0){
         let utente = new User();
         utente.id = id;
-        this.ds.getOBSAbilitaNavigazione().subscribe(next => {
+        this.ds._sbjAbilitaNavigazione.asObservable().subscribe(next => {
           if(next === this.PAGE){
             this.retrieveUtente(utente);
           }
         })
         this.ds.page = this.PAGE;
-        this.ds.checkUserLogged(this.PAGE);
+        this.ds.checkUserLogged(getUserLS(),this.PAGE , 0);
       } else {
 
         this.utente = getUserLS();
@@ -126,7 +126,7 @@ export class PageUtenteComponent implements OnInit , IPageCore{
   updateUser(){
     this.us.getOBSUpdateUser(this.utente).subscribe(next => {
       this.utente = next.obj;
-      this.ds.updateUser(this.utente);
+      this.us.updateUser(this.utente);
       this.ds.updateSpinner(false);
       this.ds.updateResultService(next.status);
     },error => {

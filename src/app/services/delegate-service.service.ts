@@ -1,10 +1,13 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Corso } from '../model/Corso';
 import { Dominio } from '../model/Dominio';
+import { InfoCorso } from '../model/InfoCorso';
 import { Lezione } from '../model/Lezione';
 import { User } from '../model/User';
-import { getUserLS } from '../utils/Util';
+import { getCorsoLS, getJWTTOKEN, getUserLS } from '../utils/Util';
+import { ServiceCore } from './core/ServiceCore';
 
 @Injectable({
   providedIn: 'root'
@@ -21,65 +24,69 @@ export class DelegateServiceService {
 
   paing = false;
 
-  idCorsoSelected: number;
-  idLezioneSelected: number;
+  infoCorsoSelected : InfoCorso;
+
+  idObjSelected: number;
 
 
-  private _sbjAbilitaNavigazione= new Subject();
-  private _sbjOpenLogin = new Subject();
-  private _sbjOpenAcquista= new Subject();
-  private _sbjSpinner = new Subject();
-  private _sbjVideo = new Subject();
-  private _sbjResultService = new Subject();
-  private _sbjSideBar = new Subject();
-  private _sbjTipiCorso = new Subject();
-  private _sbjUser = new Subject();
-  private _sbjPage = new Subject();
-  private _sbjCorsoSelected = new Subject();
+  public _sbjAbilitaNavigazione= new Subject<string>();
+  public _sbjOpenLogin = new Subject();
+  public _sbjOpenAcquista= new Subject();
+  public _sbjSpinner = new Subject();
+  public _sbjResultService = new Subject();
+  public _sbjSideBar = new Subject();
+  public _sbjPage = new Subject<string>();
+  
 
-  private _sbjNewLezione= new Subject();
+  
 
-  private _sbjNewFeed= new Subject();
+  constructor(private http: HttpClient) {}
 
-  private _sbjUserGoogle= new Subject();
+  getInfo(info: InfoCorso): Observable<any> {
+    const headers = new HttpHeaders().set("JWT_TOKEN",  getJWTTOKEN());
+    return this.http.post(ServiceCore.baseURl + "/corso/infoCorso", info , {headers});
+  }
 
-  constructor() {}
+  checkUserLogged(userLogged: User ,page: string , idCorso: number ): boolean{
+    
+    if(userLogged){
+      let corsoLocalStorage = getCorsoLS();
+      if(corsoLocalStorage && userLogged && corsoLocalStorage.owner.id === userLogged.id ){
+        this._sbjAbilitaNavigazione.next('CORSO');
+      }
 
-  checkUserLogged(page: string): boolean{
-    if(getUserLS()){
-      //this.updateOpenAcquista(true) 
-      this.updateAbilitaNavigazione(page);
+      if(idCorso > 0){
+          let info = new InfoCorso();
+          info.richiedente = userLogged.id;
+          info.idCorso = idCorso;
+          this.getInfo(info).subscribe(next => {
+            this.infoCorsoSelected = next.obj;
+            if(this.infoCorsoSelected.prezzoCorso > 0 && !this.infoCorsoSelected.letto && !this.infoCorsoSelected.youAreOwner){
+              this._sbjOpenAcquista.next(true) 
+            } else {
+              this._sbjAbilitaNavigazione.next(page);
+            }
+    
+          }, error => {
+            console.log(error.stack);
+            this.updateResultService("Errore durante il recupero dell'utente");
+            this.updateSpinner(false);
+          })
+
+      } else {
+        if('UTENTE' === page){
+          this._sbjAbilitaNavigazione.next(page);
+        }
+      }
+
       return true;
     } else {
-      this.updateOpenLogin(true) 
+      this._sbjOpenLogin.next(true);
       return false;
     }
   }
 
-  updateUserGoogle (utente: User) {
-    this._sbjUserGoogle.next(utente);
-  }
-
-  getOBSUserGoogle (): Observable<any> {
-    return this._sbjUserGoogle.asObservable();
-  }
-
-
-  updateCorsoSelected (corso: Corso) {
-    this._sbjCorsoSelected.next(corso);
-  }
-
-  getOBSCorsoSelected (): Observable<any> {
-    return this._sbjCorsoSelected.asObservable();
-  }
-
-  updateTipiCorso(tipi: Dominio[]) {
-    this._sbjTipiCorso.next(tipi);
-  }
-
-  getOBSTipiCorso(): Observable<any> {
-    return this._sbjTipiCorso.asObservable();
-  }
+ 
 
   updateSpinner(update: boolean) {
     this._sbjSpinner.next(update);
@@ -87,14 +94,6 @@ export class DelegateServiceService {
 
   getOBSSpinner(): Observable<any> {
     return this._sbjSpinner.asObservable();
-  }
-
-  updateSpinnerVideos(update: boolean) {
-    this._sbjVideo.next(update);
-  }
-
-  getOBSSpinnerVideo(): Observable<any> {
-    return this._sbjVideo.asObservable();
   }
 
   updateResultService(result: string) {
@@ -112,53 +111,7 @@ export class DelegateServiceService {
   getOBSSideBar(): Observable<any> {
     return this._sbjSideBar.asObservable();
   }
-
-  updateUser(utente: User) {
-    if(utente === undefined || utente === null){
-      localStorage.removeItem('USER');
-      localStorage.removeItem('TYPES');
-    } else {
-      localStorage.removeItem('USER');
-      localStorage.setItem('USER',JSON.stringify(utente));
-    }
-    this._sbjUser.next(utente);
-  }
-
-  getOBSUser(): Observable<any> {
-    return this._sbjUser.asObservable();
-  }
-
-  updateCheckUserLogged(value: boolean) {
-    this._sbjUser.next(value);
-  }
-
-  getOBSCheckUserLogged(): Observable<any> {
-    return this._sbjUser.asObservable();
-  }
-
-  updateAbilitaNavigazione(page: string) {
-    this._sbjAbilitaNavigazione.next(page);
-  }
-
-  getOBSAbilitaNavigazione(): Observable<any> {
-    return this._sbjAbilitaNavigazione.asObservable();
-  }
-
-  updateOpenLogin(update: boolean) {
-    this._sbjOpenLogin.next(update);
-  }
-
-  getOBSOpenLogin(): Observable<any> {
-    return this._sbjOpenLogin.asObservable();
-  }
-
-  updateOpenAcquista(update: boolean) {
-    this._sbjOpenAcquista.next(update);
-  }
-
-  getOBSOpenAcquista(): Observable<any> {
-    return this._sbjOpenAcquista.asObservable();
-  }
+  
 
   updatePage(page: string) {
     this._sbjPage.next(page);
@@ -167,25 +120,5 @@ export class DelegateServiceService {
   getOBSPage(): Observable<any> {
     return this._sbjPage.asObservable();
   }
-
-  newLezione(lezione: Lezione){
-    this._sbjNewLezione.next(lezione);
-  }
-
-
-  getOBSNewLezione(): Observable<any> {
-    return this._sbjNewLezione.asObservable();
-  }
-
-  newFeed(value: boolean){
-    this._sbjNewFeed.next(value);
-  }
-
-
-  getOBSNewFeed(): Observable<any> {
-    return this._sbjNewFeed.asObservable();
-  }
-
- 
 
 }

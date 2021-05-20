@@ -21,6 +21,7 @@ import { Acquisto } from 'src/app/model/Acquisto';
 import { ModalPagamentoComponent } from 'src/app/modals/modal-pagamento/modal-pagamento.component';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { ICard } from '../ICard';
+import { InfoCorso } from 'src/app/model/InfoCorso';
 
 @Component({
   selector: 'app-card-corso-light',
@@ -53,18 +54,15 @@ export class CardCorsoLightComponent implements OnInit,ICard{
   isCorsoDaPagare: boolean;
   isPAy: boolean;
   user: User;
-  acquisto = new Acquisto();
   modalPagamentoComponent = ModalPagamentoComponent;
   
-
-  showAcquista: boolean;
-  showContinua: boolean;
-  showAccedi: boolean;
   isDevice: boolean;
 
   @Input() width: number;
 
-  
+  infoRetrived: InfoCorso;
+
+  labelButton: string;
 
   constructor(private fb: FormBuilder,
               private us: UtenteServiceService ,
@@ -74,28 +72,28 @@ export class CardCorsoLightComponent implements OnInit,ICard{
               private ps: PagamentiServiceService,
               private deviceService: DeviceDetectorService) {
 
-              this.ds.getOBSUser().subscribe(next => {
-                this.checkLettureUtente();
+              this.us.getOBSUser().subscribe(next => {
+                this.user = next;
+                this.setLabelButton();
               })
 
              
 
   }
+
+  
   
 
   ngOnInit(): void {
+
+    this.user = getUserLS();
+
+    this.setLabelButton();
 
     this.url = this.url + this.corso.id;
     
 
     this.isDevice = this.deviceService.isMobile();
-    this.acquisto.acquirente = getUserLS();
-    this.acquisto.owner = this.corso.owner;
-    this.acquisto.causale = "Acquisto corso " + this.corso.nomeCorso;
-    this.acquisto.total = this.corso.prezzo;
-    this.acquisto.type = "CORSO"
-    this.acquisto.corso = this.corso;
-    this.checkLettureUtente();
 
     if(this.corso.descrizioneCorso === undefined || 
        this.corso.descrizioneCorso === null || 
@@ -107,58 +105,39 @@ export class CardCorsoLightComponent implements OnInit,ICard{
 
   }
 
+  setLabelButton(){
+    if( this.user ){
+      if(this.corso.owner.id === this.user.id){
+        this.labelButton = 'Continua'
 
-  private setFlags() {
-    if (this.user !== undefined && this.user !== null) {
-      this.showAccedi = false;
-      this.showAcquista = this.corso.prezzo !== undefined && this.corso.prezzo > 0 && !this.isCorsoLetto;
-      this.showContinua = !this.showAcquista;
-
+      } else {
+        this.labelButton = 'Inizia'
+      }
     } else {
-      this.showAccedi = true;
-      this.showAcquista = false;
-      this.showContinua = false;
+      this.labelButton = 'Accedi'
     }
   }
 
-  checkLettureUtente(){
-    const user = getUserLS();
-    this.user = user;
-    if(isSameUser(getUserLS(),this.corso.owner)){
-      this.isCorsoLetto = true;
-    } else {
 
-      this.isCorsoLetto = isNotNullObj(this.corso) &&
-                          isNotEmptyArray(this.corso.listLetture) &&
-                          isNotNullObj(user) ? this.corso.listLetture.filter(el => el.idUtente === user.id).length > 0 : false;
-    }
-
-    this.setFlags();
-  }
 
 
 
   continua(corso: Corso){
+    const utente = getUserLS();
+    if(utente){
+      this.navigate(corso);
+    } else {
+      this.ds._sbjOpenLogin.next(true);
+    
+    }
+    
+  }
+
+
+  private navigate(corso: Corso) {
     this.ds.updatePage('CORSO');
-    localStorage.setItem('CORSO' , JSON.stringify(corso));
+    localStorage.setItem('CORSO', JSON.stringify(corso));
     this.cs.corsoSelected = corso;
-    this.route.navigate(['/corso'], { queryParams: { id: corso.id } }); 
+    this.route.navigate(['/corso'], { queryParams: { id: corso.id } });
   }
-
-  openLogin() {
-      this.ds.updateOpenLogin(true);
-  }
-
-  next(corso: Corso){
-
-      if(this.isCorsoLetto){
-        this.continua(corso);
-      } else {
-        this.ds.objSelected = this.corso;
-          
-        this.ps.updateAcquisto("");
-      }
-  }
-
-
 }

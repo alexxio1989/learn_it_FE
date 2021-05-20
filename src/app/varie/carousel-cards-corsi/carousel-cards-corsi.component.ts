@@ -4,6 +4,7 @@ import { Slick } from 'ngx-slickjs';
 import { Subscription, timer } from 'rxjs';
 import { Corso } from 'src/app/model/Corso';
 import { Slide } from 'src/app/model/Slide';
+import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 
 @Component({
@@ -30,7 +31,7 @@ export class CarouselCardsCorsiComponent implements OnInit {
 
   widthSlide: number;
  
-  constructor(private ds: DelegateServiceService,private deviceService: DeviceDetectorService) { }
+  constructor(private ds: DelegateServiceService,private deviceService: DeviceDetectorService , private cs: CorsoServiceService) { }
 
   ngOnInit(): void {
 
@@ -43,7 +44,7 @@ export class CarouselCardsCorsiComponent implements OnInit {
 
     //this.countDown = timer(0, this.tick).subscribe(() => --this.counter)
 
-    this.ds.getOBSCorsoSelected().subscribe(next => {
+    this.cs._sbjCorsoSelected.asObservable().subscribe(next => {
       var result = this.corsi.find(obj => {
         return obj.id === next.id
       })
@@ -103,7 +104,7 @@ export class CarouselCardsCorsiComponent implements OnInit {
 
   emitCourse(corso: Corso){
 
-    this.ds.updateCorsoSelected(corso);
+    this.cs._sbjCorsoSelected.next(corso);
   }
 
   getSlides(corsi: Corso[], chunkCount): Slide[]{

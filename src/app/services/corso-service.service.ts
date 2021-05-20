@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Corso } from '../model/Corso';
 import { Dominio } from '../model/Dominio';
+import { InfoCorso } from '../model/InfoCorso';
 import { User } from '../model/User';
 import { getJWTTOKEN } from '../utils/Util';
 import { ServiceCore } from './core/ServiceCore';
@@ -17,8 +18,10 @@ export class CorsoServiceService {
   corsoSelected: Corso;
   
 
-  private _sbjUpdateCorsi = new Subject();
-  private _sbjFilterCorso = new Subject();
+  public _sbjUpdateCorsi = new Subject<Corso[]>();
+  public _sbjFilterCorsi = new Subject<Corso[]>();
+  public _sbjTipiCorso = new Subject<Dominio[]>();
+  public _sbjCorsoSelected = new Subject<Corso>();
 
   listaCorsi: Array<Corso> = [];
 
@@ -26,21 +29,6 @@ export class CorsoServiceService {
 
   constructor(private http: HttpClient , private ds: DelegateServiceService) { }
 
-  filterCorsi(newCorsi: Corso[]){
-    this._sbjFilterCorso.next(newCorsi);
-  }
-
-  updateCorsi(corsi: Corso[]){
-    this._sbjUpdateCorsi.next(corsi);
-  }
-
-  getOBSCorsiFiltered(): Observable<any> {
-    return this._sbjFilterCorso.asObservable();
-  }
-
-  getOBSUpdateCorsi(): Observable<any> {
-    return this._sbjUpdateCorsi.asObservable();
-  }
 
   getOBSCorsi(): Observable<any>{
     this.ds.updateSpinner(true);
@@ -132,6 +120,8 @@ export class CorsoServiceService {
     };
     return this.http.get(ServiceCore.baseURl + "/corso/getallbyid" , httpOptions);
   }
+
+  
 
 
 }

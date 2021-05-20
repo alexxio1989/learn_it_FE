@@ -83,7 +83,7 @@ export class InfoUtenteComponent implements OnInit {
     this.us.getOBSDelete(this.utente).subscribe(next => {
       localStorage.removeItem('JWT_TOKEN')
       localStorage.removeItem('COOKIE_CONSENT')
-      this.ds.updateUser(null);
+      this.us.updateUser(null);
       this.route.navigate(['/']);
       this.ds.updateSpinner(false);
       this.ds.updateResultService(next.status);

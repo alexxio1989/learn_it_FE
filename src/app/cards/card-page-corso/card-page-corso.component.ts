@@ -38,7 +38,7 @@ export class CardPageCorsoComponent implements OnInit {
       this.feed.titoloCorso = this.corso.nomeCorso;
     }
 
-    this.ds.getOBSNewFeed().subscribe(next => {
+    this.fs._sbjNewFeed.asObservable().subscribe(next => {
       this.newFeed = next;
     })
   }
@@ -79,7 +79,7 @@ export class CardPageCorsoComponent implements OnInit {
   }
 
   chiudiFeeds(){
-    this.ds.newFeed(false);
+    this.fs._sbjNewFeed.next(false);
   }
 
 }

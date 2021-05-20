@@ -38,7 +38,7 @@ export class ModalAccessoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.ds.getOBSUserGoogle().subscribe(utenteGoogle => {
+    this.us.getOBSUserGoogle().subscribe(utenteGoogle => {
       this.utente = utenteGoogle;
       
       console.log("Accesso con google + this.utente.email")
@@ -90,10 +90,10 @@ export class ModalAccessoComponent implements OnInit {
       let dateString = new Date().toLocaleString('it-IT') 
       localStorage.setItem('JWT_TIME',dateString);
       this.ds.utente = next.body.obj;
-      this.ds.updateUser(next.body.obj); 
+      this.us.updateUser(next.body.obj); 
       this.ds.updateSideBar(false);
       this.ds.updateSpinner(false);
-      this.ds.updateAbilitaNavigazione(this.ds.page);
+      this.ds.checkUserLogged(this.ds.utente , this.ds.page , this.ds.idObjSelected )
     },error => {
       this.ds.updateResultService(error.error.status);
       this.ds.updateSpinner(false);
@@ -108,10 +108,10 @@ accediGoogle(user: User) {
     let dateString = new Date().toLocaleString('it-IT') 
     localStorage.setItem('JWT_TIME',dateString);
     this.ds.utente = next.body.obj;
-    this.ds.updateUser(next.body.obj); 
+    this.us.updateUser(next.body.obj); 
     this.ds.updateSideBar(false);
     this.ds.updateSpinner(false);
-    this.ds.updateAbilitaNavigazione(this.ds.page);
+    this.ds.checkUserLogged(this.ds.utente , this.ds.page , this.ds.idObjSelected )
     this.dialog.closeAll();
   },error => {
     this.ds.updateResultService(error.error.status);
@@ -141,7 +141,7 @@ accediGoogle(user: User) {
     this.us.getOBSSignIn(user).subscribe(next =>{
       this.ds.updateResultService("Registrazione avvenuta con successo"); 
       this.ds.updateSpinner(false);
-      this.ds.updateOpenLogin(true);
+      this.ds._sbjOpenLogin.next(true);
     },error => {
       this.ds.updateResultService(error.error.status);
       this.ds.updateSpinner(false);

@@ -15,6 +15,8 @@ export class LezioneServiceService {
 
   lezioneSelected: Lezione;
 
+  public _sbjNewLezione= new Subject<Lezione>();
+
   private _sbjUpdateLezioni = new Subject();
 
   constructor(private http: HttpClient, private ds: DelegateServiceService) { } 
