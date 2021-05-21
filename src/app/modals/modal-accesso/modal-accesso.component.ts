@@ -93,7 +93,7 @@ export class ModalAccessoComponent implements OnInit {
       this.us.updateUser(next.body.obj); 
       this.ds.updateSideBar(false);
       this.ds.updateSpinner(false);
-      this.ds.checkUserLogged(this.ds.utente , this.ds.page , this.ds.idObjSelected )
+      this.ds.checkUserLogged(this.ds.utente , this.ds.infoPage)
     },error => {
       this.ds.updateResultService(error.error.status);
       this.ds.updateSpinner(false);
@@ -111,7 +111,7 @@ accediGoogle(user: User) {
     this.us.updateUser(next.body.obj); 
     this.ds.updateSideBar(false);
     this.ds.updateSpinner(false);
-    this.ds.checkUserLogged(this.ds.utente , this.ds.page , this.ds.idObjSelected )
+    this.ds.checkUserLogged(this.ds.utente , this.ds.infoPage)
     this.dialog.closeAll();
   },error => {
     this.ds.updateResultService(error.error.status);

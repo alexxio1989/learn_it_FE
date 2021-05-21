@@ -1,11 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConstantsActions } from 'src/app/constants/ConstantsActions';
 import { Lezione } from 'src/app/model/Lezione';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { FeedbackService } from 'src/app/services/feedback.service';
 import { LezioneServiceService } from 'src/app/services/lezione-service.service';
-import { getCorsoLS, getUserLS, isEmptyArray, isEmptyString, isNotEmptyArray, isSameUser } from 'src/app/utils/Util';
+import { getCorsoLS, getInfoPage, getUserLS, isEmptyArray, isEmptyString, isNotEmptyArray, isSameUser } from 'src/app/utils/Util';
 import { Corso } from '../../model/Corso';
 import { IPageCore } from '../IPageCore';
 
@@ -16,7 +17,7 @@ import { IPageCore } from '../IPageCore';
 })
 export class PageCorsoComponent implements OnInit, IPageCore {
  
-  public PAGE = 'CORSO';
+  public PAGE = ConstantsActions.CORSO ;
 
   corso: Corso = new Corso();
 
@@ -61,7 +62,7 @@ export class PageCorsoComponent implements OnInit, IPageCore {
   }
 
   ngOnInit(): void {
-    this.ds.updatePage('CORSO');
+    this.ds.updatePage(this.PAGE);
     
     
     this.ar.queryParams.subscribe(params => {
@@ -74,9 +75,8 @@ export class PageCorsoComponent implements OnInit, IPageCore {
             this.retrieveCorso(id);
           }
         })
-        this.ds.idObjSelected = id;
-        this.ds.page = this.PAGE;
-        this.ds.checkUserLogged(getUserLS(),this.PAGE, id );
+        let infoPage = getInfoPage(this.PAGE ,  parseInt(id));
+        this.ds.checkUserLogged(getUserLS(),infoPage );
 
       } else {
         this.route.navigate(['/']);

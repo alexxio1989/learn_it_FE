@@ -13,6 +13,7 @@ import { Lettura } from './model/Lettura';
 import { PagamentiServiceService } from './services/pagamenti-service.service';
 import { UtenteServiceService } from './services/utente-service.service';
 import { ModalPagamentoComponent } from './modals/modal-pagamento/modal-pagamento.component';
+import { ConstantsActions } from './constants/ConstantsActions';
 
 @Component({
   selector: 'app-root',
@@ -72,11 +73,6 @@ export class AppComponent  implements OnInit, OnDestroy,AfterViewInit  {
       this.cs.tipoCorsoList = next;
     })
 
-    this.ps.getOBSAcquisto().subscribe(next => {
-      
-        this.goToCorso();
-     
-    })
     
   }
 
@@ -121,35 +117,12 @@ export class AppComponent  implements OnInit, OnDestroy,AfterViewInit  {
   ngAfterViewInit() {
     setTimeout(() => {
       this.ds.getOBSPage().subscribe(next => {
-        this.isHomePage = next === 'HOME';
+        this.isHomePage = next === ConstantsActions.HOME;
       })
     });
   } 
 
-  goToCorso(){
-    let corso = this.ds.objSelected;
-    if(corso){
-      this.ds.paing = true;
-      let lettura = new Lettura();
-      lettura.idCorso = corso.id;
-      lettura.idUtente = getUserLS().id;
-      lettura.corso = corso;
-      lettura.lettore = getUserLS();
-      this.us.getOBSInsertLettura(lettura).subscribe(next=>{
-        this.ds.updatePage('CORSO');
-        this.ds.updateSpinner(false);
-        this.ds.updateResultService(next.status);
-       
-        localStorage.setItem('CORSO' , JSON.stringify(corso));
-        this.cs.corsoSelected = corso;
-        this.route.navigate(['/corso'], { queryParams: { id: corso.id } }); 
-      },error =>{
-        this.ds.updateSpinner(false);
-        this.ds.updateResultService(error.error.status);
-      })
-
-    }
-  }
+ 
 
 
   ngOnDestroy() {

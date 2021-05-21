@@ -1,8 +1,10 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { ConstantsActions } from '../constants/ConstantsActions';
 import { Corso } from '../model/Corso';
 import { Dominio } from '../model/Dominio';
+import { InfoPage } from '../model/InfoPage';
 import { User } from '../model/User';
 
 // OBJECTS
@@ -48,6 +50,21 @@ export function isNotEmptyArray(value: any[]): boolean {
 export function getCorsoLS(): Corso{
     let value = localStorage.getItem('CORSO');
     return isNotNullObj(value) && value !== 'undefined' ? JSON.parse(value) : null;
+}
+
+export function getInfoPage(page: string , id : number): InfoPage{
+    let infoPage = new InfoPage();
+    infoPage.page = page;
+    infoPage.isPageCorso = ConstantsActions.CORSO === page;
+    infoPage.isPageLezione = ConstantsActions.LEZIONE === page;
+    infoPage.isPageUtente = ConstantsActions.UTENTE === page;
+
+    infoPage.idCorso =  infoPage.isPageCorso ? id : 0;
+    infoPage.idLezione = infoPage.isPageLezione ? id : 0;
+    infoPage.idUtente = infoPage.isPageUtente ? id : 0;
+
+
+    return infoPage;
 }
 
 export function getUserLS(): User {

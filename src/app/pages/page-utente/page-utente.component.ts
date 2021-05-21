@@ -4,13 +4,14 @@ import { Corso } from 'src/app/model/Corso';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { User } from '../../model/User';
-import { getUserLS , isNullObj} from '../../utils/Util';
+import { getInfoPage, getUserLS , isNullObj} from '../../utils/Util';
 import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { IPageCore } from '../IPageCore';
 import { ModalEditUtenteComponent } from 'src/app/modals/modal-edit-utente/modal-edit-utente.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Resoconto } from 'src/app/model/Resoconto';
 import { StripeService } from '../../services/stripe.service';
+import { ConstantsActions } from 'src/app/constants/ConstantsActions';
 
 @Component({
   selector: 'app-page-utente',
@@ -25,7 +26,7 @@ export class PageUtenteComponent implements OnInit , IPageCore{
   renderPage: boolean;
   renderEditorInfoUser: boolean;
   extraUtenteLogged: boolean;
-  public PAGE = 'UTENTE';
+  public PAGE = ConstantsActions.UTENTE;
 
   resoconto: Resoconto = new Resoconto();
 
@@ -61,8 +62,9 @@ export class PageUtenteComponent implements OnInit , IPageCore{
             this.retrieveUtente(utente);
           }
         })
-        this.ds.page = this.PAGE;
-        this.ds.checkUserLogged(getUserLS(),this.PAGE , 0);
+       
+        let infoPage = getInfoPage(this.PAGE ,  parseInt(id));
+        this.ds.checkUserLogged(getUserLS(),infoPage );
       } else {
 
         this.utente = getUserLS();

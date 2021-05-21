@@ -6,6 +6,7 @@ import { ContentModalCorsoComponent } from 'src/app/modals/content-modal-corso/c
 import { ModalRichiestaComponent } from 'src/app/modals/modal-richiesta/modal-richiesta.component';
 import { Corso } from 'src/app/model/Corso';
 import { Dominio } from 'src/app/model/Dominio';
+import { InfoPage } from 'src/app/model/InfoPage';
 import { User } from 'src/app/model/User';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
@@ -80,11 +81,12 @@ export class SideBarComponent implements OnInit {
     localStorage.removeItem('CORSO')
     localStorage.removeItem('JWT_TOKEN')
     localStorage.removeItem('COOKIE_CONSENT')
+    localStorage.clear();
     this.us.updateUser(null);
     this.route.navigate(['/']);
     this.ds.updateSideBar(false);
-
-    window.location.reload();
+    this.ds.infoPage = new InfoPage();
+    this.ds.reset();
   }
 
   filterListCorsi(dominio: Dominio){

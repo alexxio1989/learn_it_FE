@@ -111,7 +111,7 @@ export class CardCorsoLightComponent implements OnInit,ICard{
         this.labelButton = 'Continua'
 
       } else {
-        this.labelButton = 'Inizia'
+        this.labelButton = 'Leggi'
       }
     } else {
       this.labelButton = 'Accedi'
@@ -135,8 +135,12 @@ export class CardCorsoLightComponent implements OnInit,ICard{
 
 
   private navigate(corso: Corso) {
+    localStorage.removeItem('CORSO')
     this.ds.updatePage('CORSO');
-    localStorage.setItem('CORSO', JSON.stringify(corso));
+
+    let corsoString = JSON.stringify(corso);
+    console.log(corsoString)
+    localStorage.setItem('CORSO', corsoString);
     this.cs.corsoSelected = corso;
     this.route.navigate(['/corso'], { queryParams: { id: corso.id } });
   }

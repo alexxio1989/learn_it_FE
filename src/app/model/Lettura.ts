@@ -5,6 +5,8 @@ import { User } from './User';
 export class Lettura{
     idCorso: number;
     idUtente: number;
-    corso: Corso;
-    lettore: User;
+    emailOwner: string;
+	nomeCorso: string;
+	anagrafeOwner: string;
+	anagrafeLettore: string;
 }

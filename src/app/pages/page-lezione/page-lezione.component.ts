@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { ConstantsActions } from 'src/app/constants/ConstantsActions';
 import { ContentModalParagrafoEditComponent } from 'src/app/modals/content-modal-paragrafo-edit/content-modal-paragrafo-edit.component';
 import { Corso } from 'src/app/model/Corso';
 import { Lezione } from 'src/app/model/Lezione';
@@ -12,7 +13,7 @@ import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { LezioneServiceService } from 'src/app/services/lezione-service.service';
 import { ParagrafoServiceService } from 'src/app/services/paragrafo-service.service';
-import { getUserLS, isSameUserID } from 'src/app/utils/Util';
+import { getInfoPage, getUserLS, isSameUserID } from 'src/app/utils/Util';
 import { IPageCore } from '../IPageCore';
 
 @Component({
@@ -22,7 +23,7 @@ import { IPageCore } from '../IPageCore';
 })
 export class PageLezioneComponent implements OnInit, IPageCore {
 
-  public PAGE = 'LEZIONE';
+  public PAGE = ConstantsActions.LEZIONE ;
   toppings = new FormControl();
   edit: boolean;
   lezione: Lezione = new Lezione();
@@ -61,7 +62,7 @@ export class PageLezioneComponent implements OnInit, IPageCore {
   }
 
   ngOnInit(): void {
-    this.ds.updatePage('LEZIONE');
+    this.ds.updatePage(this.PAGE);
     this.isDevice = this.deviceService.isMobile();
     this.ar.queryParams.subscribe(params => {
       
@@ -69,15 +70,18 @@ export class PageLezioneComponent implements OnInit, IPageCore {
       
       if(id !== undefined && id !== null && parseInt(id) > 0){
 
-        this.corso = JSON.parse(localStorage.getItem('CORSO'));
+        let corsoRetrieved = JSON.parse(localStorage.getItem('CORSO'));
+        if(corsoRetrieved){
+          this.corso = corsoRetrieved
+        }
         
         this.ds._sbjAbilitaNavigazione.asObservable().subscribe(next => {
           if(next === this.PAGE){
             this.retrieveLezione(id);
           }
         })
-        this.ds.page = this.PAGE;
-        this.ds.checkUserLogged(getUserLS(),this.PAGE , this.corso.id );
+        let infoPage = getInfoPage(this.PAGE ,  parseInt(id));
+        this.ds.checkUserLogged(getUserLS(),infoPage );
 
       } else {
         this.route.navigate(['/']);

@@ -1,9 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { ConstantsActions } from '../constants/ConstantsActions';
 import { Corso } from '../model/Corso';
 import { Dominio } from '../model/Dominio';
 import { InfoCorso } from '../model/InfoCorso';
+import { InfoPage } from '../model/InfoPage';
 import { Lezione } from '../model/Lezione';
 import { User } from '../model/User';
 import { getCorsoLS, getJWTTOKEN, getUserLS } from '../utils/Util';
@@ -20,13 +22,11 @@ export class DelegateServiceService {
 
   isOpenSideBar: boolean;
 
-  page: string;
-
-  paing = false;
+  infoPage: InfoPage = new InfoPage();
 
   infoCorsoSelected : InfoCorso;
 
-  idObjSelected: number;
+  
 
 
   public _sbjAbilitaNavigazione= new Subject<string>();
@@ -47,24 +47,25 @@ export class DelegateServiceService {
     return this.http.post(ServiceCore.baseURl + "/corso/infoCorso", info , {headers});
   }
 
-  checkUserLogged(userLogged: User ,page: string , idCorso: number ): boolean{
-    
+  checkUserLogged(userLogged: User ,infoPage: InfoPage): boolean{
+    this.infoPage = infoPage;
     if(userLogged){
       let corsoLocalStorage = getCorsoLS();
       if(corsoLocalStorage && userLogged && corsoLocalStorage.owner.id === userLogged.id ){
-        this._sbjAbilitaNavigazione.next('CORSO');
+        this._sbjAbilitaNavigazione.next(infoPage.page);
       }
 
-      if(idCorso > 0){
+      if(infoPage && (infoPage.idCorso > 0 || infoPage.idLezione)){
           let info = new InfoCorso();
           info.richiedente = userLogged.id;
-          info.idCorso = idCorso;
+          info.idCorso = infoPage.idCorso ;
+          info.idLezione = infoPage.idLezione
           this.getInfo(info).subscribe(next => {
             this.infoCorsoSelected = next.obj;
             if(this.infoCorsoSelected.prezzoCorso > 0 && !this.infoCorsoSelected.letto && !this.infoCorsoSelected.youAreOwner){
               this._sbjOpenAcquista.next(true) 
             } else {
-              this._sbjAbilitaNavigazione.next(page);
+              this._sbjAbilitaNavigazione.next(infoPage.page);
             }
     
           }, error => {
@@ -74,8 +75,8 @@ export class DelegateServiceService {
           })
 
       } else {
-        if('UTENTE' === page){
-          this._sbjAbilitaNavigazione.next(page);
+        if(infoPage && infoPage.isPageUtente){
+          this._sbjAbilitaNavigazione.next(infoPage.page);
         }
       }
 
@@ -84,6 +85,11 @@ export class DelegateServiceService {
       this._sbjOpenLogin.next(true);
       return false;
     }
+  }
+
+  reset(){
+    this.infoCorsoSelected = undefined;
+    this.infoPage = new InfoPage();
   }
 
  
@@ -114,6 +120,7 @@ export class DelegateServiceService {
   
 
   updatePage(page: string) {
+    this.infoPage.page = page;
     this._sbjPage.next(page);
   }
 

@@ -1,6 +1,7 @@
 import { AfterContentInit,AfterViewChecked,Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { ConstantsActions } from 'src/app/constants/ConstantsActions';
 import { Dominio } from 'src/app/model/Dominio';
 import { IPageCore } from 'src/app/pages/IPageCore';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
@@ -19,7 +20,7 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
 
   @ViewChild('titleIlMioCodice') el:ElementRef;
 
-  public PAGE = 'HOME';
+  public PAGE = ConstantsActions.HOME;
   listaCorsiBase: Array<Corso> = [];
   listaCorsiFiltered: Array<Corso> = [];
   mapCorsi: Map<string, Dominio>;
@@ -51,6 +52,7 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
 
 
   ngOnInit(): void {
+    this.ds.reset();
     this.ds.updatePage(this.PAGE);
     const isMobile = this.deviceService.isMobile();
     clearJWTTOKEN(this.route);

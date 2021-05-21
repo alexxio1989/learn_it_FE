@@ -7,7 +7,8 @@ export class InfoCorso{
 	nomeCorso: string;
 	prezzoCorso: number;
 	idOwner: number;
-	nagrafeOwner: string;
+	anagrafeOwner: string;
 	idStripe: string;
 	youAreOwner: boolean;
+	emailOwner: string;
 }

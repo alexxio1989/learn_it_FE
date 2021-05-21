@@ -6,13 +6,14 @@ import { StripeCardElementOptions, StripeElement, StripeElementsOptions } from '
 import { StripeCardComponent, StripeService } from 'ngx-stripe';
 import { from } from 'rxjs';
 import { Acquisto } from 'src/app/model/Acquisto';
+import { Lettura } from 'src/app/model/Lettura';
 import { User } from 'src/app/model/User';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { PagamentiServiceService } from 'src/app/services/pagamenti-service.service';
+import { UtenteServiceService } from 'src/app/services/utente-service.service';
 import { getUserLS } from 'src/app/utils/Util';
 import { environment } from 'src/environments/environment';
-import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-modal-pagamento',
@@ -41,19 +42,22 @@ export class ModalPagamentoComponent implements OnInit {
   loading:boolean;
 
   nomeCorso: string;
+
+  utenteLogged: User;
   
 
 
   constructor(private stripeService: StripeService,
               private ps: PagamentiServiceService,
+              private us: UtenteServiceService,
               private ds: DelegateServiceService,
               private cs: CorsoServiceService,
               private fb: FormBuilder,
               public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    
-    this.acquisto.acquirente = getUserLS();
+    this.utenteLogged = getUserLS();
+    this.nomeCorso = this.ds.infoCorsoSelected.nomeCorso;
     this.loading = true;
     this.preparaAcquisto();
 
@@ -63,9 +67,9 @@ export class ModalPagamentoComponent implements OnInit {
 
   private preparaAcquisto() {
    
-    
+    this.acquisto.acquirente = this.utenteLogged;
     this.acquisto.causale = "Acquisto tutorial " + this.ds.infoCorsoSelected.nomeCorso + " , Acquirente : " + this.acquisto.acquirente.nome + this.acquisto.acquirente.cognome;
-    this.nomeCorso = this.ds.infoCorsoSelected.nomeCorso
+    
     this.acquisto.owner = new User();
     this.acquisto.owner.idStripe = this.ds.infoCorsoSelected.idStripe;
     this.acquisto.total = this.ds.infoCorsoSelected.prezzoCorso;
@@ -130,28 +134,36 @@ export class ModalPagamentoComponent implements OnInit {
         } else {
 
           this.ds.objSelected = this.acquisto.corso;
-          
-          this.ps.updateAcquisto("");
+
+          this.insertLettura();
+
+          //this.ps.updateAcquisto("");
           this.ds.updateSpinner(false);
           this.dialog.closeAll();
         }
       });
 
-
-    // this.stripe
-    // .confirmCardPayment(this.clientSecret, {
-    //   payment_method: {
-    //     card: this.card
-    //   }
-    // }).then(function(result) {
-    //   if (result.error) {
-       
-        
-    //   } else {
-        
-    //   }
-    // });
    }
+
+  private insertLettura() {
+    let lettura = new Lettura();
+    lettura.idCorso = this.ds.infoCorsoSelected.idCorso;
+    lettura.idUtente = this.utenteLogged.id;
+    lettura.emailOwner = this.ds.infoCorsoSelected.emailOwner
+    lettura.nomeCorso = this.ds.infoCorsoSelected.nomeCorso;
+    lettura.anagrafeOwner = this.ds.infoCorsoSelected.anagrafeOwner;
+    lettura.anagrafeLettore = this.utenteLogged.nome + ' ' + this.utenteLogged.cognome;
+
+    this.us.getOBSInsertLettura(lettura).subscribe(next => {
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService(next.status);
+      this.ds._sbjAbilitaNavigazione.next(this.ds.infoPage.page);
+      
+    }, error => {
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService(error.error.status);
+    });
+  }
 
   cardUpdated(result) {
     
