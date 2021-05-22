@@ -3,7 +3,7 @@
 
     <app-card-page-lezione [lezione] = "lezione" [corso] = "corso"></app-card-page-lezione>
     
-    <app-video-player></app-video-player> 
+   
 
    
    
@@ -22,6 +22,8 @@
             </mat-form-field>
         </div>
     </div>
+
+     <app-video-player></app-video-player> 
 
     <div class="row w-100 ml-0 mt-2 ">
         <div class="col-12 pr-0 pl-0 pt-3 bg-white mb-3 br-15 mat-elevation-z1" *ngFor="let paragrafo of lezione.listaParagrafi">
