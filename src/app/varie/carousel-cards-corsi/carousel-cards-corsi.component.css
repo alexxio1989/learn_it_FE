@@ -32,8 +32,19 @@
 }
 
 
-.header-accordion{
+.header{
     height: 35px !important;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+}
+.pl-1-5{
+
+    padding-left: 0.5rem !important;
+}
+
+.pr-1-5{
+
+    padding-right: 0.5rem !important;
 }
 
 

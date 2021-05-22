@@ -8,7 +8,7 @@
    
    
 
-    <div class="row w-100 ml-0">
+    <div class=" card brtl-0 brtr-0 brbl-15 brbr-15 row w-100 ml-0">
         <div *ngIf="lezione.listaParagrafi.length > 0" class="col-12 d-flex justify-content-center ">
             <mat-form-field style="width: 300px;">
                 <mat-label>Vai al paragrafo ...</mat-label>
@@ -23,9 +23,9 @@
         </div>
     </div>
 
-    <div class="row w-100 ml-0 mt-2">
-        <div class="col-12">
-            <div class="mb-3 pb-2" *ngFor="let paragrafo of lezione.listaParagrafi">
+    <div class="row w-100 ml-0 mt-2 ">
+        <div class="col-12 pr-0 pl-0 pt-3 bg-white mb-3 br-15 mat-elevation-z1" *ngFor="let paragrafo of lezione.listaParagrafi">
+           
                 <div class="row col-12 pl-4">
                     <h3 id="{{paragrafo.idComponent}}" class="title-parag">{{paragrafo.titolo}}</h3>
 
@@ -51,7 +51,7 @@
                 
                 <div class="mt-1 mb-3 p-2 desc" [innerHTML]="paragrafo.content"></div>
 
-                <div *ngIf="paragrafo.codes !== undefined && paragrafo.codes !== null && paragrafo.codes.length > 0" class="row bg-gray">
+                <div *ngIf="paragrafo.codes !== undefined && paragrafo.codes !== null && paragrafo.codes.length > 0" class="col-12 brbl-15 brbr-15 pb-3 bg-gray">
 
                     <div class="col-12 p-4">
                         <h4>Codici di Esempio </h4>
@@ -59,7 +59,7 @@
 
                 
                     
-                    <div *ngFor="let code of paragrafo.codes" class="col-12 pl-4 pr-4 mb-3">
+                    <div *ngFor="let code of paragrafo.codes" class="col-12 pl-2 pr-2">
                         <div class="row">
                             <div class="col-12 d-flex">
                                 <mat-icon class="mt-2 icon ">code</mat-icon>
@@ -92,7 +92,7 @@
                     </div>
                     
                 </div>
-            </div>
+            
 
         </div>
     </div>

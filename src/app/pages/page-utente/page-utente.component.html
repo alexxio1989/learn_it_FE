@@ -1,9 +1,8 @@
 <div *ngIf="!renderPage"></div> 
-<div  class="w-100" *ngIf="renderPage">
-    <app-card-utente [utente] = "utente" [isSideBar] ="false" [isCardCorso] ="false" [editInfo]="!extraUtenteLogged"></app-card-utente>
+<app-card-utente *ngIf="renderPage" [utente] = "utente" [isSideBar] ="false" [isCardCorso] ="false" [editInfo]="!extraUtenteLogged"></app-card-utente>
+<div  class="card br-15 mat-elevation-z1 mt-2" *ngIf="renderPage">
 
 
-    <mat-dialog-content class="mat-typography" class="p-2">
         <form class="accesso-form">
             <mat-tab-group [selectedIndex]="activeTab" mat-stretch-tabs>
                 <mat-tab class="h-100" class="h-100">
@@ -188,6 +187,6 @@
             
             </mat-tab-group>
         </form>
-    </mat-dialog-content>
+
 
 </div>

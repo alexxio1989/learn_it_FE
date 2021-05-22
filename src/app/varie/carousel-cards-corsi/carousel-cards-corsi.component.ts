@@ -57,7 +57,7 @@ export class CarouselCardsCorsiComponent implements OnInit {
     })
 
 
-    this.isDevice ? this.widthSlide = 370 : this.widthSlide = 380
+    this.widthSlide = 350 ;
 
 
 

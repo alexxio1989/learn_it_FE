@@ -1,0 +1,75 @@
+
+.cc-message {
+    font-family: sf pro display,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol !important; 
+    font-size: calc(12px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
+    line-height: 1.4;
+    font-weight: 400 !important;
+    opacity: 0.6 !important;
+  }
+  
+  p{
+    font-family: SFProText-Regular, Helvetica, Arial, sans-serif !important; 
+  }
+  
+  
+  .desc p{
+      font-size: calc(11px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
+  }
+  
+  p {
+    margin: 0 0 6px !important;
+    font-family: SFProText-Regular, Helvetica, Arial, sans-serif !important; 
+    font-size: calc(9px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) ;
+  }
+  
+  h1{
+    font-family: sf pro display,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol !important; 
+    font-size: calc(25px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
+    line-height: 1.4;
+    font-weight: 700 !important;
+  }
+  
+  h2{
+    font-family: sf pro display,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol !important; 
+    font-size: calc(20px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
+    line-height: 1.4 !important;
+    font-weight: 700 !important;
+  }
+  
+  h3{
+    font-family: sf pro display,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol !important; 
+    font-size: calc(16px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
+    line-height: 1.4;
+    font-weight: 700 !important
+  }
+  
+  h4{
+    font-family: sf pro display,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol !important; 
+    font-size: calc(14px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
+    line-height: 1.4;
+    font-weight: 600 !important;
+    opacity: 0.7 !important;
+  }
+  
+  
+  
+  .mat-h4, .mat-subheading-1, .mat-typography h4 {
+      margin: 0px 0 7px;
+  }
+  
+  h5{
+    font-family: sf pro display,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol !important; 
+    font-size: calc(11px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
+    line-height: 1.4;
+    font-weight: 500 !important;
+    opacity: 0.6 !important;
+  }
+  
+  h6{
+    font-family: sf pro display,-apple-system,BlinkMacSystemFont,Roboto,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji,segoe ui symbol !important; 
+    font-size: calc(10px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
+    line-height: 1.4;
+    opacity: 0.5;
+    font-weight: 400 !important;
+  }
+  

@@ -26,6 +26,9 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss",
+              "src/typography.scss",
+              "src/components.scss",
+              "src/components-sm.scss",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/cookieconsent/build/cookieconsent.min.css",
               "./node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
