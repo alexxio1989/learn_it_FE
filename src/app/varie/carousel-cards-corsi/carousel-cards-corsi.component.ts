@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { Slick } from 'ngx-slickjs';
 import { Subscription, timer } from 'rxjs';
 import { Corso } from 'src/app/model/Corso';
 import { Paginazione } from 'src/app/model/Paginazione';
@@ -20,9 +19,6 @@ export class CarouselCardsCorsiComponent implements OnInit {
 
   slides: Slide[] = [];
   isDevice: boolean;
-  config: Slick.Config;
-
-  configSlides: Slick.Config;
 
   corsoSeleted: Corso;
 
@@ -33,6 +29,21 @@ export class CarouselCardsCorsiComponent implements OnInit {
   widthSlide: number;
 
   paginazione = new Paginazione();
+
+  totCorsi: number;
+
+  slideConfig = {
+    infinite: true,
+    slidesToShow: 1, 
+    slidesToScroll: 1,
+    dots: false,
+    autoplay: false,
+    autoplaySpeed: 2000 ,
+    arrows: false,
+    centerMode: true,
+    focusOnSelect: false,
+    variableWidth: true
+  }
 
   
  
@@ -66,29 +77,16 @@ export class CarouselCardsCorsiComponent implements OnInit {
 
     this.widthSlide = 350 ;
 
-
-
-    this.configSlides = {
-      infinite: true,
-      slidesToShow: 1, 
-      slidesToScroll: 1,
-      dots: false,
-      autoplay: false,
-      autoplaySpeed: 2000 ,
-      arrows: false,
-      centerMode: true,
-      focusOnSelect: false,
-      variableWidth: true
-    }
+    this.totCorsi = this.type.corsi[0].totOccurrences;
   
-    this.type.configPagination = {id: ''+this.type.id, itemsPerPage: this.isDevice ? 1 :3, currentPage: 0 , totalItems: this.type.corsi[0].totOccurrences }
+    this.type.configPagination = {id: ''+this.type.id, itemsPerPage: 3, currentPage: 0 , totalItems: this.totCorsi  }
 
 
   }
 
 
 
-  slideConfig ;
+
   
  
   
@@ -105,6 +103,12 @@ export class CarouselCardsCorsiComponent implements OnInit {
   }
   
   afterChange(e) {
+    let currentSlide = e.currentSlide;
+    if(this.totCorsi > currentSlide && this.type.corsi.length < this.totCorsi  ){
+      this.paginazione.pagina = 3
+      this.paginazione.numeroPerPagina = 3;
+      this.getCorsiByType();
+    }
     console.log('afterChange');
   }
   
@@ -145,19 +149,28 @@ export class CarouselCardsCorsiComponent implements OnInit {
   pageChanged(event){
     let page = event -1;
     if(page > 0){
-      page = page * (this.isDevice ? 1 :3)
-      this.paginazione.pagina = page
-      
-    }
-    this.paginazione.numeroPerPagina = this.isDevice ? 1 :3;
+      page = page * 3
+    } 
     this.type.configPagination.currentPage = event;
-    this.cs.getCorsiByType(this.type.id ,this. paginazione).subscribe(next =>{
-      this.type.corsi = next.list
-    },error =>{
-      
-    } )
+    this.paginazione.pagina = page
+    this.paginazione.numeroPerPagina = 3;
+    this.getCorsiByType();
   }
 
 
 
+
+
+
+  private getCorsiByType() {
+    this.cs.getCorsiByType(this.type.id, this.paginazione).subscribe(next => {
+      if(!this.isDevice){
+        this.type.corsi = next.list;
+
+      } else {
+        this.type.corsi.push(next.list)
+      }
+    }, error => {
+    });
+  }
 }

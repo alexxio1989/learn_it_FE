@@ -77,7 +77,6 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { IntroComponent } from './varie/intro/intro.component';
 import { CardCorsoLightComponent } from './cards/card-corso-light/card-corso-light.component';
 import { CarouselCardsCorsiComponent } from './varie/carousel-cards-corsi/carousel-cards-corsi.component';
-import { NgxSlickJsModule } from 'ngx-slickjs';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { ShareComponent } from './varie/share/share.component';
@@ -94,6 +93,7 @@ import { GoogleSigninComponent } from './varie/google-signin/google-signin.compo
 import { PageTestComponent } from './pages/page-test/page-test.component';
 import { InfoProfileComponent } from './info-profile/info-profile.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
 
 
 
@@ -219,16 +219,10 @@ const cookieConfig: NgcCookieConsentConfig = {
     MatDatepickerModule,
     MatNativeDateModule,
     NgxPaginationModule,
+    SlickCarouselModule,
     SocialLoginModule,
     MDBBootstrapModule.forRoot(),
-    NgxSlickJsModule.forRoot({
-      links: {
-        jquery: "https://code.jquery.com/jquery-3.4.0.min.js",
-        slickJs: "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js",
-        slickCss: "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css",
-        slickThemeCss: "https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
-      }
-  }),ShareButtonsModule.withConfig({
+    ShareButtonsModule.withConfig({
     debug: true
   }),
   ShareIconsModule,
