@@ -3,6 +3,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 import { Slick } from 'ngx-slickjs';
 import { Subscription, timer } from 'rxjs';
 import { Corso } from 'src/app/model/Corso';
+import { Dominio } from 'src/app/model/Dominio';
 import { Slide } from 'src/app/model/Slide';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
@@ -14,8 +15,7 @@ import { DelegateServiceService } from 'src/app/services/delegate-service.servic
 })
 export class CarouselCardsCorsiComponent implements OnInit {
 
-  @Input() corsi: Corso[] = [];
-  @Input() title: string;
+  @Input() type: Dominio;
 
   slides: Slide[] = [];
   isDevice: boolean;
@@ -38,14 +38,14 @@ export class CarouselCardsCorsiComponent implements OnInit {
 
     this.isDevice = this.deviceService.isMobile();
 
-    if(this.corsi.length > 0){
-      this.slides = this.getSlides(this.corsi , this.isDevice && this.corsi.length > 2 ? 1: 1);
+    if(this.type.corsi.length > 0){
+      this.slides = this.getSlides(this.type.corsi , this.isDevice && this.type.corsi.length > 2 ? 1: 1);
     }
 
     //this.countDown = timer(0, this.tick).subscribe(() => --this.counter)
 
     this.cs._sbjCorsoSelected.asObservable().subscribe(next => {
-      var result = this.corsi.find(obj => {
+      var result = this.type.corsi.find(obj => {
         return obj.id === next.id
       })
       if(result !== undefined && result !== null){
@@ -83,7 +83,7 @@ export class CarouselCardsCorsiComponent implements OnInit {
  
   
   removeSlide() {
-    this.corsi.length = this.corsi.length - 1;
+    this.type.corsi.length = this.type.corsi.length - 1;
   }
   
   slickInit(e) {

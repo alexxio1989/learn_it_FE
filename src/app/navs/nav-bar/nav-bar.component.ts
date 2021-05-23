@@ -56,7 +56,11 @@ export class NavBarComponent implements OnInit {
 
   filterListCorsi(nome: string){
     if(this.cs.listaCorsi.length > 0 && (nome.length > 2 || nome.length === 0)){
-      var newArray = this.cs.listaCorsi.filter((data) => data.nomeCorso.toLowerCase().includes(nome.toLowerCase()));
+      var newArray = [] 
+      this.cs.listaCorsi.forEach((type) =>{
+        newArray.push(type.corsi.filter((corso) => corso.nomeCorso.toLowerCase().includes(nome.toLowerCase())))
+      })
+     
       this.cs._sbjFilterCorsi.next(newArray);
       this.route.navigate(['/']);
     }

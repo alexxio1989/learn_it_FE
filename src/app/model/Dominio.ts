@@ -15,4 +15,6 @@ export class Dominio{
 
     text: string;
     img: string;
+    corsi: Corso[] = [];
+    totOccurrences: number;
 }

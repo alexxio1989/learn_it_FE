@@ -25,4 +25,5 @@ export class Corso{
     colorCard: string ;
     totFeeds:number;
     mediumFeeds:number;
+    totOccurrences: number;
 }

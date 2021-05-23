@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { Corso } from '../model/Corso';
 import { Dominio } from '../model/Dominio';
 import { InfoCorso } from '../model/InfoCorso';
+import { Paginazione } from '../model/Paginazione';
 import { User } from '../model/User';
 import { getJWTTOKEN } from '../utils/Util';
 import { ServiceCore } from './core/ServiceCore';
@@ -18,12 +19,12 @@ export class CorsoServiceService {
   corsoSelected: Corso;
   
 
-  public _sbjUpdateCorsi = new Subject<Corso[]>();
+  public _sbjUpdateCorsi = new Subject<Dominio[]>();
   public _sbjFilterCorsi = new Subject<Corso[]>();
   public _sbjTipiCorso = new Subject<Dominio[]>();
   public _sbjCorsoSelected = new Subject<Corso>();
 
-  listaCorsi: Array<Corso> = [];
+  listaCorsi: Array<Dominio> = [];
 
   tipoCorsoList: Dominio[] = [];
 
@@ -119,6 +120,11 @@ export class CorsoServiceService {
       params: params
     };
     return this.http.get(ServiceCore.baseURl + "/corso/getallbyid" , httpOptions);
+  }
+
+  getAllPaginata(paginazione: Paginazione): Observable<any>{
+    this.ds.updateSpinner(true);
+    return this.http.post(ServiceCore.baseURl + "/corso/getAllPaginata",paginazione);
   }
 
   

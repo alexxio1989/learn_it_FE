@@ -22,8 +22,6 @@ export class SideBarComponent implements OnInit {
 
   openSideBar: boolean;
   utente: User;
-  listaCorsi: Array<Corso> = [];
-  tipoCorsoListFilter: Dominio[] = [];
   isShowRichiesta: boolean;
   
   isUtenteLogged: boolean;
@@ -39,11 +37,7 @@ export class SideBarComponent implements OnInit {
     this.ds.getOBSSideBar().subscribe(next => {
       this.openSideBar = next
     })
-    this.cs._sbjUpdateCorsi.asObservable().subscribe(next => {
-      this.listaCorsi = next;
-      this.tipoCorsoListFilter = [];
-      this.buildListTypes();
-    })
+  
 
     this.us.getOBSUser().subscribe(next => {
       this.utente = next;
@@ -63,17 +57,10 @@ export class SideBarComponent implements OnInit {
   ngOnInit(): void {
     this.utente = getUserLS();
     this.setRoles();
-    this.listaCorsi = this.cs.listaCorsi;
-    this.buildListTypes();
    
   }
 
-  buildListTypes(){
-    let mapCorsi = getMapCorsi(this.listaCorsi);
-    mapCorsi.forEach((value: Dominio, key: string) => {
-      this.tipoCorsoListFilter.push(value);
-    });
-  }
+ 
 
 
   logout(){
@@ -90,10 +77,8 @@ export class SideBarComponent implements OnInit {
   }
 
   filterListCorsi(dominio: Dominio){
-    var newArray = this.listaCorsi.filter(function (el) {
-      return el.tipo.codice === dominio.codice ;
-    });
-    this.cs._sbjFilterCorsi.next(newArray);
+   
+    this.cs._sbjFilterCorsi.next(dominio.corsi);
     this.openSideBar = false;
     this.route.navigate(['/']);
   }

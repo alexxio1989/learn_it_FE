@@ -81,7 +81,7 @@ export class ContentModalCorsoComponent implements OnInit {
       this.cs.getOBSInsertCorso(this.corso).subscribe(next => {
         this.ds.updateSpinner(false);
         this.ds.updateResultService("Corso salvato correttamente");
-        this.cs._sbjUpdateCorsi.next(next.list);
+        
         
         this.ds.updateSideBar(false);
       },error => {

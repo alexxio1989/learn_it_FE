@@ -1,8 +1,9 @@
-import { AfterContentInit,AfterViewChecked,Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit,AfterViewChecked,Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { ConstantsActions } from 'src/app/constants/ConstantsActions';
 import { Dominio } from 'src/app/model/Dominio';
+import { Paginazione } from 'src/app/model/Paginazione';
 import { IPageCore } from 'src/app/pages/IPageCore';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
@@ -21,9 +22,9 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
   @ViewChild('titleIlMioCodice') el:ElementRef;
 
   public PAGE = ConstantsActions.HOME;
-  listaCorsiBase: Array<Corso> = [];
+  listaCorsiBase: Array<Dominio> = [];
   listaCorsiFiltered: Array<Corso> = [];
-  mapCorsi: Map<string, Dominio>;
+ 
   viewList: boolean;
   text: string = '';
 
@@ -33,6 +34,7 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
   highValue: number = 3;
   renderPage: boolean;
 
+  paginazione = new Paginazione();
 
 
 
@@ -58,21 +60,9 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
     clearJWTTOKEN(this.route);
     localStorage.removeItem('CORSO');
     localStorage.removeItem('LEZIONE');
-    this.cs.getOBSCorsi().subscribe(next => {
-      this.ds.updateSpinner(false);
-      this.listaCorsiBase = next.list;
-      this.cs.listaCorsi = next.list;
-      this.cs._sbjUpdateCorsi.next(next.list);
-
-      if (next.list.length > 0) {
-        this.mapCorsi =  getMapCorsi(next.list);
-      }
-      this.renderPage = true;
-
-    }, error => {
-      this.ds.updateSpinner(false);
-      this.ds.updateResultService(error.status)
-    })
+    this.paginazione.pagina = 0;
+    this.paginazione.numeroPerPagina = 2;
+    this.getCorsi();
 
     this.cs._sbjFilterCorsi.asObservable().subscribe(next => {
       this.listaCorsiFiltered = next;
@@ -81,14 +71,24 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
     this.cs._sbjUpdateCorsi.asObservable().subscribe(next => {
       this.listaCorsiBase = next;
       this.listaCorsiFiltered = [];
-      if (next.length > 0) {
-        this.mapCorsi =  getMapCorsi(next);
-      } else {
-        this.mapCorsi = new Map<string, Dominio>();
-      }
+    
     })
 
     
+  }
+
+  private getCorsi() {
+    this.cs.getAllPaginata(this.paginazione).subscribe(next => {
+      this.ds.updateSpinner(false);
+      this.listaCorsiBase = next.list;
+      this.cs.listaCorsi = next.list;
+      //this.cs._sbjUpdateCorsi.next(next.list);
+      this.renderPage = true;
+
+    }, error => {
+      this.ds.updateSpinner(false);
+      this.ds.updateResultService(error.status);
+    });
   }
 
   get style(): string {
@@ -102,6 +102,20 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
   changView() {
     this.viewList = !this.viewList;
   }
+  
+  @HostListener("window:scroll", ["$event"])
+  onWindowScroll() {
+  //In chrome and some browser scroll is given to body tag
+  let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
+  let max = document.documentElement.scrollHeight;
+  // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
+  if(pos == max ){
+    this.paginazione.numeroPerPagina =this.paginazione.numeroPerPagina +1;
+    if(this.listaCorsiBase && this.paginazione.numeroPerPagina <= this.listaCorsiBase[0].totOccurrences )   {
+      this.getCorsi();
+    }
 
+  }
+  }
 
 }
