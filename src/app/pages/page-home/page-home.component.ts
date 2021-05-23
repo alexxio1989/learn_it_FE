@@ -36,7 +36,7 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
 
   paginazione = new Paginazione();
 
-
+  isDevice: boolean;
 
 
   constructor(private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService,private deviceService: DeviceDetectorService) { 
@@ -56,7 +56,7 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
   ngOnInit(): void {
     this.ds.reset();
     this.ds.updatePage(this.PAGE);
-    const isMobile = this.deviceService.isMobile();
+    this.isDevice = this.deviceService.isMobile();
     clearJWTTOKEN(this.route);
     localStorage.removeItem('CORSO');
     localStorage.removeItem('LEZIONE');

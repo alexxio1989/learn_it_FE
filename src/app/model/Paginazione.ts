@@ -1,6 +1,6 @@
 
 
 export class Paginazione{
-    pagina: number;
+    pagina = 0;
     numeroPerPagina: number;
 }

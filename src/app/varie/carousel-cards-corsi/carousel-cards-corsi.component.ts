@@ -3,6 +3,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 import { Slick } from 'ngx-slickjs';
 import { Subscription, timer } from 'rxjs';
 import { Corso } from 'src/app/model/Corso';
+import { Paginazione } from 'src/app/model/Paginazione';
 import { Dominio } from 'src/app/model/Dominio';
 import { Slide } from 'src/app/model/Slide';
 import { CorsoServiceService } from 'src/app/services/corso-service.service';
@@ -30,8 +31,14 @@ export class CarouselCardsCorsiComponent implements OnInit {
   tick = 1000;
 
   widthSlide: number;
+
+  paginazione = new Paginazione();
+
+  
  
-  constructor(private ds: DelegateServiceService,private deviceService: DeviceDetectorService , private cs: CorsoServiceService) { }
+  constructor(private ds: DelegateServiceService,private deviceService: DeviceDetectorService , private cs: CorsoServiceService) { 
+   
+  }
 
   ngOnInit(): void {
 
@@ -65,14 +72,17 @@ export class CarouselCardsCorsiComponent implements OnInit {
       infinite: true,
       slidesToShow: 1, 
       slidesToScroll: 1,
-      dots: true,
+      dots: false,
       autoplay: false,
       autoplaySpeed: 2000 ,
-      arrows: true,
+      arrows: false,
       centerMode: true,
       focusOnSelect: false,
       variableWidth: true
     }
+  
+    this.type.configPagination = {id: ''+this.type.id, itemsPerPage: this.isDevice ? 1 :3, currentPage: 0 , totalItems: this.type.corsi[0].totOccurrences }
+
 
   }
 
@@ -130,6 +140,22 @@ export class CarouselCardsCorsiComponent implements OnInit {
       });
     }
     return slides;
+  }
+
+  pageChanged(event){
+    let page = event -1;
+    if(page > 0){
+      page = page * (this.isDevice ? 1 :3)
+      this.paginazione.pagina = page
+      
+    }
+    this.paginazione.numeroPerPagina = this.isDevice ? 1 :3;
+    this.type.configPagination.currentPage = event;
+    this.cs.getCorsiByType(this.type.id ,this. paginazione).subscribe(next =>{
+      this.type.corsi = next.list
+    },error =>{
+      
+    } )
   }
 
 

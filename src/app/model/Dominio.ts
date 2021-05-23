@@ -1,5 +1,5 @@
 import { Corso } from "./Corso";
-
+import {Paginazione} from './Paginazione'
 
 export class Dominio{
     id: number;
@@ -17,4 +17,5 @@ export class Dominio{
     img: string;
     corsi: Corso[] = [];
     totOccurrences: number;
+    configPagination: any;
 }

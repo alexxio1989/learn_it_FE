@@ -127,7 +127,20 @@ export class CorsoServiceService {
     return this.http.post(ServiceCore.baseURl + "/corso/getAllPaginata",paginazione);
   }
 
-  
+  getCorsiByType(idType: number , paginazione: Paginazione): Observable<any>{
+    let token = getJWTTOKEN();
+    const headers = new HttpHeaders().set("JWT_TOKEN",  token!== null ? token : '');
+    let params = new HttpParams();
+    params = params.append('idType', ''+idType);
+    params = params.append('pagina', ''+paginazione.pagina);
+    params = params.append('numeroPerPagina', ''+paginazione.numeroPerPagina);
+
+    const httpOptions = {
+      headers: headers,
+      params: params
+    };
+    return this.http.get(ServiceCore.baseURl + "/corso/getCorsiByType" , httpOptions);
+  }
 
 
 }

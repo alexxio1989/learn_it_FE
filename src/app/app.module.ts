@@ -93,6 +93,7 @@ import { FormUtenteComponent } from './forms/form-utente/form-utente.component';
 import { GoogleSigninComponent } from './varie/google-signin/google-signin.component';
 import { PageTestComponent } from './pages/page-test/page-test.component';
 import { InfoProfileComponent } from './info-profile/info-profile.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -217,6 +218,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     AngularIbanModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    NgxPaginationModule,
     SocialLoginModule,
     MDBBootstrapModule.forRoot(),
     NgxSlickJsModule.forRoot({
