@@ -26,25 +26,28 @@
             </div>
         </div>
 
+
+        <div class="row mt-2">
+            <div class="col-12 ">
+                <app-spinner-sm [show]="loadNewCorsi"></app-spinner-sm>
         
-        <div class="row" >
-            <div *ngFor="let corso of type.corsi | paginate: type.configPagination" class="col-4 d-flex justify-content-center pt-3 pb-3">
-                <app-card-corso-light [width]="350" [corso]="corso"></app-card-corso-light>
+        
+                <div class="row">
+                    <div *ngFor="let corso of type.corsi | paginate: type.configPagination"
+                        class="col-4 d-flex justify-content-center pt-3 pb-3">
+                        <app-card-corso-light [width]="350" [corso]="corso"></app-card-corso-light>
+                    </div>
+                </div>
+        
+                <div *ngIf="type" class="row mt-2 ml-0 w-100">
+                    <div class="col-12 d-flex justify-content-center">
+                        <pagination-controls id="{{''+type.id}}" (pageChange)="pageChanged($event)" previousLabel="Indietro"
+                            nextLabel="Avanti"></pagination-controls>
+        
+                    </div>
+                </div>
             </div>
         </div>
-      
-        <div *ngIf="type" class="row mt-2 ml-0 w-100">
-            <div class="col-12 d-flex justify-content-center">
-                <pagination-controls 
-                 id="{{''+type.id}}" 
-                 (pageChange)="pageChanged($event)"
-                 previousLabel="Indietro"
-                 nextLabel="Avanti"
-                 ></pagination-controls>
-
-            </div>
-        </div>
-
        
 
     </div>
@@ -76,19 +79,21 @@
             </div>
         </div>
 
-        <ngx-slick-carousel class="carousel" 
-                        #slickModal="slick-carousel" 
-                        [config]="slideConfig" 
-                        (init)="slickInit($event)"
-                        (breakpoint)="breakpoint($event)"
-                        (afterChange)="afterChange($event)"
-                        (beforeChange)="beforeChange($event)">
-        <div ngxSlickItem *ngFor="let slide of slides"  class="pb-0 d-flex justify-content-center">
-            <div *ngFor="let corso of slide.corsi" class="d-flex justify-content-center pt-3 pl-1 pr-1" >
-                <app-card-corso-light [width] = "widthSlide - 40" [corso]="corso"></app-card-corso-light> 
+        <div class="row w-100 ml-0 mt-1 mb-1">
+            <div class="col-12 p-0">
+                <app-spinner-sm [show]="loadNewCorsi"></app-spinner-sm>
+        
+                <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)"
+                    (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+                    <div ngxSlickItem *ngFor="let corso of type.corsi" class="d-flex justify-content-center pt-3 pl-1 pr-1">
+                
+                        <app-card-corso-light [width]="widthSlide - 40" [corso]="corso"></app-card-corso-light>
+                
+                    </div>
+                </ngx-slick-carousel>
+
             </div>
         </div>
-    </ngx-slick-carousel>
 
         
 

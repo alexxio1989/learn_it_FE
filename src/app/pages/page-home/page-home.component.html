@@ -13,13 +13,13 @@
 <div *ngIf="listaCorsiFiltered.length === 0 && renderPage">
 
     <div *ngFor="let type of listaCorsiBase" class="row justify-content-center w-100 ml-0 mb-3  mt-1 back-color-coders">
-        <app-carousel-cards-corsi [type] = "type"></app-carousel-cards-corsi>
+        <app-carousel-cards-corsi [type] = "type" (typeEmitter) = "retrieveType($event)"></app-carousel-cards-corsi>
     </div>
 
 </div>
 
 <div *ngIf="listaCorsiFiltered.length > 0 && renderPage" class="row w-100 ml-0  mt-2">
     <div *ngFor="let corso of listaCorsiFiltered" class="col-md-4 col-sm-6 col-xs-6">
-        <app-card-corso-light [corso]="corso"></app-card-corso-light>
+        <app-card-corso-light [corso]="corso" ></app-card-corso-light>
     </div>
 </div>

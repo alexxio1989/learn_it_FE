@@ -94,6 +94,7 @@ import { PageTestComponent } from './pages/page-test/page-test.component';
 import { InfoProfileComponent } from './info-profile/info-profile.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { SpinnerSmComponent } from './varie/spinner-sm/spinner-sm.component';
 
 
 
@@ -174,7 +175,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     IbanPipe,
     FormUtenteComponent,
     PageTestComponent,
-    InfoProfileComponent
+    InfoProfileComponent,
+    SpinnerSmComponent
     
   ],
   imports: [

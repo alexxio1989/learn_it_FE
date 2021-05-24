@@ -1,4 +1,4 @@
-import { AfterContentInit,AfterViewChecked,Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit,AfterViewChecked,ChangeDetectorRef,Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { ConstantsActions } from 'src/app/constants/ConstantsActions';
@@ -39,7 +39,7 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
   isDevice: boolean;
 
 
-  constructor(private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService,private deviceService: DeviceDetectorService) { 
+  constructor(private cd: ChangeDetectorRef,private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService,private deviceService: DeviceDetectorService) { 
     
   }
   ngAfterViewChecked() {        
@@ -54,6 +54,7 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
 
 
   ngOnInit(): void {
+    
     this.ds.reset();
     this.ds.updatePage(this.PAGE);
     this.isDevice = this.deviceService.isMobile();
@@ -71,7 +72,7 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
     this.cs._sbjUpdateCorsi.asObservable().subscribe(next => {
       this.listaCorsiBase = next;
       this.listaCorsiFiltered = [];
-    
+      this.cd.markForCheck();
     })
 
     
@@ -109,13 +110,30 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
   let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
   let max = document.documentElement.scrollHeight;
   // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
-  if(pos == max ){
-    this.paginazione.numeroPerPagina =this.paginazione.numeroPerPagina +1;
-    if(this.listaCorsiBase && this.paginazione.numeroPerPagina <= this.listaCorsiBase[0].totOccurrences )   {
-      this.getCorsi();
-    }
+    if(pos == max ){
+      this.paginazione.numeroPerPagina =this.paginazione.numeroPerPagina +1;
+      if(this.listaCorsiBase && this.paginazione.numeroPerPagina <= this.listaCorsiBase[0].totOccurrences )   {
+        this.getCorsi();
+      }
 
+    }
   }
+
+  retrieveType(type: Dominio){
+    this.cd.markForCheck();
+    console.log('TOT CORSI TYPE RETRIEVED :' + type.corsi.length )
+    this.listaCorsiBase.forEach(defaultType => {
+      if(defaultType.id === type.id){
+        defaultType.corsi = type.corsi
+        // type.corsi.forEach(retrievedCoorso => {
+        //   defaultType.corsi.push(retrievedCoorso)
+        // })
+      }
+    })
+    this.cs._sbjUpdateCorsi.next(this.listaCorsiBase)
+    this.listaCorsiBase.forEach(defaultType => {
+      console.log('TOT CORSI ' + defaultType.descrizione + ' : ' + defaultType.corsi.length )
+    })
   }
 
 }
