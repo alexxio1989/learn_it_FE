@@ -1,25 +1,22 @@
-<div (click)= "isFlipped = !isFlipped " [ngStyle] = "{'width':width + 'px'}" class="card h-auto p-1" >
+<div (click)= "isFlipped = !isFlipped " [ngStyle] = "{'width':width + 'px'}" class="card  shadow-sm h-auto p-1" >
   <div *ngIf="!isFlipped">
     
     <div class="row w-100 ml-0 row-height">
-      <div class="col-4 d-flex p-0 pt-2 pb-2">
+      <div class="d-flex col-3 pl-1 pr-0 pt-2 pb-2">
         <img *ngIf="corso.image !== undefined && corso.image !== null && corso.image !== ''" alt="Card image cap"
-        src="{{corso.image}}"  />
+        src="{{corso.image}}" class="align-self-center " />
         <img *ngIf="corso.image === undefined || corso.image === null || corso.image === ''" alt="Card image cap"
-          src="../../../assets/images/default.png"  />
+          src="../../../assets/images/default.png" class="align-self-center" />
+         
+            <app-info-utente *ngIf="false" [ngClass]="isDevice ? 'app-info-utente-sm': 'app-info-utente'" [corso]="corso" [utente]="corso.owner" [isCardCorso]="true"></app-info-utente>
+    
+         
       </div>
-      <div class="col-8 pl-1 pr-1 ">
-        <h5 class="card-title op-100 mt-1"><strong>{{corso.nomeCorso}}</strong></h5>
+      <div class="col-9 pl-2 pr-1 ">
+        <h5 class="card-title op-100 mt-2"><strong>{{corso.nomeCorso}}</strong></h5>
         <p class="card-text mtn-10">{{corso.subNomeCorso}}</p>
-        <div class=" mln-2">
-          <app-info-utente [utente]="corso.owner" [isCardCorso]="true"></app-info-utente>
-  
-        </div>
-        <div class=" d-flex">
-          <ngx-stars [readonly]="true" [size]="1" [color]="'#ffc400'" [initialStars]="corso.mediumFeeds"></ngx-stars>
-          <p class="card-text ml-1" style="margin-top: -3px !important;"><small class="text-muted">( {{corso.totFeeds}}
-              )</small></p>
-        </div>
+        
+        
         
       </div>
     </div>
@@ -45,7 +42,7 @@
     <div class="card-footer d-flex pt-0 pb-0">
 
      
-      <button  mat-button (click)="continua(corso)" style="color: #6c757d;">
+      <button  mat-button (click)="continua(corso)" style="color: #00a0e0;">
         {{labelButton}}
       </button>
       

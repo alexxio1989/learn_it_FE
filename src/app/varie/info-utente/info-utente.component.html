@@ -1,27 +1,34 @@
 
 
-<div *ngIf="isCardCorso && false" class="chip">
-    <img *ngIf="utente.img !== undefined && utente.img !== null && utente.img !== ''" alt="Web Studio" width="90" height="90" src="{{utente.img}}" />
-    <img *ngIf="utente.img === undefined || utente.img === null || utente.img === ''" alt="Web Studio" width="90" height="90" src="../../../assets/images/default.png" />
-    <button class="btn btn-lg p-0 " (click)="goToPageUtenteWithID()" >
+<div *ngIf="isCardCorso " class="chip mat-elevation-z1 row">
+    <div class="col-3 p-0">
+        <img class="ml-1 mt-1" *ngIf="utente.img !== undefined && utente.img !== null && utente.img !== ''" alt="Web Studio" width="90" height="90" src="{{utente.img}}" />
+        <img class="ml-1 mt-1" *ngIf="utente.img === undefined || utente.img === null || utente.img === ''" alt="Web Studio" width="90" height="90" src="../../../assets/images/default.png" />
+
+    </div>
+    <div class="col-9 pl-0">
+        <button class="btn btn-lg p-0 w-100 ml-0" (click)="goToPageUtenteWithID()" >
+            <div class="row w-50 ml-0">
+                <div class="col-12 pr-0 pl-0  d-flex justify-content-center ">
+                    <h6 class="small2-h6 mt-1">Pubblicato da :</h6>
+                </div>
+                <div class="col-12 pr-0 pl-0 d-flex justify-content-center ">
+                    <h6 class="text-primary no-margin small2-h6"> {{utente.nome}} {{utente.cognome}} </h6>
+                    
+                </div>
+            </div>
+        </button>
         <div class="row">
-            <div class="col-12 pr-0 pl-0">
-                <h6 class="small2-h6 mt-1">Pubblicato da :</h6>
-            </div>
-            <div class="col-12 pr-0 pl-0">
-                <h6 class="text-primary no-margin small2-h6"> {{utente.nome}} {{utente.cognome}} </h6>
-                
-            </div>
+            <div class=" d-flex col-12 p-0">
+                <ngx-stars [readonly]="true" [size]="1" [color]="'#ffc400'" [initialStars]="corso.mediumFeeds"></ngx-stars>
+                <p class="card-text ml-1" style="margin-top: -3px !important;"><small class="text-muted">( {{corso.totFeeds}}
+                    )</small></p>
+              </div>
         </div>
-    </button>
+
+    </div>
 </div>
 
-<div *ngIf="isCardCorso" class="d-flex">
-   <h6 class="small2-h6">Pubblicato da :</h6>
-    <button class="btn btn-lg p-0 " (click)="goToPageUtenteWithID()" >
-        <h6 class="text-primary no-margin ml-1 mtn-11 small2-h6"> {{utente.nome}} {{utente.cognome}} </h6>
-    </button>
-</div>
 
 
 

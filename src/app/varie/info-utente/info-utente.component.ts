@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { ModalEditUtenteComponent } from 'src/app/modals/modal-edit-utente/modal-edit-utente.component';
+import { Corso } from 'src/app/model/Corso';
 import { User } from 'src/app/model/User';
 import { DelegateServiceService } from 'src/app/services/delegate-service.service';
 import { UtenteServiceService } from 'src/app/services/utente-service.service';
@@ -23,6 +24,7 @@ export class InfoUtenteComponent implements OnInit {
   @Input() isSlide: boolean;
   @Input() editInfo: boolean;
   @Input() position: number;
+  @Input() corso: Corso;
   isDevice: boolean;
   confirmDelete: boolean;
 
@@ -67,7 +69,7 @@ export class InfoUtenteComponent implements OnInit {
 
 
   goToPageUtente(){
-    this.ds.updatePage('UTENTE');
+    this.ds.updatePage('UTENTE'); 
     this.route.navigate(['/utente']);
     this.ds.updateSideBar(false);
   }

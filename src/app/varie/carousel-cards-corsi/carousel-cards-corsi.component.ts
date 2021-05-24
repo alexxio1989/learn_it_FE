@@ -35,7 +35,7 @@ export class CarouselCardsCorsiComponent implements OnInit {
     infinite: true,
     slidesToShow: 1, 
     slidesToScroll: 1,
-    dots: false,
+    dots: true,
     autoplay: false,
     autoplaySpeed: 2000 ,
     arrows: false,
@@ -74,7 +74,7 @@ export class CarouselCardsCorsiComponent implements OnInit {
     })
 
 
-    this.widthSlide = 350 ;
+    this.widthSlide = 370 ;
 
     this.totCorsi = this.type.corsi[0].totOccurrences;
   

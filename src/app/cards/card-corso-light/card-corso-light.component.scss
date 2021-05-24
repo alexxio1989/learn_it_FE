@@ -1,22 +1,36 @@
 .card{
   
-  min-height: 200px;
+  min-height: 160px;
 }
 
 .row-height{
-  min-height: 165px;
+  min-height: 115px;
 }
 
 
 img {
-  border-radius: 5%;
+  border-radius: 6px;
   width: 100%;
-  height: 100px;
+  height: 80px;
   object-fit: contain;
 }
 
 .desc-corso {
   background-color: rgb(247, 247, 247);
-  min-height: 125px;
-  max-height: 125px;
+  min-height: 85px;
+  max-height: 100px;
+}
+
+.app-info-utente{
+  position: absolute;
+  width: 150px;
+  top: -30px;
+  left: 220px;
+}
+
+.app-info-utente-sm{
+  position: absolute;
+  min-width: 150px;
+  top: -30px;
+  left: 190px;
 }

@@ -27,7 +27,7 @@
         </div>
 
 
-        <div class="row mt-2">
+        <div class="row mt-4">
             <div class="col-12 ">
                 <app-spinner-sm [show]="loadNewCorsi"></app-spinner-sm>
         
@@ -65,7 +65,7 @@
             <div class="col-8 pr-1 d-flex justify-content-center">
                 <blockquote *ngIf="type.text" class="blockquote">
                     <h5 class="align-self-center">{{type.text}}</h5>
-                  </blockquote>
+                </blockquote>
                
         
             </div>
@@ -85,7 +85,7 @@
         
                 <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)"
                     (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
-                    <div ngxSlickItem *ngFor="let corso of type.corsi" class="d-flex justify-content-center pt-3 pl-1 pr-1">
+                    <div ngxSlickItem *ngFor="let corso of type.corsi" class="d-flex justify-content-center pt-4 pb-2 pl-1 pr-1">
                 
                         <app-card-corso-light [width]="widthSlide - 40" [corso]="corso"></app-card-corso-light>
                 
