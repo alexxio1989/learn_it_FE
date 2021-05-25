@@ -7,10 +7,14 @@
 }
 
 .chip .row{
-    margin-top: -5px;
+    margin-top: -6px;
     max-height: 30px;
 }
 .chip .col-12{
   height: 24px;
   width: fit-content; 
+}
+
+.mt{
+  margin-top: 0.05rem !important;
 }

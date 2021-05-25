@@ -15,12 +15,26 @@
   .desc p{
       font-size: calc(11px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) !important;
   }
+
+  .lh-10{
+    line-height: 10px!important;
+  }
+  .lh-13{
+    line-height: 13px!important;
+  }
+
+  .lh-15{
+    line-height: 15px!important;
+  }
+  .lh-18{
+    line-height: 18px!important;
+  }
   
   p {
     margin: 0 0 0px !important;
     font-family: SFProText-Regular, Helvetica, Arial, sans-serif !important;
     font-size: calc(9px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
-    line-height: 13px;
+    
   }
   
   h1{
