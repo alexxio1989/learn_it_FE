@@ -1,0 +1,16 @@
+.chip {
+    font-size: 16px;
+    border-radius: 5px;
+    background-color: rgb(242, 242, 242);
+    height: 30px;
+    
+}
+
+.chip .row{
+    margin-top: -5px;
+    max-height: 30px;
+}
+.chip .col-12{
+  height: 24px;
+  width: fit-content; 
+}

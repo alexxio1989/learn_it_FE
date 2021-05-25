@@ -95,6 +95,7 @@ import { InfoProfileComponent } from './info-profile/info-profile.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SpinnerSmComponent } from './varie/spinner-sm/spinner-sm.component';
+import { RatingCorsoComponent } from './cards/card-corso-light/rating-corso/rating-corso.component';
 
 
 
@@ -176,7 +177,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     FormUtenteComponent,
     PageTestComponent,
     InfoProfileComponent,
-    SpinnerSmComponent
+    SpinnerSmComponent,
+    RatingCorsoComponent
     
   ],
   imports: [

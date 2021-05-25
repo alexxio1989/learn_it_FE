@@ -17,9 +17,10 @@
   }
   
   p {
-    margin: 0 0 6px !important;
-    font-family: SFProText-Regular, Helvetica, Arial, sans-serif !important; 
-    font-size: calc(9px + (20 - 18) * ((100vw - 300px) / (1600 - 300))) ;
+    margin: 0 0 0px !important;
+    font-family: SFProText-Regular, Helvetica, Arial, sans-serif !important;
+    font-size: calc(9px + (20 - 18) * ((100vw - 300px) / (1600 - 300)));
+    line-height: 13px;
   }
   
   h1{
