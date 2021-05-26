@@ -11,4 +11,5 @@ export class InfoCorso{
 	idStripe: string;
 	youAreOwner: boolean;
 	emailOwner: string;
+	richiedenteLogged: boolean;
 }

@@ -1,5 +1,5 @@
 <div *ngIf="!renderPage"></div>
-<div *ngIf="renderPage">
+<div *ngIf="renderPage && lezione !== undefined && lezione !== null">
 
     <app-card-page-lezione [lezione] = "lezione" [corso] = "corso"></app-card-page-lezione>
     

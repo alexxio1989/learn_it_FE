@@ -106,16 +106,11 @@ export class CardCorsoLightComponent implements OnInit,ICard{
   }
 
   setLabelButton(){
-    if( this.user ){
-      if(this.corso.owner.id === this.user.id){
-        this.labelButton = 'Continua'
-
-      } else {
+    
+     
         this.labelButton = 'Leggi'
-      }
-    } else {
-      this.labelButton = 'Accedi'
-    }
+     
+   
   }
 
 
@@ -123,13 +118,7 @@ export class CardCorsoLightComponent implements OnInit,ICard{
 
 
   continua(corso: Corso){
-    const utente = getUserLS();
-    if(utente){
-      this.navigate(corso);
-    } else {
-      this.ds._sbjOpenLogin.next(true);
-    
-    }
+    this.navigate(corso);
     
   }
 

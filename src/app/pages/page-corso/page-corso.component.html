@@ -1,4 +1,4 @@
-<div *ngIf="renderPage" >
+<div *ngIf="renderPage && corso !== undefined && corso !== null" >
 
   <app-card-page-corso [corso] = "corso" (changeViewEmitter)="retrieveChangeView($event)" ></app-card-page-corso>
 
@@ -6,7 +6,7 @@
 
 
 
-<div *ngIf="!newFeed && renderPage" class="row w-100 ml-0">
+<div *ngIf="!newFeed && renderPage && corso !== undefined && corso !== null" class="row w-100 ml-0">
 
   <div class="col-12 d-flex  justify-content-center mt-5" *ngIf="corso.lezioni.length === 0">
     Nessuna lezione 

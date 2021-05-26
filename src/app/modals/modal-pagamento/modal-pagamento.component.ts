@@ -123,6 +123,8 @@ export class ModalPagamentoComponent implements OnInit {
 
   pay(){
     this.ds.updateSpinner(true);
+
+   
     const observable = from(this.stripe
       .confirmCardPayment(this.clientSecret, {
         payment_method: {
@@ -141,6 +143,8 @@ export class ModalPagamentoComponent implements OnInit {
           this.ds.updateSpinner(false);
           this.dialog.closeAll();
         }
+      }, error=>{
+        this.ds.updateSpinner(false);
       });
 
    }
