@@ -1,4 +1,5 @@
 import { AfterContentInit,AfterViewChecked,ChangeDetectorRef,Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { ConstantsActions } from 'src/app/constants/ConstantsActions';
@@ -40,7 +41,7 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
   showCarica = true;
 
 
-  constructor(private cd: ChangeDetectorRef,private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService,private deviceService: DeviceDetectorService) { 
+  constructor(private titleService:Title,private cd: ChangeDetectorRef,private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService,private deviceService: DeviceDetectorService) { 
     
   }
   ngAfterViewChecked() {        
@@ -55,7 +56,7 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
 
 
   ngOnInit(): void {
-    
+    this.titleService.setTitle('Ilmiocodice.com');
     this.ds.reset();
     this.ds.updatePage(this.PAGE);
     this.isDevice = this.deviceService.isMobile();

@@ -73,6 +73,8 @@ export class PageCorsoComponent implements OnInit, IPageCore {
     this.ar.queryParams.subscribe(params => {
 
       let id = params['id'];
+      let title = params['title']
+      this.titleService.setTitle(title);
 
       if (id !== undefined && id !== null && parseInt(id) > 0) {
         this.ds._sbjAbilitaNavigazione.asObservable().subscribe(next => {
@@ -100,7 +102,7 @@ export class PageCorsoComponent implements OnInit, IPageCore {
       this.called = true;
       this.cs.getOBSGetCorso(id).subscribe(next => {
         this.corso = next.obj;
-        this.titleService.setTitle(this.corso.nomeCorso + ' : ' + this.corso.subNomeCorso);
+        
         this.ds.updateResultService("Recupero corso avvenuto con successo");
         this.ds.updateSpinner(false);
         this.renderPage = true;

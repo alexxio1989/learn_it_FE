@@ -134,7 +134,7 @@ export class CardCorsoLightComponent implements OnInit,ICard{
     console.log(corsoString)
     localStorage.setItem('CORSO', corsoString);
     this.cs.corsoSelected = corso;
-    this.route.navigate(['/corso'], { queryParams: { id: corso.id } });
+    this.route.navigate(['/corso'], { queryParams: { id: corso.id , title : corso.nomeCorso + ' : ' + corso.subNomeCorso} });
   }
 
   share(){
