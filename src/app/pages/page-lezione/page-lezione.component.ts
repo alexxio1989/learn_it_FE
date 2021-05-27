@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { ConstantsActions } from 'src/app/constants/ConstantsActions';
@@ -42,6 +43,7 @@ export class PageLezioneComponent implements OnInit, IPageCore {
               private ds: DelegateServiceService ,
               private cs: CorsoServiceService ,
               private ls: LezioneServiceService , 
+              private titleService:Title,
               private route: Router ,
               private ar: ActivatedRoute , 
               private ps: ParagrafoServiceService,
@@ -67,6 +69,8 @@ export class PageLezioneComponent implements OnInit, IPageCore {
     this.ar.queryParams.subscribe(params => {
       
       let id = params['id'];
+      let title = params['title']
+      this.titleService.setTitle(title);
       
       if(id !== undefined && id !== null && parseInt(id) > 0){
 
