@@ -23,3 +23,12 @@
         <app-card-corso-light [corso]="corso" ></app-card-corso-light>
     </div>
 </div>
+
+<div *ngIf="showCarica" class="row w-100 ml-0  mt-2">
+    <div class="col-12 d-flex justify-content-center">
+        <button  mat-button (click)="carica()" style="color: #00a0e0;">
+            <h4> <strong>Visualizza più tutorials</strong></h4>
+           
+          </button>
+    </div>
+</div>

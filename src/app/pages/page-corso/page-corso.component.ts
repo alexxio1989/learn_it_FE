@@ -9,6 +9,7 @@ import { LezioneServiceService } from 'src/app/services/lezione-service.service'
 import { getCorsoLS, getInfoPage, getUserLS, isEmptyArray, isEmptyString, isNotEmptyArray, isSameUser } from 'src/app/utils/Util';
 import { Corso } from '../../model/Corso';
 import { IPageCore } from '../IPageCore';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-page-corso',
@@ -33,10 +34,12 @@ export class PageCorsoComponent implements OnInit, IPageCore {
 
   called = false;
 
-  constructor(private fs: FeedbackService,private ls: LezioneServiceService , private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService, private ar: ActivatedRoute) {
+  constructor(private titleService:Title,private fs: FeedbackService,private ls: LezioneServiceService , private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService, private ar: ActivatedRoute) {
     this.ds.getOBSSpinner().subscribe(next => {
       this.renderPage = !next;
     })
+
+    
 
     this.ls._sbjNewLezione.asObservable().subscribe(next => {
       this.lezione = next;
@@ -55,6 +58,8 @@ export class PageCorsoComponent implements OnInit, IPageCore {
     this.fs._sbjNewFeed.asObservable().subscribe(next => {
       this.newFeed = next;
     })
+
+    
   }
 
   get isUtenteLogged(): boolean {
@@ -95,6 +100,7 @@ export class PageCorsoComponent implements OnInit, IPageCore {
       this.called = true;
       this.cs.getOBSGetCorso(id).subscribe(next => {
         this.corso = next.obj;
+        this.titleService.setTitle(this.corso.nomeCorso + ' : ' + this.corso.subNomeCorso);
         this.ds.updateResultService("Recupero corso avvenuto con successo");
         this.ds.updateSpinner(false);
         this.renderPage = true;

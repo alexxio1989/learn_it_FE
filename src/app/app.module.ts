@@ -96,6 +96,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { SpinnerSmComponent } from './varie/spinner-sm/spinner-sm.component';
 import { RatingCorsoComponent } from './cards/card-corso-light/rating-corso/rating-corso.component';
+import { ModalShareComponent } from './modals/modal-share/modal-share.component';
 
 
 
@@ -178,7 +179,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     PageTestComponent,
     InfoProfileComponent,
     SpinnerSmComponent,
-    RatingCorsoComponent
+    RatingCorsoComponent,
+    ModalShareComponent
     
   ],
   imports: [
@@ -228,7 +230,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     MDBBootstrapModule.forRoot(),
     ShareButtonsModule.withConfig({
     debug: true
-  }),
+    }),
   ShareIconsModule,
   ImageCropperModule
 

@@ -22,8 +22,20 @@
         
         </div>
     </div>
-    <div class="card-footer d-flex justify-content-center pt-0 pb-0">
-      <app-share  [url]="url" [title]="corso.nomeCorso" [description]="corso.subNomeCorso"></app-share>
+    <div class="card-footer p-0">
+      <div class="row w-100 ml-0">
+        <div class="col-6 d-flex text-left">
+
+        </div>
+        <div class="col-6 text-right pr-0">
+          <button  mat-button (click)="share(); $event.stopPropagation();" style="color: #ff9efd;">
+            Condividi
+            <mat-icon class="mt" >share</mat-icon>
+            
+          </button>
+        </div>
+      </div>
+     
     </div>
   </div>
   <div *ngIf="isFlipped">

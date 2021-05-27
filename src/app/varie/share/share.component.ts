@@ -20,4 +20,8 @@ export class ShareComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get textWhatsapp(){
+    return this.title + ' : ' + this.description;
+  }
+
 }

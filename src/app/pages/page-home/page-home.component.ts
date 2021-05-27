@@ -37,6 +37,7 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
   paginazione = new Paginazione();
 
   isDevice: boolean;
+  showCarica = true;
 
 
   constructor(private cd: ChangeDetectorRef,private cs: CorsoServiceService, private route: Router, private ds: DelegateServiceService,private deviceService: DeviceDetectorService) { 
@@ -86,6 +87,12 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
       //this.cs._sbjUpdateCorsi.next(next.list);
       this.renderPage = true;
 
+      if(this.listaCorsiBase && this.paginazione.numeroPerPagina < this.listaCorsiBase[0].totOccurrences )   {
+        this.showCarica = true
+      } else {
+        this.showCarica = false
+      }
+
     }, error => {
       this.ds.updateSpinner(false);
       this.ds.updateResultService(error.status);
@@ -104,19 +111,20 @@ export class PageHomeComponent implements OnInit , IPageCore , AfterViewChecked{
     this.viewList = !this.viewList;
   }
   
-  @HostListener("window:scroll", ["$event"])
-  onWindowScroll() {
+
+  carica() {
   //In chrome and some browser scroll is given to body tag
-  let pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
-  let max = document.documentElement.scrollHeight;
+
   // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
-    if(pos == max ){
-      this.paginazione.numeroPerPagina =this.paginazione.numeroPerPagina +1;
+    
+      this.paginazione.numeroPerPagina = this.paginazione.numeroPerPagina +1;
       if(this.listaCorsiBase && this.paginazione.numeroPerPagina <= this.listaCorsiBase[0].totOccurrences )   {
         this.getCorsi();
+      } else {
+        this.showCarica = false
       }
 
-    }
+   
   }
 
   retrieveType(type: Dominio){

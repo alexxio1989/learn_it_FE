@@ -22,6 +22,8 @@ import { ModalPagamentoComponent } from 'src/app/modals/modal-pagamento/modal-pa
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { ICard } from '../ICard';
 import { InfoCorso } from 'src/app/model/InfoCorso';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalShareComponent } from 'src/app/modals/modal-share/modal-share.component';
 
 @Component({
   selector: 'app-card-corso-light',
@@ -70,6 +72,7 @@ export class CardCorsoLightComponent implements OnInit,ICard{
               private route: Router,
               private ds: DelegateServiceService,
               private ps: PagamentiServiceService,
+              private dialog: MatDialog,
               private deviceService: DeviceDetectorService) {
 
               this.us.getOBSUser().subscribe(next => {
@@ -132,5 +135,12 @@ export class CardCorsoLightComponent implements OnInit,ICard{
     localStorage.setItem('CORSO', corsoString);
     this.cs.corsoSelected = corso;
     this.route.navigate(['/corso'], { queryParams: { id: corso.id } });
+  }
+
+  share(){
+    this.cs.corsoSelected = this.corso;
+    const dialogRef = this.dialog.open(ModalShareComponent, {
+      width: '600px'
+    });
   }
 }
