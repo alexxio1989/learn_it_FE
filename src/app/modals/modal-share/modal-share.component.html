@@ -18,13 +18,21 @@
             </mat-form-field>
         </div>
         <div class="col-12 pl-1 pr-1">
-            <app-text-editor [(inputModel)] = "descrizione" style="width: 90%;"></app-text-editor>
+            <mat-form-field style="min-height: 201px;" appearance="fill" class="size-comment w-100">
+                <mat-label>Descrizione</mat-label>
+                <textarea class="divtext" [(ngModel)]="descrizioneLight" matInput>
+                    <div contentEditable="true">Type here. You can insert images too
+                        <img src="http://t2.gstatic.com/images?q=tbn:ANd9GcQCze-mfukcuvzKk7Ilj2zQ0CS6PbOkq7ZhRInnNd1Yz3TQzU4e&t=1" />
+                      </div>
+                </textarea>
+                
+              </mat-form-field>
+           
         </div>
     </div>
 
-    {{removeHtml}}
    
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <app-share  [url]="url" [title]="titolo" [description]="descrizione"></app-share>
+    <app-share  [url]="url" [title]="titolo" [description]="descrizioneLight"></app-share>
 </mat-dialog-actions>
