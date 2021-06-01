@@ -184,4 +184,9 @@ export class CarouselCardsCorsiComponent implements OnInit {
       this.loadNewCorsi = false;
     });
   }
+
+  retrieveImg(base64:string){
+    this.type.img = base64;
+
+  }
 }
